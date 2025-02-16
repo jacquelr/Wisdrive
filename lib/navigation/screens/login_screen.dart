@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/data/app_theme.dart';
 
+const logo = '../assets/images/logo.png';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -17,7 +18,7 @@ class LoginScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset('assets/logo.png', width: 100),
+              Image.asset(logo, width: 100),
               const SizedBox(height: 20),
               const Text(
                 '┬íComencemos a aprender!',
@@ -29,7 +30,7 @@ class LoginScreen extends StatelessWidget {
                 onPressed: () {},
                 child: const Padding(
                   padding: EdgeInsets.symmetric(vertical: 12, horizontal: 40),
-                  child: Text('Iniciar Sesi├│n', style: TextStyle(fontSize: 16)),
+                  child: Text('Iniciar Sesion', style: TextStyle(fontSize: 16)),
                 ),
               ),
               const SizedBox(height: 15),
