@@ -6,9 +6,6 @@ import 'package:quiz_app/navigation/screens/results_screen.dart';
 import 'package:quiz_app/navigation/screens/start_screen.dart';
 import 'package:quiz_app/data/app_theme.dart';
 
-const topCenter = Alignment.topCenter;
-const bottomCenter = Alignment.bottomCenter;
-
 class Quiz extends StatefulWidget {
   const Quiz({super.key});
 
@@ -19,7 +16,7 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
-  List<String> selectedAnswers = []; //we can use '_selectedAnswers' to make variable private if we make public the class
+  List<String> selectedAnswers = [];
   var activeScreen = 'start-screen';
   //Widget? activeScreen; // '?' Tells Dart that the variable may contain a Widget OR null
 
@@ -29,13 +26,15 @@ class _QuizState extends State<Quiz> {
     super.initState();
   }*/
 
+  //switches first start-screen to questions-screen
   void switchScreen() {
     setState(() {
       activeScreen = 'questions-screen';
     });
   }
 
-  void chooseAnswer(String answer) {
+  //push selectedAnswer into array and change to results-screen when all answers are answered
+  void chooseAnswer(String answer) { 
     selectedAnswers.add(answer);
 
     if (selectedAnswers.length == questions.length) {
@@ -45,7 +44,8 @@ class _QuizState extends State<Quiz> {
     }
   }
 
-  void restartQuiz() {
+  //emtpy selectedAnwers array and set start-screen
+  void restartQuiz() { 
     setState(() {
       selectedAnswers = [];
       activeScreen = 'start-screen';
@@ -56,6 +56,7 @@ class _QuizState extends State<Quiz> {
   Widget build(context) {
     Widget screenWidget = StartScreen(switchScreen);
 
+    //switch screen to questions-screen or results-screen
     if (activeScreen == 'questions-screen') {
       screenWidget = QuestionsScreen(onSelectAnswer: chooseAnswer);
     } else if (activeScreen == 'results-screen') {
@@ -90,8 +91,8 @@ class _QuizState extends State<Quiz> {
                   purple,
                   blackPurple,
                 ],
-                begin: topCenter, //variables of Alignment
-                end: bottomCenter, //variables of Alignment
+                begin: Alignment.topCenter, //variables of Alignment
+                end: Alignment.bottomCenter,
               ),
             ),
             child: screenWidget),
