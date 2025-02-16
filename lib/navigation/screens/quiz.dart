@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:quiz_app/data/questions.dart';
 import 'package:quiz_app/navigation/screens/questions_screen.dart';
 import 'package:quiz_app/navigation/screens/results_screen.dart';
@@ -59,34 +58,15 @@ class _QuizState extends State<Quiz> {
     if (activeScreen == 'questions-screen') {
       screenWidget = QuestionsScreen(onSelectAnswer: chooseAnswer);
     } else if (activeScreen == 'results-screen') {
-      screenWidget = ResultsScreen(
-        chosenAnwers: selectedAnswers,
-        onRestart: restartQuiz,
-      );
+      screenWidget = ResultsScreen(chosenAnwers: selectedAnswers, onRestart: restartQuiz,);
     }
 
     return MaterialApp(
-      title: 'Wisdrive',
-      //theme: ThemeData(),
       home: Scaffold(
-        appBar: AppBar(
-          //backgroundColor: ,
-          actions: [
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.menu_rounded),
-            ),
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.account_balance),
-            ),
-          ],
-        ),
         body: Container(
             decoration: const BoxDecoration(
               gradient: LinearGradient(
-                colors: [
-                  //Palette colors initialyzed on color_palete.dart
+                colors: [ //Palette colors initialyzed on color_palete.dart
                   purple,
                   blackPurple,
                 ],
