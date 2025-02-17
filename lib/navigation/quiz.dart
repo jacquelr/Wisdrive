@@ -34,7 +34,7 @@ class _QuizState extends State<Quiz> {
   }
 
   //push selectedAnswer into array and change to results-screen when all answers are answered
-  void chooseAnswer(String answer) { 
+  void chooseAnswer(String answer) {
     selectedAnswers.add(answer);
 
     if (selectedAnswers.length == questions.length) {
@@ -45,7 +45,7 @@ class _QuizState extends State<Quiz> {
   }
 
   //emtpy selectedAnwers array and set start-screen
-  void restartQuiz() { 
+  void restartQuiz() {
     setState(() {
       selectedAnswers = [];
       activeScreen = 'start-screen';
@@ -68,33 +68,34 @@ class _QuizState extends State<Quiz> {
 
     return MaterialApp(
       title: 'Wisdrive',
-      //theme: ThemeData(),
+      theme: ThemeData(),
       home: Scaffold(
+        extendBodyBehindAppBar: true,
         appBar: AppBar(
-          //backgroundColor: ,
+          backgroundColor: Colors.transparent,
+          elevation: 0, //Elimina la sombra
+          leading: IconButton(
+            onPressed: () {}, //Logica para el left side menu
+            icon: const Icon(
+              Icons.menu_rounded,
+              color: Colors.white,
+            ),
+            iconSize: 40,
+          ),
           actions: [
             IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.menu_rounded),
-            ),
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.account_balance),
+              onPressed: () {}, //Logica para el profile button
+              icon: const Icon(
+                Icons.account_circle,
+                color: Colors.white,
+              ),
+              iconSize: 40,
             ),
           ],
         ),
         body: Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  //Palette colors initialyzed on color_palete.dart
-                  purple,
-                  blackPurple,
-                ],
-                begin: Alignment.topCenter, //variables of Alignment
-                end: Alignment.bottomCenter,
-              ),
-            ),
+            decoration:
+                const BoxDecoration(gradient: AppTheme.backgroundGradient),
             child: screenWidget),
       ),
     );
