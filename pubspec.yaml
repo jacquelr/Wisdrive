@@ -63,6 +63,11 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets\images\quiz-logo.png
+    - assets\images\logo.png
+    - assets\images\W.png
+    - assets\images\wisdrive.png
+    - assets\images\google-logo.png
+    - assets\images\facebook-logo.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

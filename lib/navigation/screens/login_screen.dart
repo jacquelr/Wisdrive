@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:quiz_app/data/app_theme.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:quiz_app/widgets/login_buttons.dart';
+import 'package:quiz_app/widgets/login/login_buttons.dart';
 
 const logo = '../assets/images/logo.png';
 

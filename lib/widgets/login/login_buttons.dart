@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_app/data/app_theme.dart';
+import 'package:quiz_app/widgets/login/social_login_buttons.dart';
 
 void _showAuthModal(BuildContext context, String title) {
     showModalBottomSheet(
@@ -11,9 +12,9 @@ void _showAuthModal(BuildContext context, String title) {
         return Container(
           padding: const EdgeInsets.all(20),
           margin: const EdgeInsets.symmetric(horizontal: 10),
-          decoration: BoxDecoration(
-            color: AppTheme.mediumPurple.withOpacity(0.9),
-            borderRadius: const BorderRadius.only(
+          decoration: const BoxDecoration(
+            color: AppTheme.mediumPurple,
+            borderRadius: BorderRadius.only(
               topLeft: Radius.circular(20),
               topRight: Radius.circular(20),
             ),
@@ -93,7 +94,9 @@ void _showAuthModal(BuildContext context, String title) {
               ] else if (title == "Registrarse") ...[
                 Text('crea una cuenta con', style: GoogleFonts.play(color: Colors.white, fontSize: 16),)
               ],
-              const SizedBox(height: 10),
+              const SizedBox(height: 15),
+              const SocialLoginButtons(),
+              const SizedBox(height: 40),
               TextButton(
                 onPressed: () => Navigator.pop(context),
                 child: Text("Cerrar", style: GoogleFonts.play(color: Colors.white70, fontSize: 16)),
