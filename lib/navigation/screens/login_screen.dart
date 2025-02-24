@@ -14,7 +14,7 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
-          gradient: AppTheme.backgroundGradient, // Aplicamos el degradado
+          gradient: AppTheme.blackBgGradient, // Aplicamos el degradado
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 50),
@@ -24,7 +24,7 @@ class LoginScreen extends StatelessWidget {
               Image.asset(logo, width: 400),
               const SizedBox(height: 50),
               Text(
-                '¡Comencemos a aprender!',
+                '¡comencemos a aprender!',
                 style: GoogleFonts.play(color: white, fontSize: 42),
                 textAlign: TextAlign.center,
               ),

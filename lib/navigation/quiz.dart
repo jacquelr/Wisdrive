@@ -88,7 +88,7 @@ class _QuizState extends State<Quiz> {
         ),
         body: Container(
             decoration:
-                const BoxDecoration(gradient: AppTheme.backgroundGradient),
+                const BoxDecoration(gradient: AppTheme.blackBgGradient),
             child: screenWidget),
       ),
     );
