@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+const black = Colors.black;
 const blackPurple = Color.fromARGB(255, 21, 0, 22);
 const deepPurple = Color.fromARGB(255, 41, 16, 74);
 const purple = Color.fromARGB(255, 82, 44, 93);
@@ -14,8 +15,18 @@ class AppTheme {
   static const Color lightPurple = Color(0xFF8A52C3);
 
   // Definimos el gradiente de fondo
-  static const LinearGradient backgroundGradient = LinearGradient(
+  static const LinearGradient splashBgGradient = LinearGradient(
     colors: [darkPurple, mediumPurple, lightPurple],
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+  );
+  static const LinearGradient blackBgGradient = LinearGradient(
+    colors: [mediumPurple, blackPurple, black],
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+  );
+  static const LinearGradient invertedBlackBgGradient = LinearGradient(
+    colors: [blackPurple, mediumPurple],
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
   );
