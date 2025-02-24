@@ -18,13 +18,6 @@ class Quiz extends StatefulWidget {
 class _QuizState extends State<Quiz> {
   List<String> selectedAnswers = [];
   var activeScreen = 'start-screen';
-  //Widget? activeScreen; // '?' Tells Dart that the variable may contain a Widget OR null
-
-  /*@override  //Initialyze before the build method
-  void initState() {
-    activeScreen = StartScreen(switchScreen);
-    super.initState();
-  }*/
 
   //switches first start-screen to questions-screen
   void switchScreen() {
