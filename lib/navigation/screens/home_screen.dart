@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/data/app_theme.dart';
+import 'package:quiz_app/navigation/screens/profile_screen.dart';
 import 'package:quiz_app/widgets/sidebar_menu.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -6,17 +8,37 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(context) {
-    return (MaterialApp(
+    return MaterialApp(
       title: "Wisdrive",
       theme: ThemeData(),
       home: Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
+          iconTheme: const IconThemeData(color: Colors.white, size: 40),
           backgroundColor: Colors.transparent,
           elevation: 0,
+          actions: [
+            IconButton(
+              icon: const Icon(
+                Icons.account_circle,
+                color: Colors.white,
+              ),
+              iconSize: 40,
+              onPressed: () {
+                Navigator.pop(context);
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const ProfileScreen(),
+                ));
+              }, //Logica para el profile button
+            ),
+          ],
         ),
         drawer: const SidebarMenu(),
+        body: Container(
+          decoration:
+              const BoxDecoration(gradient: AppTheme.invertedBlackBgGradient),
+        ),
       ),
-    ));
+    );
   }
 }
