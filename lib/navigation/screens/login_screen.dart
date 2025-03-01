@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:quiz_app/data/app_theme.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_app/widgets/login/login_buttons.dart';
+import '../../generated/l10n.dart';
 
 const logo = '../assets/images/logo.png';
 
@@ -24,7 +25,7 @@ class LoginScreen extends StatelessWidget {
               Image.asset(logo, width: 400),
               const SizedBox(height: 50),
               Text(
-                '¡comencemos a aprender!',
+                S.of(context).lets_start_learning,
                 style: GoogleFonts.play(color: white, fontSize: 42),
                 textAlign: TextAlign.center,
               ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_app/data/app_theme.dart';
 import 'package:quiz_app/widgets/login/modal_sheet.dart';
+import '../../generated/l10n.dart';
 
 void _showAuthModal(BuildContext context, String title) {
     showModalBottomSheet(
@@ -22,13 +23,13 @@ class LoginButton extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: () => _showAuthModal(context, "Iniciar Sesión"),
+        onPressed: () => _showAuthModal(context, S.of(context).Sign_In),
         style: ElevatedButton.styleFrom(
             backgroundColor: Colors.transparent, foregroundColor: Colors.white),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10),
           child: Text(
-            'iniciar sesion',
+            S.of(context).sign_in,
             style: GoogleFonts.play(color: Colors.white, fontSize: 30),
           ),
         ),
@@ -45,12 +46,12 @@ class SignupButton extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: () => _showAuthModal(context, "Registrarse"),
+        onPressed: () => _showAuthModal(context, S.of(context).Sign_Up),
         style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10),
           child: Text(
-            'registrarse',
+            S.of(context).sign_up,
             style: GoogleFonts.play(color: purple, fontSize: 30),
           ),
         ),

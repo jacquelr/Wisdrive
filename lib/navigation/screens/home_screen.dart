@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:quiz_app/data/app_theme.dart';
 import 'package:quiz_app/navigation/screens/profile_screen.dart';
 import 'package:quiz_app/widgets/sidebar_menu.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import '../../generated/l10n.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -9,6 +11,13 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(context) {
     return MaterialApp(
+      supportedLocales: S.delegate.supportedLocales,
+      localizationsDelegates: const [
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
       title: "Wisdrive",
       theme: ThemeData(),
       home: Scaffold(

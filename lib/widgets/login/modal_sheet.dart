@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_app/data/app_theme.dart';
 import 'package:quiz_app/navigation/screens/home_screen.dart';
 import 'package:quiz_app/widgets/login/social_login_buttons.dart';
+import '../../generated/l10n.dart';
 
 class ModalSheet extends StatelessWidget {
   const ModalSheet({super.key, required this.title});
@@ -25,7 +26,7 @@ class ModalSheet extends StatelessWidget {
       } else {
         Navigator.pop(context);
         final snackbar = SnackBar(
-          content: const Text("Error al iniciar sesión"),
+          content: Text(S.of(context).signin_error),
           action: SnackBarAction(
             label: "OK",
             onPressed: () {},
@@ -53,12 +54,12 @@ class ModalSheet extends StatelessWidget {
             style: GoogleFonts.play(
                 color: Colors.white, fontSize: 32, fontWeight: FontWeight.bold),
           ),
-          if (title == 'Iniciar Sesión') const SizedBox(height: 50),
+          if (title == 'Iniciar Sesión' || title == 'Sign In') const SizedBox(height: 50),
           const SizedBox(height: 20),
           TextField(
             controller: emailController,
             decoration: InputDecoration(
-              labelText: 'Correo electrónico',
+              labelText: S.of(context).email,
               labelStyle: GoogleFonts.play(color: Colors.white70, fontSize: 24),
               enabledBorder: const UnderlineInputBorder(
                   borderSide: BorderSide(color: Colors.white70)),
@@ -73,7 +74,7 @@ class ModalSheet extends StatelessWidget {
             controller: passwordController,
             obscureText: true,
             decoration: InputDecoration(
-              labelText: 'Contraseña',
+              labelText: S.of(context).password,
               labelStyle: GoogleFonts.play(color: Colors.white70, fontSize: 24),
               enabledBorder: const UnderlineInputBorder(
                 borderSide: BorderSide(color: Colors.white70),
@@ -84,13 +85,13 @@ class ModalSheet extends StatelessWidget {
             ),
             style: const TextStyle(color: Colors.white),
           ),
-          if (title == "Registrarse") ...[
+          if (title == "Registrarse" || title == 'Sign Up') ...[
             const SizedBox(height: 15),
             TextField(
               controller: confirmPasswordController,
               obscureText: true,
               decoration: InputDecoration(
-                labelText: 'Confirmar contraseña',
+                labelText: S.of(context).confirm_password,
                 labelStyle:
                     GoogleFonts.play(color: Colors.white70, fontSize: 20),
                 enabledBorder: const UnderlineInputBorder(
@@ -123,18 +124,18 @@ class ModalSheet extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 15),
-          if (title == "Iniciar Sesión") ...[
+          if (title == "Iniciar Sesión" || title == 'Sign In') ...[
             Text(
-              'ó',
+              S.of(context).or,
               style: GoogleFonts.play(color: Colors.white, fontSize: 16),
             ),
             Text(
-              'inicia sesión con',
+              S.of(context).sign_in_with,
               style: GoogleFonts.play(color: Colors.white, fontSize: 16),
             )
-          ] else if (title == "Registrarse") ...[
+          ] else if (title == "Registrarse" || title == 'Sign Up') ...[
             Text(
-              'crea una cuenta con',
+              S.of(context).create_account_with,
               style: GoogleFonts.play(color: Colors.white, fontSize: 16),
             )
           ],
@@ -143,7 +144,7 @@ class ModalSheet extends StatelessWidget {
           const SizedBox(height: 40),
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: Text("Cerrar",
+            child: Text(S.of(context).close,
                 style: GoogleFonts.play(color: Colors.white70, fontSize: 16)),
           ),
         ],

@@ -1,0 +1,26 @@
+{
+    "lets_start_learning" : "¡Let's start learning!",
+    "sign_in" : "sign in",
+    "sign_up" : "sign up",
+    
+    "Sign_In" : "Sign In",
+    "Sign_Up" : "Sign Up",
+    "email" : "E-mail",
+    "password" : "Password",
+    "confirm_password" : "Confirm Password",
+    "or" : "or",
+    "sign_in_with" : "sign in with",
+    "create_account_with" : "create an account with",
+    "signin_error" : "Sign In Error",
+    "close" : "Close",
+
+    "theme" : "Theme",
+    "user_profile" : "User Profile",
+    "language" : "Language",
+    "notifications" : "Notifications",
+    "reminders" : "Reminders",
+    "accesibility" : "Accesibility",
+    "help" : "Help panel",
+    "privacy_politics" : "Privacy politics",
+    "logout" : "Logout"
+}
