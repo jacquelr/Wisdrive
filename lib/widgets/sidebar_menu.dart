@@ -1,0 +1,201 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:quiz_app/controllers/language_controller.dart';
+import 'package:quiz_app/data/app_theme.dart';
+import 'package:quiz_app/navigation/screens/home_screen.dart';
+import 'package:quiz_app/navigation/screens/login_screen.dart';
+import '../generated/l10n.dart';
+
+class SidebarMenu extends StatelessWidget {
+  const SidebarMenu({super.key});
+
+  final sidebarLogo = 'assets/images/W.png';
+
+  @override
+  Widget build(context) {
+    final LanguageController languageController = Get.find();
+
+    return Drawer(
+      child: Container(
+        decoration: const BoxDecoration(
+          gradient: AppTheme.blackBgGradient,
+        ),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              buildHeader(context),
+              buildMenuItems(context, languageController),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget buildHeader(BuildContext context) => Container();
+
+  Widget buildMenuItems(
+          BuildContext context, LanguageController languageController) =>
+      Container(
+        padding: const EdgeInsets.all(24),
+        child: Wrap(
+          children: [
+            ListTile(
+              leading: Image.asset(sidebarLogo, width: 60),
+              onTap: () =>
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => const HomeScreen(),
+              )),
+            ),
+            const Divider(
+              color: Colors.white,
+              height: 50,
+            ),
+            ListTile(
+                leading: const Icon(Icons.brightness_4,
+                    color: Colors.white), //brightness_5,
+                title: Text(
+                  S.of(context).theme,
+                  style: GoogleFonts.play(color: Colors.white, fontSize: 20),
+                ),
+                onTap: () {}),
+            ListTile(
+                leading: const Icon(Icons.person, color: Colors.white),
+                title: Text(
+                  S.of(context).user_profile,
+                  style: GoogleFonts.play(color: Colors.white, fontSize: 20),
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const HomeScreen(),
+                  ));
+                }),
+            ExpansionTile(
+              leading: const Icon(Icons.language, color: Colors.white),
+              title: Text(
+                S.of(context).language,
+                style: GoogleFonts.play(color: Colors.white, fontSize: 20),
+              ),
+              collapsedIconColor: Colors.white,
+              children: [
+                Obx(() {
+                  Locale currentLocale = languageController.selectedLocale.value;
+                  return Column(
+                    children: [
+                      ListTile(
+                        title: Text(
+                          'Español',
+                          style: GoogleFonts.play(
+                            color: Colors.white,
+                            fontSize: 20,
+                          ),
+                        ),
+                        trailing: currentLocale.languageCode == 'es'
+                        ? const Icon(Icons.check, color: Colors.white)
+                        : null,
+                        onTap: () {
+                          languageController.changeLanguage(const Locale('es', 'MX'));
+                        },
+                      ),
+                      ListTile(
+                        title: Text(
+                          'English',
+                          style: GoogleFonts.play(
+                            color: Colors.white,
+                            fontSize: 20,
+                          ),
+                        ),
+                        trailing: currentLocale.languageCode == 'en'
+                        ? const Icon(Icons.check, color: Colors.white)
+                        : null,
+                        onTap: () {
+                          languageController.changeLanguage(const Locale('en', 'US'));
+                        },
+                      ),
+                    ],
+                  );
+                })
+              ],
+            ),
+            const Divider(
+              color: Colors.white,
+              height: 50,
+            ),
+            ListTile(
+                leading: const Icon(Icons.notifications,
+                    color: Colors.white), //notifications_off
+                title: Text(
+                  S.of(context).notifications,
+                  style: GoogleFonts.play(color: Colors.white, fontSize: 20),
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const HomeScreen(),
+                  ));
+                }),
+            ListTile(
+                leading: const Icon(Icons.calendar_month, color: Colors.white),
+                title: Text(
+                  S.of(context).reminders,
+                  style: GoogleFonts.play(color: Colors.white, fontSize: 20),
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const HomeScreen(),
+                  ));
+                }),
+            ListTile(
+                title: Text(
+                  S.of(context).accesibility,
+                  style: GoogleFonts.play(color: Colors.white, fontSize: 20),
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const HomeScreen(),
+                  ));
+                }),
+            ListTile(
+                leading: const Icon(Icons.help, color: Colors.white),
+                title: Text(
+                  S.of(context).help,
+                  style: GoogleFonts.play(color: Colors.white, fontSize: 20),
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const HomeScreen(),
+                  ));
+                }),
+            ListTile(
+                title: Text(
+                  S.of(context).privacy_politics,
+                  style: GoogleFonts.play(color: Colors.white, fontSize: 20),
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const HomeScreen(),
+                  ));
+                }),
+            ListTile(
+                leading: const Icon(Icons.logout_outlined, color: Colors.white),
+                title: Text(
+                  S.of(context).logout,
+                  style: GoogleFonts.play(color: Colors.white, fontSize: 20),
+                ),
+                onTap: () {
+                  //Navigator.pop(context);
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const LoginScreen(),
+                  ));
+                }),
+          ],
+        ),
+      );
+}

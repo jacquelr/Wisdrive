@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-import 'package:quiz_app/answer_botton.dart';
-import 'package:quiz_app/data/color_palete.dart';
+import 'package:quiz_app/widgets/answer_botton.dart';
+import 'package:quiz_app/data/app_theme.dart';
 import 'package:quiz_app/data/questions.dart';
 
 class VideoScreen extends StatefulWidget {
