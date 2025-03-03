@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quiz_app/controllers/theme_controller.dart';
 import 'package:quiz_app/data/app_theme.dart';
 import 'package:quiz_app/navigation/screens/home_screen.dart';
 import 'package:quiz_app/widgets/login/social_login_buttons.dart';
@@ -12,6 +15,7 @@ class ModalSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeController themeController = Get.find();
     final TextEditingController emailController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
     final TextEditingController confirmPasswordController =
@@ -39,9 +43,9 @@ class ModalSheet extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(20),
       margin: const EdgeInsets.symmetric(horizontal: 20),
-      decoration: const BoxDecoration(
-        gradient: AppTheme.blackBgGradient,
-        borderRadius: BorderRadius.only(
+      decoration: BoxDecoration(
+        gradient: AppTheme.getGradient(themeController.isDarkMode.value),
+        borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(20),
           topRight: Radius.circular(20),
         ),

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
+import 'package:get/get.dart';
 import 'package:quiz_app/data/app_theme.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_app/widgets/login/login_buttons.dart';
+import 'package:quiz_app/controllers/theme_controller.dart';
 import '../../generated/l10n.dart';
 
 const logo = '../assets/images/logo.png';
@@ -12,10 +14,12 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeController themeController = Get.find();
+
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
-          gradient: AppTheme.blackBgGradient, // Aplicamos el degradado
+        decoration: BoxDecoration(
+          gradient: AppTheme.getGradient(themeController.isDarkMode.value), // Aplicamos el degradado
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 50),
