@@ -8,6 +8,7 @@ import 'package:quiz_app/controllers/theme_controller.dart';
 import '../../generated/l10n.dart';
 
 const logo = '../assets/images/logo.png';
+const lightLogo = '../assets/images/light-logo.png';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -26,11 +27,11 @@ class LoginScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset(logo, width: 400),
+              themeController.isDarkMode.value ? Image.asset(logo, width: 400) : Image.asset(lightLogo, width: 400),
               const SizedBox(height: 50),
               Text(
                 S.of(context).lets_start_learning,
-                style: GoogleFonts.play(color: white, fontSize: 42),
+                style: GoogleFonts.play(color: themeController.isDarkMode.value ? AppTheme.lightBackground : AppTheme.lightPurple, fontSize: 42),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 100),

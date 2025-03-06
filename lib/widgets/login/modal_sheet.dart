@@ -44,7 +44,9 @@ class ModalSheet extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       margin: const EdgeInsets.symmetric(horizontal: 20),
       decoration: BoxDecoration(
-        gradient: AppTheme.getGradient(themeController.isDarkMode.value),
+        gradient: themeController.isDarkMode.value
+        ? AppTheme.getGradient(themeController.isDarkMode.value)
+        : AppTheme.getInvertedGradient(themeController.isDarkMode.value),
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(20),
           topRight: Radius.circular(20),
@@ -149,7 +151,7 @@ class ModalSheet extends StatelessWidget {
           TextButton(
             onPressed: () => Navigator.pop(context),
             child: Text(S.of(context).close,
-                style: GoogleFonts.play(color: Colors.white70, fontSize: 16)),
+                style: GoogleFonts.play(color: Colors.white70, fontSize: 16, fontWeight: FontWeight.bold)),
           ),
         ],
       ),

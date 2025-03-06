@@ -41,13 +41,13 @@ class AppTheme {
 
   // 🌞 Gradientes claros
   static const LinearGradient lightBgGradient = LinearGradient(
-    colors: [lightBackground, lightPrimary, lightSecondary],
+    colors: [lightBackground, lightPrimary],
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
   );
 
   static const LinearGradient invertedLightBgGradient = LinearGradient(
-    colors: [lightSecondary, lightPrimary, lightBackground],
+    colors: [lightSecondary, lightPrimary],
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
   );

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quiz_app/controllers/theme_controller.dart';
 import 'package:quiz_app/data/app_theme.dart';
 import 'package:quiz_app/widgets/login/modal_sheet.dart';
 import '../../generated/l10n.dart';
@@ -20,12 +23,13 @@ class LoginButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeController themeController = Get.find();
+
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
         onPressed: () => _showAuthModal(context, S.of(context).Sign_In),
-        style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.transparent, foregroundColor: Colors.white),
+        style: ElevatedButton.styleFrom(backgroundColor: themeController.isDarkMode.value ? Colors.transparent : AppTheme.lightPurple, foregroundColor: Colors.white),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10),
           child: Text(

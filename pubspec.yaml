@@ -68,6 +68,9 @@ flutter:
     - assets\images\logo.png
     - assets\images\W.png
     - assets\images\wisdrive.png
+    - assets\images\light-logo.png
+    - assets\images\light-W.png
+    - assets\images\light-wisdrive.png
     - assets\images\google-logo.png
     - assets\images\facebook-logo.png
   # An image asset can refer to one or more resolution-specific "variants", see
