@@ -1,0 +1,26 @@
+{
+    "lets_start_learning" : "¡comencemos a aprender!",
+    "sign_in" : "iniciar sesión",
+    "sign_up" : "registrarse",
+    
+    "Sign_In" : "Iniciar Sesión",
+    "Sign_Up" : "Registrarse",
+    "email" : "Correo electronico",
+    "password" : "Contraseña",
+    "confirm_password" : "Confirmar contraseña",
+    "or" : "ó",
+    "sign_in_with" : "inicia sesión con",
+    "create_account_with" : "crea una cuenta con",
+    "signin_error" : "Error al iniciar sesión",
+    "close" : "Cerrar",
+
+    "theme" : "Tema",
+    "user_profile" : "Perfil de usuario",
+    "language" : "Idioma",
+    "notifications" : "Notificaciones",
+    "reminders" : "Recordatorios",
+    "accesibility" : "Accesibilidad",
+    "help" : "Centro de ayuda",
+    "privacy_politics" : "Politicas de privacidad",
+    "logout" : "Cerrar Sesión"
+}

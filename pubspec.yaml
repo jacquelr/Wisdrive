@@ -30,7 +30,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  flutter_localizations:
+    sdk: flutter
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -38,6 +39,8 @@ dependencies:
   google_fonts: ^6.2.1
   youtube_player_flutter: ^9.1.1
   syncfusion_flutter_pdfviewer: ^28.2.7
+  get: ^4.7.2
+  intl: ^0.19.0
 
 dev_dependencies:
   flutter_test:
@@ -52,7 +55,6 @@ dev_dependencies:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
-
 # The following section is specific to Flutter packages.
 flutter:
 
@@ -64,13 +66,18 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets\images\quiz-logo.png
-
+    - assets\images\logo.png
+    - assets\images\W.png
+    - assets\images\wisdrive.png
+    - assets\images\light-logo.png
+    - assets\images\light-W.png
+    - assets\images\light-wisdrive.png
+    - assets\images\google-logo.png
+    - assets\images\facebook-logo.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
-
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/to/asset-from-package
-
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a
@@ -90,3 +97,7 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+flutter_intl:
+  enabled: true
+  class_name: S
+  main_locale: es
