@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_app/controllers/language_controller.dart';
+import 'package:quiz_app/controllers/theme_controller.dart';
 import 'package:quiz_app/data/app_theme.dart';
 import 'package:quiz_app/navigation/screens/home_screen.dart';
 import 'package:quiz_app/navigation/screens/login_screen.dart';
@@ -14,19 +15,20 @@ class SidebarMenu extends StatelessWidget {
 
   @override
   Widget build(context) {
+    final ThemeController themeController = Get.find();
     final LanguageController languageController = Get.find();
 
     return Drawer(
       child: Container(
-        decoration: const BoxDecoration(
-          gradient: AppTheme.blackBgGradient,
+        decoration: BoxDecoration(
+          gradient: AppTheme.getInvertedGradient(themeController.isDarkMode.value),
         ),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               buildHeader(context),
-              buildMenuItems(context, languageController),
+              buildMenuItems(context, languageController, themeController),
             ],
           ),
         ),
@@ -37,7 +39,7 @@ class SidebarMenu extends StatelessWidget {
   Widget buildHeader(BuildContext context) => Container();
 
   Widget buildMenuItems(
-          BuildContext context, LanguageController languageController) =>
+          BuildContext context, LanguageController languageController, ThemeController themeController) =>
       Container(
         padding: const EdgeInsets.all(24),
         child: Wrap(
@@ -53,14 +55,21 @@ class SidebarMenu extends StatelessWidget {
               color: Colors.white,
               height: 50,
             ),
-            ListTile(
-                leading: const Icon(Icons.brightness_4,
-                    color: Colors.white), //brightness_5,
+            Obx(() => ListTile(
+                leading: const Icon(Icons.brightness_4, color: Colors.white), //brightness_5,
                 title: Text(
                   S.of(context).theme,
                   style: GoogleFonts.play(color: Colors.white, fontSize: 20),
                 ),
-                onTap: () {}),
+                trailing: Icon(
+                  themeController.isDarkMode.value
+                      ? Icons.dark_mode
+                      : Icons.light_mode,
+                  color: Colors.white,
+                ),
+                onTap: themeController.toggleTheme
+                ),
+            ),
             ListTile(
                 leading: const Icon(Icons.person, color: Colors.white),
                 title: Text(

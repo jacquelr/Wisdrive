@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+
+import 'package:get/get.dart';
+import 'package:quiz_app/controllers/theme_controller.dart';
 import 'package:quiz_app/data/app_theme.dart';
 import 'package:quiz_app/navigation/screens/profile_screen.dart';
 import 'package:quiz_app/widgets/sidebar_menu.dart';
@@ -10,6 +13,8 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(context) {
+    final ThemeController themeController = Get.find();
+    
     return MaterialApp(
       supportedLocales: S.delegate.supportedLocales,
       localizationsDelegates: const [
@@ -23,15 +28,16 @@ class HomeScreen extends StatelessWidget {
       home: Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
-          iconTheme: const IconThemeData(color: Colors.white, size: 40),
+          iconTheme: themeController.isDarkMode.value
+          ? const IconThemeData(color: AppTheme.lightBackground, size: 40)
+          : const IconThemeData(color: AppTheme.lightSecondary, size: 40),
           backgroundColor: Colors.transparent,
           elevation: 0,
           actions: [
             IconButton(
-              icon: const Icon(
-                Icons.account_circle,
-                color: Colors.white,
-              ),
+              icon: themeController.isDarkMode.value
+              ? const Icon(Icons.account_circle, color: AppTheme.lightBackground)
+              : const Icon(Icons.account_circle, color: AppTheme.lightSecondary),
               iconSize: 40,
               onPressed: () {
                 Navigator.pop(context);
@@ -44,8 +50,9 @@ class HomeScreen extends StatelessWidget {
         ),
         drawer: const SidebarMenu(),
         body: Container(
-          decoration:
-              const BoxDecoration(gradient: AppTheme.invertedBlackBgGradient),
+          decoration: themeController.isDarkMode.value
+          ? BoxDecoration(gradient: AppTheme.getInvertedGradient(themeController.isDarkMode.value))
+          : const BoxDecoration(color: AppTheme.lightBackground ),
         ),
       ),
     );
