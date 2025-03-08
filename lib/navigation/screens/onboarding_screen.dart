@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
 import 'package:quiz_app/constraints/helper_functions.dart';
 import 'package:quiz_app/constraints/images_routes.dart';
+import 'package:quiz_app/controllers/onboarding_controller.dart';
 import 'package:quiz_app/controllers/theme_controller.dart';
 import 'package:quiz_app/data/app_theme.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -15,11 +16,14 @@ class OnboardingScreen extends StatelessWidget {
   @override
   Widget build(context) {
     final ThemeController themeController = Get.find();
+    final controller = Get.put(OnboardingController());
 
     return Scaffold(
       body: Stack(
         children: [
           PageView(
+            controller: controller.pageConroller,
+            onPageChanged: controller.updatePageIndicator,
             children: [
               Onboarding(
                 themeController: themeController,
@@ -45,10 +49,10 @@ class OnboardingScreen extends StatelessWidget {
             top: 1,
             right: 1,
             child: TextButton(
-              onPressed: () {},
+              onPressed: () => OnboardingController.instance.skipPage(),
               child: Text(
                 'Saltar',
-                style: GoogleFonts.play(color: Colors.white, fontSize: 10),
+                style: GoogleFonts.play(color: Colors.white, fontSize: 20),
               ),
             ),
           ),
@@ -56,20 +60,19 @@ class OnboardingScreen extends StatelessWidget {
             bottom: 25,
             left: 25,
             child: SmoothPageIndicator(
-                controller: PageController(),
-                count: 3,
-                effect: ExpandingDotsEffect(
-                    activeDotColor: themeController.isDarkMode.value
-                        ? AppTheme.lightBackground
-                        : AppTheme.lightSecondary,
-                    dotHeight: 6)),
+              controller: controller.pageConroller,
+              onDotClicked: controller.dotNavigationClick,
+              count: 3,
+              effect: const ExpandingDotsEffect(
+                  activeDotColor: AppTheme.lightSecondary, dotHeight: 6),
+            ),
           ),
           Positioned(
             bottom: 1,
             right: 1,
             child: IconButton(
               icon: const Icon(Icons.arrow_circle_right, size: 50),
-              onPressed: () {},
+              onPressed: () => OnboardingController.instance.nextPage(),
             ),
           ),
         ],

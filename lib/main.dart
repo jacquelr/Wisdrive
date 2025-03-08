@@ -5,7 +5,6 @@ import 'package:quiz_app/controllers/language_controller.dart';
 import 'package:quiz_app/controllers/theme_controller.dart';
 import 'package:quiz_app/data/app_theme.dart';
 import 'package:quiz_app/navigation/screens/splash_screen.dart';
-import 'package:quiz_app/navigation/screens/onboarding_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'generated/l10n.dart';
 
@@ -38,7 +37,7 @@ class WisdriveApp extends StatelessWidget {
       theme: AppTheme.darkTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.system,
-      home: const OnboardingScreen(),
+      home: const SplashScreen(),
     );
   }
 }
