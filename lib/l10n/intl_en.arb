@@ -1,4 +1,9 @@
 {
+    "SKIP" : "SKIP",
+    "onboarding_1" : "Welcome to wisdrive! Learn everything you need to know about mechanics and Jalisco's traffic regulations without complications.",
+    "onboarding_2" : "Improve your road safety with traffic and mechanics lessons to become a responsible driver.",
+    "onboarding_3" : "Test your knowledge with interactive lessons and be prepared for any situation.",
+    
     "lets_start_learning" : "¡Let's start learning!",
     "sign_in" : "sign in",
     "sign_up" : "sign up",
