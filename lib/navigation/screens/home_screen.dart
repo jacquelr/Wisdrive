@@ -38,13 +38,11 @@ class HomeScreen extends StatelessWidget {
               icon: themeController.isDarkMode.value
               ? const Icon(Icons.account_circle, color: AppTheme.lightBackground)
               : const Icon(Icons.account_circle, color: AppTheme.lightSecondary),
-              iconSize: 40,
               onPressed: () {
-                Navigator.pop(context);
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => const ProfileScreen(),
                 ));
-              }, //Logica para el profile button
+              },
             ),
           ],
         ),
