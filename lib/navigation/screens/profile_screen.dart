@@ -5,7 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_app/constraints/images_routes.dart';
 import 'package:quiz_app/controllers/theme_controller.dart';
 import 'package:quiz_app/data/app_theme.dart';
-import 'package:quiz_app/widgets/sidebar_profile.dart';
+import 'package:quiz_app/navigation/screens/edit_profile_screen.dart';
+import 'package:quiz_app/widgets/profile/sidebar_profile.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -33,8 +34,7 @@ class ProfileScreen extends StatelessWidget {
             Navigator.pop(context);
           },
           icon: themeController.isDarkMode.value
-              ? const Icon(Icons.arrow_back_sharp,
-                  color: AppTheme.darkPurple)
+              ? const Icon(Icons.arrow_back_sharp, color: AppTheme.darkPurple)
               : const Icon(Icons.arrow_back_sharp,
                   color: AppTheme.lightBackground),
         ),
@@ -57,31 +57,32 @@ class ProfileScreen extends StatelessWidget {
                     height: 300,
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      color: themeController.isDarkMode.value ?AppTheme.lightBackground : AppTheme.lightPrimary,
+                      color: themeController.isDarkMode.value
+                          ? AppTheme.lightBackground
+                          : AppTheme.lightPrimary,
                       borderRadius: const BorderRadius.vertical(
                         bottom: Radius.circular(200),
                       ),
                     ),
                   ),
                   Container(
+                    padding: const EdgeInsets.only(top: 75),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black.withOpacity(0.5),
-                          spreadRadius: 4,
-                          blurRadius: 10,
+                          spreadRadius: 10,
+                          blurRadius: 15,
+                          offset: const Offset(0, 40),
                         ),
                       ],
                     ),
-                    child: const Padding(
-                    padding: EdgeInsets.only(top: 100),
-                    child: CircleAvatar(
-                      radius: 80,
-                      backgroundImage: AssetImage(RImages.profilePickImage),
+                    child: const CircleAvatar(
+                        radius: 100,
+                        backgroundImage: AssetImage(RImages.profilePickImage),
+                      ),
                     ),
-                  ),
-                  )
                 ],
               ),
               const SizedBox(height: 10),
@@ -99,9 +100,13 @@ class ProfileScreen extends StatelessWidget {
                       fontSize: 18)),
               const SizedBox(height: 20),
               SizedBox(
-                width: 200,
+                width: 300,
                 child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const EditProfileScreen(),
+                      ));
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: themeController.isDarkMode.value
                           ? Colors.white

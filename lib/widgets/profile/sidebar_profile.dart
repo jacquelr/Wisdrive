@@ -6,6 +6,7 @@ import 'package:quiz_app/constraints/images_routes.dart';
 import 'package:quiz_app/controllers/theme_controller.dart';
 import 'package:quiz_app/data/app_theme.dart';
 import 'package:quiz_app/generated/l10n.dart';
+import 'package:quiz_app/navigation/screens/edit_profile_screen.dart';
 import 'package:quiz_app/navigation/screens/home_screen.dart';
 import 'package:quiz_app/navigation/screens/login_screen.dart';
 
@@ -80,7 +81,7 @@ class SidebarProfile extends StatelessWidget {
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const HomeScreen(),
+                    builder: (context) => const EditProfileScreen(),
                   ));
                 }),
             ListTile(
