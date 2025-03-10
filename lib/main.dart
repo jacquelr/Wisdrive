@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:quiz_app/controllers/language_controller.dart';
 import 'package:quiz_app/controllers/theme_controller.dart';
 import 'package:quiz_app/data/app_theme.dart';
@@ -10,7 +10,15 @@ import 'generated/l10n.dart';
 
 const logo = '../assets/images/logo.png';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Inicializar Supabase
+  await Supabase.initialize(
+    url: 'https://vtyjpcahodmndprwngxx.supabase.co', // Reemplaza con tu URL de Supabase
+    anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ0eWpwY2Fob2RtbmRwcnduZ3h4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDAyNzgyNjIsImV4cCI6MjA1NTg1NDI2Mn0.sqWU9JAlMmUbk7z1PpGeC2Xow9cg6JjU9-eb0NjqDvY', // Reemplaza con tu API Key pública
+  );
+
   Get.put(ThemeController());
   Get.put(LanguageController());
   runApp(const WisdriveApp());
@@ -24,7 +32,7 @@ class WisdriveApp extends StatelessWidget {
     final LanguageController languageController = Get.find();
 
     return GetMaterialApp(
-      locale: languageController.selectedLocale.value, // Idioma dinamico
+      locale: languageController.selectedLocale.value, // Idioma dinámico
       supportedLocales: S.delegate.supportedLocales,
       localizationsDelegates: const [
         S.delegate,
