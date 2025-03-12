@@ -55,6 +55,41 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
+  /// `SALTAR`
+  String get SKIP {
+    return Intl.message('SALTAR', name: 'SKIP', desc: '', args: []);
+  }
+
+  /// `¡Bienvenido a wisdrive! Aprende todo lo necesario sobre mecanica y el reglamento vial de Jalisco sin complicaciones.`
+  String get onboarding_1 {
+    return Intl.message(
+      '¡Bienvenido a wisdrive! Aprende todo lo necesario sobre mecanica y el reglamento vial de Jalisco sin complicaciones.',
+      name: 'onboarding_1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mejora tu seguridad vial con lecciones de tráfico y mecánica para ser un conductor responsable.`
+  String get onboarding_2 {
+    return Intl.message(
+      'Mejora tu seguridad vial con lecciones de tráfico y mecánica para ser un conductor responsable.',
+      name: 'onboarding_2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Prueba tus conocimientoson con lecciones interactivas y prepárate para cualquier situación.`
+  String get onboarding_3 {
+    return Intl.message(
+      'Prueba tus conocimientoson con lecciones interactivas y prepárate para cualquier situación.',
+      name: 'onboarding_3',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `¡comencemos a aprender!`
   String get lets_start_learning {
     return Intl.message(

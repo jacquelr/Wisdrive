@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "SKIP": MessageLookupByLibrary.simpleMessage("SKIP"),
     "Sign_In": MessageLookupByLibrary.simpleMessage("Sign In"),
     "Sign_Up": MessageLookupByLibrary.simpleMessage("Sign Up"),
     "accesibility": MessageLookupByLibrary.simpleMessage("Accesibility"),
@@ -40,6 +41,15 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "logout": MessageLookupByLibrary.simpleMessage("Logout"),
     "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
+    "onboarding_1": MessageLookupByLibrary.simpleMessage(
+      "Welcome to wisdrive! Learn everything you need to know about mechanics and Jalisco\'s traffic regulations without complications.",
+    ),
+    "onboarding_2": MessageLookupByLibrary.simpleMessage(
+      "Improve your road safety with traffic and mechanics lessons to become a responsible driver.",
+    ),
+    "onboarding_3": MessageLookupByLibrary.simpleMessage(
+      "Test your knowledge with interactive lessons and be prepared for any situation.",
+    ),
     "or": MessageLookupByLibrary.simpleMessage("or"),
     "password": MessageLookupByLibrary.simpleMessage("Password"),
     "privacy_politics": MessageLookupByLibrary.simpleMessage(
