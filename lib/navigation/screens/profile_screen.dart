@@ -7,6 +7,7 @@ import 'package:quiz_app/controllers/theme_controller.dart';
 import 'package:quiz_app/data/app_theme.dart';
 import 'package:quiz_app/navigation/screens/edit_profile_screen.dart';
 import 'package:quiz_app/widgets/profile/sidebar_profile.dart';
+import 'package:quiz_app/generated/l10n.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -59,7 +60,7 @@ class ProfileScreen extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: themeController.isDarkMode.value
                           ? AppTheme.lightBackground
-                          : AppTheme.lightPrimary,
+                          : AppTheme.lightPurple,
                       borderRadius: const BorderRadius.vertical(
                         bottom: Radius.circular(200),
                       ),
@@ -71,7 +72,9 @@ class ProfileScreen extends StatelessWidget {
                       shape: BoxShape.circle,
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.5),
+                          color: themeController.isDarkMode.value
+                          ? Colors.black.withOpacity(0.5)
+                          : Colors.white.withOpacity(0.5),
                           spreadRadius: 10,
                           blurRadius: 15,
                           offset: const Offset(0, 40),
@@ -86,13 +89,13 @@ class ProfileScreen extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 10),
-              Text("Nombre de usuario",
+              Text("Nombre de usuario", // Get useneme from supabase
                   style: GoogleFonts.play(
                       color: themeController.isDarkMode.value
                           ? Colors.white
                           : AppTheme.lightSecondary,
                       fontSize: 36)),
-              Text("Descripcion del usuario para wisdrive",
+              Text("Descripcion del usuario para wisdrive", // Get description from supabase
                   style: GoogleFonts.play(
                       color: themeController.isDarkMode.value
                           ? Colors.white
@@ -118,7 +121,7 @@ class ProfileScreen extends StatelessWidget {
                       shape: const StadiumBorder(),
                     ),
                     child: Text(
-                      "Editar perfil",
+                      S.of(context).edit_profile,
                       style: GoogleFonts.play(fontSize: 18),
                     )),
               ),
