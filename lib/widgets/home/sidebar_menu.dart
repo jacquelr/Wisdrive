@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quiz_app/constraints/images_routes.dart';
 import 'package:quiz_app/controllers/language_controller.dart';
 import 'package:quiz_app/controllers/theme_controller.dart';
 import 'package:quiz_app/data/app_theme.dart';
 import 'package:quiz_app/navigation/screens/home_screen.dart';
 import 'package:quiz_app/navigation/screens/login_screen.dart';
-import '../generated/l10n.dart';
+import 'package:quiz_app/navigation/screens/profile_screen.dart';
+import '../../generated/l10n.dart';
 
 class SidebarMenu extends StatelessWidget {
   const SidebarMenu({super.key});
-
-  final sidebarLogo = 'assets/images/W.png';
 
   @override
   Widget build(context) {
@@ -45,7 +45,7 @@ class SidebarMenu extends StatelessWidget {
         child: Wrap(
           children: [
             ListTile(
-              leading: Image.asset(sidebarLogo, width: 60),
+              leading: Image.asset(RImages.wLogo, width: 60),
               onTap: () =>
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
                 builder: (context) => const HomeScreen(),
@@ -79,7 +79,7 @@ class SidebarMenu extends StatelessWidget {
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const HomeScreen(),
+                    builder: (context) => const ProfileScreen(),
                   ));
                 }),
             ExpansionTile(

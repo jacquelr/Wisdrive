@@ -28,19 +28,19 @@ class OnboardingScreen extends StatelessWidget {
               Onboarding(
                 themeController: themeController,
                 text:
-                    "¡Bienvenido a wisdrive! Aprende todo lo necesario sobre mecanica y el reglamento vial de Jalisco sin complicaciones.",
+                    S.of(context).onboarding_1,
                 image: RImages.onboarding_1,
               ),
               Onboarding(
                 themeController: themeController,
                 text:
-                    "Mejora tu seguridad vial con lecciones de tráfico y mecánica para ser un conductor responsable.",
+                    S.of(context).onboarding_2,
                 image: RImages.onboarding_2,
               ),
               Onboarding(
                 themeController: themeController,
                 text:
-                    "Prueba tus conocimientoson con lecciones interactivas y prepárate para cualquier situación.",
+                    S.of(context).onboarding_3,
                 image: RImages.onboarding_3,
               ),
             ],
@@ -51,7 +51,7 @@ class OnboardingScreen extends StatelessWidget {
             child: TextButton(
               onPressed: () => OnboardingController.instance.skipPage(),
               child: Text(
-                'Saltar',
+                S.of(context).SKIP,
                 style: GoogleFonts.play(color: Colors.white, fontSize: 20),
               ),
             ),

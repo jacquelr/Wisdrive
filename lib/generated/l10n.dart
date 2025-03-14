@@ -55,6 +55,41 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
+  /// `SALTAR`
+  String get SKIP {
+    return Intl.message('SALTAR', name: 'SKIP', desc: '', args: []);
+  }
+
+  /// `¡Bienvenido a wisdrive! Aprende todo lo necesario sobre mecanica y el reglamento vial de Jalisco sin complicaciones.`
+  String get onboarding_1 {
+    return Intl.message(
+      '¡Bienvenido a wisdrive! Aprende todo lo necesario sobre mecanica y el reglamento vial de Jalisco sin complicaciones.',
+      name: 'onboarding_1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mejora tu seguridad vial con lecciones de tráfico y mecánica para ser un conductor responsable.`
+  String get onboarding_2 {
+    return Intl.message(
+      'Mejora tu seguridad vial con lecciones de tráfico y mecánica para ser un conductor responsable.',
+      name: 'onboarding_2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Prueba tus conocimientoson con lecciones interactivas y prepárate para cualquier situación.`
+  String get onboarding_3 {
+    return Intl.message(
+      'Prueba tus conocimientoson con lecciones interactivas y prepárate para cualquier situación.',
+      name: 'onboarding_3',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `¡comencemos a aprender!`
   String get lets_start_learning {
     return Intl.message(
@@ -213,6 +248,101 @@ class S {
   /// `Cerrar Sesión`
   String get logout {
     return Intl.message('Cerrar Sesión', name: 'logout', desc: '', args: []);
+  }
+
+  /// `Perfil`
+  String get profile {
+    return Intl.message('Perfil', name: 'profile', desc: '', args: []);
+  }
+
+  /// `Editar perfil`
+  String get edit_profile {
+    return Intl.message(
+      'Editar perfil',
+      name: 'edit_profile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cambiar contraseña`
+  String get change_password {
+    return Intl.message(
+      'Cambiar contraseña',
+      name: 'change_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Eliminar cuenta`
+  String get delete_account {
+    return Intl.message(
+      'Eliminar cuenta',
+      name: 'delete_account',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cambiar foto`
+  String get change_picture {
+    return Intl.message(
+      'Cambiar foto',
+      name: 'change_picture',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nombre de usuario`
+  String get edit_username {
+    return Intl.message(
+      'Nombre de usuario',
+      name: 'edit_username',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Descripcion`
+  String get edit_description {
+    return Intl.message(
+      'Descripcion',
+      name: 'edit_description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Genero`
+  String get edit_gender {
+    return Intl.message('Genero', name: 'edit_gender', desc: '', args: []);
+  }
+
+  /// `Cancelar`
+  String get cancel {
+    return Intl.message('Cancelar', name: 'cancel', desc: '', args: []);
+  }
+
+  /// `Aplicar`
+  String get apply {
+    return Intl.message('Aplicar', name: 'apply', desc: '', args: []);
+  }
+
+  /// `Hombre`
+  String get male {
+    return Intl.message('Hombre', name: 'male', desc: '', args: []);
+  }
+
+  /// `Mujer`
+  String get female {
+    return Intl.message('Mujer', name: 'female', desc: '', args: []);
+  }
+
+  /// `Otro`
+  String get other {
+    return Intl.message('Otro', name: 'other', desc: '', args: []);
   }
 }
 

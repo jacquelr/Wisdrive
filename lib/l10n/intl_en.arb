@@ -27,5 +27,19 @@
     "accesibility" : "Accesibility",
     "help" : "Help panel",
     "privacy_politics" : "Privacy politics",
-    "logout" : "Logout"
+    "logout" : "Logout",
+
+    "profile" : "Profile",
+    "edit_profile" : "Edit profile",
+    "change_password" : "Change password",
+    "delete_account" : "Delete Account",
+    "change_picture" : "Change picture",
+    "edit_username" : "Username",
+    "edit_description" : "Description",
+    "edit_gender" : "Gender",
+    "cancel" : "Cancel",
+    "apply" : "Apply",
+    "male" : "Male",
+    "female" : "Female",
+    "other" : "Other"
 }

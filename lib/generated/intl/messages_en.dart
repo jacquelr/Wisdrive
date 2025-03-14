@@ -22,9 +22,14 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "SKIP": MessageLookupByLibrary.simpleMessage("SKIP"),
     "Sign_In": MessageLookupByLibrary.simpleMessage("Sign In"),
     "Sign_Up": MessageLookupByLibrary.simpleMessage("Sign Up"),
     "accesibility": MessageLookupByLibrary.simpleMessage("Accesibility"),
+    "apply": MessageLookupByLibrary.simpleMessage("Apply"),
+    "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+    "change_password": MessageLookupByLibrary.simpleMessage("Change password"),
+    "change_picture": MessageLookupByLibrary.simpleMessage("Change picture"),
     "close": MessageLookupByLibrary.simpleMessage("Close"),
     "confirm_password": MessageLookupByLibrary.simpleMessage(
       "Confirm Password",
@@ -32,19 +37,37 @@ class MessageLookup extends MessageLookupByLibrary {
     "create_account_with": MessageLookupByLibrary.simpleMessage(
       "create an account with",
     ),
+    "delete_account": MessageLookupByLibrary.simpleMessage("Delete Account"),
+    "edit_description": MessageLookupByLibrary.simpleMessage("Description"),
+    "edit_gender": MessageLookupByLibrary.simpleMessage("Gender"),
+    "edit_profile": MessageLookupByLibrary.simpleMessage("Edit profile"),
+    "edit_username": MessageLookupByLibrary.simpleMessage("Username"),
     "email": MessageLookupByLibrary.simpleMessage("E-mail"),
+    "female": MessageLookupByLibrary.simpleMessage("Female"),
     "help": MessageLookupByLibrary.simpleMessage("Help panel"),
     "language": MessageLookupByLibrary.simpleMessage("Language"),
     "lets_start_learning": MessageLookupByLibrary.simpleMessage(
       "¡Let\'s start learning!",
     ),
     "logout": MessageLookupByLibrary.simpleMessage("Logout"),
+    "male": MessageLookupByLibrary.simpleMessage("Male"),
     "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
+    "onboarding_1": MessageLookupByLibrary.simpleMessage(
+      "Welcome to wisdrive! Learn everything you need to know about mechanics and Jalisco\'s traffic regulations without complications.",
+    ),
+    "onboarding_2": MessageLookupByLibrary.simpleMessage(
+      "Improve your road safety with traffic and mechanics lessons to become a responsible driver.",
+    ),
+    "onboarding_3": MessageLookupByLibrary.simpleMessage(
+      "Test your knowledge with interactive lessons and be prepared for any situation.",
+    ),
     "or": MessageLookupByLibrary.simpleMessage("or"),
+    "other": MessageLookupByLibrary.simpleMessage("Other"),
     "password": MessageLookupByLibrary.simpleMessage("Password"),
     "privacy_politics": MessageLookupByLibrary.simpleMessage(
       "Privacy politics",
     ),
+    "profile": MessageLookupByLibrary.simpleMessage("Profile"),
     "reminders": MessageLookupByLibrary.simpleMessage("Reminders"),
     "sign_in": MessageLookupByLibrary.simpleMessage("sign in"),
     "sign_in_with": MessageLookupByLibrary.simpleMessage("sign in with"),

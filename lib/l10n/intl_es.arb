@@ -27,5 +27,19 @@
     "accesibility" : "Accesibilidad",
     "help" : "Centro de ayuda",
     "privacy_politics" : "Politicas de privacidad",
-    "logout" : "Cerrar Sesión"
+    "logout" : "Cerrar Sesión",
+
+    "profile" : "Perfil",
+    "edit_profile" : "Editar perfil",
+    "change_password" : "Cambiar contraseña",
+    "delete_account" : "Eliminar cuenta",
+    "change_picture" : "Cambiar foto",
+    "edit_username" : "Nombre de usuario",
+    "edit_description" : "Descripcion",
+    "edit_gender" : "Genero",
+    "cancel" : "Cancelar",
+    "apply" : "Aplicar",
+    "male" : "Hombre",
+    "female" : "Mujer",
+    "other" : "Otro"
 }
