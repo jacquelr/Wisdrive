@@ -75,7 +75,7 @@ class SidebarProfile extends StatelessWidget {
                 leading: const Icon(Icons.mode_edit_outline_rounded,
                     color: Colors.white), //notifications_off
                 title: Text(
-                  "Editar perfil",
+                  S.of(context).edit_profile,
                   style: GoogleFonts.play(color: Colors.white, fontSize: 20),
                 ),
                 onTap: () {
@@ -90,7 +90,7 @@ class SidebarProfile extends StatelessWidget {
                   color: Colors.white,
                 ),
                 title: Text(
-                  "Cambiar contraseña",
+                  S.of(context).change_password,
                   style: GoogleFonts.play(color: Colors.white, fontSize: 20),
                 ),
                 onTap: () {
@@ -105,7 +105,7 @@ class SidebarProfile extends StatelessWidget {
                 color: Colors.white,
               ),
                 title: Text(
-                  "Eliminar cuenta",
+                  S.of(context).delete_account,
                   style: GoogleFonts.play(color: Colors.white, fontSize: 20),
                 ),
                 onTap: () {
@@ -114,6 +114,7 @@ class SidebarProfile extends StatelessWidget {
                     builder: (context) => const HomeScreen(),
                   ));
                 }),
+            const SizedBox(height: 525),
             ListTile(
                 leading: const Icon(Icons.logout_outlined, color: Colors.white),
                 title: Text(
