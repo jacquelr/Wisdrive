@@ -8,45 +8,27 @@ import 'package:quiz_app/navigation/screens/home_screen.dart';
 import 'package:quiz_app/widgets/login/social_login_buttons.dart';
 import '../../generated/l10n.dart';
 
-class ModalSheet extends StatelessWidget {
-  const ModalSheet({super.key, required this.title});
+class ModalSigninSheet extends StatefulWidget {
+  const ModalSigninSheet({super.key});
 
-  final String title;
+  @override
+  State<ModalSigninSheet> createState() => _ModalSigninSheetState();
+}
 
+class _ModalSigninSheetState extends State<ModalSigninSheet> {
   @override
   Widget build(BuildContext context) {
     final ThemeController themeController = Get.find();
     final TextEditingController emailController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
-    final TextEditingController confirmPasswordController =
-        TextEditingController();
-
-    void hardcodedLogin(email, password) {
-      if (email == 'isaac.emanuel@live.com' && password == '123456') {
-        Navigator.pop(context);
-        Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => const HomeScreen(),
-        ));
-      } else {
-        Navigator.pop(context);
-        final snackbar = SnackBar(
-          content: Text(S.of(context).signin_error),
-          action: SnackBarAction(
-            label: "OK",
-            onPressed: () {},
-          ),
-        );
-        ScaffoldMessenger.of(context).showSnackBar(snackbar);
-      }
-    }
 
     return Container(
       padding: const EdgeInsets.all(20),
       margin: const EdgeInsets.symmetric(horizontal: 20),
       decoration: BoxDecoration(
         gradient: themeController.isDarkMode.value
-        ? AppTheme.getGradient(themeController.isDarkMode.value)
-        : AppTheme.getInvertedGradient(themeController.isDarkMode.value),
+            ? AppTheme.getGradient(themeController.isDarkMode.value)
+            : AppTheme.getInvertedGradient(themeController.isDarkMode.value),
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(20),
           topRight: Radius.circular(20),
@@ -56,12 +38,11 @@ class ModalSheet extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            title,
+            S.of(context).Sign_In,
             style: GoogleFonts.play(
                 color: Colors.white, fontSize: 32, fontWeight: FontWeight.bold),
           ),
-          if (title == 'Iniciar Sesión' || title == 'Sign In') const SizedBox(height: 50),
-          const SizedBox(height: 20),
+          const SizedBox(height: 50),
           TextField(
             controller: emailController,
             decoration: InputDecoration(
@@ -91,25 +72,6 @@ class ModalSheet extends StatelessWidget {
             ),
             style: const TextStyle(color: Colors.white),
           ),
-          if (title == "Registrarse" || title == 'Sign Up') ...[
-            const SizedBox(height: 15),
-            TextField(
-              controller: confirmPasswordController,
-              obscureText: true,
-              decoration: InputDecoration(
-                labelText: S.of(context).confirm_password,
-                labelStyle:
-                    GoogleFonts.play(color: Colors.white70, fontSize: 20),
-                enabledBorder: const UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white70),
-                ),
-                focusedBorder: const UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white),
-                ),
-              ),
-              style: const TextStyle(color: Colors.white),
-            ),
-          ],
           const SizedBox(height: 40),
           SizedBox(
             width: double.infinity,
@@ -117,41 +79,37 @@ class ModalSheet extends StatelessWidget {
               onPressed: () {
                 String email = emailController.text;
                 String password = passwordController.text;
-                hardcodedLogin(email, password);
-              }, //Insert Signing logic
+                //Insert Signing logic
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.white,
                 foregroundColor: AppTheme.mediumPurple,
               ),
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 12),
-                child: Text(title, style: GoogleFonts.play(fontSize: 24)),
+                child: Text(S.of(context).sign_in, style: GoogleFonts.play(fontSize: 24)),
               ),
             ),
           ),
           const SizedBox(height: 15),
-          if (title == "Iniciar Sesión" || title == 'Sign In') ...[
-            Text(
-              S.of(context).or,
-              style: GoogleFonts.play(color: Colors.white, fontSize: 16),
-            ),
-            Text(
-              S.of(context).sign_in_with,
-              style: GoogleFonts.play(color: Colors.white, fontSize: 16),
-            )
-          ] else if (title == "Registrarse" || title == 'Sign Up') ...[
-            Text(
-              S.of(context).create_account_with,
-              style: GoogleFonts.play(color: Colors.white, fontSize: 16),
-            )
-          ],
+          Text(
+            S.of(context).or,
+            style: GoogleFonts.play(color: Colors.white, fontSize: 16),
+          ),
+          Text(
+            S.of(context).sign_in_with,
+            style: GoogleFonts.play(color: Colors.white, fontSize: 16),
+          ),
           const SizedBox(height: 15),
           const SocialLoginButtons(),
-          const SizedBox(height: 40),
+          const SizedBox(height: 60),
           TextButton(
             onPressed: () => Navigator.pop(context),
             child: Text(S.of(context).close,
-                style: GoogleFonts.play(color: Colors.white70, fontSize: 16, fontWeight: FontWeight.bold)),
+                style: GoogleFonts.play(
+                    color: Colors.white70,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold)),
           ),
         ],
       ),
