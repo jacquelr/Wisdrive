@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:quiz_app/constraints/helper_functions.dart';
 import 'package:quiz_app/controllers/theme_controller.dart';
 import 'package:quiz_app/data/app_theme.dart';
 import 'package:quiz_app/service/auth_service.dart';
@@ -30,7 +29,9 @@ class _ModalSignupSheetState extends State<ModalSignupSheet> {
     final confirmPassword = confirmPasswordController.text;
 
     if (password != confirmPassword) {
-      HelperFunctions.showSnackBar(S.of(context).unmatch_password);
+      Navigator.pop(context);
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(S.of(context).unmatch_password)));
       return;
     }
 
@@ -40,7 +41,8 @@ class _ModalSignupSheetState extends State<ModalSignupSheet> {
     } catch (e) {
       if (mounted) {
         Navigator.pop(context);
-        HelperFunctions.showSnackBar("${S.of(context).signup_error}: $e");
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text("${S.of(context).signup_error}: $e")));
       }
     }
   }

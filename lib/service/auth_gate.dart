@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:quiz_app/navigation/screens/home_screen.dart';
 import 'package:quiz_app/navigation/screens/login_screen.dart';
+import 'package:quiz_app/navigation/screens/onboarding_screen.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AuthGate extends StatelessWidget {
@@ -8,6 +10,9 @@ class AuthGate extends StatelessWidget {
 
   @override
   Widget build(context) {
+    final box = GetStorage();
+    final bool isFirstTime = box.read("isFirstTime") ?? true; //Check if user is new
+    
     return StreamBuilder(
       //Listen to auth state changes
       stream: Supabase.instance.client.auth.onAuthStateChange,
@@ -25,9 +30,8 @@ class AuthGate extends StatelessWidget {
 
         if (session != null) {
           return const HomeScreen();
-        } else {
-          return const LoginScreen();
-        }
+        } 
+        return isFirstTime ? const OnboardingScreen() : const LoginScreen();
       },
     );
   }
