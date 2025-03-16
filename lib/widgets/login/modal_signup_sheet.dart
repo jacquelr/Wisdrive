@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quiz_app/constraints/helper_functions.dart';
 import 'package:quiz_app/controllers/theme_controller.dart';
 import 'package:quiz_app/data/app_theme.dart';
 import 'package:quiz_app/navigation/screens/home_screen.dart';
+import 'package:quiz_app/service/auth_service.dart';
 import 'package:quiz_app/widgets/login/social_login_buttons.dart';
 import '../../generated/l10n.dart';
 
@@ -16,14 +18,41 @@ class ModalSignupSheet extends StatefulWidget {
 }
 
 class _ModalSignupSheetState extends State<ModalSignupSheet> {
+  final AuthService _authservice = AuthService();
+  final ThemeController themeController = Get.find();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
+
+  void signUp() async {
+    final email = emailController.text;
+    final password = passwordController.text;
+    final confirmPassword = confirmPasswordController.text;
+
+    if (password != confirmPassword) {
+      HelperFunctions.showSnackBar(S.of(context).signin_error);
+      return;
+    }
+
+    try {
+      await _authservice.signUpWithEmailAndPassword(email, password);
+      Navigator.pop(context);
+    } catch (e) {
+      if (mounted) {
+        Navigator.pop(context);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text("${S.of(context).signin_error}: $e",
+                style: GoogleFonts.play()),
+          ),
+        );
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final ThemeController themeController = Get.find();
-    final TextEditingController emailController = TextEditingController();
-    final TextEditingController passwordController = TextEditingController();
-    final TextEditingController confirmPasswordController =
-        TextEditingController();
-
     return Container(
       padding: const EdgeInsets.all(20),
       margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -94,12 +123,7 @@ class _ModalSignupSheetState extends State<ModalSignupSheet> {
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
-              onPressed: () {
-                String email = emailController.text;
-                String password = passwordController.text;
-                String confirmPassword = confirmPasswordController.text;
-                //Insert Sign up logic
-              },
+              onPressed: signUp,
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.white,
                 foregroundColor: AppTheme.mediumPurple,

@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:quiz_app/navigation/screens/login_screen.dart';
+import 'package:quiz_app/service/auth_gate.dart';
 
 class OnboardingController extends GetxController{
   static OnboardingController get instance => Get.find();
@@ -21,7 +21,7 @@ class OnboardingController extends GetxController{
   //Update current index & jump to next page
   void nextPage() {
     if(currentPageIndex.value == 2) {
-     Get.to(const LoginScreen());
+     Get.to(const AuthGate());
     } else {
       int page = currentPageIndex.value + 1;
       pageConroller.jumpToPage(page);
@@ -31,7 +31,7 @@ class OnboardingController extends GetxController{
   //Update current index & jump to the last Page
   void skipPage(){
     currentPageIndex.value = 2;
-    pageConroller.jumpToPage(2);
+    Get.to(const AuthGate());
   }
 
 }
