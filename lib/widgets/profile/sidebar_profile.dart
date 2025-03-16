@@ -8,10 +8,21 @@ import 'package:quiz_app/data/app_theme.dart';
 import 'package:quiz_app/generated/l10n.dart';
 import 'package:quiz_app/navigation/screens/edit_profile_screen.dart';
 import 'package:quiz_app/navigation/screens/home_screen.dart';
-import 'package:quiz_app/navigation/screens/login_screen.dart';
+import 'package:quiz_app/service/auth_service.dart';
 
-class SidebarProfile extends StatelessWidget {
-  const SidebarProfile({super.key});
+class SidebarMenu extends StatefulWidget {
+  const SidebarMenu({super.key});
+
+  @override
+  State<SidebarMenu> createState() => _SidebarMenuState();
+}
+
+class _SidebarMenuState extends State<SidebarMenu> {
+  final authservice = AuthService();
+
+  void logout() async {
+    await authservice.signOut();
+  }
 
   @override
   Widget build(context) {
@@ -100,10 +111,10 @@ class SidebarProfile extends StatelessWidget {
                   ));
                 }),
             ListTile(
-              leading: const Icon(
-                Icons.delete,
-                color: Colors.white,
-              ),
+                leading: const Icon(
+                  Icons.delete,
+                  color: Colors.white,
+                ),
                 title: Text(
                   S.of(context).delete_account,
                   style: GoogleFonts.play(color: Colors.white, fontSize: 20),
@@ -121,12 +132,7 @@ class SidebarProfile extends StatelessWidget {
                   S.of(context).logout,
                   style: GoogleFonts.play(color: Colors.white, fontSize: 20),
                 ),
-                onTap: () {
-                  //Navigator.pop(context);
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const LoginScreen(),
-                  ));
-                }),
+                onTap: logout),
           ],
         ),
       );

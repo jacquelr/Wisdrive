@@ -18,12 +18,12 @@ class SidebarMenu extends StatefulWidget {
 }
 
 class _SidebarMenuState extends State<SidebarMenu> {
-  final AuthService _authservice = AuthService();
+  final authservice = AuthService();
   final ThemeController themeController = Get.find();
   final LanguageController languageController = Get.find();
 
   void logout() async {
-    await _authservice.signOut();
+    await authservice.signOut();
   }
 
   @override

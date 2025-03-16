@@ -28,6 +28,13 @@ class _ModalSignupSheetState extends State<ModalSignupSheet> {
     final password = passwordController.text;
     final confirmPassword = confirmPasswordController.text;
 
+    if (email.isEmpty || password.isEmpty || confirmPassword.isEmpty) {
+      Navigator.pop(context);
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Completa los campos")));
+      return;
+    }
+
     if (password != confirmPassword) {
       Navigator.pop(context);
       ScaffoldMessenger.of(context).showSnackBar(

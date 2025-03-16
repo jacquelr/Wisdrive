@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:quiz_app/controllers/theme_controller.dart';
 import 'package:quiz_app/data/app_theme.dart';
 import 'package:quiz_app/navigation/screens/profile_screen.dart';
-import 'package:quiz_app/service/auth_service.dart';
 import 'package:quiz_app/widgets/home/sidebar_menu.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import '../../generated/l10n.dart';
@@ -18,11 +17,9 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final ThemeController themeController = Get.find();
-  final authservice = AuthService();
 
   @override
   Widget build(context) {
-    final currentEmail = authservice.getCurrentUserEmail();
 
     return MaterialApp(
       supportedLocales: S.delegate.supportedLocales,
@@ -65,9 +62,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       themeController.isDarkMode.value),
                 )
               : const BoxDecoration(color: AppTheme.lightBackground),
-          child: Center(
-            child: Text(currentEmail.toString()),
-          ),
         ),
       ),
     );

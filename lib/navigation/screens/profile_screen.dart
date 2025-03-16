@@ -6,20 +6,28 @@ import 'package:quiz_app/constraints/images_routes.dart';
 import 'package:quiz_app/controllers/theme_controller.dart';
 import 'package:quiz_app/data/app_theme.dart';
 import 'package:quiz_app/navigation/screens/edit_profile_screen.dart';
+import 'package:quiz_app/service/auth_service.dart';
 import 'package:quiz_app/widgets/profile/sidebar_profile.dart';
 import 'package:quiz_app/generated/l10n.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
   @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  final ThemeController themeController = Get.find();
+  final authService = AuthService();
+
+  @override
   Widget build(context) {
-    final ThemeController themeController = Get.find();
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         title: Text(
-          "Perfil",
+          S.of(context).profile,
           style: GoogleFonts.play(
               color: themeController.isDarkMode.value
                   ? AppTheme.darkPurple
@@ -89,7 +97,7 @@ class ProfileScreen extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 10),
-              Text("Nombre de usuario", // Get useneme from supabase
+              Text(authService.getCurrentUserEmail().toString(), // Get useneme from supabase
                   style: GoogleFonts.play(
                       color: themeController.isDarkMode.value
                           ? Colors.white
