@@ -10,14 +10,14 @@ import 'package:quiz_app/navigation/screens/edit_profile_screen.dart';
 import 'package:quiz_app/navigation/screens/home_screen.dart';
 import 'package:quiz_app/service/auth_service.dart';
 
-class SidebarMenu extends StatefulWidget {
-  const SidebarMenu({super.key});
+class SidebarProfile extends StatefulWidget {
+  const SidebarProfile({super.key});
 
   @override
-  State<SidebarMenu> createState() => _SidebarMenuState();
+  State<SidebarProfile> createState() => _SidebarProfileState();
 }
 
-class _SidebarMenuState extends State<SidebarMenu> {
+class _SidebarProfileState extends State<SidebarProfile> {
   final authservice = AuthService();
 
   void logout() async {
