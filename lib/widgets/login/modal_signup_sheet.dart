@@ -5,7 +5,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_app/constraints/helper_functions.dart';
 import 'package:quiz_app/controllers/theme_controller.dart';
 import 'package:quiz_app/data/app_theme.dart';
-import 'package:quiz_app/navigation/screens/home_screen.dart';
 import 'package:quiz_app/service/auth_service.dart';
 import 'package:quiz_app/widgets/login/social_login_buttons.dart';
 import '../../generated/l10n.dart';
@@ -31,22 +30,17 @@ class _ModalSignupSheetState extends State<ModalSignupSheet> {
     final confirmPassword = confirmPasswordController.text;
 
     if (password != confirmPassword) {
-      HelperFunctions.showSnackBar(S.of(context).signin_error);
+      HelperFunctions.showSnackBar(S.of(context).unmatch_password);
       return;
     }
 
     try {
-      await _authservice.signUpWithEmailAndPassword(email, password);
       Navigator.pop(context);
+      await _authservice.signUpWithEmailAndPassword(email, password);
     } catch (e) {
       if (mounted) {
         Navigator.pop(context);
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text("${S.of(context).signin_error}: $e",
-                style: GoogleFonts.play()),
-          ),
-        );
+        HelperFunctions.showSnackBar("${S.of(context).signup_error}: $e");
       }
     }
   }

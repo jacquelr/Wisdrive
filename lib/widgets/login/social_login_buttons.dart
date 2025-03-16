@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/service/auth_service.dart';
 
 const facebookPath = '../../assets/images/facebook-logo.png';
 const googlePath = '../../assets/images/google-logo.png';
@@ -8,22 +9,24 @@ class SocialLoginButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final AuthService _authservice = AuthService();
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         _buildSocialButton(
           facebookPath,
           Colors.white,
-          () {
-            // Lógica de autenticación con Facebook
+          () async {
+            await _authservice.signInWithFacebook();
           },
         ),
         const SizedBox(width: 20),
         _buildSocialButton(
           googlePath,
           Colors.white,
-          () {
-            // Lógica de autenticación con Google
+          () async {
+            await _authservice.signInWithGoogle();
           },
         ),
       ],

@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quiz_app/constraints/helper_functions.dart';
 import 'package:quiz_app/controllers/theme_controller.dart';
 import 'package:quiz_app/data/app_theme.dart';
-import 'package:quiz_app/navigation/screens/home_screen.dart';
+import 'package:quiz_app/service/auth_service.dart';
 import 'package:quiz_app/widgets/login/social_login_buttons.dart';
 import '../../generated/l10n.dart';
 
@@ -16,12 +17,27 @@ class ModalSigninSheet extends StatefulWidget {
 }
 
 class _ModalSigninSheetState extends State<ModalSigninSheet> {
+  final AuthService _authservice = AuthService();
+  final ThemeController themeController = Get.find();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  void signIn() async {
+    final email = emailController.text;
+    final password = passwordController.text;
+    try {
+      Navigator.pop(context);
+      await _authservice.signInWithEmailAndPassword(email, password);
+    } catch (e) {
+      if (mounted) {
+        Navigator.pop(context);
+        HelperFunctions.showSnackBar("${S.of(context).signin_error}: $e");
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final ThemeController themeController = Get.find();
-    final TextEditingController emailController = TextEditingController();
-    final TextEditingController passwordController = TextEditingController();
-
     return Container(
       padding: const EdgeInsets.all(20),
       margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -76,18 +92,15 @@ class _ModalSigninSheetState extends State<ModalSigninSheet> {
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
-              onPressed: () {
-                String email = emailController.text;
-                String password = passwordController.text;
-                //Insert Signing logic
-              },
+              onPressed: signIn,
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.white,
                 foregroundColor: AppTheme.mediumPurple,
               ),
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 12),
-                child: Text(S.of(context).sign_in, style: GoogleFonts.play(fontSize: 24)),
+                child: Text(S.of(context).sign_in,
+                    style: GoogleFonts.play(fontSize: 24)),
               ),
             ),
           ),

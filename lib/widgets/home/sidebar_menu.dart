@@ -6,22 +6,33 @@ import 'package:quiz_app/controllers/language_controller.dart';
 import 'package:quiz_app/controllers/theme_controller.dart';
 import 'package:quiz_app/data/app_theme.dart';
 import 'package:quiz_app/navigation/screens/home_screen.dart';
-import 'package:quiz_app/navigation/screens/login_screen.dart';
 import 'package:quiz_app/navigation/screens/profile_screen.dart';
+import 'package:quiz_app/service/auth_service.dart';
 import '../../generated/l10n.dart';
 
-class SidebarMenu extends StatelessWidget {
+class SidebarMenu extends StatefulWidget {
   const SidebarMenu({super.key});
 
   @override
-  Widget build(context) {
-    final ThemeController themeController = Get.find();
-    final LanguageController languageController = Get.find();
+  State<SidebarMenu> createState() => _SidebarMenuState();
+}
 
+class _SidebarMenuState extends State<SidebarMenu> {
+  final AuthService _authservice = AuthService();
+  final ThemeController themeController = Get.find();
+  final LanguageController languageController = Get.find();
+
+  void logout() async {
+    await _authservice.signOut();
+  }
+
+  @override
+  Widget build(context) {
     return Drawer(
       child: Container(
         decoration: BoxDecoration(
-          gradient: AppTheme.getInvertedGradient(themeController.isDarkMode.value),
+          gradient:
+              AppTheme.getInvertedGradient(themeController.isDarkMode.value),
         ),
         child: SingleChildScrollView(
           child: Column(
@@ -39,7 +50,9 @@ class SidebarMenu extends StatelessWidget {
   Widget buildHeader(BuildContext context) => Container();
 
   Widget buildMenuItems(
-          BuildContext context, LanguageController languageController, ThemeController themeController) =>
+          BuildContext context,
+          LanguageController languageController,
+          ThemeController themeController) =>
       Container(
         padding: const EdgeInsets.all(24),
         child: Wrap(
@@ -55,20 +68,21 @@ class SidebarMenu extends StatelessWidget {
               color: Colors.white,
               height: 50,
             ),
-            Obx(() => ListTile(
-                leading: const Icon(Icons.brightness_4, color: Colors.white), //brightness_5,
-                title: Text(
-                  S.of(context).theme,
-                  style: GoogleFonts.play(color: Colors.white, fontSize: 20),
-                ),
-                trailing: Icon(
-                  themeController.isDarkMode.value
-                      ? Icons.dark_mode
-                      : Icons.light_mode,
-                  color: Colors.white,
-                ),
-                onTap: themeController.toggleTheme
-                ),
+            Obx(
+              () => ListTile(
+                  leading: const Icon(Icons.brightness_4,
+                      color: Colors.white), //brightness_5,
+                  title: Text(
+                    S.of(context).theme,
+                    style: GoogleFonts.play(color: Colors.white, fontSize: 20),
+                  ),
+                  trailing: Icon(
+                    themeController.isDarkMode.value
+                        ? Icons.dark_mode
+                        : Icons.light_mode,
+                    color: Colors.white,
+                  ),
+                  onTap: themeController.toggleTheme),
             ),
             ListTile(
                 leading: const Icon(Icons.person, color: Colors.white),
@@ -91,7 +105,8 @@ class SidebarMenu extends StatelessWidget {
               collapsedIconColor: Colors.white,
               children: [
                 Obx(() {
-                  Locale currentLocale = languageController.selectedLocale.value;
+                  Locale currentLocale =
+                      languageController.selectedLocale.value;
                   return Column(
                     children: [
                       ListTile(
@@ -103,10 +118,11 @@ class SidebarMenu extends StatelessWidget {
                           ),
                         ),
                         trailing: currentLocale.languageCode == 'es'
-                        ? const Icon(Icons.check, color: Colors.white)
-                        : null,
+                            ? const Icon(Icons.check, color: Colors.white)
+                            : null,
                         onTap: () {
-                          languageController.changeLanguage(const Locale('es', 'MX'));
+                          languageController
+                              .changeLanguage(const Locale('es', 'MX'));
                         },
                       ),
                       ListTile(
@@ -118,10 +134,11 @@ class SidebarMenu extends StatelessWidget {
                           ),
                         ),
                         trailing: currentLocale.languageCode == 'en'
-                        ? const Icon(Icons.check, color: Colors.white)
-                        : null,
+                            ? const Icon(Icons.check, color: Colors.white)
+                            : null,
                         onTap: () {
-                          languageController.changeLanguage(const Locale('en', 'US'));
+                          languageController
+                              .changeLanguage(const Locale('en', 'US'));
                         },
                       ),
                     ],
@@ -198,12 +215,7 @@ class SidebarMenu extends StatelessWidget {
                   S.of(context).logout,
                   style: GoogleFonts.play(color: Colors.white, fontSize: 20),
                 ),
-                onTap: () {
-                  //Navigator.pop(context);
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const LoginScreen(),
-                  ));
-                }),
+                onTap: logout),
           ],
         ),
       );
