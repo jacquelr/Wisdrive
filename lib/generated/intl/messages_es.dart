@@ -77,7 +77,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "signin_error": MessageLookupByLibrary.simpleMessage(
       "Error al iniciar sesión",
     ),
+    "signup_error": MessageLookupByLibrary.simpleMessage(
+      "Error al registrarse",
+    ),
     "theme": MessageLookupByLibrary.simpleMessage("Tema"),
+    "unmatch_password": MessageLookupByLibrary.simpleMessage(
+      "Las contraseñas no coinciden",
+    ),
     "user_profile": MessageLookupByLibrary.simpleMessage("Perfil de usuario"),
   };
 }

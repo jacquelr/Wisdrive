@@ -180,6 +180,26 @@ class S {
     );
   }
 
+  /// `Error al registrarse`
+  String get signup_error {
+    return Intl.message(
+      'Error al registrarse',
+      name: 'signup_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Las contraseñas no coinciden`
+  String get unmatch_password {
+    return Intl.message(
+      'Las contraseñas no coinciden',
+      name: 'unmatch_password',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Cerrar`
   String get close {
     return Intl.message('Cerrar', name: 'close', desc: '', args: []);

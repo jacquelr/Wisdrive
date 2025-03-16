@@ -17,6 +17,8 @@
     "sign_in_with" : "sign in with",
     "create_account_with" : "create an account with",
     "signin_error" : "Sign In Error",
+    "signup_error" : "Sign Up Error",
+    "unmatch_password" : "Passwords doesn't match",
     "close" : "Close",
 
     "theme" : "Theme",

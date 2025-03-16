@@ -17,6 +17,8 @@
     "sign_in_with" : "inicia sesión con",
     "create_account_with" : "crea una cuenta con",
     "signin_error" : "Error al iniciar sesión",
+    "signup_error" : "Error al registrarse",
+    "unmatch_password" : "Las contraseñas no coinciden",
     "close" : "Cerrar",
 
     "theme" : "Tema",
