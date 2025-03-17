@@ -28,17 +28,17 @@ class _QuizzesScreenState extends State<QuizzesScreen> {
 
 
   Future<void> addQuiz(String name, int moduleId) async {
-    await supabase.from('quizzes').insert({'quiz_name': name, 'module_id': moduleId});
+    await supabase.from('quizzes').insert({'name': name, 'module_id': moduleId});
     fetchQuizzes();
   }
 
   Future<void> updateQuiz(int id, String name) async {
-    await supabase.from('quizzes').update({'quiz_name': name}).match({'quiz_id': id});
+    await supabase.from('quizzes').update({'name': name}).match({'id': id});
     fetchQuizzes();
   }
 
   Future<void> deleteQuiz(int id) async {
-    await supabase.from('quizzes').delete().match({'quiz_id': id});
+    await supabase.from('quizzes').delete().match({'id': id});
     fetchQuizzes();
   }
 
@@ -51,18 +51,18 @@ class _QuizzesScreenState extends State<QuizzesScreen> {
         itemBuilder: (context, index) {
           final quiz = quizzes[index];
           return ListTile(
-            title: Text(quiz['quiz_name']),
-            subtitle: Text('Module ID: ${quiz['module_id']}'),
+            title: Text(quiz['name']),
+            subtitle: Text('Module ID: ${quiz['id']}'),
             trailing: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
                 IconButton(
                   icon: const Icon(Icons.edit),
-                  onPressed: () => updateQuiz(quiz['quiz_id'], 'Nuevo Nombre'),
+                  onPressed: () => updateQuiz(quiz['id'], 'Nuevo Nombre'),
                 ),
                 IconButton(
                   icon: const Icon(Icons.delete),
-                  onPressed: () => deleteQuiz(quiz['quiz_id']),
+                  onPressed: () => deleteQuiz(quiz['id']),
                 ),
               ],
             ),
