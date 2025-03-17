@@ -43,6 +43,8 @@ dependencies:
   intl: ^0.19.0
   smooth_page_indicator: ^1.2.1
   supabase_flutter: ^2.8.4
+  flutter_chat_ui: ^1.6.15
+  flutter_dotenv: ^5.2.1
 
 dev_dependencies:
   flutter_test:
@@ -69,6 +71,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - .env
     - assets\images\quiz-logo.png
     - assets\images\logo.png
     - assets\images\W.png
