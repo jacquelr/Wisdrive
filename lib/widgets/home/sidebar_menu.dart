@@ -22,8 +22,48 @@ class _SidebarMenuState extends State<SidebarMenu> {
   final ThemeController themeController = Get.find();
   final LanguageController languageController = Get.find();
 
-  void logout() async {
-    await authservice.signOut();
+  void logout() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: AppTheme.darkPurple,
+        title: Text(
+          '¿Estás seguro?',
+          textAlign: TextAlign.center,
+          style: GoogleFonts.play(
+            color: themeController.isDarkMode.value
+                ? Colors.white
+                : AppTheme.lightSecondary,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        content: Column(mainAxisSize: MainAxisSize.min, children: [
+          const Divider(endIndent: 5),
+          TextButton(
+            onPressed: () async {
+              Navigator.pop(context);
+              await authservice.signOut();
+            },
+            child: Text(
+              S.of(context).logout,
+              style: GoogleFonts.play(color: Colors.red, fontSize: 16),
+            ),
+          ),
+          TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text(
+                S.of(context).cancel,
+                style: GoogleFonts.play(
+                    color: themeController.isDarkMode.value
+                        ? Colors.white
+                        : AppTheme.darkPurple,
+                    fontSize: 16),
+              ))
+        ]),
+      ),
+    );
   }
 
   @override
