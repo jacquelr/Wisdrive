@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
-import 'package:quiz_app/constraints/helper_functions.dart';
-import 'package:quiz_app/constraints/images_routes.dart';
-import 'package:quiz_app/controllers/onboarding_controller.dart';
-import 'package:quiz_app/controllers/theme_controller.dart';
-import 'package:quiz_app/data/app_theme.dart';
+import 'package:wisdrive/constraints/helper_functions.dart';
+import 'package:wisdrive/constraints/images_routes.dart';
+import 'package:wisdrive/controllers/onboarding_controller.dart';
+import 'package:wisdrive/controllers/theme_controller.dart';
+import 'package:wisdrive/data/app_theme.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../generated/l10n.dart';
 

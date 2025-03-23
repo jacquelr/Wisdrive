@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_app/widgets/question_summary/summary_row.dart';
+import 'package:wisdrive/widgets/question_summary/summary_row.dart';
 
 
 class QuestionsSummary extends StatelessWidget {

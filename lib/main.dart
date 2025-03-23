@@ -3,10 +3,10 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:quiz_app/controllers/language_controller.dart';
-import 'package:quiz_app/controllers/theme_controller.dart';
-import 'package:quiz_app/data/app_theme.dart';
-import 'package:quiz_app/navigation/screens/splash_screen.dart';
+import 'package:wisdrive/controllers/language_controller.dart';
+import 'package:wisdrive/controllers/theme_controller.dart';
+import 'package:wisdrive/data/app_theme.dart';
+import 'package:wisdrive/navigation/screens/splash_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'generated/l10n.dart';
 

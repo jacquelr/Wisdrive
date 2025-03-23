@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:quiz_app/data/app_theme.dart';
-import 'package:quiz_app/service/auth_gate.dart';
+import 'package:wisdrive/data/app_theme.dart';
+import 'package:wisdrive/service/auth_gate.dart';
 
 
 const logo = '../assets/images/logo.png';

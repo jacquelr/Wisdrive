@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_app/data/app_theme.dart';
+import 'package:wisdrive/data/app_theme.dart';
 
 class AnswerButton extends StatelessWidget {
   const AnswerButton(

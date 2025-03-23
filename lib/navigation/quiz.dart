@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'package:quiz_app/data/questions.dart';
-import 'package:quiz_app/navigation/screens/questions_screen.dart';
-import 'package:quiz_app/navigation/screens/results_screen.dart';
-import 'package:quiz_app/navigation/screens/start_screen.dart';
-import 'package:quiz_app/data/app_theme.dart';
+import 'package:wisdrive/data/questions.dart';
+import 'package:wisdrive/navigation/screens/questions_screen.dart';
+import 'package:wisdrive/navigation/screens/results_screen.dart';
+import 'package:wisdrive/navigation/screens/start_screen.dart';
+import 'package:wisdrive/data/app_theme.dart';
 
 class Quiz extends StatefulWidget {
   const Quiz({super.key});

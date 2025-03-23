@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:quiz_app/constraints/images_routes.dart';
-import 'package:quiz_app/controllers/language_controller.dart';
-import 'package:quiz_app/controllers/theme_controller.dart';
-import 'package:quiz_app/data/app_theme.dart';
-import 'package:quiz_app/navigation/screens/home_screen.dart';
-import 'package:quiz_app/navigation/screens/profile_screen.dart';
-import 'package:quiz_app/service/auth_service.dart';
+import 'package:wisdrive/constraints/images_routes.dart';
+import 'package:wisdrive/controllers/language_controller.dart';
+import 'package:wisdrive/controllers/theme_controller.dart';
+import 'package:wisdrive/data/app_theme.dart';
+import 'package:wisdrive/navigation/screens/home_screen.dart';
+import 'package:wisdrive/navigation/screens/profile_screen.dart';
+import 'package:wisdrive/service/auth_service.dart';
 import '../../generated/l10n.dart';
 
 class SidebarMenu extends StatefulWidget {

@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:quiz_app/constraints/images_routes.dart';
-import 'package:quiz_app/controllers/theme_controller.dart';
-import 'package:quiz_app/data/app_theme.dart';
-import 'package:quiz_app/generated/l10n.dart';
-import 'package:quiz_app/widgets/profile/editprofile_inputs.dart';
+import 'package:wisdrive/constraints/images_routes.dart';
+import 'package:wisdrive/controllers/theme_controller.dart';
+import 'package:wisdrive/data/app_theme.dart';
+import 'package:wisdrive/generated/l10n.dart';
+import 'package:wisdrive/widgets/profile/editprofile_inputs.dart';
 
 class EditProfileScreen extends StatelessWidget {
   const EditProfileScreen({super.key});
