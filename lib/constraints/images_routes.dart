@@ -1,5 +1,4 @@
 class RImages {
-
   static const String onboarding_1 = "assets/images/onboarding-1.png";
   static const String onboarding_2 = "assets/images/onboarding-2.png";
   static const String onboarding_3 = "assets/images/onboarding-3.png";
@@ -10,6 +9,9 @@ class RImages {
   static const String wisdriveLightLogo = "assets/images/light-wisdrive.png";
   static const String fullLogo = "assets/images/logo.png";
   static const String fullLigthLogo = "assets/images/light-logo.png";
-  
+
+  static const String facebookLogo = '../../assets/images/facebook-logo.png';
+  static const String googleLogo = '../../assets/images/google-logo.png';
+
   static const String profilePickImage = "assets/images/pick_image.png";
 }

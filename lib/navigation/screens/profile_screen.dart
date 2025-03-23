@@ -9,6 +9,7 @@ import 'package:quiz_app/navigation/screens/edit_profile_screen.dart';
 import 'package:quiz_app/service/auth_service.dart';
 import 'package:quiz_app/widgets/profile/sidebar_profile.dart';
 import 'package:quiz_app/generated/l10n.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -19,10 +20,26 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   final ThemeController themeController = Get.find();
-  final authService = AuthService();
+  final SupabaseClient supabase = Supabase.instance.client;
+
+  String getUserDisplayName(User? user) {
+      if (user != null) return 'Invitado';
+
+      // If user has a name in metadata (Google)
+      final fullName = user?.userMetadata?['full_name'];
+      if (fullName != null && fullName.isBlank) {
+        return fullName;
+      }
+      // If login with email
+      return user?.email ?? 'Nombre no asignado';
+    }
 
   @override
   Widget build(context) {
+    final user = supabase.auth.currentUser;
+    final profileImageUrl = user?.userMetadata?['avatar_url'];
+    final userName = getUserDisplayName(user);
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -89,15 +106,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                       ],
                     ),
-                    child: const CircleAvatar(
+                    child: CircleAvatar(
                         radius: 100,
-                        backgroundImage: AssetImage(RImages.profilePickImage),
+                        backgroundImage: AssetImage(profileImageUrl), // user != null ? profileImageUrl : RImages.profilePickImage),
                       ),
                     ),
                 ],
               ),
               const SizedBox(height: 10),
-              Text(authService.getCurrentUserEmail().toString(), // Get useneme from supabase
+              Text( userName,
                   style: GoogleFonts.play(
                       color: themeController.isDarkMode.value
                           ? Colors.white

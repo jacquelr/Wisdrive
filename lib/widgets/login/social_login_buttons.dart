@@ -1,32 +1,59 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/constraints/images_routes.dart';
+import 'package:quiz_app/navigation/screens/home_screen.dart';
 import 'package:quiz_app/service/auth_service.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-const facebookPath = '../../assets/images/facebook-logo.png';
-const googlePath = '../../assets/images/google-logo.png';
-
-class SocialLoginButtons extends StatelessWidget {
+class SocialLoginButtons extends StatefulWidget {
   const SocialLoginButtons({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final AuthService _authservice = AuthService();
+  State<SocialLoginButtons> createState() => _SocialLoginButtonsState();
+}
 
+class _SocialLoginButtonsState extends State<SocialLoginButtons> {
+  final authservice = AuthService();
+  final supabase = Supabase.instance.client;
+
+  @override
+  void initState() {
+    _setupAuthListener();
+    super.initState();
+  }
+
+  void _setupAuthListener() {
+    supabase.auth.onAuthStateChange.listen((data) {
+      final event = data.event;
+      if (event == AuthChangeEvent.signedIn) {
+        if (mounted) {
+          Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (context) => const HomeScreen(),
+          ),
+        );
+        }
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         _buildSocialButton(
-          facebookPath,
+          RImages.facebookLogo,
           Colors.white,
           () async {
-            await _authservice.signInWithFacebook();
+            await authservice.signInWithFacebook();
           },
         ),
         const SizedBox(width: 20),
         _buildSocialButton(
-          googlePath,
+          RImages.googleLogo,
           Colors.white,
           () async {
-            await _authservice.signInWithGoogle();
+            await authservice.signInWithGoogle();
           },
         ),
       ],
