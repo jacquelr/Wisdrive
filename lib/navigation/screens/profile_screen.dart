@@ -23,15 +23,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
   final SupabaseClient supabase = Supabase.instance.client;
 
   String getUserDisplayName(User? user) {
-      if (user != null) return 'Invitado';
+      if (user == null) return 'Invitado';
 
       // If user has a name in metadata (Google)
-      final fullName = user?.userMetadata?['full_name'];
+      final fullName = user.userMetadata?['full_name'];
       if (fullName != null && fullName.isBlank) {
         return fullName;
       }
       // If login with email
-      return user?.email ?? 'Nombre no asignado';
+      return user.email.toString();
     }
 
   @override
@@ -106,9 +106,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                       ],
                     ),
-                    child: CircleAvatar(
+                    child: const CircleAvatar(
                         radius: 100,
-                        backgroundImage: AssetImage(profileImageUrl), // user != null ? profileImageUrl : RImages.profilePickImage),
+                        backgroundImage: AssetImage(RImages.profilePickImage), // user != null ? profileImageUrl : RImages.profilePickImage),
                       ),
                     ),
                 ],
