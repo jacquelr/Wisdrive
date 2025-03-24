@@ -6,8 +6,8 @@ import 'package:wisdrive/constraints/images_routes.dart';
 import 'package:wisdrive/controllers/theme_controller.dart';
 import 'package:wisdrive/data/app_theme.dart';
 import 'package:wisdrive/generated/l10n.dart';
-import 'package:wisdrive/navigation/screens/edit_profile_screen.dart';
-import 'package:wisdrive/navigation/screens/home_screen.dart';
+import 'package:wisdrive/navigation/screens/profile/edit_profile_screen.dart';
+import 'package:wisdrive/navigation/screens/home/home_screen.dart';
 import 'package:wisdrive/service/auth_service.dart';
 
 class SidebarProfile extends StatefulWidget {

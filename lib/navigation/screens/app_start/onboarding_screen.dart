@@ -8,7 +8,7 @@ import 'package:wisdrive/controllers/onboarding_controller.dart';
 import 'package:wisdrive/controllers/theme_controller.dart';
 import 'package:wisdrive/data/app_theme.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import '../../generated/l10n.dart';
+import '../../../generated/l10n.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});

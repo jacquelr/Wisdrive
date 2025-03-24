@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wisdrive/constraints/images_routes.dart';
-import 'package:wisdrive/navigation/screens/home_screen.dart';
+import 'package:wisdrive/navigation/screens/home/home_screen.dart';
 import 'package:wisdrive/service/auth_service.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 

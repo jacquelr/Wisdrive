@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:wisdrive/generated/l10n.dart';
-import 'package:wisdrive/navigation/screens/quizes_screen.dart';
+import 'package:wisdrive/navigation/screens/home/quizes_screen.dart';
 
 class ModuleList extends StatelessWidget {
   final int selectedCategoryId;

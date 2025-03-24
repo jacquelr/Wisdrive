@@ -3,12 +3,12 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wisdrive/controllers/theme_controller.dart';
 import 'package:wisdrive/data/app_theme.dart';
-import 'package:wisdrive/navigation/screens/profile_screen.dart';
+import 'package:wisdrive/navigation/screens/profile/profile_screen.dart';
 import 'package:wisdrive/widgets/home/sidebar_menu.dart';
 import 'package:wisdrive/widgets/home/category_list.dart';
 import 'package:wisdrive/widgets/home/module_list.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import '../../generated/l10n.dart';
+import '../../../generated/l10n.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
