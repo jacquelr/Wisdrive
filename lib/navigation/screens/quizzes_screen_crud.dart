@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-class QuizzesScreen extends StatefulWidget {
-  const QuizzesScreen({super.key});
+class QuizzesScreenCrud extends StatefulWidget {
+  const QuizzesScreenCrud({super.key});
 
   @override
-  State<QuizzesScreen> createState() => _QuizzesScreenState();
+  State<QuizzesScreenCrud> createState() => _QuizzesScreenCrudState();
 }
 
-class _QuizzesScreenState extends State<QuizzesScreen> {
+class _QuizzesScreenCrudState extends State<QuizzesScreenCrud> {
   final SupabaseClient supabase = Supabase.instance.client;
   List<Map<String, dynamic>> quizzes = [];
 
