@@ -31,6 +31,15 @@
     "privacy_politics" : "Privacy politics",
     "logout" : "Logout",
 
+    "basic_mechanics": "Basic Mechanics",
+    "traffic_regulations": "Traffic Regulations",
+    "road_culture": "Road Culture",
+    "no_categories_available": "No categories available",
+    "no_modules_available": "No modules available",
+    "no_quizes_available": "No quizes available",
+
+    "unnamed": "Unnamed",
+
     "profile" : "Profile",
     "edit_profile" : "Edit profile",
     "change_password" : "Change password",
