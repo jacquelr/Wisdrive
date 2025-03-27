@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:wisdrive/navigation/screens/home_screen.dart';
-import 'package:wisdrive/navigation/screens/login_screen.dart';
-import 'package:wisdrive/navigation/screens/onboarding_screen.dart';
+import 'package:wisdrive/navigation/screens/home/home_screen.dart';
+import 'package:wisdrive/navigation/screens/app_start/login_screen.dart';
+import 'package:wisdrive/navigation/screens/app_start/onboarding_screen.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AuthGate extends StatelessWidget {

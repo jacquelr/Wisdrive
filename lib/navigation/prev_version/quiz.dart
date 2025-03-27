@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:wisdrive/data/questions.dart';
-import 'package:wisdrive/navigation/screens/questions_screen.dart';
-import 'package:wisdrive/navigation/screens/results_screen.dart';
-import 'package:wisdrive/navigation/screens/start_screen.dart';
+import 'package:wisdrive/navigation/prev_version/questions.dart';
+import 'package:wisdrive/navigation/prev_version/results.dart';
+import 'package:wisdrive/navigation/prev_version/start.dart';
 import 'package:wisdrive/data/app_theme.dart';
 
 class Quiz extends StatefulWidget {

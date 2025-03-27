@@ -5,7 +5,7 @@ import 'package:wisdrive/data/app_theme.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wisdrive/widgets/login/login_buttons.dart';
 import 'package:wisdrive/controllers/theme_controller.dart';
-import '../../generated/l10n.dart';
+import '../../../generated/l10n.dart';
 
 const logo = '../assets/images/logo.png';
 const lightLogo = '../assets/images/light-logo.png';
