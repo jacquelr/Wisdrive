@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'questions_screen.dart'; // Importa la nueva pantalla
 
 class QuizesScreen extends StatefulWidget {
   const QuizesScreen({super.key, required this.moduleId, required this.moduleName});
@@ -40,7 +41,18 @@ class _QuizesScreenState extends State<QuizesScreen> {
           final quiz = quizes[index];
           return ListTile(
             title: Text(quiz['name']),
-            subtitle: Text('Module ID: ${quiz['id']}'),
+            subtitle: Text('Quiz ID: ${quiz['id']}'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => QuestionsScreen(
+                    quizId: quiz['id'],
+                    quizName: quiz['name'],
+                  ),
+                ),
+              );
+            },
           );
         },
       ),
