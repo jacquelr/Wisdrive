@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
-import 'package:quiz_app/data/color_palete.dart'; // Asegúrate de que esta ruta es la correcta
+import 'package:wisdrive/data/app_theme.dart'; // Asegúrate de que esta ruta es la correcta
 
 class PdfViewerScreen extends StatefulWidget {
   const PdfViewerScreen({Key? key}) : super(key: key);
