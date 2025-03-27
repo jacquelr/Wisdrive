@@ -27,6 +27,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "Sign_Up": MessageLookupByLibrary.simpleMessage("Registrarse"),
     "accesibility": MessageLookupByLibrary.simpleMessage("Accesibilidad"),
     "apply": MessageLookupByLibrary.simpleMessage("Aplicar"),
+    "basic_mechanics": MessageLookupByLibrary.simpleMessage("Mecánica básica"),
     "cancel": MessageLookupByLibrary.simpleMessage("Cancelar"),
     "change_password": MessageLookupByLibrary.simpleMessage(
       "Cambiar contraseña",
@@ -53,6 +54,15 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "logout": MessageLookupByLibrary.simpleMessage("Cerrar Sesión"),
     "male": MessageLookupByLibrary.simpleMessage("Hombre"),
+    "no_categories_available": MessageLookupByLibrary.simpleMessage(
+      "No hay categorias disponibles",
+    ),
+    "no_modules_available": MessageLookupByLibrary.simpleMessage(
+      "No hay módulos disponibles",
+    ),
+    "no_quizes_available": MessageLookupByLibrary.simpleMessage(
+      "No hay quizes disponibles",
+    ),
     "notifications": MessageLookupByLibrary.simpleMessage("Notificaciones"),
     "onboarding_1": MessageLookupByLibrary.simpleMessage(
       "¡Bienvenido a wisdrive! Aprende todo lo necesario sobre mecanica y el reglamento vial de Jalisco sin complicaciones.",
@@ -71,13 +81,24 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "profile": MessageLookupByLibrary.simpleMessage("Perfil"),
     "reminders": MessageLookupByLibrary.simpleMessage("Recordatorios"),
+    "road_culture": MessageLookupByLibrary.simpleMessage("Cultura vial"),
     "sign_in": MessageLookupByLibrary.simpleMessage("iniciar sesión"),
     "sign_in_with": MessageLookupByLibrary.simpleMessage("inicia sesión con"),
     "sign_up": MessageLookupByLibrary.simpleMessage("registrarse"),
     "signin_error": MessageLookupByLibrary.simpleMessage(
       "Error al iniciar sesión",
     ),
+    "signup_error": MessageLookupByLibrary.simpleMessage(
+      "Error al registrarse",
+    ),
     "theme": MessageLookupByLibrary.simpleMessage("Tema"),
+    "traffic_regulations": MessageLookupByLibrary.simpleMessage(
+      "Reglamento de transito",
+    ),
+    "unmatch_password": MessageLookupByLibrary.simpleMessage(
+      "Las contraseñas no coinciden",
+    ),
+    "unnamed": MessageLookupByLibrary.simpleMessage("Sin nombre"),
     "user_profile": MessageLookupByLibrary.simpleMessage("Perfil de usuario"),
   };
 }

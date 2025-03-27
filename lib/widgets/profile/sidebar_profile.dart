@@ -2,21 +2,71 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:quiz_app/constraints/images_routes.dart';
-import 'package:quiz_app/controllers/theme_controller.dart';
-import 'package:quiz_app/data/app_theme.dart';
-import 'package:quiz_app/generated/l10n.dart';
-import 'package:quiz_app/navigation/screens/edit_profile_screen.dart';
-import 'package:quiz_app/navigation/screens/home_screen.dart';
-import 'package:quiz_app/navigation/screens/login_screen.dart';
+import 'package:wisdrive/constraints/images_routes.dart';
+import 'package:wisdrive/controllers/theme_controller.dart';
+import 'package:wisdrive/data/app_theme.dart';
+import 'package:wisdrive/generated/l10n.dart';
+import 'package:wisdrive/navigation/screens/profile/edit_profile_screen.dart';
+import 'package:wisdrive/navigation/screens/home/home_screen.dart';
+import 'package:wisdrive/service/auth_service.dart';
 
-class SidebarProfile extends StatelessWidget {
+class SidebarProfile extends StatefulWidget {
   const SidebarProfile({super.key});
 
   @override
-  Widget build(context) {
-    final ThemeController themeController = Get.find();
+  State<SidebarProfile> createState() => _SidebarProfileState();
+}
 
+class _SidebarProfileState extends State<SidebarProfile> {
+  final authservice = AuthService();
+  final ThemeController themeController = Get.find();
+
+  void logout() async {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: AppTheme.darkPurple,
+        title: Text(
+          '¿Estás seguro?',
+          textAlign: TextAlign.center,
+          style: GoogleFonts.play(
+            color: themeController.isDarkMode.value
+                ? Colors.white
+                : AppTheme.lightSecondary,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        content: Column(mainAxisSize: MainAxisSize.min, children: [
+          const Divider(endIndent: 5),
+          TextButton(
+            onPressed: () async {
+              Navigator.pop(context);
+              await authservice.signOut();
+            },
+            child: Text(
+              S.of(context).logout,
+              style: GoogleFonts.play(color: Colors.red, fontSize: 16),
+            ),
+          ),
+          TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text(
+                S.of(context).cancel,
+                style: GoogleFonts.play(
+                    color: themeController.isDarkMode.value
+                        ? Colors.white
+                        : AppTheme.darkPurple,
+                    fontSize: 16),
+              ))
+        ]),
+      ),
+    );
+  }
+
+  @override
+  Widget build(context) {
     return Drawer(
       child: Container(
         decoration: BoxDecoration(
@@ -100,10 +150,10 @@ class SidebarProfile extends StatelessWidget {
                   ));
                 }),
             ListTile(
-              leading: const Icon(
-                Icons.delete,
-                color: Colors.white,
-              ),
+                leading: const Icon(
+                  Icons.delete,
+                  color: Colors.white,
+                ),
                 title: Text(
                   S.of(context).delete_account,
                   style: GoogleFonts.play(color: Colors.white, fontSize: 20),
@@ -121,12 +171,7 @@ class SidebarProfile extends StatelessWidget {
                   S.of(context).logout,
                   style: GoogleFonts.play(color: Colors.white, fontSize: 20),
                 ),
-                onTap: () {
-                  //Navigator.pop(context);
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const LoginScreen(),
-                  ));
-                }),
+                onTap: logout),
           ],
         ),
       );
