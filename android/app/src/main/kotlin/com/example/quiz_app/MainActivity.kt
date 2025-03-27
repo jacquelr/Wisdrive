@@ -1,4 +1,4 @@
-package com.example.quiz_app
+package com.example.wisdrive
 
 import io.flutter.embedding.android.FlutterActivity
 

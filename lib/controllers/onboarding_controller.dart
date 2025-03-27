@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:quiz_app/service/auth_gate.dart';
+import 'package:wisdrive/service/auth_gate.dart';
 
 class OnboardingController extends GetxController {
   static OnboardingController get instance => Get.find();

@@ -270,6 +270,71 @@ class S {
     return Intl.message('Cerrar Sesión', name: 'logout', desc: '', args: []);
   }
 
+  /// `Mecánica básica`
+  String get basic_mechanics {
+    return Intl.message(
+      'Mecánica básica',
+      name: 'basic_mechanics',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reglamento de transito`
+  String get traffic_regulations {
+    return Intl.message(
+      'Reglamento de transito',
+      name: 'traffic_regulations',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cultura vial`
+  String get road_culture {
+    return Intl.message(
+      'Cultura vial',
+      name: 'road_culture',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No hay categorias disponibles`
+  String get no_categories_available {
+    return Intl.message(
+      'No hay categorias disponibles',
+      name: 'no_categories_available',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No hay módulos disponibles`
+  String get no_modules_available {
+    return Intl.message(
+      'No hay módulos disponibles',
+      name: 'no_modules_available',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No hay quizes disponibles`
+  String get no_quizes_available {
+    return Intl.message(
+      'No hay quizes disponibles',
+      name: 'no_quizes_available',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sin nombre`
+  String get unnamed {
+    return Intl.message('Sin nombre', name: 'unnamed', desc: '', args: []);
+  }
+
   /// `Perfil`
   String get profile {
     return Intl.message('Perfil', name: 'profile', desc: '', args: []);
