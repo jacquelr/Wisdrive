@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:wisdrive/data/app_theme.dart';
 import 'package:wisdrive/generated/l10n.dart';
 
 class CategoryList extends StatelessWidget {
@@ -28,17 +30,53 @@ class CategoryList extends StatelessWidget {
         }
 
         final categories = snapshot.data!;
-        return Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: categories.map((category) {
-            final categoryId = category['id'];
-            if (categoryId == null) return const SizedBox();
 
-            return ElevatedButton(
-              onPressed: () => onCategorySelected(categoryId as int),
-              child: Text(category['name'] ?? S.of(context).unnamed),
-            );
-          }).toList(),
+        return Container(
+          height: 70,
+          decoration: const BoxDecoration(
+            color: AppTheme.darkPurple, // Fondo morado
+          ),
+          child: Row(
+            children: categories.asMap().entries.map((entry) {
+              final index = entry.key;
+              final category = entry.value;
+              final categoryId = category['id'];
+
+              if (categoryId == null) return const SizedBox();
+
+              return Expanded(
+                child: Row(
+                  children: [
+                    if (index != 0)
+                      const VerticalDivider(
+                        color: AppTheme.darkPurple, // Color del separador
+                        thickness: 4,
+                        width: 4,
+                      ),
+                    Expanded(
+                      child: ElevatedButton(
+                        onPressed: () => onCategorySelected(categoryId as int),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppTheme.mediumPurple,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(0),
+                          ),
+                          padding: const EdgeInsets.symmetric(vertical: 18),
+                          
+                        ),
+                        child: Text(
+                          category['name'] ?? S.of(context).unnamed,
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.play(color: Colors.white, fontSize: 20),
+                        ),
+
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }).toList(),
+          ),
         );
       },
     );

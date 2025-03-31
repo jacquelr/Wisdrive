@@ -22,19 +22,16 @@ class _HomeScreenState extends State<HomeScreen> {
   int? selectedCategoryId;
 
   String? getSelectedCategory() {
-    String? categoryTitle;
     switch (selectedCategoryId) {
-      case null: categoryTitle = '';
-      break;
-      case 1: categoryTitle = S.of(context).basic_mechanics;
-      break;
-      case 2: categoryTitle = S.of(context).traffic_regulations;
-      break;
-      case 3: categoryTitle = S.of(context).road_culture;
-      break;
-      default: break;
+      case 1:
+        return S.of(context).basic_mechanics;
+      case 2:
+        return S.of(context).traffic_regulations;
+      case 3:
+        return S.of(context).road_culture;
+      default:
+        return null;
     }
-    return categoryTitle;
   }
 
   @override
@@ -52,7 +49,10 @@ class _HomeScreenState extends State<HomeScreen> {
       home: Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
-          title: Text(getSelectedCategory()!, style: GoogleFonts.play(color: Colors.white),),
+          title: Text(
+            getSelectedCategory() ?? '',
+            style: GoogleFonts.play(color: Colors.white),
+          ),
           centerTitle: true,
           iconTheme: themeController.isDarkMode.value
               ? const IconThemeData(color: AppTheme.lightBackground, size: 40)
@@ -75,22 +75,52 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
         drawer: const SidebarMenu(),
-        body: Container(
-          decoration: themeController.isDarkMode.value
-              ? BoxDecoration(
-                  gradient: AppTheme.getInvertedGradient(
-                      themeController.isDarkMode.value),
-                )
-              : const BoxDecoration(color: AppTheme.lightBackground),
-          child: Center(
-            child: selectedCategoryId == null
-                ? CategoryList(onCategorySelected: (id) {
-                    setState(() {
-                      selectedCategoryId = id;
-                    });
-                  })
-                : ModuleList(selectedCategoryId: selectedCategoryId!),
-          ),
+        body: Stack(
+          children: [
+            // Fondo con gradiente según modo oscuro/claro
+            Container(
+              decoration: themeController.isDarkMode.value
+                  ? BoxDecoration(
+                      gradient: AppTheme.getInvertedGradient(
+                          themeController.isDarkMode.value),
+                    )
+                  : const BoxDecoration(color: AppTheme.lightBackground),
+            ),
+            // Contenedor blanco con bordes redondeados
+            Positioned(
+              top:
+                  MediaQuery.of(context).size.height * 0.10, // Antes del AppBar
+              left: 0,
+              right: 0,
+              bottom: 0,
+              child: Container(
+                decoration: const BoxDecoration(
+                  color: AppTheme.lightBackground,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30),
+                  ),
+                ),
+                child: Column(
+                  children: [
+                    const SizedBox(
+                        height: 20), // Espacio antes de mostrar módulos
+                    Expanded(
+                      child: selectedCategoryId == null
+                          ? Container() // Espacio vacío si no hay categoría seleccionada
+                          : ModuleList(selectedCategoryId: selectedCategoryId!),
+                    ),
+                    const SizedBox(height: 20), // Espacio antes de los botones
+                    CategoryList(onCategorySelected: (id) {
+                      setState(() {
+                        selectedCategoryId = id;
+                      });
+                    }),
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
