@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:wisdrive/controllers/theme_controller.dart';
 import 'package:wisdrive/data/app_theme.dart';
+import 'package:wisdrive/navigation/screens/home/quizes_screen.dart';
 import 'package:wisdrive/widgets/home/sidebar_menu.dart';
 
 class QuestionsScreen extends StatefulWidget {
@@ -19,9 +20,8 @@ class QuestionsScreen extends StatefulWidget {
 class _QuestionsScreenState extends State<QuestionsScreen> {
   final SupabaseClient supabase = Supabase.instance.client;
   List<Map<String, dynamic>> questions = [];
-  Map<int, List<Map<String, dynamic>>> answers =
-      {}; // Store answers by question_id
-  int currentIndex = 0; // Current question index
+  Map<int, List<Map<String, dynamic>>> answers = {};
+  int currentIndex = 0;
 
   @override
   void initState() {
@@ -32,15 +32,11 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
   Future<void> fetchQuestions() async {
     final response =
         await supabase.from('questions').select().eq('quiz_id', widget.quizId);
-
     final List<Map<String, dynamic>> fetchedQuestions =
         List<Map<String, dynamic>>.from(response);
-
     setState(() {
       questions = fetchedQuestions;
     });
-
-    // Load answers to each question
     for (var question in fetchedQuestions) {
       await fetchAnswers(question['id']);
     }
@@ -49,7 +45,6 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
   Future<void> fetchAnswers(int questionId) async {
     final response =
         await supabase.from('answers').select().eq('question_id', questionId);
-
     setState(() {
       answers[questionId] = List<Map<String, dynamic>>.from(response);
     });
@@ -61,7 +56,6 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
         currentIndex++;
       });
     } else {
-      // Finished quiz
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
@@ -70,8 +64,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
           actions: [
             TextButton(
               onPressed: () {
-                Navigator.pop(context); // Close dialog
-                Navigator.pop(context); // Go back to previous screen
+                Navigator.pop(context);
                 Navigator.pop(context);
               },
               child: const Text("Salir"),
@@ -87,16 +80,9 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
     ThemeController themeController = Get.find();
 
     Color? getTextThemeColor() {
-      final textColor =
-          themeController.isDarkMode.value ? white : AppTheme.darkPurple;
-      return textColor;
-    }
-
-    Color? getIconThemeColor() {
-      final iconColor = themeController.isDarkMode.value
-          ? AppTheme.lightBackground
-          : AppTheme.lightSecondary;
-      return iconColor;
+      return themeController.isDarkMode.value
+          ? Colors.white
+          : AppTheme.darkPurple;
     }
 
     if (questions.isEmpty || answers.isEmpty) {
@@ -105,33 +91,26 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
       );
     }
 
-    final question = questions[currentIndex]; // Pregunta actual
+    final question = questions[currentIndex];
     final questionAnswers = answers[question['id']] ?? [];
 
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
-          title: Text(
-            widget.quizName,
-            style: GoogleFonts.play(color: getTextThemeColor()),
-          ),
+          title: Text(widget.quizName,
+              style: GoogleFonts.play(color: getTextThemeColor())),
           centerTitle: true,
           backgroundColor: Colors.transparent,
-          iconTheme: IconThemeData(color: getIconThemeColor(), size: 50),
+          iconTheme: IconThemeData(color: getTextThemeColor(), size: 50),
         ),
         drawer: const SidebarMenu(),
         body: Stack(
           children: [
-            // Background gradinent
             Container(
               decoration: themeController.isDarkMode.value
-                  ? BoxDecoration(
-                      gradient: AppTheme.getInvertedGradient(
-                          themeController.isDarkMode.value),
-                    )
+                  ? BoxDecoration(gradient: AppTheme.getInvertedGradient(true))
                   : const BoxDecoration(color: AppTheme.lightBackground),
             ),
-            // Background container
             Positioned(
               top: MediaQuery.of(context).size.height * 0.10,
               left: 0,
@@ -148,41 +127,98 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text(
-                        "Pregunta ${currentIndex + 1} de ${questions.length}",
-                        style: const TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold),
+                      LinearProgressIndicator(
+                        value: (currentIndex + 1) / questions.length,
+                        backgroundColor: Colors.grey[300],
+                        color: AppTheme.darkPurple,
+                        minHeight: 8,
                       ),
                       const SizedBox(height: 10),
                       Text(
-                        question['question_content'],
-                        style: const TextStyle(fontSize: 20),
+                          "Pregunta ${currentIndex + 1} de ${questions.length}",
+                          style: const TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold)),
+                      const SizedBox(height: 10),
+                      Container(
+                        padding: const EdgeInsets.all(15),
+                        decoration: BoxDecoration(
+                          gradient: AppTheme.getGradient(
+                              themeController.isDarkMode.value),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Text(
+                          question['question_content'],
+                          style: TextStyle(
+                              color: getTextThemeColor(), fontSize: 20),
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                       const SizedBox(height: 20),
-                      Column(
-                        children: questionAnswers.map((answer) {
-                          return ElevatedButton(
-                            onPressed: () {
-                              bool isCorrect = answer['is_correct'];
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(isCorrect
-                                      ? '¡Correcto!'
-                                      : 'Incorrecto, intenta de nuevo.'),
-                                  backgroundColor:
-                                      isCorrect ? Colors.green : Colors.red,
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: questionAnswers.map((answer) {
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 5),
+                              child: SizedBox(
+                                width: double.infinity,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    bool isCorrect = answer['is_correct'];
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(isCorrect
+                                            ? '¡Correcto!'
+                                            : 'Incorrecto, intenta de nuevo.'),
+                                        backgroundColor: isCorrect
+                                            ? Colors.green
+                                            : Colors.red,
+                                        duration: const Duration(seconds: 1),
+                                      ),
+                                    );
+                                    if (isCorrect) {
+                                      Future.delayed(const Duration(seconds: 1),
+                                          nextQuestion);
+                                    }
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: AppTheme.lightPurple,
+                                    padding: const EdgeInsets.all(12),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(30),
+                                    ),
+                                  ),
+                                  child: Text(
+                                    answer['content'],
+                                    style: GoogleFonts.play(
+                                        color: getTextThemeColor(),
+                                        fontSize: 18),
+                                    textAlign: TextAlign.center,
+                                  ),
                                 ),
-                              );
-                              if (isCorrect) {
-                                Future.delayed(
-                                    const Duration(seconds: 1), nextQuestion);
-                              }
-                            },
-                            child: Text(answer['content']),
-                          );
-                        }).toList(),
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                      const SizedBox(height: 15),
+                      SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: AppTheme.darkPurple,
+                            padding: const EdgeInsets.symmetric(vertical: 12),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                          ),
+                          onPressed: nextQuestion,
+                          child: Text("CONTESTAR",
+                              style: GoogleFonts.play(
+                                  fontSize: 20, color: getTextThemeColor())),
+                        ),
                       ),
                     ],
                   ),
