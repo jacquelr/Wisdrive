@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'questions_screen.dart'; // Importa la nueva pantalla
+import 'package:wisdrive/controllers/theme_controller.dart';
+import 'package:wisdrive/data/app_theme.dart';
+import 'questions_screen.dart';
 
 class QuizesScreen extends StatefulWidget {
-  const QuizesScreen({super.key, required this.moduleId, required this.moduleName});
+  const QuizesScreen(
+      {super.key, required this.moduleId, required this.moduleName});
   final int moduleId;
   final String moduleName;
 
@@ -12,6 +17,7 @@ class QuizesScreen extends StatefulWidget {
 }
 
 class _QuizesScreenState extends State<QuizesScreen> {
+  final ThemeController themeController = Get.find();
   final SupabaseClient supabase = Supabase.instance.client;
   List<Map<String, dynamic>> quizes = [];
 
@@ -34,27 +40,73 @@ class _QuizesScreenState extends State<QuizesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('${widget.moduleName} Quiz')),
-      body: ListView.builder(
-        itemCount: quizes.length,
-        itemBuilder: (context, index) {
-          final quiz = quizes[index];
-          return ListTile(
-            title: Text(quiz['name']),
-            subtitle: Text('Quiz ID: ${quiz['id']}'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => QuestionsScreen(
-                    quizId: quiz['id'],
-                    quizName: quiz['name'],
+      backgroundColor: AppTheme.darkPurple,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        title: Text(
+          '${widget.moduleName} Quiz',
+          style: GoogleFonts.play(color: white),
+        ),
+        centerTitle: true,
+        iconTheme: themeController.isDarkMode.value
+            ? const IconThemeData(color: AppTheme.lightBackground, size: 40)
+            : const IconThemeData(color: AppTheme.lightSecondary, size: 40),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: ListView.builder(
+          itemCount: quizes.length,
+          itemBuilder: (context, index) {
+            final quiz = quizes[index];
+            return Column(
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => QuestionsScreen(
+                          quizId: quiz['id'],
+                          quizName: quiz['name'],
+                        ),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: AppTheme.mediumPurple,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Row(
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: AppTheme.lightSecondary,
+                          radius: 30,
+                          child: Text(
+                            'Nivel ${index + 1}',
+                            style: GoogleFonts.play(color: Colors.white),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        const SizedBox(width: 16),
+                        Text(
+                          quiz['name'],
+                          style: GoogleFonts.play(
+                            color: white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              );
-            },
-          );
-        },
+                const SizedBox(height: 20),
+              ],
+            );
+          },
+        ),
       ),
     );
   }
