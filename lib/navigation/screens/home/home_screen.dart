@@ -21,6 +21,24 @@ class _HomeScreenState extends State<HomeScreen> {
   final ThemeController themeController = Get.find();
   int? selectedCategoryId;
 
+  Color? getTextThemeColor() {
+    final textColor =
+        themeController.isDarkMode.value ? white : AppTheme.darkPurple;
+    return textColor;
+  }
+
+  Color? getIconThemeColor() {
+    final iconColor = themeController.isDarkMode.value
+        ? AppTheme.lightBackground
+        : AppTheme.lightSecondary;
+    return iconColor;
+  }
+
+  Color? getContainerThemeColor() {
+    final containerColor = themeController.isDarkMode.value ? AppTheme.lightBackground : AppTheme.lightPrimary;
+    return containerColor;
+  }
+
   String? getSelectedCategory() {
     switch (selectedCategoryId) {
       case 1:
@@ -51,21 +69,15 @@ class _HomeScreenState extends State<HomeScreen> {
         appBar: AppBar(
           title: Text(
             getSelectedCategory() ?? '',
-            style: GoogleFonts.play(color: Colors.white),
+            style: GoogleFonts.play(color: getTextThemeColor()),
           ),
           centerTitle: true,
-          iconTheme: themeController.isDarkMode.value
-              ? const IconThemeData(color: AppTheme.lightBackground, size: 40)
-              : const IconThemeData(color: AppTheme.lightSecondary, size: 40),
+          iconTheme: IconThemeData(color: getIconThemeColor(), size: 50),
           backgroundColor: Colors.transparent,
           elevation: 0,
           actions: [
             IconButton(
-              icon: themeController.isDarkMode.value
-                  ? const Icon(Icons.account_circle,
-                      color: AppTheme.lightBackground)
-                  : const Icon(Icons.account_circle,
-                      color: AppTheme.lightSecondary),
+              icon: Icon(Icons.account_circle, color: getIconThemeColor()),
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => const ProfileScreen(),
@@ -94,9 +106,9 @@ class _HomeScreenState extends State<HomeScreen> {
               right: 0,
               bottom: 0,
               child: Container(
-                decoration: const BoxDecoration(
-                  color: AppTheme.lightBackground,
-                  borderRadius: BorderRadius.only(
+                decoration: BoxDecoration(
+                  color: getContainerThemeColor(),
+                  borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(30),
                     topRight: Radius.circular(30),
                   ),
