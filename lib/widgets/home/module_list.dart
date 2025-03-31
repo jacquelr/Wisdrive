@@ -84,8 +84,9 @@ class ModuleList extends StatelessWidget {
                     ],
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.all(5),
+                    padding: const EdgeInsets.all(10),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
                           "Lección ${module['id']}",
@@ -100,12 +101,14 @@ class ModuleList extends StatelessWidget {
                           size: 75,
                           color: Colors.white,
                         ),
-                        Text(
-                          module['module_name'] ?? S.of(context).unnamed,
-                          textAlign: TextAlign.left,
-                          style: GoogleFonts.play(
-                            color: Colors.white,
-                            fontSize: 18,
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            module['module_name'] ?? S.of(context).unnamed,
+                            style: GoogleFonts.play(
+                              color: Colors.white,
+                              fontSize: 18,
+                            ),
                           ),
                         ),
                         const SizedBox(height: 8),
