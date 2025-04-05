@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:wisdrive/constraints/helper_functions.dart';
 import 'package:wisdrive/controllers/theme_controller.dart';
 import 'package:wisdrive/data/app_theme.dart';
 import 'package:wisdrive/navigation/screens/home/quizes_screen.dart';
@@ -64,8 +65,15 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
           actions: [
             TextButton(
               onPressed: () {
-                Navigator.pop(context);
-                Navigator.pop(context);
+                Navigator.pop(context); // Cierra el diálogo
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => QuizesScreen(
+                            moduleId: getModuleIdForQuiz(widget.quizId),
+                            moduleName: getModuleNameForQuiz(widget.quizId),
+                          )),
+                );
               },
               child: const Text("Salir"),
             ),
@@ -75,15 +83,21 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
     }
   }
 
+  int getModuleIdForQuiz(int quizId) {
+    final quiz =
+        questions.firstWhere((q) => q['id'] == quizId, orElse: () => {});
+    return quiz['module_id'] ?? 0; // Retorna 0 si no encuentra el módulo
+  }
+
+  String getModuleNameForQuiz(int quizId) {
+    final quiz =
+        questions.firstWhere((q) => q['id'] == quizId, orElse: () => {});
+    return quiz['module_name'] ?? 'Módulo Desconocido'; // Nombre por defecto
+  }
+
   @override
   Widget build(BuildContext context) {
     ThemeController themeController = Get.find();
-
-    Color? getTextThemeColor() {
-      return themeController.isDarkMode.value
-          ? Colors.white
-          : AppTheme.darkPurple;
-    }
 
     if (questions.isEmpty || answers.isEmpty) {
       return const Scaffold(
@@ -98,10 +112,10 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
         extendBodyBehindAppBar: true,
         appBar: AppBar(
           title: Text(widget.quizName,
-              style: GoogleFonts.play(color: getTextThemeColor())),
+              style: GoogleFonts.play(color: HelperFunctions.getTextThemeColor())),
           centerTitle: true,
           backgroundColor: Colors.transparent,
-          iconTheme: IconThemeData(color: getTextThemeColor(), size: 50),
+          iconTheme: IconThemeData(color: HelperFunctions.getTextThemeColor(), size: 50),
         ),
         drawer: const SidebarMenu(),
         body: Stack(
@@ -151,7 +165,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                         child: Text(
                           question['question_content'],
                           style: TextStyle(
-                              color: getTextThemeColor(), fontSize: 20),
+                              color: HelperFunctions.getTextThemeColor(), fontSize: 20),
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -193,7 +207,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                                   child: Text(
                                     answer['content'],
                                     style: GoogleFonts.play(
-                                        color: getTextThemeColor(),
+                                        color: HelperFunctions.getTextThemeColor(),
                                         fontSize: 18),
                                     textAlign: TextAlign.center,
                                   ),
@@ -217,7 +231,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                           onPressed: nextQuestion,
                           child: Text("CONTESTAR",
                               style: GoogleFonts.play(
-                                  fontSize: 20, color: getTextThemeColor())),
+                                  fontSize: 20, color: HelperFunctions.getTextThemeColor())),
                         ),
                       ),
                     ],
