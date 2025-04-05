@@ -2,23 +2,25 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import 'package:flutter_chat_ui/flutter_chat_ui.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:uuid/uuid.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart'; // Importa dotenv
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:wisdrive/constraints/helper_functions.dart'; // Importa dotenv
 
 final String apiKey = dotenv.env['apiKey'] ?? '';
 const String sourceId = "src_jxebBqdmiN67V4HgySdcL";
 const String apiUrl = "https://api.chatpdf.com/v1/chats/message";
 
-class ChatPage extends StatefulWidget {
-  const ChatPage({super.key});
+class ChatScreen extends StatefulWidget {
+  const ChatScreen({super.key});
 
   @override
-  State<ChatPage> createState() => _ChatPageState();
+  State<ChatScreen> createState() => _ChatScreenState();
 }
 
-class _ChatPageState extends State<ChatPage> {
-  List<types.Message> _messages = [];
+class _ChatScreenState extends State<ChatScreen> {
+  final List<types.Message> _messages = [];
   final _user = const types.User(id: '82091008-a484-4a89-ae75-a22bf8d6f3ac');
 
   void _addMessage(types.Message message) {
@@ -83,13 +85,25 @@ class _ChatPageState extends State<ChatPage> {
   }
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        body: Chat(
-          messages: _messages,
-          onSendPressed: _handleSendPressed,
-          showUserAvatars: true,
-          showUserNames: true,
-          user: _user,
-        ),
-      );
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+            "Chatbot",
+            style: GoogleFonts.play(color: HelperFunctions.getTextThemeColor()),
+          ),
+          centerTitle: true,
+          iconTheme: IconThemeData(color: HelperFunctions.getIconThemeColor(), size: 50),
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+      ),
+      body: Chat(
+        messages: _messages,
+        onSendPressed: _handleSendPressed,
+        showUserAvatars: true,
+        showUserNames: true,
+        user: _user,
+      ),
+    );
+  }
 }
