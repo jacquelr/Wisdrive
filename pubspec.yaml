@@ -89,6 +89,9 @@ flutter:
     - assets\images\onboarding-2.png
     - assets\images\onboarding-3.png
     - assets\images\pick_image.png
+    - assets\images\wisdrive_slogan.png
+    - assets\images\wisdrive_purpose.png
+    - assets\images\wisdrive_bugs.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
   # For details regarding adding assets from package dependencies, see
