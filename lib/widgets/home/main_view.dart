@@ -26,14 +26,14 @@ class _MainViewState extends State<MainView> {
           Text(
             "Welcome to Wisdrive",
             style: GoogleFonts.play(
-              color: HelperFunctions.getTextThemeColor(),
+              color: HelperFunctions.getWhiteBgTextThemeColor(),
               fontSize: 30,
             ),
           ),
           Text(
             "Get ready to be wise with wisdrive",
             style: GoogleFonts.play(
-              color: HelperFunctions.getTextThemeColor(),
+              color: HelperFunctions.getWhiteBgTextThemeColor(),
               fontSize: 16,
             ),
           ),

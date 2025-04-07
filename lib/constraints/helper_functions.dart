@@ -41,6 +41,13 @@ class HelperFunctions {
     return textColor;
   }
 
+  static Color? getWhiteBgTextThemeColor() {
+    final ThemeController themeController = Get.find();
+    final textColor =
+        themeController.isDarkMode.value ? AppTheme.darkPurple : white;
+    return textColor;
+  }
+
   static Color? getIconThemeColor() {
     final ThemeController themeController = Get.find();
     final iconColor = themeController.isDarkMode.value
