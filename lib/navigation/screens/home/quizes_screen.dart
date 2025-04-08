@@ -61,16 +61,14 @@ class _QuizesScreenState extends State<QuizesScreen> {
             return Column(
               children: [
                 GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => QuestionsScreen(
-                          quizId: quiz['id'],
-                          quizName: quiz['name'],
-                        ),
-                      ),
-                    );
+                  onTap: () async {
+                    final result = await Get.to(() => QuestionsScreen(
+                      quizId: quiz['id'],
+                      quizName: quiz['name'],
+                    ));
+                    if (result != 'quiz_completed') {
+                      fetchQuizzes();
+                    }
                   },
                   child: Container(
                     padding: const EdgeInsets.all(12),

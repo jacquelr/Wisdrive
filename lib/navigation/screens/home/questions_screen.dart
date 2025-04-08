@@ -10,9 +10,17 @@ import 'package:wisdrive/widgets/home/sidebar_menu.dart';
 
 class QuestionsScreen extends StatefulWidget {
   const QuestionsScreen(
-      {super.key, required this.quizId, required this.quizName});
+      {super.key,
+      required this.quizId,
+      required this.quizName,
+      // required this.moduleId,
+      // required this.moduleName
+      });
+
   final int quizId;
   final String quizName;
+  // final int moduleId;
+  // final String moduleName;
 
   @override
   State<QuestionsScreen> createState() => _QuestionsScreenState();
@@ -66,14 +74,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
             TextButton(
               onPressed: () {
                 Navigator.pop(context); // Cierra el diálogo
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => QuizesScreen(
-                            moduleId: getModuleIdForQuiz(widget.quizId),
-                            moduleName: getModuleNameForQuiz(widget.quizId),
-                          )),
-                );
+                Get.back(result: 'quiz_completed');
               },
               child: const Text("Salir"),
             ),
@@ -81,18 +82,6 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
         ),
       );
     }
-  }
-
-  int getModuleIdForQuiz(int quizId) {
-    final quiz =
-        questions.firstWhere((q) => q['id'] == quizId, orElse: () => {});
-    return quiz['module_id'] ?? 0; // Retorna 0 si no encuentra el módulo
-  }
-
-  String getModuleNameForQuiz(int quizId) {
-    final quiz =
-        questions.firstWhere((q) => q['id'] == quizId, orElse: () => {});
-    return quiz['module_name'] ?? 'Módulo Desconocido'; // Nombre por defecto
   }
 
   @override
@@ -112,10 +101,12 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
         extendBodyBehindAppBar: true,
         appBar: AppBar(
           title: Text(widget.quizName,
-              style: GoogleFonts.play(color: HelperFunctions.getTextThemeColor())),
+              style:
+                  GoogleFonts.play(color: HelperFunctions.getTextThemeColor())),
           centerTitle: true,
           backgroundColor: Colors.transparent,
-          iconTheme: IconThemeData(color: HelperFunctions.getTextThemeColor(), size: 50),
+          iconTheme: IconThemeData(
+              color: HelperFunctions.getTextThemeColor(), size: 50),
         ),
         drawer: const SidebarMenu(),
         body: Stack(
@@ -165,7 +156,8 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                         child: Text(
                           question['question_content'],
                           style: TextStyle(
-                              color: HelperFunctions.getTextThemeColor(), fontSize: 20),
+                              color: HelperFunctions.getTextThemeColor(),
+                              fontSize: 20),
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -207,7 +199,8 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                                   child: Text(
                                     answer['content'],
                                     style: GoogleFonts.play(
-                                        color: HelperFunctions.getTextThemeColor(),
+                                        color:
+                                            HelperFunctions.getTextThemeColor(),
                                         fontSize: 18),
                                     textAlign: TextAlign.center,
                                   ),
@@ -231,7 +224,8 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                           onPressed: nextQuestion,
                           child: Text("CONTESTAR",
                               style: GoogleFonts.play(
-                                  fontSize: 20, color: HelperFunctions.getTextThemeColor())),
+                                  fontSize: 20,
+                                  color: HelperFunctions.getTextThemeColor())),
                         ),
                       ),
                     ],
