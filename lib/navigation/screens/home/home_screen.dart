@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:wisdrive/constraints/helper_functions.dart';
 import 'package:wisdrive/controllers/theme_controller.dart';
 import 'package:wisdrive/data/app_theme.dart';
-import 'package:wisdrive/navigation/screens/chat_screen.dart';
+import 'package:wisdrive/navigation/screens/home/chat_screen.dart';
 import 'package:wisdrive/navigation/screens/profile/profile_screen.dart';
 import 'package:wisdrive/widgets/home/main_view.dart';
 import 'package:wisdrive/widgets/home/sidebar_menu.dart';
