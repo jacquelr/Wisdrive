@@ -31,8 +31,11 @@
     "privacy_politics" : "Privacy politics",
     "logout" : "Logout",
 
+    "home": "Home",
     "basic_mechanics": "Basic Mechanics",
+    "mechanics": "Mechanics",
     "traffic_regulations": "Traffic Regulations",
+    "regulations": "Regulations",
     "road_culture": "Road Culture",
     "no_categories_available": "No categories available",
     "no_modules_available": "No modules available",
@@ -52,5 +55,17 @@
     "apply" : "Apply",
     "male" : "Male",
     "female" : "Female",
-    "other" : "Other"
+    "other" : "Other",
+
+    "lesson": "Lesson",
+    "level": "Level",
+
+    "question_": "Question",
+    "of_": "of",
+    "correct": "Correct",
+    "incorrect": "Incorrect, try again",
+    "answer": "ANSWER",
+    "congratulations": "Congratulations",
+    "finished_quiz": "You have completed the quiz correctly",
+    "continue_learning": "Continue"
 }

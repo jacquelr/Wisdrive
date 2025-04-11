@@ -89,7 +89,7 @@ class ModuleList extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          "Lección ${module['id']}",
+                          "${S.of(context).lesson} ${module['id']}",
                           textAlign: TextAlign.center,
                           style: GoogleFonts.play(
                               color: Colors.white,
@@ -122,10 +122,6 @@ class ModuleList extends StatelessWidget {
                                 AppTheme.lightSecondary),
                           ),
                         ),
-                        // Text(
-                        //   "${(progress * 100).toInt()}% completado",
-                        //   style: const TextStyle(color: Colors.white, fontSize: 14),
-                        // ),
                       ],
                     ),
                   ),

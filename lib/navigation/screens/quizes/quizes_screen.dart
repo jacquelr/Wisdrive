@@ -5,6 +5,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:wisdrive/controllers/theme_controller.dart';
 import 'package:wisdrive/data/app_theme.dart';
 import 'questions_screen.dart';
+import '../../../generated/l10n.dart';
 
 class QuizesScreen extends StatefulWidget {
   const QuizesScreen(
@@ -82,7 +83,7 @@ class _QuizesScreenState extends State<QuizesScreen> {
                           backgroundColor: AppTheme.lightSecondary,
                           radius: 30,
                           child: Text(
-                            'Nivel ${index + 1}',
+                            '${S.of(context).level} ${index + 1}',
                             style: GoogleFonts.play(color: Colors.white),
                             textAlign: TextAlign.center,
                           ),

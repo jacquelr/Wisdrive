@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wisdrive/data/app_theme.dart';
+import '../../generated/l10n.dart';
 
 class CategoryProps {
   final int? id; // null para Home
@@ -19,15 +20,15 @@ class CategoryList extends StatelessWidget {
 
   const CategoryList({super.key, required this.onCategorySelected});
 
-  final List<CategoryProps> categoryButtons = const [
-    CategoryProps(id: null, name: 'Inicio', icon: Icons.home),
-    CategoryProps(id: 1, name: 'Cultura Vial', icon: Icons.traffic),
-    CategoryProps(id: 2, name: 'Reglamento', icon: Icons.rule),
-    CategoryProps(id: 3, name: 'Mecánica', icon: Icons.build),
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final List<CategoryProps> categoryButtons = [
+      CategoryProps(id: null, name: S.of(context).home, icon: Icons.home),
+      CategoryProps(id: 1, name: S.of(context).road_culture, icon: Icons.traffic),
+      CategoryProps(id: 2, name: S.of(context).regulations, icon: Icons.rule),
+      CategoryProps(id: 3, name: S.of(context).mechanics, icon: Icons.build),
+    ];
+
     return Container(
       height: 70,
       decoration: const BoxDecoration(
