@@ -26,6 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "Sign_In": MessageLookupByLibrary.simpleMessage("Sign In"),
     "Sign_Up": MessageLookupByLibrary.simpleMessage("Sign Up"),
     "accesibility": MessageLookupByLibrary.simpleMessage("Accesibility"),
+    "answer": MessageLookupByLibrary.simpleMessage("ANSWER"),
     "apply": MessageLookupByLibrary.simpleMessage("Apply"),
     "basic_mechanics": MessageLookupByLibrary.simpleMessage("Basic Mechanics"),
     "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
@@ -35,6 +36,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "confirm_password": MessageLookupByLibrary.simpleMessage(
       "Confirm Password",
     ),
+    "congratulations": MessageLookupByLibrary.simpleMessage("Congratulations"),
+    "continue_learning": MessageLookupByLibrary.simpleMessage("Continue"),
+    "correct": MessageLookupByLibrary.simpleMessage("Correct"),
     "create_account_with": MessageLookupByLibrary.simpleMessage(
       "create an account with",
     ),
@@ -45,13 +49,21 @@ class MessageLookup extends MessageLookupByLibrary {
     "edit_username": MessageLookupByLibrary.simpleMessage("Username"),
     "email": MessageLookupByLibrary.simpleMessage("E-mail"),
     "female": MessageLookupByLibrary.simpleMessage("Female"),
+    "finished_quiz": MessageLookupByLibrary.simpleMessage(
+      "You have completed the quiz correctly",
+    ),
     "help": MessageLookupByLibrary.simpleMessage("Help panel"),
+    "home": MessageLookupByLibrary.simpleMessage("Home"),
+    "incorrect": MessageLookupByLibrary.simpleMessage("Incorrect, try again"),
     "language": MessageLookupByLibrary.simpleMessage("Language"),
+    "lesson": MessageLookupByLibrary.simpleMessage("Lesson"),
     "lets_start_learning": MessageLookupByLibrary.simpleMessage(
       "¡Let\'s start learning!",
     ),
+    "level": MessageLookupByLibrary.simpleMessage("Level"),
     "logout": MessageLookupByLibrary.simpleMessage("Logout"),
     "male": MessageLookupByLibrary.simpleMessage("Male"),
+    "mechanics": MessageLookupByLibrary.simpleMessage("Mechanics"),
     "no_categories_available": MessageLookupByLibrary.simpleMessage(
       "No categories available",
     ),
@@ -62,6 +74,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "No quizes available",
     ),
     "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
+    "of_": MessageLookupByLibrary.simpleMessage("of"),
     "onboarding_1": MessageLookupByLibrary.simpleMessage(
       "Welcome to wisdrive! Learn everything you need to know about mechanics and Jalisco\'s traffic regulations without complications.",
     ),
@@ -78,6 +91,8 @@ class MessageLookup extends MessageLookupByLibrary {
       "Privacy politics",
     ),
     "profile": MessageLookupByLibrary.simpleMessage("Profile"),
+    "question_": MessageLookupByLibrary.simpleMessage("Question"),
+    "regulations": MessageLookupByLibrary.simpleMessage("Regulations"),
     "reminders": MessageLookupByLibrary.simpleMessage("Reminders"),
     "road_culture": MessageLookupByLibrary.simpleMessage("Road Culture"),
     "sign_in": MessageLookupByLibrary.simpleMessage("sign in"),

@@ -270,6 +270,11 @@ class S {
     return Intl.message('Cerrar Sesión', name: 'logout', desc: '', args: []);
   }
 
+  /// `Inicio`
+  String get home {
+    return Intl.message('Inicio', name: 'home', desc: '', args: []);
+  }
+
   /// `Mecánica básica`
   String get basic_mechanics {
     return Intl.message(
@@ -280,6 +285,11 @@ class S {
     );
   }
 
+  /// `Mecanica`
+  String get mechanics {
+    return Intl.message('Mecanica', name: 'mechanics', desc: '', args: []);
+  }
+
   /// `Reglamento de transito`
   String get traffic_regulations {
     return Intl.message(
@@ -288,6 +298,11 @@ class S {
       desc: '',
       args: [],
     );
+  }
+
+  /// `Reglamento`
+  String get regulations {
+    return Intl.message('Reglamento', name: 'regulations', desc: '', args: []);
   }
 
   /// `Cultura vial`
@@ -428,6 +443,76 @@ class S {
   /// `Otro`
   String get other {
     return Intl.message('Otro', name: 'other', desc: '', args: []);
+  }
+
+  /// `Lección`
+  String get lesson {
+    return Intl.message('Lección', name: 'lesson', desc: '', args: []);
+  }
+
+  /// `Nivel`
+  String get level {
+    return Intl.message('Nivel', name: 'level', desc: '', args: []);
+  }
+
+  /// `Pregunta`
+  String get question_ {
+    return Intl.message('Pregunta', name: 'question_', desc: '', args: []);
+  }
+
+  /// `de`
+  String get of_ {
+    return Intl.message('de', name: 'of_', desc: '', args: []);
+  }
+
+  /// `Correcto`
+  String get correct {
+    return Intl.message('Correcto', name: 'correct', desc: '', args: []);
+  }
+
+  /// `Incorrecto, intenta de nuevo`
+  String get incorrect {
+    return Intl.message(
+      'Incorrecto, intenta de nuevo',
+      name: 'incorrect',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CONTESTAR`
+  String get answer {
+    return Intl.message('CONTESTAR', name: 'answer', desc: '', args: []);
+  }
+
+  /// `Felicidades`
+  String get congratulations {
+    return Intl.message(
+      'Felicidades',
+      name: 'congratulations',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Has completado el quiz correctamente`
+  String get finished_quiz {
+    return Intl.message(
+      'Has completado el quiz correctamente',
+      name: 'finished_quiz',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continuar`
+  String get continue_learning {
+    return Intl.message(
+      'Continuar',
+      name: 'continue_learning',
+      desc: '',
+      args: [],
+    );
   }
 }
 

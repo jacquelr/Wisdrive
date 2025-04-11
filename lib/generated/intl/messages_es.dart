@@ -26,6 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "Sign_In": MessageLookupByLibrary.simpleMessage("Iniciar Sesión"),
     "Sign_Up": MessageLookupByLibrary.simpleMessage("Registrarse"),
     "accesibility": MessageLookupByLibrary.simpleMessage("Accesibilidad"),
+    "answer": MessageLookupByLibrary.simpleMessage("CONTESTAR"),
     "apply": MessageLookupByLibrary.simpleMessage("Aplicar"),
     "basic_mechanics": MessageLookupByLibrary.simpleMessage("Mecánica básica"),
     "cancel": MessageLookupByLibrary.simpleMessage("Cancelar"),
@@ -37,6 +38,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "confirm_password": MessageLookupByLibrary.simpleMessage(
       "Confirmar contraseña",
     ),
+    "congratulations": MessageLookupByLibrary.simpleMessage("Felicidades"),
+    "continue_learning": MessageLookupByLibrary.simpleMessage("Continuar"),
+    "correct": MessageLookupByLibrary.simpleMessage("Correcto"),
     "create_account_with": MessageLookupByLibrary.simpleMessage(
       "crea una cuenta con",
     ),
@@ -47,13 +51,23 @@ class MessageLookup extends MessageLookupByLibrary {
     "edit_username": MessageLookupByLibrary.simpleMessage("Nombre de usuario"),
     "email": MessageLookupByLibrary.simpleMessage("Correo electronico"),
     "female": MessageLookupByLibrary.simpleMessage("Mujer"),
+    "finished_quiz": MessageLookupByLibrary.simpleMessage(
+      "Has completado el quiz correctamente",
+    ),
     "help": MessageLookupByLibrary.simpleMessage("Centro de ayuda"),
+    "home": MessageLookupByLibrary.simpleMessage("Inicio"),
+    "incorrect": MessageLookupByLibrary.simpleMessage(
+      "Incorrecto, intenta de nuevo",
+    ),
     "language": MessageLookupByLibrary.simpleMessage("Idioma"),
+    "lesson": MessageLookupByLibrary.simpleMessage("Lección"),
     "lets_start_learning": MessageLookupByLibrary.simpleMessage(
       "¡comencemos a aprender!",
     ),
+    "level": MessageLookupByLibrary.simpleMessage("Nivel"),
     "logout": MessageLookupByLibrary.simpleMessage("Cerrar Sesión"),
     "male": MessageLookupByLibrary.simpleMessage("Hombre"),
+    "mechanics": MessageLookupByLibrary.simpleMessage("Mecanica"),
     "no_categories_available": MessageLookupByLibrary.simpleMessage(
       "No hay categorias disponibles",
     ),
@@ -64,6 +78,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "No hay quizes disponibles",
     ),
     "notifications": MessageLookupByLibrary.simpleMessage("Notificaciones"),
+    "of_": MessageLookupByLibrary.simpleMessage("de"),
     "onboarding_1": MessageLookupByLibrary.simpleMessage(
       "¡Bienvenido a wisdrive! Aprende todo lo necesario sobre mecanica y el reglamento vial de Jalisco sin complicaciones.",
     ),
@@ -80,6 +95,8 @@ class MessageLookup extends MessageLookupByLibrary {
       "Politicas de privacidad",
     ),
     "profile": MessageLookupByLibrary.simpleMessage("Perfil"),
+    "question_": MessageLookupByLibrary.simpleMessage("Pregunta"),
+    "regulations": MessageLookupByLibrary.simpleMessage("Reglamento"),
     "reminders": MessageLookupByLibrary.simpleMessage("Recordatorios"),
     "road_culture": MessageLookupByLibrary.simpleMessage("Cultura vial"),
     "sign_in": MessageLookupByLibrary.simpleMessage("iniciar sesión"),

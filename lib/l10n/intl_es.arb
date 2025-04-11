@@ -31,8 +31,11 @@
     "privacy_politics" : "Politicas de privacidad",
     "logout" : "Cerrar Sesión",
 
+    "home": "Inicio",
     "basic_mechanics": "Mecánica básica",
+    "mechanics": "Mecanica",
     "traffic_regulations": "Reglamento de transito",
+    "regulations": "Reglamento",
     "road_culture": "Cultura vial",
     "no_categories_available": "No hay categorias disponibles",
     "no_modules_available": "No hay módulos disponibles",
@@ -53,5 +56,17 @@
     "apply" : "Aplicar",
     "male" : "Hombre",
     "female" : "Mujer",
-    "other" : "Otro"
+    "other" : "Otro",
+
+    "lesson": "Lección",
+    "level": "Nivel",
+
+    "question_": "Pregunta",
+    "of_": "de",
+    "correct": "Correcto",
+    "incorrect": "Incorrecto, intenta de nuevo",
+    "answer": "CONTESTAR",
+    "congratulations": "Felicidades",
+    "finished_quiz": "Has completado el quiz correctamente",
+    "continue_learning": "Continuar"
 }
