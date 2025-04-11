@@ -5,21 +5,19 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:wisdrive/constraints/helper_functions.dart';
 import 'package:wisdrive/controllers/theme_controller.dart';
 import 'package:wisdrive/data/app_theme.dart';
+import 'package:wisdrive/generated/l10n.dart';
 import 'package:wisdrive/widgets/home/sidebar_menu.dart';
+import 'package:wisdrive/widgets/question_summary/quiz_completed.dart';
 
 class QuestionsScreen extends StatefulWidget {
-  const QuestionsScreen(
-      {super.key,
-      required this.quizId,
-      required this.quizName,
-      // required this.moduleId,
-      // required this.moduleName
-      });
+  const QuestionsScreen({
+    super.key,
+    required this.quizId,
+    required this.quizName,
+  });
 
   final int quizId;
   final String quizName;
-  // final int moduleId;
-  // final String moduleName;
 
   @override
   State<QuestionsScreen> createState() => _QuestionsScreenState();
@@ -64,22 +62,11 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
         currentIndex++;
       });
     } else {
-      showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: const Text("¡Quiz terminado!"),
-          content: const Text("Has respondido todas las preguntas."),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context); // Cierra el diálogo
-                Get.back(result: 'quiz_completed');
-              },
-              child: const Text("Salir"),
-            ),
-          ],
-        ),
-      );
+      Get.to(() => const QuizCompleted())!.then((result) {
+        if (result == 'quiz_completed') {
+          Get.back(result: 'quiz_completed');
+        }
+      });
     }
   }
 
@@ -141,9 +128,13 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                       ),
                       const SizedBox(height: 10),
                       Text(
-                          "Pregunta ${currentIndex + 1} de ${questions.length}",
-                          style: const TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold)),
+                        "${S.of(context).question_} ${currentIndex + 1} ${S.of(context).of_} ${questions.length}",
+                        style: GoogleFonts.play(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: HelperFunctions.getWhiteBgTextThemeColor(),
+                        ),
+                      ),
                       const SizedBox(height: 10),
                       Container(
                         padding: const EdgeInsets.all(15),
@@ -175,8 +166,8 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
                                         content: Text(isCorrect
-                                            ? '¡Correcto!'
-                                            : 'Incorrecto, intenta de nuevo.'),
+                                            ? '¡${S.of(context).correct}!'
+                                            : '${S.of(context).incorrect}.'),
                                         backgroundColor: isCorrect
                                             ? Colors.green
                                             : Colors.red,
@@ -221,7 +212,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                             ),
                           ),
                           onPressed: nextQuestion,
-                          child: Text("CONTESTAR",
+                          child: Text(S.of(context).answer,
                               style: GoogleFonts.play(
                                   fontSize: 20,
                                   color: HelperFunctions.getTextThemeColor())),
