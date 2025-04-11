@@ -1,0 +1,2 @@
+C:/xampp/htdocs/Wisdrive/Wisdrive/android/app/.cxx/Debug/4on4nm24/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/xampp/htdocs/Wisdrive/Wisdrive/android/app/.cxx/Debug/4on4nm24/armeabi-v7a/CMakeFiles/rebuild_cache.dir

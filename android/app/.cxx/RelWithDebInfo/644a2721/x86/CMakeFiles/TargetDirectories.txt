@@ -1,0 +1,2 @@
+C:/xampp/htdocs/Wisdrive/Wisdrive/android/app/.cxx/RelWithDebInfo/644a2721/x86/CMakeFiles/edit_cache.dir
+C:/xampp/htdocs/Wisdrive/Wisdrive/android/app/.cxx/RelWithDebInfo/644a2721/x86/CMakeFiles/rebuild_cache.dir
