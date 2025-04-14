@@ -62,7 +62,13 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^4.0.0
   flutter_intl: ^0.0.1
+  flutter_launcher_icons: ^0.14.3
 
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "lib/assets/icon/icon.png"
+  
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter packages.
@@ -73,8 +79,6 @@ flutter:
   # the material Icons class.
   generate: true
   uses-material-design: true
-
-  # To add assets to your application, add an assets section, like this:
   assets:
     - .env 
     - lib\assets\images\quiz-logo.png
