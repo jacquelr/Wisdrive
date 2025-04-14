@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:wisdrive/constraints/images_routes.dart';
 import 'package:wisdrive/data/app_theme.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wisdrive/widgets/login/login_buttons.dart';
 import 'package:wisdrive/controllers/theme_controller.dart';
 import '../../../generated/l10n.dart';
-
-const logo = '../assets/images/logo.png';
-const lightLogo = '../assets/images/light-logo.png';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -27,7 +25,7 @@ class LoginScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              themeController.isDarkMode.value ? Image.asset(logo, width: 400) : Image.asset(lightLogo, width: 400),
+              themeController.isDarkMode.value ? Image.asset(RImages.fullLogo, width: 400) : Image.asset(RImages.fullLigthLogo, width: 400),
               const SizedBox(height: 50),
               Text(
                 S.of(context).lets_start_learning,
