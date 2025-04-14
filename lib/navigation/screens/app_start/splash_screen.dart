@@ -42,7 +42,7 @@ class _SplashScreenState extends State<SplashScreen> {
           child: AnimatedOpacity(
             opacity: _opacity,
             duration: const Duration(seconds: 2),
-            child: Image.asset(RImages.wLogo, width: 200),
+            child: Image.asset(RImages.wLogo, width: 110),
           ),
         ),
       ),
