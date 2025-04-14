@@ -23,7 +23,7 @@ class AuthService {
 
   //Google authentication
   Future<void> signInWithGoogle() async {
-    await _supabase.auth.signInWithOAuth(OAuthProvider.google);
+    await _supabase.auth.signInWithOAuth(OAuthProvider.google, redirectTo: 'com.wisdrive://login-callback');
   }
 
   //Facebook authentication
