@@ -8,6 +8,7 @@ import 'package:wisdrive/data/app_theme.dart';
 import 'package:wisdrive/generated/l10n.dart';
 import 'package:wisdrive/widgets/home/sidebar_menu.dart';
 import 'package:wisdrive/widgets/question_summary/quiz_completed.dart';
+import 'package:wisdrive/widgets/quiz/answered_quiz_snackbar.dart';
 
 class QuestionsScreen extends StatefulWidget {
   const QuestionsScreen({
@@ -163,17 +164,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                                 child: ElevatedButton(
                                   onPressed: () {
                                     bool isCorrect = answer['is_correct'];
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: Text(isCorrect
-                                            ? '¡${S.of(context).correct}!'
-                                            : '${S.of(context).incorrect}.'),
-                                        backgroundColor: isCorrect
-                                            ? Colors.green
-                                            : Colors.red,
-                                        duration: const Duration(seconds: 1),
-                                      ),
-                                    );
+                                    AnsweredQuizSnackbar.show(context, isCorrect);
                                     if (isCorrect) {
                                       Future.delayed(const Duration(seconds: 1),
                                           nextQuestion);

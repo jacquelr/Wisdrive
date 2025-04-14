@@ -33,3 +33,9 @@ class LottieAnimations {
   static const String confeti= "lib/assets/animation/confeti.json";
   static const String trofee = "lib/assets/animation/trofee.json";
 }
+
+class RAutoPlayer {
+  static const String correct = "sounds/correct.mp3";
+  static const String incorrect = "sounds/incorrect.mp3";
+  static const String trumpets = "sounds/tada_trumpet.mp3";
+}
