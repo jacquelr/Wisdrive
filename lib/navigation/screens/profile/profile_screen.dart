@@ -79,7 +79,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               Stack(
                 alignment: Alignment.topCenter,
                 children: [
-                  Container(
+                  Container( // Circle background container
                     height: 300,
                     width: double.infinity,
                     decoration: BoxDecoration(
@@ -91,7 +91,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                     ),
                   ),
-                  Container(
+                  Container( // Cricle ProfileImage container
                     padding: const EdgeInsets.only(top: 75),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
@@ -106,7 +106,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                       ],
                     ),
-                    child: const CircleAvatar(
+                    child: const CircleAvatar( // Image View
                         radius: 100,
                         backgroundImage: AssetImage(RImages.profilePickImage), // user != null ? profileImageUrl : RImages.profilePickImage),
                       ),
@@ -120,12 +120,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ? Colors.white
                           : AppTheme.lightSecondary,
                       fontSize: 36)),
-              Text("Descripcion del usuario para wisdrive", // Get description from supabase
-                  style: GoogleFonts.play(
-                      color: themeController.isDarkMode.value
-                          ? Colors.white
-                          : AppTheme.lightSecondary,
-                      fontSize: 18)),
               const SizedBox(height: 20),
               SizedBox(
                 width: 300,

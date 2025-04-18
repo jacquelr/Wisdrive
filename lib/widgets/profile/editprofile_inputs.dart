@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:wisdrive/constraints/helper_functions.dart';
 import 'package:wisdrive/controllers/theme_controller.dart';
 import 'package:wisdrive/constraints/app_theme.dart';
 import 'package:wisdrive/generated/l10n.dart';
@@ -19,10 +20,8 @@ class _EdditProfileInputsState extends State<EdditProfileInputs> {
   Widget build(BuildContext context) {
     final ThemeController themeController = Get.find();
     final Color textLabelColor = themeController.isDarkMode.value ? Colors.white70 : AppTheme.darkPurple;
-    final Color textColor = themeController.isDarkMode.value ? Colors.white : AppTheme.darkPurple;
     final TextEditingController usernameController = TextEditingController();
-    final TextEditingController descriptionController = TextEditingController();
-    final List<String> genderOptions = [
+    final List<String> genderOptions = [ // List of options for dropdown gender list
       S.of(context).male,
       S.of(context).female,
       S.of(context).other
@@ -35,7 +34,7 @@ class _EdditProfileInputsState extends State<EdditProfileInputs> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 16),
-          TextField(
+          TextField( // Text field to input updated username
             controller: usernameController,
             decoration: InputDecoration(
               labelText: S.of(context).edit_username,
@@ -44,32 +43,17 @@ class _EdditProfileInputsState extends State<EdditProfileInputs> {
                 borderSide: BorderSide(color: textLabelColor),
               ),
             ),
-            style: TextStyle(color: textColor),
+            style: TextStyle(color: HelperFunctions.getTextThemeColor()),
           ),
           const SizedBox(height: 10),
-          TextField(
-            controller: descriptionController,
-            minLines: 1,
-            maxLines: 5,
-            maxLength: 250,
-            keyboardType: TextInputType.multiline,
-            decoration: InputDecoration(
-              labelText: S.of(context).edit_description,
-              labelStyle: GoogleFonts.play(color: textLabelColor, fontSize: 24),
-              enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: textLabelColor),
-              ),
-            ),
-            style: TextStyle(color: textColor),
-          ),
           const SizedBox(height: 10),
-          DropdownButtonFormField<String>(
+          DropdownButtonFormField<String>( // Dropdown gender menu
             value: selectedGender,
             items: genderOptions.map((String gender) {
               return DropdownMenuItem<String>(
                 value: gender,
                 child: Text(gender,
-                    style: GoogleFonts.play(color: textColor, fontSize: 16)),
+                    style: GoogleFonts.play(color: HelperFunctions.getTextThemeColor(), fontSize: 16)),
               );
             }).toList(),
             onChanged: (String? newValue) {
@@ -84,37 +68,34 @@ class _EdditProfileInputsState extends State<EdditProfileInputs> {
                 borderSide: BorderSide(color: textLabelColor),
               ),
             ),
-            dropdownColor:
-                themeController.isDarkMode.value 
-                ? AppTheme.lightAccent
-                : AppTheme.lightBackground, // Color del fondo del menú desplegable
-            style: GoogleFonts.play(color: textColor),
+            dropdownColor: HelperFunctions.getDropdownMenuThemeColor(),
+            style: GoogleFonts.play(color: HelperFunctions.getTextThemeColor()),
             alignment: Alignment.center,
           ),
           const SizedBox(height: 20),
-          Row(
+          Row( // Cancel or Apply buttons container
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              ElevatedButton(
+              ElevatedButton( // Cancel button
                 onPressed: () => Navigator.pop(context),
                 style: ElevatedButton.styleFrom(
                     backgroundColor: themeController.isDarkMode.value
                         ? Colors.transparent
                         : AppTheme.lightPurple,
-                    foregroundColor: Colors.white),
+                    foregroundColor: white),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   child: Text(
                     S.of(context).cancel,
-                    style: GoogleFonts.play(color: Colors.white, fontSize: 30),
+                    style: GoogleFonts.play(color: white, fontSize: 30),
                   ),
                 ),
               ),
-              ElevatedButton(
+              ElevatedButton( // Apply button
                 onPressed: () {
                   // Apply update changes to user into supabase
                 },
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
+                style: ElevatedButton.styleFrom(backgroundColor: white),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   child: Text(

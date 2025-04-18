@@ -38,25 +38,25 @@ class EditProfileScreen extends StatelessWidget {
             const Divider(
               color: Colors.grey,
             ),
-            Stack(
+            Stack( // Choose profile image container
               children: [
                 SizedBox(
                   width: 120,
                   height: 120,
-                  child: Container(
+                  child: Container( // Image View container
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                     ),
-                    child: const CircleAvatar(
+                    child: const CircleAvatar( //Image View
                       radius: 80,
                       backgroundImage: AssetImage(RImages.profilePickImage),
                     ),
                   ),
                 ),
-                Positioned(
+                Positioned( // Set this widget on bottom-right of Choose profile image container
                   bottom: 0,
                   right: 0,
-                  child: Container(
+                  child: Container( // Edit image button container
                     width: 35,
                     height: 35,
                     decoration: BoxDecoration(
@@ -71,7 +71,7 @@ class EditProfileScreen extends StatelessWidget {
                 ),
               ],
             ),
-            TextButton(
+            TextButton( // Text button to change profile image
               onPressed: () {},
               child: Text(
                 S.of(context).change_picture,
@@ -84,12 +84,12 @@ class EditProfileScreen extends StatelessWidget {
             ),
             const Expanded(
               child: Center(
-                child: EdditProfileInputs(),
+                child: EdditProfileInputs(), // Form to update user info
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(16),
-              child: TextButton(
+              child: TextButton( // Change password text button
                 onPressed: () {},
                 style: TextButton.styleFrom(
                   foregroundColor: AppTheme.lightPurple,

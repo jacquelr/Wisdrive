@@ -34,6 +34,7 @@ class HelperFunctions {
     return MediaQuery.of(Get.context!).size.width;
   }
 
+  // Get Theme Color for backgruonds and texts
   static Color? getTextThemeColor() {
     final ThemeController themeController = Get.find();
     final textColor =
@@ -61,6 +62,14 @@ class HelperFunctions {
     final containerColor = themeController.isDarkMode.value
         ? AppTheme.lightBackground
         : AppTheme.lightPrimary;
+    return containerColor;
+  }
+
+  static Color? getDropdownMenuThemeColor() {
+    final ThemeController themeController = Get.find();
+    final containerColor = themeController.isDarkMode.value
+        ? AppTheme.lightAccent
+        : AppTheme.lightBackground;
     return containerColor;
   }
 }
