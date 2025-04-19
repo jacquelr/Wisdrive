@@ -6,7 +6,6 @@ import 'package:wisdrive/constraints/images_routes.dart';
 import 'package:wisdrive/controllers/theme_controller.dart';
 import 'package:wisdrive/constraints/app_theme.dart';
 import 'package:wisdrive/navigation/screens/profile/edit_profile_screen.dart';
-import 'package:wisdrive/service/auth_service.dart';
 import 'package:wisdrive/widgets/profile/sidebar_profile.dart';
 import 'package:wisdrive/generated/l10n.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
