@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:wisdrive/constraints/helper_functions.dart';
 import 'package:wisdrive/constraints/images_routes.dart';
 import 'package:wisdrive/controllers/language_controller.dart';
 import 'package:wisdrive/controllers/theme_controller.dart';
@@ -21,50 +22,6 @@ class _SidebarMenuState extends State<SidebarMenu> {
   final authservice = AuthService();
   final ThemeController themeController = Get.find();
   final LanguageController languageController = Get.find();
-
-  void logout() {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        backgroundColor: AppTheme.darkPurple,
-        title: Text(
-          '¿Estás seguro?',
-          textAlign: TextAlign.center,
-          style: GoogleFonts.play(
-            color: themeController.isDarkMode.value
-                ? Colors.white
-                : AppTheme.lightSecondary,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        content: Column(mainAxisSize: MainAxisSize.min, children: [
-          const Divider(endIndent: 5),
-          TextButton(
-            onPressed: () async {
-              Navigator.pop(context);
-              await authservice.signOut();
-            },
-            child: Text(
-              S.of(context).logout,
-              style: GoogleFonts.play(color: Colors.red, fontSize: 16),
-            ),
-          ),
-          TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text(
-                S.of(context).cancel,
-                style: GoogleFonts.play(
-                    color: themeController.isDarkMode.value
-                        ? Colors.white
-                        : AppTheme.darkPurple,
-                    fontSize: 16),
-              ))
-        ]),
-      ),
-    );
-  }
 
   @override
   Widget build(context) {
@@ -255,7 +212,7 @@ class _SidebarMenuState extends State<SidebarMenu> {
                   S.of(context).logout,
                   style: GoogleFonts.play(color: Colors.white, fontSize: 20),
                 ),
-                onTap: logout),
+                onTap: HelperFunctions.showLogoutDialog),
           ],
         ),
       );

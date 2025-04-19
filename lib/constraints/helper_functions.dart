@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:wisdrive/controllers/theme_controller.dart';
 import 'package:wisdrive/constraints/app_theme.dart';
+import 'package:wisdrive/service/auth_service.dart';
+import '../generated/l10n.dart';
 
 class HelperFunctions {
   static void showSnackBar(String message) {
@@ -24,6 +27,52 @@ class HelperFunctions {
             ],
           );
         });
+  }
+
+  static void showLogoutDialog() {
+    final authservice = AuthService();
+    final ThemeController themeController = Get.find();
+    showDialog(
+      context: Get.context!,
+      builder: (context) => AlertDialog(
+        backgroundColor: AppTheme.darkPurple,
+        title: Text(
+          '¿Estás seguro?',
+          textAlign: TextAlign.center,
+          style: GoogleFonts.play(
+            color: themeController.isDarkMode.value
+                ? Colors.white
+                : AppTheme.lightSecondary,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        content: Column(mainAxisSize: MainAxisSize.min, children: [
+          const Divider(endIndent: 5),
+          TextButton(
+            onPressed: () async {
+              Navigator.pop(context);
+              await authservice.signOut();
+            },
+            child: Text(
+              S.of(context).logout,
+              style: GoogleFonts.play(color: Colors.red, fontSize: 16),
+            ),
+          ),
+          TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text(
+                S.of(context).cancel,
+                style: GoogleFonts.play(
+                    color: themeController.isDarkMode.value
+                        ? Colors.white
+                        : AppTheme.darkPurple,
+                    fontSize: 16),
+              ))
+        ]),
+      ),
+    );
   }
 
   static double screenHeight() {

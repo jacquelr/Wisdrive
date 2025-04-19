@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:wisdrive/constraints/helper_functions.dart';
 import 'package:wisdrive/constraints/images_routes.dart';
 import 'package:wisdrive/controllers/theme_controller.dart';
 import 'package:wisdrive/constraints/app_theme.dart';
 import 'package:wisdrive/generated/l10n.dart';
 import 'package:wisdrive/navigation/screens/profile/edit_profile_screen.dart';
 import 'package:wisdrive/navigation/screens/home/home_screen.dart';
+import 'package:wisdrive/navigation/screens/profile/update_password_screen.dart';
 import 'package:wisdrive/service/auth_service.dart';
 
 class SidebarProfile extends StatefulWidget {
@@ -18,52 +20,7 @@ class SidebarProfile extends StatefulWidget {
 }
 
 class _SidebarProfileState extends State<SidebarProfile> {
-  final authservice = AuthService();
   final ThemeController themeController = Get.find();
-
-  void logout() async {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        backgroundColor: AppTheme.darkPurple,
-        title: Text(
-          '¿Estás seguro?',
-          textAlign: TextAlign.center,
-          style: GoogleFonts.play(
-            color: themeController.isDarkMode.value
-                ? Colors.white
-                : AppTheme.lightSecondary,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        content: Column(mainAxisSize: MainAxisSize.min, children: [
-          const Divider(endIndent: 5),
-          TextButton(
-            onPressed: () async {
-              Navigator.pop(context);
-              await authservice.signOut();
-            },
-            child: Text(
-              S.of(context).logout,
-              style: GoogleFonts.play(color: Colors.red, fontSize: 16),
-            ),
-          ),
-          TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text(
-                S.of(context).cancel,
-                style: GoogleFonts.play(
-                    color: themeController.isDarkMode.value
-                        ? Colors.white
-                        : AppTheme.darkPurple,
-                    fontSize: 16),
-              ))
-        ]),
-      ),
-    );
-  }
 
   @override
   Widget build(context) {
@@ -146,7 +103,7 @@ class _SidebarProfileState extends State<SidebarProfile> {
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const HomeScreen(),
+                    builder: (context) => const UpdatePasswordScreen(),
                   ));
                 }),
             ListTile(
@@ -171,7 +128,7 @@ class _SidebarProfileState extends State<SidebarProfile> {
                   S.of(context).logout,
                   style: GoogleFonts.play(color: Colors.white, fontSize: 20),
                 ),
-                onTap: logout),
+                onTap: HelperFunctions.showLogoutDialog),
           ],
         ),
       );
