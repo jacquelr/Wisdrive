@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:wisdrive/constraints/helper_functions.dart';
 import 'package:wisdrive/controllers/theme_controller.dart';
 import 'package:wisdrive/constraints/app_theme.dart';
 import 'package:wisdrive/navigation/screens/home/chat_screen.dart';
-import 'package:wisdrive/navigation/screens/profile/profile_screen.dart';
+import 'package:wisdrive/widgets/home/home_appbar.dart';
 import 'package:wisdrive/widgets/home/main_view.dart';
 import 'package:wisdrive/widgets/home/sidebar_menu.dart';
 import 'package:wisdrive/widgets/home/category_list.dart';
@@ -51,28 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
       theme: ThemeData(),
       home: Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: AppBar(
-          title: Text(
-            getSelectedCategory() ?? '',
-            style: GoogleFonts.play(color: HelperFunctions.getTextThemeColor()),
-          ),
-          centerTitle: true,
-          iconTheme: IconThemeData(
-              color: HelperFunctions.getIconThemeColor(), size: 50),
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          actions: [
-            IconButton(
-              icon: Icon(Icons.account_circle,
-                  color: HelperFunctions.getIconThemeColor()),
-              onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const ProfileScreen(),
-                ));
-              },
-            ),
-          ],
-        ),
+        appBar: HomeAppbar(selectedCategory: getSelectedCategory()),
         drawer: const SidebarMenu(),
         body: Stack(
           children: [

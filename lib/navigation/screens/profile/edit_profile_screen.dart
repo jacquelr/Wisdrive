@@ -6,7 +6,9 @@ import 'package:wisdrive/constraints/images_routes.dart';
 import 'package:wisdrive/controllers/theme_controller.dart';
 import 'package:wisdrive/constraints/app_theme.dart';
 import 'package:wisdrive/generated/l10n.dart';
+import 'package:wisdrive/navigation/screens/profile/update_password_screen.dart';
 import 'package:wisdrive/widgets/profile/editprofile_inputs.dart';
+import 'package:wisdrive/widgets/profile/profile_appbar.dart';
 
 class EditProfileScreen extends StatelessWidget {
   const EditProfileScreen({super.key});
@@ -14,24 +16,10 @@ class EditProfileScreen extends StatelessWidget {
   @override
   Widget build(context) {
     final ThemeController themeController = Get.find();
-    final Color textColor = themeController.isDarkMode.value ? Colors.white : AppTheme.darkPurple;
 
     return Scaffold(
       backgroundColor: themeController.isDarkMode.value ? AppTheme.darkPurple : AppTheme.lightBackground,
-      appBar: AppBar(
-        title: Text(S.of(context).edit_profile, style: GoogleFonts.play(color: textColor),),
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: const Icon(Icons.arrow_back_sharp),
-        ),
-        iconTheme: themeController.isDarkMode.value
-            ? const IconThemeData(color: AppTheme.lightBackground, size: 40)
-            : const IconThemeData(color: AppTheme.darkPurple, size: 40),
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
-      ),
+      appBar: ProfileAppbar(appbarTitle: S.of(context).edit_profile),
       body: SafeArea(
         child: Column(
           children: [
@@ -90,7 +78,11 @@ class EditProfileScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(16),
               child: TextButton( // Change password text button
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const UpdatePasswordScreen(),
+                  ));
+                },
                 style: TextButton.styleFrom(
                   foregroundColor: AppTheme.lightPurple,
                   padding:
