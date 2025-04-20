@@ -6,6 +6,7 @@ import 'package:wisdrive/controllers/theme_controller.dart';
 import 'package:wisdrive/data/app_theme.dart';
 import 'package:wisdrive/navigation/screens/home/chat_screen.dart';
 import 'package:wisdrive/navigation/screens/profile/profile_screen.dart';
+import 'package:wisdrive/widgets/home/basic_mecanic.dart';
 import 'package:wisdrive/widgets/home/main_view.dart';
 import 'package:wisdrive/widgets/home/sidebar_menu.dart';
 import 'package:wisdrive/widgets/home/category_list.dart';
@@ -107,7 +108,16 @@ class _HomeScreenState extends State<HomeScreen> {
                     Expanded(
                       child: selectedCategoryId == null
                           ? const MainView()
-                          : ModuleList(selectedCategoryId: selectedCategoryId!),
+                          : Column(
+                              children: [
+                                if (selectedCategoryId == 3)
+                                  const BasicMecanic(),
+                                Expanded(
+                                  child: ModuleList(
+                                      selectedCategoryId: selectedCategoryId!),
+                                ),
+                              ],
+                            ),
                     ),
                     const SizedBox(height: 20), // Espacio antes de los botones
                     CategoryList(onCategorySelected: (id) {
@@ -122,8 +132,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
         floatingActionButton: Padding(
-          padding: const EdgeInsets.only(
-              bottom: 70.0),
+          padding: const EdgeInsets.only(bottom: 70.0),
           child: FloatingActionButton(
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
