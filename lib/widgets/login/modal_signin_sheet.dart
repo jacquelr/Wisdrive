@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wisdrive/controllers/theme_controller.dart';
 import 'package:wisdrive/constraints/app_theme.dart';
-
 import 'package:wisdrive/service/auth_service.dart';
+import 'package:wisdrive/widgets/general/response_snackbar.dart';
 import 'package:wisdrive/widgets/login/social_login_buttons.dart';
 import '../../generated/l10n.dart';
 
@@ -26,13 +26,19 @@ class _ModalSigninSheetState extends State<ModalSigninSheet> {
     final email = emailController.text;
     final password = passwordController.text;
     try {
-      Navigator.pop(context);
       await _authservice.signInWithEmailAndPassword(email, password);
+      if (mounted) {
+        Navigator.pop(context);
+        ResponseSnackbar.show(context, false, S.of(context).signin_success);
+      }
     } catch (e) {
       if (mounted) {
         Navigator.pop(context);
-        ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text("${S.of(context).signin_error}: $e")));
+        ResponseSnackbar.show(
+          context,
+          true,
+          "${S.of(context).signin_error}: $e",
+        );
       }
     }
   }
@@ -93,7 +99,7 @@ class _ModalSigninSheetState extends State<ModalSigninSheet> {
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
-              onPressed: signIn,
+              onPressed: signIn, // Method called with logic to Sign In
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.white,
                 foregroundColor: AppTheme.mediumPurple,

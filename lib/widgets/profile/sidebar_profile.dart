@@ -10,7 +10,6 @@ import 'package:wisdrive/generated/l10n.dart';
 import 'package:wisdrive/navigation/screens/profile/edit_profile_screen.dart';
 import 'package:wisdrive/navigation/screens/home/home_screen.dart';
 import 'package:wisdrive/navigation/screens/profile/update_password_screen.dart';
-import 'package:wisdrive/service/auth_service.dart';
 
 class SidebarProfile extends StatefulWidget {
   const SidebarProfile({super.key});
@@ -48,7 +47,7 @@ class _SidebarProfileState extends State<SidebarProfile> {
   Widget buildProfileMenuItems(
           BuildContext context, ThemeController themeController) =>
       Container(
-        padding: const EdgeInsets.all(24),
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
         child: Wrap(
           children: [
             ListTile(
@@ -116,19 +115,15 @@ class _SidebarProfileState extends State<SidebarProfile> {
                   style: GoogleFonts.play(color: Colors.white, fontSize: 20),
                 ),
                 onTap: () {
-                  Navigator.pop(context);
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const HomeScreen(),
-                  ));
+                  HelperFunctions.showDeleteAccountDialog();
                 }),
-            const SizedBox(height: 525),
             ListTile(
                 leading: const Icon(Icons.logout_outlined, color: Colors.white),
                 title: Text(
                   S.of(context).logout,
                   style: GoogleFonts.play(color: Colors.white, fontSize: 20),
                 ),
-                onTap: HelperFunctions.showLogoutDialog),
+                onTap: () => HelperFunctions.showLogoutDialog(context)),
           ],
         ),
       );

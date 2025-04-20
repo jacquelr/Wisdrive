@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wisdrive/controllers/theme_controller.dart';
 import 'package:wisdrive/constraints/app_theme.dart';
+import 'package:wisdrive/service/auth_gate.dart';
 import 'package:wisdrive/service/auth_service.dart';
 import '../generated/l10n.dart';
 
@@ -22,14 +23,66 @@ class HelperFunctions {
             content: Text(message),
             actions: [
               TextButton(
-                  onPressed: () => Navigator.of(context).pop(),
+                  onPressed: () => Navigator.of(Get.context!).pop(),
                   child: const Text('OK')),
             ],
           );
         });
   }
 
-  static void showLogoutDialog() {
+  static void showLogoutDialog(BuildContext context) {
+    final authservice = AuthService();
+    final ThemeController themeController = Get.find();
+    showDialog(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        backgroundColor: AppTheme.darkPurple,
+        title: Text(
+          '¿Estás seguro?',
+          textAlign: TextAlign.center,
+          style: GoogleFonts.play(
+            color: themeController.isDarkMode.value
+                ? Colors.white
+                : AppTheme.lightSecondary,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        content: Column(mainAxisSize: MainAxisSize.min, children: [
+          const Divider(endIndent: 5),
+          TextButton(
+            onPressed: () async {
+              Navigator.pop(dialogContext); // Pop dialog
+              await authservice.signOut(); // Exit the session
+              if (context.mounted) { //Go to AuthGate to check if session is still active
+                Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (_) => const AuthGate()),
+                  (route) => false,
+                );
+              }
+            },
+            child: Text(
+              S.of(dialogContext).logout,
+              style: GoogleFonts.play(color: Colors.red, fontSize: 16),
+            ),
+          ),
+          TextButton(
+              onPressed: () {
+                Navigator.of(dialogContext).pop();
+              },
+              child: Text(
+                S.of(dialogContext).cancel,
+                style: GoogleFonts.play(
+                    color: themeController.isDarkMode.value
+                        ? Colors.white
+                        : AppTheme.darkPurple,
+                    fontSize: 16),
+              ))
+        ]),
+      ),
+    );
+  }
+
+  static void showDeleteAccountDialog() {
     final authservice = AuthService();
     final ThemeController themeController = Get.find();
     showDialog(
@@ -51,10 +104,10 @@ class HelperFunctions {
           TextButton(
             onPressed: () async {
               Navigator.pop(context);
-              await authservice.signOut();
+              await authservice.deleteUserDataAndSignOut();
             },
             child: Text(
-              S.of(context).logout,
+              S.of(context).delete_account,
               style: GoogleFonts.play(color: Colors.red, fontSize: 16),
             ),
           ),

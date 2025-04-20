@@ -51,7 +51,7 @@ class _SidebarMenuState extends State<SidebarMenu> {
           LanguageController languageController,
           ThemeController themeController) =>
       Container(
-        padding: const EdgeInsets.all(24),
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
         child: Wrap(
           children: [
             ListTile(
@@ -212,7 +212,7 @@ class _SidebarMenuState extends State<SidebarMenu> {
                   S.of(context).logout,
                   style: GoogleFonts.play(color: Colors.white, fontSize: 20),
                 ),
-                onTap: HelperFunctions.showLogoutDialog),
+                onTap: () => HelperFunctions.showLogoutDialog(context)),
           ],
         ),
       );
