@@ -17,6 +17,7 @@
     "sign_in_with" : "inicia sesión con",
     "create_account_with" : "crea una cuenta con",
     "signin_error" : "Error al iniciar sesión",
+    "signin_success": "Inicio de sesion exitoso",
     "signup_error" : "Error al registrarse",
     "unmatch_password" : "Las contraseñas no coinciden",
     "close" : "Cerrar",
@@ -43,15 +44,16 @@
 
     "unnamed": "Sin nombre",
 
-
     "profile" : "Perfil",
     "edit_profile" : "Editar perfil",
     "change_password" : "Cambiar contraseña",
     "delete_account" : "Eliminar cuenta",
     "change_picture" : "Cambiar foto",
     "edit_username" : "Nombre de usuario",
-    "edit_description" : "Descripcion",
     "edit_gender" : "Genero",
+    "current_password": "Contraseña actual",
+    "new_password": "Nueva contraseña",
+    "confirm_new_password": "Confirmar nueva contraseña",
     "cancel" : "Cancelar",
     "apply" : "Aplicar",
     "male" : "Hombre",
@@ -68,5 +70,15 @@
     "answer": "CONTESTAR",
     "congratulations": "Felicidades",
     "finished_quiz": "Has completado el quiz correctamente",
-    "continue_learning": "Continuar"
+    "continue_learning": "Continuar",
+
+    "deleteted_account": "Cuenta eliminada exitosamente",
+    "deleted_account_error": "Error al eliminar la cuenta",
+    "fill_all_fields": "Completa todos los campos",
+    "same_password": "La nueva contraseña no puede ser igual a la acutal",
+    "incorrect_current_password": "La contraseña actual es incorrecta",
+    "updated_password": "Contraseña actualizada con exito",
+    "updated_password_error": "Error al actualizar la contraseña",
+    "created_account": "Cuenta creada con exito",
+    "check_email_to_activate_account": "Revisa tu correo para activar tu cuenta"
 }

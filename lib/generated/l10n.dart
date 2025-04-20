@@ -180,6 +180,16 @@ class S {
     );
   }
 
+  /// `Inicio de sesion exitoso`
+  String get signin_success {
+    return Intl.message(
+      'Inicio de sesion exitoso',
+      name: 'signin_success',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Error al registrarse`
   String get signup_error {
     return Intl.message(
@@ -405,19 +415,39 @@ class S {
     );
   }
 
-  /// `Descripcion`
-  String get edit_description {
+  /// `Genero`
+  String get edit_gender {
+    return Intl.message('Genero', name: 'edit_gender', desc: '', args: []);
+  }
+
+  /// `Contraseña actual`
+  String get current_password {
     return Intl.message(
-      'Descripcion',
-      name: 'edit_description',
+      'Contraseña actual',
+      name: 'current_password',
       desc: '',
       args: [],
     );
   }
 
-  /// `Genero`
-  String get edit_gender {
-    return Intl.message('Genero', name: 'edit_gender', desc: '', args: []);
+  /// `Nueva contraseña`
+  String get new_password {
+    return Intl.message(
+      'Nueva contraseña',
+      name: 'new_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirmar nueva contraseña`
+  String get confirm_new_password {
+    return Intl.message(
+      'Confirmar nueva contraseña',
+      name: 'confirm_new_password',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Cancelar`
@@ -510,6 +540,96 @@ class S {
     return Intl.message(
       'Continuar',
       name: 'continue_learning',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cuenta eliminada exitosamente`
+  String get deleteted_account {
+    return Intl.message(
+      'Cuenta eliminada exitosamente',
+      name: 'deleteted_account',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error al eliminar la cuenta`
+  String get deleted_account_error {
+    return Intl.message(
+      'Error al eliminar la cuenta',
+      name: 'deleted_account_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Completa todos los campos`
+  String get fill_all_fields {
+    return Intl.message(
+      'Completa todos los campos',
+      name: 'fill_all_fields',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `La nueva contraseña no puede ser igual a la acutal`
+  String get same_password {
+    return Intl.message(
+      'La nueva contraseña no puede ser igual a la acutal',
+      name: 'same_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `La contraseña actual es incorrecta`
+  String get incorrect_current_password {
+    return Intl.message(
+      'La contraseña actual es incorrecta',
+      name: 'incorrect_current_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contraseña actualizada con exito`
+  String get updated_password {
+    return Intl.message(
+      'Contraseña actualizada con exito',
+      name: 'updated_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error al actualizar la contraseña`
+  String get updated_password_error {
+    return Intl.message(
+      'Error al actualizar la contraseña',
+      name: 'updated_password_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cuenta creada con exito`
+  String get created_account {
+    return Intl.message(
+      'Cuenta creada con exito',
+      name: 'created_account',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Revisa tu correo para activar tu cuenta`
+  String get check_email_to_activate_account {
+    return Intl.message(
+      'Revisa tu correo para activar tu cuenta',
+      name: 'check_email_to_activate_account',
       desc: '',
       args: [],
     );

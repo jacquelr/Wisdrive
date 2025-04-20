@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:wisdrive/constraints/helper_functions.dart';
 import 'package:wisdrive/controllers/theme_controller.dart';
 import 'package:wisdrive/constraints/app_theme.dart';
 import 'package:wisdrive/service/auth_service.dart';
+import 'package:wisdrive/widgets/general/response_snackbar.dart';
 import 'package:wisdrive/widgets/login/social_login_buttons.dart';
 import '../../generated/l10n.dart';
 
@@ -30,26 +32,25 @@ class _ModalSignupSheetState extends State<ModalSignupSheet> {
 
     if (email.isEmpty || password.isEmpty || confirmPassword.isEmpty) {
       Navigator.pop(context);
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Completa los campos")));
+      ResponseSnackbar.show(context, true, S.of(context).fill_all_fields);
       return;
     }
 
     if (password != confirmPassword) {
       Navigator.pop(context);
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(S.of(context).unmatch_password)));
+      ResponseSnackbar.show(context, true, S.of(context).unmatch_password);
       return;
     }
 
     try {
-      Navigator.pop(context);
       await _authservice.signUpWithEmailAndPassword(email, password);
+      HelperFunctions.showAlert(S.of(context).created_account, S.of(context).check_email_to_activate_account);
+      ResponseSnackbar.show(context, true, S.of(context).created_account);
+      //Navigator.pop(context);
     } catch (e) {
       if (mounted) {
         Navigator.pop(context);
-        ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text("${S.of(context).signup_error}: $e")));
+        ResponseSnackbar.show(context, true, "${S.of(context).signup_error}: $e");
       }
     }
   }

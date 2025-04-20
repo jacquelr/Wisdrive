@@ -31,34 +31,34 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
     final confirmNew = confirmNewPassword.text.trim();
 
     if (current.isEmpty || newPass.isEmpty || confirmNew.isEmpty) {
-      ResponseSnackbar.show(context, true, "Completa todos los campos");
+      ResponseSnackbar.show(context, true, S.of(context).fill_all_fields);
       return;
     }
 
     if (newPass != confirmNew) {
-      ResponseSnackbar.show(context, true, "Las nuevas contraseñas no coinciden");
+      ResponseSnackbar.show(context, true, S.of(context).unmatch_password);
       return;
     }
 
     if (current == newPass) {
-      ResponseSnackbar.show(context, true, "La nueva contraseña no puede ser igual a la actual");
+      ResponseSnackbar.show(context, true, S.of(context).same_password);
       return;
     }
 
     final isValid = await authService.reauthenticate(email!, current);
     if (!isValid) {
-      ResponseSnackbar.show(context, true, "La contraseña actual es incorrecta.");
+      ResponseSnackbar.show(context, true, S.of(context).incorrect_current_password);
       return;
     }
 
     try {
       await authService.updatePassword(newPass);
       if (mounted) {
-        ResponseSnackbar.show(context, false, "Contraseña actualizada con exito.");
+        ResponseSnackbar.show(context, false, S.of(context).updated_password);
         authService.signOut(); // Sign Out of session after successfuly updating password
       }
     } catch (e) {
-      ResponseSnackbar.show(context, true, "Error al actualizar la contraseña: $e");
+      ResponseSnackbar.show(context, true, "${S.of(context).updated_password_error}: $e");
     }
   }
 
@@ -92,7 +92,7 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
                   controller: currentPassword,
                   obscureText: true,
                   decoration: InputDecoration(
-                    labelText: "Contraseña actual",
+                    labelText: S.of(context).current_password,
                     labelStyle:
                         GoogleFonts.play(color: textLabelColor, fontSize: 24),
                     enabledBorder: UnderlineInputBorder(
@@ -105,7 +105,7 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
                   controller: newPassword,
                   obscureText: true,
                   decoration: InputDecoration(
-                    labelText: "Nueva contraseña",
+                    labelText: S.of(context).new_password,
                     labelStyle:
                         GoogleFonts.play(color: textLabelColor, fontSize: 24),
                     enabledBorder: UnderlineInputBorder(
@@ -118,7 +118,7 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
                   controller: confirmNewPassword,
                   obscureText: true,
                   decoration: InputDecoration(
-                    labelText: "Confirmar nueva contraseña",
+                    labelText: S.of(context).confirm_new_password,
                     labelStyle:
                         GoogleFonts.play(color: textLabelColor, fontSize: 24),
                     enabledBorder: UnderlineInputBorder(
