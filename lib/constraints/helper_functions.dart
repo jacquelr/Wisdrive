@@ -82,12 +82,12 @@ class HelperFunctions {
     );
   }
 
-  static void showDeleteAccountDialog() {
+  static void showDeleteAccountDialog(BuildContext parentContext) {
     final authservice = AuthService();
     final ThemeController themeController = Get.find();
     showDialog(
-      context: Get.context!,
-      builder: (context) => AlertDialog(
+      context: parentContext,
+      builder: (dialogContext) => AlertDialog(
         backgroundColor: AppTheme.darkPurple,
         title: Text(
           '¿Estás seguro?',
@@ -103,20 +103,20 @@ class HelperFunctions {
           const Divider(endIndent: 5),
           TextButton(
             onPressed: () async {
-              Navigator.pop(context);
-              await authservice.deleteUserDataAndSignOut();
+              Navigator.pop(dialogContext); // Pop dialog
+              await authservice.deleteUserDataAndSignOut(parentContext);
             },
             child: Text(
-              S.of(context).delete_account,
+              S.of(parentContext).delete_account,
               style: GoogleFonts.play(color: Colors.red, fontSize: 16),
             ),
           ),
           TextButton(
               onPressed: () {
-                Navigator.of(context).pop();
+                Navigator.of(dialogContext).pop();
               },
               child: Text(
-                S.of(context).cancel,
+                S.of(parentContext).cancel,
                 style: GoogleFonts.play(
                     color: themeController.isDarkMode.value
                         ? Colors.white

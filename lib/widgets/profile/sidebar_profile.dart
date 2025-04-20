@@ -114,16 +114,17 @@ class _SidebarProfileState extends State<SidebarProfile> {
                   S.of(context).delete_account,
                   style: GoogleFonts.play(color: Colors.white, fontSize: 20),
                 ),
-                onTap: () {
-                  HelperFunctions.showDeleteAccountDialog();
-                }),
+                onTap: () => HelperFunctions.showDeleteAccountDialog(context)),
             ListTile(
                 leading: const Icon(Icons.logout_outlined, color: Colors.white),
                 title: Text(
                   S.of(context).logout,
                   style: GoogleFonts.play(color: Colors.white, fontSize: 20),
                 ),
-                onTap: () => HelperFunctions.showLogoutDialog(context)),
+                onTap: () {
+                  Navigator.pop(context); // Pop Sidebar Profile
+                  HelperFunctions.showDeleteAccountDialog(context);
+                },)
           ],
         ),
       );
