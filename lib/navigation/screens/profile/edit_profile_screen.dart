@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:wisdrive/constraints/images_routes.dart';
 import 'package:wisdrive/controllers/theme_controller.dart';
 import 'package:wisdrive/constraints/app_theme.dart';
 import 'package:wisdrive/generated/l10n.dart';
 import 'package:wisdrive/navigation/screens/profile/update_password_screen.dart';
+import 'package:wisdrive/widgets/profile/avatar_picker_modal.dart';
 import 'package:wisdrive/widgets/profile/editprofile_inputs.dart';
 import 'package:wisdrive/widgets/profile/profile_appbar.dart';
 
@@ -17,8 +19,24 @@ class EditProfileScreen extends StatelessWidget {
   Widget build(context) {
     final ThemeController themeController = Get.find();
 
+    void showAvatarPicker(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (context) => AvatarPickerModal(
+      onSelected: (int avatarKey) async {
+        await Supabase.instance.client // Save avatar in supabase
+            .from('users')
+            .update({'avatar': avatarKey})
+            .eq('id', Supabase.instance.client.auth.currentUser!.id);
+      },
+    ),
+  );
+}
+
     return Scaffold(
-      backgroundColor: themeController.isDarkMode.value ? AppTheme.darkPurple : AppTheme.lightBackground,
+      backgroundColor: themeController.isDarkMode.value
+          ? AppTheme.darkPurple
+          : AppTheme.lightBackground,
       appBar: ProfileAppbar(appbarTitle: S.of(context).edit_profile),
       body: SafeArea(
         child: Column(
@@ -26,41 +44,49 @@ class EditProfileScreen extends StatelessWidget {
             const Divider(
               color: Colors.grey,
             ),
-            Stack( // Choose profile image container
+            Stack(
+              // Choose profile image container
               children: [
                 SizedBox(
                   width: 120,
                   height: 120,
-                  child: Container( // Image View container
+                  child: Container(
+                    // Image View container
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                     ),
-                    child: const CircleAvatar( //Image View
+                    child: const CircleAvatar(
+                      //Image View
                       radius: 80,
                       backgroundImage: AssetImage(RImages.profilePickImage),
                     ),
                   ),
                 ),
-                Positioned( // Set this widget on bottom-right of Choose profile image container
+                Positioned(
+                  // Set this widget on bottom-right of Choose profile image container
                   bottom: 0,
                   right: 0,
-                  child: Container( // Edit image button container
-                    width: 35,
-                    height: 35,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        color: AppTheme.lightSecondary),
-                    child: const Icon(
-                      Icons.edit,
-                      color: Colors.white,
-                      size: 20,
+                  child: GestureDetector(
+                    onTap: () => showAvatarPicker(context),
+                    child: Container(
+                      // Edit image button container
+                      width: 35,
+                      height: 35,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          color: AppTheme.lightSecondary),
+                      child: const Icon(
+                        Icons.edit,
+                        color: Colors.white,
+                        size: 20,
+                      ),
                     ),
                   ),
                 ),
               ],
             ),
-            TextButton( // Text button to change profile image
-              onPressed: () {},
+            TextButton(
+              onPressed: () => showAvatarPicker(context),
               child: Text(
                 S.of(context).change_picture,
                 style: GoogleFonts.play(
@@ -77,7 +103,8 @@ class EditProfileScreen extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.all(16),
-              child: TextButton( // Change password text button
+              child: TextButton(
+                // Change password text button
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => const UpdatePasswordScreen(),
@@ -88,7 +115,8 @@ class EditProfileScreen extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
                 ),
-                child: Text(S.of(context).change_password, style: GoogleFonts.play(fontSize: 24)),
+                child: Text(S.of(context).change_password,
+                    style: GoogleFonts.play(fontSize: 24)),
               ),
             ),
           ],

@@ -375,6 +375,16 @@ class S {
     );
   }
 
+  /// `Selecciona un avatar`
+  String get pick_avatar {
+    return Intl.message(
+      'Selecciona un avatar',
+      name: 'pick_avatar',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Cambiar contraseña`
   String get change_password {
     return Intl.message(

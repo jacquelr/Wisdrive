@@ -46,6 +46,7 @@
 
     "profile" : "Perfil",
     "edit_profile" : "Editar perfil",
+    "pick_avatar": "Selecciona un avatar",
     "change_password" : "Cambiar contraseña",
     "delete_account" : "Eliminar cuenta",
     "change_picture" : "Cambiar foto",

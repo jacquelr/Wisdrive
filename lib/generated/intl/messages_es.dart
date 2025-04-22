@@ -115,6 +115,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "or": MessageLookupByLibrary.simpleMessage("ó"),
     "other": MessageLookupByLibrary.simpleMessage("Otro"),
     "password": MessageLookupByLibrary.simpleMessage("Contraseña"),
+    "pick_avatar": MessageLookupByLibrary.simpleMessage("Selecciona un avatar"),
     "privacy_politics": MessageLookupByLibrary.simpleMessage(
       "Politicas de privacidad",
     ),
