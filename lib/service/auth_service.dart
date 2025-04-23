@@ -1,11 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:wisdrive/generated/l10n.dart';
 import 'package:wisdrive/widgets/general/response_snackbar.dart';
 import 'package:get/get.dart';
 
 class AuthService {
-  final SupabaseClient _supabase = Supabase.instance.client;
+  final _supabase = Supabase.instance.client;
+  final box = GetStorage();
+
+  bool isFirstTime() {
+    return box.read("isFirstTime") ?? true; //Check if user is new;
+  }
+
+  bool isFirstTimeLogged() {
+    return box.read("isFirstTimeLogged") ?? true; //Check user's first time logged
+  }
+
+  Future<bool> loadIsFirstTimeLogged() async {
+    Future.delayed(const Duration(seconds: 3)); 
+    return box.read("isFirstTimeLogged") ?? true;
+  }
 
   // Sign in with email and password
   Future<AuthResponse> signInWithEmailAndPassword(
@@ -25,30 +40,7 @@ class AuthService {
       password: password,
     );
 
-    if (response.user != null) {
-      await createUserProfile();
-    }
     return response;
-  }
-
-  Future<void> createUserProfile() async {
-    final user = Supabase.instance.client.auth.currentUser;
-    if (user == null) return;
-    try {
-      await Supabase.instance.client.from('users').insert({
-        'id': user.id,
-        'email': user.email,
-        'username': '',
-        'url_path': '',
-        'strike': 0,
-        'gender': null,
-        'total_points': 0,
-      });
-      ResponseSnackbar.show(Get.context!, true, "usuario creado exitosamente");
-    } catch (e) {
-      ResponseSnackbar.show(
-          Get.context!, true, "error al crear usuario en la bd");
-    }
   }
 
   //Google authentication
@@ -74,9 +66,10 @@ class AuthService {
     final user = _supabase.auth.currentUser;
     if (user != null) {
       try {
-        await _supabase.auth.admin.deleteUser(user.id); // Delete user from OAuth
+        await _supabase.auth.admin
+            .deleteUser(user.id); // Delete user from OAuth
         //await _supabase.from('users').delete().eq('id', user.id); // Delete user data from Supabase table users
-        await _supabase.auth.signOut();// Sign Out from account
+        await _supabase.auth.signOut(); // Sign Out from account
 
         ResponseSnackbar.show(context, false, S.of(context).delete_account);
       } catch (e) {
@@ -124,19 +117,6 @@ class AuthService {
   //Get current user
   User? get currentUsser => _supabase.auth.currentUser;
 
-  Future<bool> checkIfProfileIsCompleted() async {
-    final user = Supabase.instance.client.auth.currentUser;
-    if (user == null) return false;
-
-    final response = await Supabase.instance.client
-        .from('users')
-        .select('username')
-        .eq('id', user.id)
-        .maybeSingle();
-
-    if (response == null) return false;
-
-    final username = response['username'];
-    return username != null && username.toString().trim().isNotEmpty;
-  }
+  // Get current user id
+  String? get currentUserId => _supabase.auth.currentUser?.id;
 }

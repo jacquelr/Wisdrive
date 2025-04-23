@@ -30,13 +30,12 @@ class _ModalSignupSheetState extends State<ModalSignupSheet> {
     final password = passwordController.text;
     final confirmPassword = confirmPasswordController.text;
 
+    // Handle input exceptions
     if (email.isEmpty || password.isEmpty || confirmPassword.isEmpty) {
       Navigator.pop(context);
       ResponseSnackbar.show(context, true, S.of(context).fill_all_fields);
       return;
-    }
-
-    if (password != confirmPassword) {
+    } else if (password != confirmPassword) {
       Navigator.pop(context);
       ResponseSnackbar.show(context, true, S.of(context).unmatch_password);
       return;
@@ -44,13 +43,21 @@ class _ModalSignupSheetState extends State<ModalSignupSheet> {
 
     try {
       await _authservice.signUpWithEmailAndPassword(email, password);
-      HelperFunctions.showAlert(S.of(context).created_account, S.of(context).check_email_to_activate_account);
-      ResponseSnackbar.show(context, true, S.of(context).created_account);
-      //Navigator.pop(context);
-    } catch (e) {
-      if (mounted) {
+      if (context.mounted) {
         Navigator.pop(context);
-        ResponseSnackbar.show(context, true, "${S.of(context).signup_error}: $e");
+        HelperFunctions.showAlert(
+          S.of(context).created_account,
+          S.of(context).check_email_to_activate_account,
+        );
+      }
+    } catch (e) {
+      if (context.mounted) {
+        Navigator.pop(context);
+        ResponseSnackbar.show(
+          context,
+          true,
+          "${S.of(context).signup_error}: $e",
+        );
       }
     }
   }

@@ -19,12 +19,27 @@ class HelperFunctions {
         context: Get.context!,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text(title),
-            content: Text(message),
+            title: Text(
+              title,
+              style: GoogleFonts.play(
+                  color: HelperFunctions.getWhiteBgTextThemeColor()),
+            ),
+            content: Text(
+              message,
+              style: GoogleFonts.play(
+                  color: HelperFunctions.getWhiteBgTextThemeColor()),
+            ),
+            backgroundColor: HelperFunctions.getContainerThemeColor(),
             actions: [
               TextButton(
                   onPressed: () => Navigator.of(Get.context!).pop(),
-                  child: const Text('OK')),
+                  child: Text(
+                    'OK',
+                    style: GoogleFonts.play(
+                        color: HelperFunctions.getWhiteBgTextThemeColor(),
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold),
+                  )),
             ],
           );
         });
@@ -53,7 +68,8 @@ class HelperFunctions {
             onPressed: () async {
               Navigator.pop(dialogContext); // Pop dialog
               await authservice.signOut(); // Exit the session
-              if (context.mounted) { //Go to AuthGate to check if session is still active
+              if (context.mounted) {
+                //Go to AuthGate to check if session is still active
                 Navigator.of(context).pushAndRemoveUntil(
                   MaterialPageRoute(builder: (_) => const AuthGate()),
                   (route) => false,

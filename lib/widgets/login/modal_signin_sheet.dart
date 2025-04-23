@@ -27,10 +27,6 @@ class _ModalSigninSheetState extends State<ModalSigninSheet> {
     final password = passwordController.text;
     try {
       await _authservice.signInWithEmailAndPassword(email, password);
-      if (mounted) {
-        Navigator.pop(context);
-        ResponseSnackbar.show(context, false, S.of(context).signin_success);
-      }
     } catch (e) {
       if (mounted) {
         Navigator.pop(context);

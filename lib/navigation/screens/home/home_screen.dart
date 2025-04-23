@@ -4,6 +4,8 @@ import 'package:wisdrive/constraints/helper_functions.dart';
 import 'package:wisdrive/controllers/theme_controller.dart';
 import 'package:wisdrive/constraints/app_theme.dart';
 import 'package:wisdrive/navigation/screens/home/chat_screen.dart';
+import 'package:wisdrive/navigation/screens/profile/edit_profile_screen.dart';
+import 'package:wisdrive/service/auth_service.dart';
 import 'package:wisdrive/widgets/home/home_appbar.dart';
 import 'package:wisdrive/widgets/home/main_view.dart';
 import 'package:wisdrive/widgets/home/sidebar_menu.dart';
@@ -21,6 +23,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final ThemeController themeController = Get.find();
+  final authService = AuthService();
   int? selectedCategoryId;
 
   String? getSelectedCategory() {
@@ -34,6 +37,23 @@ class _HomeScreenState extends State<HomeScreen> {
       default:
         return null;
     }
+  }
+
+  void isFirstTimeLogged() {
+    bool isFirstTimeLogged = authService.isFirstTimeLogged();
+    if (isFirstTimeLogged) {
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+        builder: (context) => const EditProfileScreen(),
+      ));
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      isFirstTimeLogged();
+    });
   }
 
   @override
@@ -100,8 +120,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
         floatingActionButton: Padding(
-          padding: const EdgeInsets.only(
-              bottom: 70.0),
+          padding: const EdgeInsets.only(bottom: 70.0),
           child: FloatingActionButton(
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
