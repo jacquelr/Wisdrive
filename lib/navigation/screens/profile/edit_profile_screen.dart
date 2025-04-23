@@ -2,36 +2,66 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:wisdrive/constraints/images_routes.dart';
 import 'package:wisdrive/controllers/theme_controller.dart';
 import 'package:wisdrive/constraints/app_theme.dart';
 import 'package:wisdrive/generated/l10n.dart';
 import 'package:wisdrive/navigation/screens/profile/update_password_screen.dart';
+import 'package:wisdrive/service/auth_service.dart';
+import 'package:wisdrive/service/supabase_service.dart';
 import 'package:wisdrive/widgets/profile/avatar_picker_modal.dart';
 import 'package:wisdrive/widgets/profile/editprofile_inputs.dart';
 import 'package:wisdrive/widgets/profile/profile_appbar.dart';
 
-class EditProfileScreen extends StatelessWidget {
+class EditProfileScreen extends StatefulWidget {
   const EditProfileScreen({super.key});
+
+  @override
+  State<EditProfileScreen> createState() => _EditProfileScreenState();
+}
+
+class _EditProfileScreenState extends State<EditProfileScreen> {
+  final authService = AuthService();
+  final supabaseService = SupabaseService();
+
+  int? selectedAvatar;
+
+  @override
+  void initState() {
+    super.initState();
+    loadUserAvatar();
+  }
+
+  Future<void> loadUserAvatar() async {
+    final avatarIndex = await supabaseService.getUserAvatar();
+    setState(() {
+      selectedAvatar = avatarIndex;
+    });
+  }
 
   @override
   Widget build(context) {
     final ThemeController themeController = Get.find();
 
     void showAvatarPicker(BuildContext context) {
-  showDialog(
-    context: context,
-    builder: (context) => AvatarPickerModal(
-      onSelected: (int avatarKey) async {
-        await Supabase.instance.client // Save avatar in supabase
-            .from('users')
-            .update({'avatar': avatarKey})
-            .eq('id', Supabase.instance.client.auth.currentUser!.id);
-      },
-    ),
-  );
-}
+      showDialog(
+        context: context,
+        builder: (context) => AvatarPickerModal(
+          onSelected: (int avatarKey) {
+            if (authService.isFirstTimeLogged()) {
+              setState(() {
+                selectedAvatar = avatarKey;
+              });
+            } else {
+              supabaseService.setUserAvatar(avatarKey);
+              setState(() {
+                selectedAvatar = avatarKey;
+              });
+            }
+          },
+        ),
+      );
+    }
 
     return Scaffold(
       backgroundColor: themeController.isDarkMode.value
@@ -55,10 +85,32 @@ class EditProfileScreen extends StatelessWidget {
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                     ),
-                    child: const CircleAvatar(
-                      //Image View
-                      radius: 80,
-                      backgroundImage: AssetImage(RImages.profilePickImage),
+                    child: FutureBuilder<String>(
+                      future:
+                          supabaseService.getAvatarImagePath(selectedAvatar),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const CircleAvatar(
+                            radius: 80,
+                            backgroundColor: Colors.grey,
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+
+                        if (snapshot.hasError || !snapshot.hasData) {
+                          return CircleAvatar(
+                            radius: 80,
+                            backgroundImage:
+                                AssetImage(RImages.profilePickImage),
+                          );
+                        }
+
+                        return CircleAvatar(
+                          radius: 80,
+                          backgroundImage: AssetImage(snapshot.data!),
+                        );
+                      },
                     ),
                   ),
                 ),
@@ -96,20 +148,24 @@ class EditProfileScreen extends StatelessWidget {
             const Divider(
               color: Colors.grey,
             ),
-            const Expanded(
+            Expanded(
               child: Center(
-                child: EdditProfileInputs(), // Form to update user info
+                child: EdditProfileInputs(
+                  selectedAvatar: selectedAvatar,
+                ), // Form to update user info
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(16),
               child: TextButton(
                 // Change password text button
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const UpdatePasswordScreen(),
-                  ));
-                },
+                onPressed: authService.isFirstTimeLogged()
+                    ? null
+                    : () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const UpdatePasswordScreen(),
+                        ));
+                      },
                 style: TextButton.styleFrom(
                   foregroundColor: AppTheme.lightPurple,
                   padding:
