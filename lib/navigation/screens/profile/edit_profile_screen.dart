@@ -99,7 +99,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         }
 
                         if (snapshot.hasError || !snapshot.hasData) {
-                          return CircleAvatar(
+                          return const CircleAvatar(
                             radius: 80,
                             backgroundImage:
                                 AssetImage(RImages.profilePickImage),
@@ -151,6 +151,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             Expanded(
               child: Center(
                 child: EdditProfileInputs(
+                  screnContext: context,
                   selectedAvatar: selectedAvatar,
                 ), // Form to update user info
               ),

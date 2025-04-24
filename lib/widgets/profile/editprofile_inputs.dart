@@ -12,9 +12,11 @@ import 'package:wisdrive/service/supabase_service.dart';
 import 'package:wisdrive/widgets/general/response_snackbar.dart';
 
 class EdditProfileInputs extends StatefulWidget {
-  const EdditProfileInputs({super.key, required this.selectedAvatar});
+  const EdditProfileInputs(
+      {super.key, required this.screnContext, required this.selectedAvatar});
 
   final int? selectedAvatar;
+  final BuildContext screnContext;
 
   @override
   State<EdditProfileInputs> createState() => _EdditProfileInputsState();
@@ -25,6 +27,42 @@ class _EdditProfileInputsState extends State<EdditProfileInputs> {
   final supabaseService = SupabaseService();
   final usernameController = TextEditingController();
   String? selectedGender;
+
+  String? mapGenderToEnum(String? gender, BuildContext context) {
+    if (gender == S.of(context).male) return 'male';
+    if (gender == S.of(context).female) return 'female';
+    if (gender == S.of(context).other) return 'other';
+    return null;
+  }
+
+  String? mapGenderToEnumInverse(String gender) {
+    if (gender == 'male') return S.of(context).male;
+    if (gender == 'female') return S.of(context).female;
+    if (gender == 'other') return S.of(context).other;
+    return null;
+  }
+
+  Future<void> loadCurrentUserData() async {
+  final user = await supabaseService.getUserProfile();
+
+  if (user != null) {
+    setState(() {
+      usernameController.text = user['username'] ?? '';
+      selectedGender = user['gender'] != null
+          ? mapGenderToEnumInverse(user['gender'])
+          : null;
+    });
+  } else {
+    print('No se encontró el perfil del usuario.');
+  }
+}
+
+
+  @override
+  void initState() {
+    super.initState();
+    loadCurrentUserData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,13 +76,6 @@ class _EdditProfileInputsState extends State<EdditProfileInputs> {
       S.of(context).other
     ];
 
-    String? mapGenderToEnum(String? gender, BuildContext context) {
-      if (gender == S.of(context).male) return 'male';
-      if (gender == S.of(context).female) return 'female';
-      if (gender == S.of(context).other) return 'other';
-      return null;
-    }
-
     void firstTimeLogged() {
       final username = usernameController.text;
       final mappedGender = mapGenderToEnum(selectedGender, context);
@@ -53,9 +84,9 @@ class _EdditProfileInputsState extends State<EdditProfileInputs> {
           username.isNotEmpty &&
           mappedGender != null) {
         try {
-          //supabaseService.createUserProfile(username, widget.selectedAvatar, mappedGender);
-          final box = GetStorage();
-          box.write("isFirstTimeLogged", false);
+          supabaseService.createUserProfile(username, widget.selectedAvatar, mappedGender);
+          //final box = GetStorage();
+          //box.write("isFirstTimeLogged", false);
           Navigator.pop(context); // Return to HomeScreen
         } catch (e) {
           ResponseSnackbar.show(context, true, e.toString());
@@ -146,8 +177,22 @@ class _EdditProfileInputsState extends State<EdditProfileInputs> {
                 // Apply button
                 onPressed: authService.isFirstTimeLogged()
                     ? () => firstTimeLogged()
-                    : () {
-                        // Apply update changes to user into supabase
+                    : () async {
+                        final username = usernameController.text.trim();
+                        final genderEnum = mapGenderToEnum(selectedGender, context);
+                        final avatar = widget.selectedAvatar;
+
+                        try {
+                          await supabaseService.updateUserProfile(
+                            username: username.isNotEmpty ? username : null,
+                            avatar: avatar,
+                            gender: genderEnum,
+                          );
+                          ResponseSnackbar.show(context, false,"Perfil actualizado correctamente");
+                          Navigator.pop(widget.screnContext); // Go back to profile screen
+                        } catch (e) {
+                          ResponseSnackbar.show(context, true, e.toString());
+                        }
                       },
                 style: ElevatedButton.styleFrom(backgroundColor: white),
                 child: Padding(
