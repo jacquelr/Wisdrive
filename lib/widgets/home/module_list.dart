@@ -48,8 +48,7 @@ class ModuleList extends StatelessWidget {
           padding: const EdgeInsets.all(16.0),
           child: GridView.builder(
             shrinkWrap: true,
-            physics:
-                const NeverScrollableScrollPhysics(),
+            physics: const AlwaysScrollableScrollPhysics(),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2, // columns
               crossAxisSpacing: 10, // y gap
@@ -103,11 +102,16 @@ class ModuleList extends StatelessWidget {
                         ),
                         Align(
                           alignment: Alignment.centerLeft,
-                          child: Text(
-                            module['module_name'] ?? S.of(context).unnamed,
-                            style: GoogleFonts.play(
-                              color: Colors.white,
-                              fontSize: 18,
+                          child: SizedBox(
+                            height: 18,
+                            child: FittedBox(
+                              child: Text(
+                                module['module_name'] ?? S.of(context).unnamed,
+                                style: GoogleFonts.play(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                ),
+                              ),
                             ),
                           ),
                         ),
