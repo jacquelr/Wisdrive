@@ -375,6 +375,16 @@ class S {
     );
   }
 
+  /// `Perfil actualizado correctamente`
+  String get edit_profile_success {
+    return Intl.message(
+      'Perfil actualizado correctamente',
+      name: 'edit_profile_success',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Selecciona un avatar`
   String get pick_avatar {
     return Intl.message(

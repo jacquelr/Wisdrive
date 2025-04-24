@@ -150,8 +150,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             ),
             Expanded(
               child: Center(
-                child: EdditProfileInputs(
-                  screnContext: context,
+                child: EditProfileInputs(
+                  screenContext: context,
                   selectedAvatar: selectedAvatar,
                 ), // Form to update user info
               ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:wisdrive/constraints/helper_functions.dart';
 import 'package:wisdrive/controllers/theme_controller.dart';
 import 'package:wisdrive/constraints/app_theme.dart';
@@ -11,18 +10,18 @@ import 'package:wisdrive/service/auth_service.dart';
 import 'package:wisdrive/service/supabase_service.dart';
 import 'package:wisdrive/widgets/general/response_snackbar.dart';
 
-class EdditProfileInputs extends StatefulWidget {
-  const EdditProfileInputs(
-      {super.key, required this.screnContext, required this.selectedAvatar});
+class EditProfileInputs extends StatefulWidget {
+  const EditProfileInputs(
+      {super.key, required this.screenContext, required this.selectedAvatar});
 
   final int? selectedAvatar;
-  final BuildContext screnContext;
+  final BuildContext screenContext;
 
   @override
-  State<EdditProfileInputs> createState() => _EdditProfileInputsState();
+  State<EditProfileInputs> createState() => _EditProfileInputsState();
 }
 
-class _EdditProfileInputsState extends State<EdditProfileInputs> {
+class _EditProfileInputsState extends State<EditProfileInputs> {
   final authService = AuthService();
   final supabaseService = SupabaseService();
   final usernameController = TextEditingController();
@@ -43,18 +42,14 @@ class _EdditProfileInputsState extends State<EdditProfileInputs> {
   }
 
   Future<void> loadCurrentUserData() async {
-  final user = await supabaseService.getUserProfile();
+  final user = await supabaseService.getUserProfileOrThrow();
 
-  if (user != null) {
-    setState(() {
-      usernameController.text = user['username'] ?? '';
-      selectedGender = user['gender'] != null
-          ? mapGenderToEnumInverse(user['gender'])
-          : null;
-    });
-  } else {
-    print('No se encontró el perfil del usuario.');
-  }
+  setState(() {
+    usernameController.text = user['username'] ?? '';
+    selectedGender = user['gender'] != null
+        ? mapGenderToEnumInverse(user['gender'])
+        : null;
+  });
 }
 
 
@@ -67,6 +62,7 @@ class _EdditProfileInputsState extends State<EdditProfileInputs> {
   @override
   Widget build(BuildContext context) {
     final ThemeController themeController = Get.find();
+    final bool isFirstTimeLogged = authService.isFirstTimeLogged();
     final Color textLabelColor =
         themeController.isDarkMode.value ? Colors.white70 : AppTheme.darkPurple;
     final List<String> genderOptions = [
@@ -76,7 +72,7 @@ class _EdditProfileInputsState extends State<EdditProfileInputs> {
       S.of(context).other
     ];
 
-    void firstTimeLogged() {
+    void firstTimeLogged() async {
       final username = usernameController.text;
       final mappedGender = mapGenderToEnum(selectedGender, context);
 
@@ -84,9 +80,8 @@ class _EdditProfileInputsState extends State<EdditProfileInputs> {
           username.isNotEmpty &&
           mappedGender != null) {
         try {
+          // Inserts user's data into users table
           supabaseService.createUserProfile(username, widget.selectedAvatar, mappedGender);
-          //final box = GetStorage();
-          //box.write("isFirstTimeLogged", false);
           Navigator.pop(context); // Return to HomeScreen
         } catch (e) {
           ResponseSnackbar.show(context, true, e.toString());
@@ -130,9 +125,7 @@ class _EdditProfileInputsState extends State<EdditProfileInputs> {
             }).toList(),
             onChanged: (String? newValue) {
               setState(() {
-                setState(() {
-                  selectedGender = newValue;
-                });
+                selectedGender = newValue;
               });
             },
             decoration: InputDecoration(
@@ -153,7 +146,7 @@ class _EdditProfileInputsState extends State<EdditProfileInputs> {
             children: [
               ElevatedButton(
                 // Cancel button
-                onPressed: authService.isFirstTimeLogged()
+                onPressed: isFirstTimeLogged
                     ? () => HelperFunctions.showAlert(
                         S.of(context).user_profile,
                         S.of(context).fill_all_fields)
@@ -175,7 +168,7 @@ class _EdditProfileInputsState extends State<EdditProfileInputs> {
               ),
               ElevatedButton(
                 // Apply button
-                onPressed: authService.isFirstTimeLogged()
+                onPressed: isFirstTimeLogged
                     ? () => firstTimeLogged()
                     : () async {
                         final username = usernameController.text.trim();
@@ -188,8 +181,9 @@ class _EdditProfileInputsState extends State<EdditProfileInputs> {
                             avatar: avatar,
                             gender: genderEnum,
                           );
-                          ResponseSnackbar.show(context, false,"Perfil actualizado correctamente");
-                          Navigator.pop(widget.screnContext); // Go back to profile screen
+                          ResponseSnackbar.show(widget.screenContext, false,S.of(context).edit_profile_success);
+                          Navigator.pop(context); // Go back to ProfileScreen
+                          Navigator.pop(context); // Go back to HomeScreen
                         } catch (e) {
                           ResponseSnackbar.show(context, true, e.toString());
                         }

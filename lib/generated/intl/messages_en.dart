@@ -60,6 +60,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "edit_gender": MessageLookupByLibrary.simpleMessage("Gender"),
     "edit_profile": MessageLookupByLibrary.simpleMessage("Edit profile"),
+    "edit_profile_success": MessageLookupByLibrary.simpleMessage(
+      "Profile updated successfully",
+    ),
     "edit_username": MessageLookupByLibrary.simpleMessage("Username"),
     "email": MessageLookupByLibrary.simpleMessage("E-mail"),
     "female": MessageLookupByLibrary.simpleMessage("Female"),

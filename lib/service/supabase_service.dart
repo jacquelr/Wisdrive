@@ -1,9 +1,7 @@
-import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:wisdrive/constraints/images_routes.dart';
 import 'package:wisdrive/service/auth_service.dart';
-import 'package:wisdrive/widgets/general/response_snackbar.dart';
 
 class SupabaseService {
   final authService = AuthService();
@@ -15,19 +13,24 @@ class SupabaseService {
     if (user == null) return null;
 
     try {
-      final response =
-          await supabase.from('users').select().eq('uuid', user.id).maybeSingle();
-
-      return response; // ya es un Map<String, dynamic>
+      final response = await supabase.from('users').select().eq('uuid', user.id).maybeSingle();
+      return response;
     } catch (e) {
-      ResponseSnackbar.show(Get.context!, true, "Error al obtener usuario: $e");
-      return null;
+      throw Exception("Error al obtener usuario: $e");
     }
   }
 
+  Future<Map<String, dynamic>> getUserProfileOrThrow() async {
+    final user = await getUserProfile();
+    if (user == null) {
+      throw Exception("No se encontró el perfil del usuario.");
+    }
+    return user;
+  }
+
+
   // supabase -> INSERT INTO users (<user properties>)
-  Future<void> createUserProfile(
-      String username, int? avatar, String? gender) async {
+  Future<void> createUserProfile(String username, int? avatar, String? gender) async {
     final user = Supabase.instance.client.auth.currentUser;
     if (user == null) return;
 
@@ -37,7 +40,7 @@ class SupabaseService {
         .eq('uuid', user.id)
         .maybeSingle();
 
-    if (existing != null) return;
+    if (existing != null) throw Exception("El perfil ya existe");
 
     try {
       await Supabase.instance.client.from('users').insert({
@@ -52,8 +55,7 @@ class SupabaseService {
       });
       box.write("isFirstTimeLogged", false);
     } catch (e) {
-      ResponseSnackbar.show(
-          Get.context!, true, "error al crear usuario en la bd: $e");
+      throw Exception("error al crear usuario en la bd: $e");
     }
   }
 
@@ -79,24 +81,21 @@ class SupabaseService {
     if (updates.isEmpty) return; // Nada que actualizar
 
     try {
-      print("|${userId}|");
-      print(updates);
       await supabase
           .from('users')
           .update(updates)
-          .eq('uuid', userId as dynamic)
-          .single();
+          .eq('uuid', userId)
+          .select()
+          .maybeSingle();
     } catch (e) {
-      print(e);
-      throw Exception("Error actualizando perfil: $e");
+      throw Exception("Error: $e");
     }
   }
 
   Future<void> setUserAvatar(int avatarKey) async {
     await Supabase.instance.client // Save avatar in supabase
         .from('users')
-        .update({'avatar': avatarKey}).eq(
-            'id', Supabase.instance.client.auth.currentUser!.id);
+        .update({'avatar': avatarKey}).eq('uuid', Supabase.instance.client.auth.currentUser!.id);
   }
 
   Future<int?> getUserAvatar() async {

@@ -46,6 +46,7 @@
 
     "profile" : "Profile",
     "edit_profile" : "Edit profile",
+    "edit_profile_success": "Profile updated successfully",
     "pick_avatar": "Pick an avatar",
     "change_password" : "Change password",
     "delete_account" : "Delete Account",
