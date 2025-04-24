@@ -32,7 +32,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
     "change_password": MessageLookupByLibrary.simpleMessage("Change password"),
     "change_picture": MessageLookupByLibrary.simpleMessage("Change picture"),
+    "check_email_to_activate_account": MessageLookupByLibrary.simpleMessage(
+      "Check your email to activate the account",
+    ),
     "close": MessageLookupByLibrary.simpleMessage("Close"),
+    "confirm_new_password": MessageLookupByLibrary.simpleMessage(
+      "Confirm new password",
+    ),
     "confirm_password": MessageLookupByLibrary.simpleMessage(
       "Confirm Password",
     ),
@@ -42,19 +48,34 @@ class MessageLookup extends MessageLookupByLibrary {
     "create_account_with": MessageLookupByLibrary.simpleMessage(
       "create an account with",
     ),
+    "created_account": MessageLookupByLibrary.simpleMessage(
+      "Account created successfully",
+    ),
+    "current_password": MessageLookupByLibrary.simpleMessage(
+      "Current password",
+    ),
     "delete_account": MessageLookupByLibrary.simpleMessage("Delete Account"),
-    "edit_description": MessageLookupByLibrary.simpleMessage("Description"),
+    "deleted_account_error": MessageLookupByLibrary.simpleMessage(
+      "Error deleting account",
+    ),
     "edit_gender": MessageLookupByLibrary.simpleMessage("Gender"),
     "edit_profile": MessageLookupByLibrary.simpleMessage("Edit profile"),
+    "edit_profile_success": MessageLookupByLibrary.simpleMessage(
+      "Profile updated successfully",
+    ),
     "edit_username": MessageLookupByLibrary.simpleMessage("Username"),
     "email": MessageLookupByLibrary.simpleMessage("E-mail"),
     "female": MessageLookupByLibrary.simpleMessage("Female"),
+    "fill_all_fields": MessageLookupByLibrary.simpleMessage("Fill all fields"),
     "finished_quiz": MessageLookupByLibrary.simpleMessage(
       "You have completed the quiz correctly",
     ),
     "help": MessageLookupByLibrary.simpleMessage("Help panel"),
     "home": MessageLookupByLibrary.simpleMessage("Home"),
     "incorrect": MessageLookupByLibrary.simpleMessage("Incorrect, try again"),
+    "incorrect_current_password": MessageLookupByLibrary.simpleMessage(
+      "Current password is incorrect",
+    ),
     "language": MessageLookupByLibrary.simpleMessage("Language"),
     "lesson": MessageLookupByLibrary.simpleMessage("Lesson"),
     "lets_start_learning": MessageLookupByLibrary.simpleMessage(
@@ -64,6 +85,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "logout": MessageLookupByLibrary.simpleMessage("Logout"),
     "male": MessageLookupByLibrary.simpleMessage("Male"),
     "mechanics": MessageLookupByLibrary.simpleMessage("Mechanics"),
+    "new_password": MessageLookupByLibrary.simpleMessage("New password"),
     "no_categories_available": MessageLookupByLibrary.simpleMessage(
       "No categories available",
     ),
@@ -87,6 +109,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "or": MessageLookupByLibrary.simpleMessage("or"),
     "other": MessageLookupByLibrary.simpleMessage("Other"),
     "password": MessageLookupByLibrary.simpleMessage("Password"),
+    "pick_avatar": MessageLookupByLibrary.simpleMessage("Pick an avatar"),
     "privacy_politics": MessageLookupByLibrary.simpleMessage(
       "Privacy politics",
     ),
@@ -95,10 +118,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "regulations": MessageLookupByLibrary.simpleMessage("Regulations"),
     "reminders": MessageLookupByLibrary.simpleMessage("Reminders"),
     "road_culture": MessageLookupByLibrary.simpleMessage("Road Culture"),
+    "same_password": MessageLookupByLibrary.simpleMessage(
+      "New password cannot be the same as the current one",
+    ),
     "sign_in": MessageLookupByLibrary.simpleMessage("sign in"),
     "sign_in_with": MessageLookupByLibrary.simpleMessage("sign in with"),
     "sign_up": MessageLookupByLibrary.simpleMessage("sign up"),
     "signin_error": MessageLookupByLibrary.simpleMessage("Sign In Error"),
+    "signin_success": MessageLookupByLibrary.simpleMessage("Successful Login"),
     "signup_error": MessageLookupByLibrary.simpleMessage("Sign Up Error"),
     "theme": MessageLookupByLibrary.simpleMessage("Theme"),
     "traffic_regulations": MessageLookupByLibrary.simpleMessage(
@@ -108,6 +135,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "Passwords doesn\'t match",
     ),
     "unnamed": MessageLookupByLibrary.simpleMessage("Unnamed"),
+    "updated_password": MessageLookupByLibrary.simpleMessage(
+      "Password updated successfully",
+    ),
+    "updated_password_error": MessageLookupByLibrary.simpleMessage(
+      "Error updating password",
+    ),
     "user_profile": MessageLookupByLibrary.simpleMessage("User Profile"),
   };
 }

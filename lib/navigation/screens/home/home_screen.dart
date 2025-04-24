@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:wisdrive/constraints/helper_functions.dart';
 import 'package:wisdrive/controllers/theme_controller.dart';
-import 'package:wisdrive/data/app_theme.dart';
+import 'package:wisdrive/constraints/app_theme.dart';
 import 'package:wisdrive/navigation/screens/home/chat_screen.dart';
+import 'package:wisdrive/navigation/screens/profile/edit_profile_screen.dart';
+import 'package:wisdrive/service/auth_service.dart';
+import 'package:wisdrive/widgets/home/home_appbar.dart';
 import 'package:wisdrive/navigation/screens/profile/profile_screen.dart';
 import 'package:wisdrive/widgets/home/basic_mecanic.dart';
 import 'package:wisdrive/widgets/home/main_view.dart';
@@ -23,6 +25,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final ThemeController themeController = Get.find();
+  final authService = AuthService();
   int? selectedCategoryId;
 
   String? getSelectedCategory() {
@@ -36,6 +39,23 @@ class _HomeScreenState extends State<HomeScreen> {
       default:
         return null;
     }
+  }
+
+  void isFirstTimeLogged() {
+    bool isFirstTimeLogged = authService.isFirstTimeLogged();
+    if (isFirstTimeLogged) {
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+        builder: (context) => const EditProfileScreen(),
+      ));
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      isFirstTimeLogged();
+    });
   }
 
   @override
@@ -52,28 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
       theme: ThemeData(),
       home: Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: AppBar(
-          title: Text(
-            getSelectedCategory() ?? '',
-            style: GoogleFonts.play(color: HelperFunctions.getTextThemeColor()),
-          ),
-          centerTitle: true,
-          iconTheme: IconThemeData(
-              color: HelperFunctions.getIconThemeColor(), size: 50),
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          actions: [
-            IconButton(
-              icon: Icon(Icons.account_circle,
-                  color: HelperFunctions.getIconThemeColor()),
-              onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const ProfileScreen(),
-                ));
-              },
-            ),
-          ],
-        ),
+        appBar: HomeAppbar(selectedCategory: getSelectedCategory()),
         drawer: const SidebarMenu(),
         body: Stack(
           children: [

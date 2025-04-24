@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:wisdrive/constraints/images_routes.dart';
-import 'package:wisdrive/data/app_theme.dart';
+import 'package:wisdrive/constraints/app_theme.dart';
 import 'package:wisdrive/service/auth_gate.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -42,7 +42,7 @@ class _SplashScreenState extends State<SplashScreen> {
           child: AnimatedOpacity(
             opacity: _opacity,
             duration: const Duration(seconds: 2),
-            child: Image.asset(RImages.wLogo, width: 200),
+            child: Image.asset(RImages.wLogo, width: 110),
           ),
         ),
       ),

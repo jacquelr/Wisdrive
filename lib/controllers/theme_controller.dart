@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:wisdrive/data/app_theme.dart';
+import 'package:wisdrive/constraints/app_theme.dart';
 
 class ThemeController extends GetxController {
   var isDarkMode = true.obs; // 🌙 Modo oscuro por defecto

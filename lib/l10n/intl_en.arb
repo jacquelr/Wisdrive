@@ -17,6 +17,7 @@
     "sign_in_with" : "sign in with",
     "create_account_with" : "create an account with",
     "signin_error" : "Sign In Error",
+    "signin_success": "Successful Login",
     "signup_error" : "Sign Up Error",
     "unmatch_password" : "Passwords doesn't match",
     "close" : "Close",
@@ -45,12 +46,16 @@
 
     "profile" : "Profile",
     "edit_profile" : "Edit profile",
+    "edit_profile_success": "Profile updated successfully",
+    "pick_avatar": "Pick an avatar",
     "change_password" : "Change password",
     "delete_account" : "Delete Account",
     "change_picture" : "Change picture",
     "edit_username" : "Username",
-    "edit_description" : "Description",
     "edit_gender" : "Gender",
+    "current_password": "Current password",
+    "new_password": "New password",
+    "confirm_new_password": "Confirm new password",
     "cancel" : "Cancel",
     "apply" : "Apply",
     "male" : "Male",
@@ -67,5 +72,15 @@
     "answer": "ANSWER",
     "congratulations": "Congratulations",
     "finished_quiz": "You have completed the quiz correctly",
-    "continue_learning": "Continue"
+    "continue_learning": "Continue",
+
+    "deleted_account": "Account successfully deleted",
+    "deleted_account_error": "Error deleting account",
+    "fill_all_fields": "Fill all fields",
+    "same_password": "New password cannot be the same as the current one",
+    "incorrect_current_password": "Current password is incorrect",
+    "updated_password": "Password updated successfully",
+    "updated_password_error": "Error updating password",
+    "created_account": "Account created successfully",
+    "check_email_to_activate_account": "Check your email to activate the account"
 }

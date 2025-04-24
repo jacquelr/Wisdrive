@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wisdrive/controllers/theme_controller.dart';
-import 'package:wisdrive/data/app_theme.dart';
+import 'package:wisdrive/constraints/app_theme.dart';
 // import 'package:wisdrive/widgets/login/modal_sheet.dart';
 import 'package:wisdrive/widgets/login/modal_signin_sheet.dart';
 import 'package:wisdrive/widgets/login/modal_signup_sheet.dart';

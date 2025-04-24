@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
@@ -5,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:wisdrive/constraints/helper_functions.dart';
 import 'dart:async';
 import 'package:wisdrive/constraints/images_routes.dart';
-import 'package:wisdrive/data/app_theme.dart';
+import 'package:wisdrive/constraints/app_theme.dart';
 import 'package:wisdrive/generated/l10n.dart';
 
 class QuizCompleted extends StatefulWidget {
@@ -17,10 +18,16 @@ class QuizCompleted extends StatefulWidget {
 
 class _QuizCompletedState extends State<QuizCompleted> {
   bool showConfetti = true;
+  final player = AudioPlayer();
+
+  void playSound() async {
+    await player.play(AssetSource(RAutoPlayer.trumpets));
+  }
 
   @override
   void initState() {
     super.initState();
+    playSound();
     // Hide conffeti
     Timer(const Duration(seconds: 3), () {
       setState(() {
@@ -49,7 +56,6 @@ class _QuizCompletedState extends State<QuizCompleted> {
                   repeat: false,
                 ),
               ),
-
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -65,7 +71,6 @@ class _QuizCompletedState extends State<QuizCompleted> {
                     ),
                   ),
                 ),
-
                 Container(
                   width: circleSize,
                   height: circleSize,
@@ -81,7 +86,6 @@ class _QuizCompletedState extends State<QuizCompleted> {
                     repeat: false,
                   ),
                 ),
-
                 Padding(
                   padding: const EdgeInsets.only(top: 24.0, bottom: 32.0),
                   child: Text(
@@ -94,7 +98,6 @@ class _QuizCompletedState extends State<QuizCompleted> {
                     textAlign: TextAlign.center,
                   ),
                 ),
-
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: HelperFunctions.getContainerThemeColor(),

@@ -6,7 +6,7 @@ import 'package:wisdrive/constraints/helper_functions.dart';
 import 'package:wisdrive/constraints/images_routes.dart';
 import 'package:wisdrive/controllers/onboarding_controller.dart';
 import 'package:wisdrive/controllers/theme_controller.dart';
-import 'package:wisdrive/data/app_theme.dart';
+import 'package:wisdrive/constraints/app_theme.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../generated/l10n.dart';
 
@@ -19,63 +19,63 @@ class OnboardingScreen extends StatelessWidget {
     final controller = Get.put(OnboardingController());
 
     return Scaffold(
-      body: Stack(
-        children: [
-          PageView(
-            controller: controller.pageConroller,
-            onPageChanged: controller.updatePageIndicator,
-            children: [
-              Onboarding(
-                themeController: themeController,
-                text:
-                    S.of(context).onboarding_1,
-                image: RImages.onboarding_1,
-              ),
-              Onboarding(
-                themeController: themeController,
-                text:
-                    S.of(context).onboarding_2,
-                image: RImages.onboarding_2,
-              ),
-              Onboarding(
-                themeController: themeController,
-                text:
-                    S.of(context).onboarding_3,
-                image: RImages.onboarding_3,
-              ),
-            ],
-          ),
-          Positioned(
-            top: 1,
-            right: 1,
-            child: TextButton(
-              onPressed: () => OnboardingController.instance.skipPage(),
-              child: Text(
-                S.of(context).SKIP,
-                style: GoogleFonts.play(color: Colors.white, fontSize: 20),
-              ),
-            ),
-          ),
-          Positioned(
-            bottom: 25,
-            left: 25,
-            child: SmoothPageIndicator(
+      body: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 16),
+        child: Stack(
+          children: [
+            PageView(
               controller: controller.pageConroller,
-              onDotClicked: controller.dotNavigationClick,
-              count: 3,
-              effect: const ExpandingDotsEffect(
-                  activeDotColor: AppTheme.lightSecondary, dotHeight: 6),
+              onPageChanged: controller.updatePageIndicator,
+              children: [
+                Onboarding(
+                  themeController: themeController,
+                  text: S.of(context).onboarding_1,
+                  image: RImages.onboarding_1,
+                ),
+                Onboarding(
+                  themeController: themeController,
+                  text: S.of(context).onboarding_2,
+                  image: RImages.onboarding_2,
+                ),
+                Onboarding(
+                  themeController: themeController,
+                  text: S.of(context).onboarding_3,
+                  image: RImages.onboarding_3,
+                ),
+              ],
             ),
-          ),
-          Positioned(
-            bottom: 1,
-            right: 1,
-            child: IconButton(
-              icon: const Icon(Icons.arrow_circle_right, size: 50),
-              onPressed: () => OnboardingController.instance.nextPage(),
+            Positioned(
+              top: 1,
+              right: 1,
+              child: TextButton(
+                onPressed: () => OnboardingController.instance.skipPage(),
+                child: Text(
+                  S.of(context).SKIP,
+                  style: GoogleFonts.play(color: Colors.white, fontSize: 20),
+                ),
+              ),
             ),
-          ),
-        ],
+            Positioned(
+              bottom: 25,
+              left: 25,
+              child: SmoothPageIndicator(
+                controller: controller.pageConroller,
+                onDotClicked: controller.dotNavigationClick,
+                count: 3,
+                effect: const ExpandingDotsEffect(
+                    activeDotColor: AppTheme.lightSecondary, dotHeight: 6),
+              ),
+            ),
+            Positioned(
+              bottom: 1,
+              right: 1,
+              child: IconButton(
+                icon: const Icon(Icons.arrow_circle_right, size: 50),
+                onPressed: () => OnboardingController.instance.nextPage(),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
