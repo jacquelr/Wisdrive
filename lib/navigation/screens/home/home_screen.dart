@@ -7,7 +7,6 @@ import 'package:wisdrive/navigation/screens/home/chat_screen.dart';
 import 'package:wisdrive/navigation/screens/profile/edit_profile_screen.dart';
 import 'package:wisdrive/service/auth_service.dart';
 import 'package:wisdrive/widgets/home/home_appbar.dart';
-import 'package:wisdrive/navigation/screens/profile/profile_screen.dart';
 import 'package:wisdrive/widgets/home/basic_mecanic.dart';
 import 'package:wisdrive/widgets/home/main_view.dart';
 import 'package:wisdrive/widgets/home/sidebar_menu.dart';

@@ -28,7 +28,6 @@ class AuthGate extends StatelessWidget {
         final session = Supabase.instance.client.auth.currentSession;
 
         if (session != null) {
-          print(authService.isFirstTimeLogged());
           return const HomeScreen();
         }
         return authService.isFirstTime()

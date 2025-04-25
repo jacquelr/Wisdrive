@@ -5,7 +5,7 @@ import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import 'package:wisdrive/constraints/app_theme.dart'; // Asegúrate de que esta ruta es la correcta
 
 class PdfViewerScreen extends StatefulWidget {
-  const PdfViewerScreen({Key? key}) : super(key: key);
+  const PdfViewerScreen({super.key});
 
   @override
   State<PdfViewerScreen> createState() => _PdfViewerScreenState();
@@ -35,7 +35,7 @@ class _PdfViewerScreenState extends State<PdfViewerScreen> {
         ),
         actions: [
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.bookmark,
               color: white,
             ),

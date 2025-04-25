@@ -7,6 +7,7 @@ import 'package:wisdrive/controllers/language_controller.dart';
 import 'package:wisdrive/controllers/theme_controller.dart';
 import 'package:wisdrive/constraints/app_theme.dart';
 import 'package:wisdrive/navigation/screens/home/home_screen.dart';
+import 'package:wisdrive/navigation/screens/home/pdf_viewer_screen.dart';
 import 'package:wisdrive/navigation/screens/profile/profile_screen.dart';
 import 'package:wisdrive/service/auth_service.dart';
 import '../../generated/l10n.dart';
@@ -148,28 +149,16 @@ class _SidebarMenuState extends State<SidebarMenu> {
               height: 50,
             ),
             ListTile(
-                leading: const Icon(Icons.notifications,
+                leading: const Icon(Icons.find_in_page,
                     color: Colors.white), //notifications_off
                 title: Text(
-                  S.of(context).notifications,
+                  'Reglamento vial',
                   style: GoogleFonts.play(color: Colors.white, fontSize: 20),
                 ),
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const HomeScreen(),
-                  ));
-                }),
-            ListTile(
-                leading: const Icon(Icons.calendar_month, color: Colors.white),
-                title: Text(
-                  S.of(context).reminders,
-                  style: GoogleFonts.play(color: Colors.white, fontSize: 20),
-                ),
-                onTap: () {
-                  Navigator.pop(context);
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const HomeScreen(),
+                    builder: (context) => const PdfViewerScreen(),
                   ));
                 }),
             ListTile(

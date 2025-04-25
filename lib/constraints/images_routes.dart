@@ -35,21 +35,21 @@ class LottieAnimations {
 }
 
 class RAutoPlayer {
-  static const String correct = "sounds/correct.mp3";
-  static const String incorrect = "sounds/incorrect.mp3";
-  static const String trumpets = "sounds/tada_trumpet.mp3";
+  static const String correct = "assets/sounds/correct.mp3";
+  static const String incorrect = "assets/sounds/incorrect.mp3";
+  static const String trumpets = "assets/sounds/tada_trumpet.mp3";
 }
 
 class RAvatars {
   static const Map<int, String> avatarMap = {
-    0: 'avatars/avatar_0.jpg',
-    1: 'avatars/avatar_1.jpg',
-    2: 'avatars/avatar_2.jpg',
-    3: 'avatars/avatar_3.jpg',
-    4: 'avatars/avatar_4.jpg',
-    5: 'avatars/avatar_5.jpg',
-    6: 'avatars/avatar_6.jpg',
-    7: 'avatars/avatar_7.jpg',
-    8: 'avatars/avatar_8.jpg',
+    0: 'assets/avatars/avatar_0.jpg',
+    1: 'assets/avatars/avatar_1.jpg',
+    2: 'assets/avatars/avatar_2.jpg',
+    3: 'assets/avatars/avatar_3.jpg',
+    4: 'assets/avatars/avatar_4.jpg',
+    5: 'assets/avatars/avatar_5.jpg',
+    6: 'assets/avatars/avatar_6.jpg',
+    7: 'assets/avatars/avatar_7.jpg',
+    8: 'assets/avatars/avatar_8.jpg',
   };
 }
