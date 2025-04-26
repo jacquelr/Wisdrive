@@ -77,6 +77,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "finished_quiz": MessageLookupByLibrary.simpleMessage(
       "Has completado el quiz correctamente",
     ),
+    "get_ready": MessageLookupByLibrary.simpleMessage(
+      "Preparate para ser más sabio con wisdrive",
+    ),
     "help": MessageLookupByLibrary.simpleMessage("Centro de ayuda"),
     "home": MessageLookupByLibrary.simpleMessage("Inicio"),
     "incorrect": MessageLookupByLibrary.simpleMessage(
@@ -142,6 +145,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "signup_error": MessageLookupByLibrary.simpleMessage(
       "Error al registrarse",
     ),
+    "take_a_look": MessageLookupByLibrary.simpleMessage(
+      "Dale un vistazo al reglamento de transito de Jalisco",
+    ),
     "theme": MessageLookupByLibrary.simpleMessage("Tema"),
     "traffic_regulations": MessageLookupByLibrary.simpleMessage(
       "Reglamento de transito",
@@ -157,5 +163,6 @@ class MessageLookup extends MessageLookupByLibrary {
       "Error al actualizar la contraseña",
     ),
     "user_profile": MessageLookupByLibrary.simpleMessage("Perfil de usuario"),
+    "welcome": MessageLookupByLibrary.simpleMessage("Bienvenido a Wisdrive"),
   };
 }

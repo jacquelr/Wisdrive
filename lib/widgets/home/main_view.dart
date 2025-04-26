@@ -4,6 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:wisdrive/constraints/helper_functions.dart';
 import 'package:wisdrive/constraints/images_routes.dart';
+import 'package:wisdrive/generated/l10n.dart';
+import 'package:wisdrive/widgets/home/pdf_viewer.dart';
 
 class MainView extends StatefulWidget {
   const MainView({super.key});
@@ -19,19 +21,20 @@ class _MainViewState extends State<MainView> {
 
   @override
   Widget build(BuildContext context) {
+
     return SingleChildScrollView(
       child: Column(
         children: [
           const SizedBox(height: 16),
           Text(
-            "Welcome to Wisdrive",
+            S.of(context).welcome,
             style: GoogleFonts.play(
               color: HelperFunctions.getWhiteBgTextThemeColor(),
               fontSize: 30,
             ),
           ),
           Text(
-            "Get ready to be wise with wisdrive",
+            S.of(context).get_ready,
             style: GoogleFonts.play(
               color: HelperFunctions.getWhiteBgTextThemeColor(),
               fontSize: 16,
@@ -87,6 +90,7 @@ class _MainViewState extends State<MainView> {
               _controller.animateToPage(index);
             },
           ),
+          const PdfViewer(), // Traffic regulations viewer Widget
         ],
       ),
     );

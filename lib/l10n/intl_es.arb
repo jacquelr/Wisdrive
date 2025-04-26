@@ -44,6 +44,10 @@
 
     "unnamed": "Sin nombre",
 
+    "welcome": "Bienvenido a Wisdrive",
+    "get_ready": "Preparate para ser más sabio con wisdrive",
+    "take_a_look": "Dale un vistazo al reglamento de transito de Jalisco",
+
     "profile" : "Perfil",
     "edit_profile" : "Editar perfil",
     "edit_profile_success": "Perfil actualizado correctamente",

@@ -70,6 +70,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "finished_quiz": MessageLookupByLibrary.simpleMessage(
       "You have completed the quiz correctly",
     ),
+    "get_ready": MessageLookupByLibrary.simpleMessage(
+      "Get ready to be wise with wisdrive",
+    ),
     "help": MessageLookupByLibrary.simpleMessage("Help panel"),
     "home": MessageLookupByLibrary.simpleMessage("Home"),
     "incorrect": MessageLookupByLibrary.simpleMessage("Incorrect, try again"),
@@ -127,6 +130,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "signin_error": MessageLookupByLibrary.simpleMessage("Sign In Error"),
     "signin_success": MessageLookupByLibrary.simpleMessage("Successful Login"),
     "signup_error": MessageLookupByLibrary.simpleMessage("Sign Up Error"),
+    "take_a_look": MessageLookupByLibrary.simpleMessage(
+      "Take a look at the Jalisco traffic regulations",
+    ),
     "theme": MessageLookupByLibrary.simpleMessage("Theme"),
     "traffic_regulations": MessageLookupByLibrary.simpleMessage(
       "Traffic Regulations",
@@ -142,5 +148,6 @@ class MessageLookup extends MessageLookupByLibrary {
       "Error updating password",
     ),
     "user_profile": MessageLookupByLibrary.simpleMessage("User Profile"),
+    "welcome": MessageLookupByLibrary.simpleMessage("Welcome to Wisdrive"),
   };
 }

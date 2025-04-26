@@ -44,6 +44,10 @@
 
     "unnamed": "Unnamed",
 
+    "welcome": "Welcome to Wisdrive",
+    "get_ready": "Get ready to be wise with wisdrive",
+    "take_a_look": "Take a look at the Jalisco traffic regulations",
+
     "profile" : "Profile",
     "edit_profile" : "Edit profile",
     "edit_profile_success": "Profile updated successfully",

@@ -152,7 +152,7 @@ class _SidebarMenuState extends State<SidebarMenu> {
                 leading: const Icon(Icons.find_in_page,
                     color: Colors.white), //notifications_off
                 title: Text(
-                  'Reglamento vial',
+                  S.of(context).traffic_regulations,
                   style: GoogleFonts.play(color: Colors.white, fontSize: 20),
                 ),
                 onTap: () {
@@ -196,7 +196,7 @@ class _SidebarMenuState extends State<SidebarMenu> {
                   ));
                 }),
             ListTile(
-                leading: const Icon(Icons.logout_outlined, color: Colors.white),
+                leading: const Icon(Icons.logout_outlined, color: Colors.red),
                 title: Text(
                   S.of(context).logout,
                   style: GoogleFonts.play(color: Colors.white, fontSize: 20),

@@ -2,7 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
-import 'package:wisdrive/constraints/app_theme.dart'; // Asegúrate de que esta ruta es la correcta
+import 'package:wisdrive/constraints/helper_functions.dart';
+import 'package:wisdrive/generated/l10n.dart'; // Asegúrate de que esta ruta es la correcta
 
 class PdfViewerScreen extends StatefulWidget {
   const PdfViewerScreen({super.key});
@@ -22,22 +23,23 @@ class _PdfViewerScreenState extends State<PdfViewerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: purple, // Color de fondo principal de tu tema.
+      backgroundColor: HelperFunctions.getBlackContainerThemeColor(),
       appBar: AppBar(
-        backgroundColor: purple,
+        backgroundColor: HelperFunctions.getBlackContainerThemeColor(),
+        centerTitle: true,
         title: Text(
-          'Lector de PDF',
+          "Jalisco: ${S.of(context).traffic_regulations}",
           style: GoogleFonts.poppins(
-            color: white,
+            color: HelperFunctions.getTextThemeColor(),
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
         ),
         actions: [
           IconButton(
-            icon: const Icon(
+            icon: Icon(
               Icons.bookmark,
-              color: white,
+              color: HelperFunctions.getIconThemeColor(),
             ),
             onPressed: () {
               // Abre la vista de marcadores del PDF.
@@ -48,10 +50,9 @@ class _PdfViewerScreenState extends State<PdfViewerScreen> {
       ),
       body: Container(
         padding: const EdgeInsets.all(30),
-        // Contenedor con fondo blanco y bordes redondeados en la parte superior, siguiendo el estilo de tu app.
-        decoration: const BoxDecoration(
-          color: white,
-          borderRadius: BorderRadius.only(
+        decoration: BoxDecoration(
+          color: HelperFunctions.getContainerThemeColor(),
+          borderRadius: const BorderRadius.only(
             topLeft: Radius.elliptical(50, 30),
             topRight: Radius.elliptical(50, 30),
           ),

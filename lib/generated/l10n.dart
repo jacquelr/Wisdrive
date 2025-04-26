@@ -360,6 +360,36 @@ class S {
     return Intl.message('Sin nombre', name: 'unnamed', desc: '', args: []);
   }
 
+  /// `Bienvenido a Wisdrive`
+  String get welcome {
+    return Intl.message(
+      'Bienvenido a Wisdrive',
+      name: 'welcome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Preparate para ser más sabio con wisdrive`
+  String get get_ready {
+    return Intl.message(
+      'Preparate para ser más sabio con wisdrive',
+      name: 'get_ready',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dale un vistazo al reglamento de transito de Jalisco`
+  String get take_a_look {
+    return Intl.message(
+      'Dale un vistazo al reglamento de transito de Jalisco',
+      name: 'take_a_look',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Perfil`
   String get profile {
     return Intl.message('Perfil', name: 'profile', desc: '', args: []);
