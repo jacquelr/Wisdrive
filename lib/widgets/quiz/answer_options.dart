@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wisdrive/constraints/app_theme.dart';
-import 'package:wisdrive/constraints/helper_functions.dart';
 
 class AnswerOptions extends StatelessWidget {
   final List<Map<String, dynamic>> answers;
@@ -22,7 +21,7 @@ class AnswerOptions extends StatelessWidget {
         final bool isSelected = answer['id'] == selectedId;
 
         return Padding(
-          padding: const EdgeInsets.symmetric(vertical: 5),
+          padding: const EdgeInsets.symmetric(vertical: 10),
           child: SizedBox(
             width: double.infinity,
             child: ElevatedButton(
@@ -38,7 +37,7 @@ class AnswerOptions extends StatelessWidget {
               child: Text(
                 answer['content'],
                 style: GoogleFonts.play(
-                  color: HelperFunctions.getTextThemeColor(),
+                  color: Colors.white,
                   fontSize: 18,
                 ),
                 textAlign: TextAlign.center,

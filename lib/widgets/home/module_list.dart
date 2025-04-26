@@ -45,7 +45,7 @@ class ModuleList extends StatelessWidget {
         final modules = snapshot.data!;
 
         return Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: GridView.builder(
             shrinkWrap: true,
             physics: const AlwaysScrollableScrollPhysics(),

@@ -6,7 +6,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:wisdrive/constraints/helper_functions.dart';
 import 'dart:async';
 import 'package:wisdrive/constraints/images_routes.dart';
-import 'package:wisdrive/constraints/app_theme.dart';
 import 'package:wisdrive/generated/l10n.dart';
 
 class QuizCompleted extends StatefulWidget {
@@ -43,7 +42,7 @@ class _QuizCompletedState extends State<QuizCompleted> {
     double circleSize = screenWidth * 0.8;
 
     return Scaffold(
-      backgroundColor: AppTheme.lightSecondary,
+      backgroundColor: HelperFunctions.getQuizCompletedContainerThemeColor(),
       body: SafeArea(
         child: Stack(
           alignment: Alignment.center,
@@ -111,11 +110,13 @@ class _QuizCompletedState extends State<QuizCompleted> {
                   onPressed: () {
                     Get.back(result: 'quiz_completed');
                   },
-                  child: Text(
-                    S.of(context).continue_learning,
-                    style: GoogleFonts.play(
-                      fontSize: 32,
-                      fontWeight: FontWeight.bold,
+                  child: FittedBox(
+                    child: Text(
+                      S.of(context).continue_learning,
+                      style: GoogleFonts.play(
+                        fontSize: 32,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),

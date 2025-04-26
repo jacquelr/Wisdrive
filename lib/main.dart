@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -12,6 +13,9 @@ import 'generated/l10n.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp, // Blocks vertical orientation
+  ]);
   await dotenv.load();
   await GetStorage.init();
 
@@ -20,7 +24,7 @@ void main() async {
   } catch (e) {
     throw Exception('Error loading .env file: $e'); // Print error if any
   }
-  // Inicializar Supabase
+  // Initialize Supabase
   await Supabase.initialize(
     url: dotenv.env['SUPABASE_URL']!,
     anonKey: dotenv.env['SUPABASE_ANON_KEY']!,
@@ -39,7 +43,7 @@ class WisdriveApp extends StatelessWidget {
     final LanguageController languageController = Get.find();
 
     return GetMaterialApp(
-      locale: languageController.selectedLocale.value, // Idioma dinámico
+      locale: languageController.selectedLocale.value, // Dynamic language
       supportedLocales: S.delegate.supportedLocales,
       localizationsDelegates: const [
         S.delegate,

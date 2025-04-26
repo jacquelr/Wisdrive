@@ -126,9 +126,9 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
             right: 0,
             bottom: 0,
             child: Container(
-              decoration: const BoxDecoration(
-                color: AppTheme.lightBackground,
-                borderRadius: BorderRadius.only(
+              decoration: BoxDecoration(
+                color: HelperFunctions.getContainerThemeColor(),
+                borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(30),
                   topRight: Radius.circular(30),
                 ),
@@ -165,12 +165,12 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                         question['question_content'],
                         style: TextStyle(
                             color: HelperFunctions.getTextThemeColor(),
-                            fontSize: 20),
+                            fontSize: 40),
                         textAlign: TextAlign.center,
                       ),
                     ),
                     const SizedBox(height: 20),
-                    Expanded(
+                    Expanded( // Map of four Answers
                       child: AnswerOptions(
                         answers: questionAnswers,
                         selectedId: selectedAnswerId,
@@ -182,7 +182,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                     const SizedBox(height: 15),
                     SizedBox(
                       width: double.infinity,
-                      child: ElevatedButton(
+                      child: ElevatedButton( // Anser Button
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppTheme.darkPurple,
                           padding: const EdgeInsets.symmetric(vertical: 12),
@@ -194,7 +194,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                         child: Text(S.of(context).answer,
                             style: GoogleFonts.play(
                                 fontSize: 20,
-                                color: HelperFunctions.getTextThemeColor())),
+                                color: Colors.white)),
                       ),
                     ),
                   ],

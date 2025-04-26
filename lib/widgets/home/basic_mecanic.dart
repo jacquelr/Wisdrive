@@ -80,6 +80,22 @@ class BasicMecanic extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 8),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            'Video',
+                            style: GoogleFonts.play(
+                              color: Colors.white,
+                              fontSize: 24,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        const Icon(
+                          Icons.ondemand_video_sharp,
+                          size: 75,
+                          color: white,
+                        ),
                       ],
                     ),
                   ),

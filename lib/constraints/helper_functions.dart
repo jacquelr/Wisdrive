@@ -175,11 +175,43 @@ class HelperFunctions {
     return iconColor;
   }
 
+  static Color? getBlackContainerThemeColor() {
+    final ThemeController themeController = Get.find();
+    final containerColor = themeController.isDarkMode.value
+        ? AppTheme.darkPurple
+        : AppTheme.lightSecondary;
+    return containerColor;
+  }
+
   static Color? getContainerThemeColor() {
     final ThemeController themeController = Get.find();
     final containerColor = themeController.isDarkMode.value
         ? AppTheme.lightBackground
         : AppTheme.lightPrimary;
+    return containerColor;
+  }
+
+  static Color? getQuizCompletedContainerThemeColor() {
+    final ThemeController themeController = Get.find();
+    final containerColor = themeController.isDarkMode.value
+        ? AppTheme.lightSecondary
+        : AppTheme.lightPrimary;
+    return containerColor;
+  }
+
+  static Color? getQuizBgContainerThemeColor() {
+    final ThemeController themeController = Get.find();
+    final containerColor = themeController.isDarkMode.value
+        ? AppTheme.mediumPurple
+        : AppTheme.lightSecondary;
+    return containerColor;
+  }
+
+  static Color? getQuizLevelContainerThemeColor() {
+    final ThemeController themeController = Get.find();
+    final containerColor = themeController.isDarkMode.value
+        ? AppTheme.lightSecondary
+        : AppTheme.lightPurple;
     return containerColor;
   }
 

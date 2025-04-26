@@ -108,9 +108,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           ? const MainView()
                           : Column(
                               children: [
-                                if (selectedCategoryId == 3)
-                                  const BasicMecanic(),
-                                Expanded(
+                                selectedCategoryId == 3
+                                ? const BasicMecanic()
+                                : Expanded(
                                   child: ModuleList(
                                       selectedCategoryId: selectedCategoryId!),
                                 ),
