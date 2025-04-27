@@ -21,7 +21,7 @@ class AnswerOptions extends StatelessWidget {
         final bool isSelected = answer['id'] == selectedId;
 
         return Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10),
+          padding: const EdgeInsets.symmetric(vertical: 5),
           child: SizedBox(
             width: double.infinity,
             child: ElevatedButton(
@@ -29,7 +29,7 @@ class AnswerOptions extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 backgroundColor:
                     isSelected ? AppTheme.darkPurple : AppTheme.lightPurple,
-                padding: const EdgeInsets.all(12),
+                padding: const EdgeInsets.all(15),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
                 ),

@@ -13,7 +13,11 @@ class SupabaseService {
     if (user == null) return null;
 
     try {
-      final response = await supabase.from('users').select().eq('uuid', user.id).maybeSingle();
+      final response = await supabase
+          .from('users')
+          .select()
+          .eq('uuid', user.id)
+          .maybeSingle();
       return response;
     } catch (e) {
       throw Exception("Error al obtener usuario: $e");
@@ -28,9 +32,9 @@ class SupabaseService {
     return user;
   }
 
-
   // supabase -> INSERT INTO users (<user properties>)
-  Future<void> createUserProfile(String username, int? avatar, String? gender) async {
+  Future<void> createUserProfile(
+      String username, int? avatar, String? gender) async {
     final user = Supabase.instance.client.auth.currentUser;
     if (user == null) return;
 
@@ -40,19 +44,19 @@ class SupabaseService {
         .eq('uuid', user.id)
         .maybeSingle();
 
-    if (existing != null) throw Exception("El perfil ya existe");
-
     try {
-      await Supabase.instance.client.from('users').insert({
-        'username': username,
-        'email': user.email,
-        'strike': 0,
-        'gender': gender,
-        'total_points': 0,
-        'deleted_at': null,
-        'avatar': avatar,
-        'uuid': user.id
-      });
+      if (existing == null) {
+        await Supabase.instance.client.from('users').insert({
+          'username': username,
+          'email': user.email,
+          'strike': 0,
+          'gender': gender,
+          'total_points': 0,
+          'deleted_at': null,
+          'avatar': avatar,
+          'uuid': user.id
+        });
+      }
       box.write("isFirstTimeLogged", false);
     } catch (e) {
       throw Exception("error al crear usuario en la bd: $e");
@@ -95,7 +99,8 @@ class SupabaseService {
   Future<void> setUserAvatar(int avatarKey) async {
     await Supabase.instance.client // Save avatar in supabase
         .from('users')
-        .update({'avatar': avatarKey}).eq('uuid', Supabase.instance.client.auth.currentUser!.id);
+        .update({'avatar': avatarKey}).eq(
+            'uuid', Supabase.instance.client.auth.currentUser!.id);
   }
 
   Future<int?> getUserAvatar() async {

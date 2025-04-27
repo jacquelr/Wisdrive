@@ -81,7 +81,7 @@ class BasicMecanic extends StatelessWidget {
                         ),
                         const SizedBox(height: 8),
                         Align(
-                          alignment: Alignment.centerLeft,
+                          alignment: Alignment.center,
                           child: Text(
                             'Video',
                             style: GoogleFonts.play(
@@ -94,7 +94,7 @@ class BasicMecanic extends StatelessWidget {
                         const Icon(
                           Icons.ondemand_video_sharp,
                           size: 75,
-                          color: white,
+                          color: Colors.white,
                         ),
                       ],
                     ),

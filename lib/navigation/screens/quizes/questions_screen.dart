@@ -155,22 +155,27 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                     ),
                     const SizedBox(height: 10),
                     Container(
+                      // Question container
                       padding: const EdgeInsets.all(15),
                       decoration: BoxDecoration(
-                        gradient: AppTheme.getGradient(
+                        gradient: AppTheme.getWhiteGradient(
                             themeController.isDarkMode.value),
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      child: Text(
-                        question['question_content'],
-                        style: TextStyle(
-                            color: HelperFunctions.getTextThemeColor(),
-                            fontSize: 40),
-                        textAlign: TextAlign.center,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: Text(
+                          question['question_content'],
+                          style: TextStyle(
+                              color: HelperFunctions.getTextThemeColor(),
+                              fontSize: 20),
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ),
                     const SizedBox(height: 20),
-                    Expanded( // Map of four Answers
+                    Expanded(
+                      // Map of four Answers
                       child: AnswerOptions(
                         answers: questionAnswers,
                         selectedId: selectedAnswerId,
@@ -182,7 +187,8 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                     const SizedBox(height: 15),
                     SizedBox(
                       width: double.infinity,
-                      child: ElevatedButton( // Anser Button
+                      child: ElevatedButton(
+                        // Anser Button
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppTheme.darkPurple,
                           padding: const EdgeInsets.symmetric(vertical: 12),
@@ -193,8 +199,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                         onPressed: nextQuestion,
                         child: Text(S.of(context).answer,
                             style: GoogleFonts.play(
-                                fontSize: 20,
-                                color: Colors.white)),
+                                fontSize: 20, color: Colors.white)),
                       ),
                     ),
                   ],

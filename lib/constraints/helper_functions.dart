@@ -163,14 +163,14 @@ class HelperFunctions {
   static Color? getWhiteBgTextThemeColor() {
     final ThemeController themeController = Get.find();
     final textColor =
-        themeController.isDarkMode.value ? AppTheme.darkPurple : white;
+        themeController.isDarkMode.value ? AppTheme.darkPurple : Colors.white;
     return textColor;
   }
 
   static Color? getIconThemeColor() {
     final ThemeController themeController = Get.find();
     final iconColor = themeController.isDarkMode.value
-        ? AppTheme.lightBackground
+        ? Colors.white
         : AppTheme.lightSecondary;
     return iconColor;
   }
@@ -179,7 +179,7 @@ class HelperFunctions {
     final ThemeController themeController = Get.find();
     final containerColor = themeController.isDarkMode.value
         ? AppTheme.darkPurple
-        : AppTheme.lightSecondary;
+        : AppTheme.lightBackground;
     return containerColor;
   }
 
@@ -195,7 +195,7 @@ class HelperFunctions {
     final ThemeController themeController = Get.find();
     final containerColor = themeController.isDarkMode.value
         ? AppTheme.lightSecondary
-        : AppTheme.lightPrimary;
+        : AppTheme.lightBackground;
     return containerColor;
   }
 

@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -53,7 +54,6 @@ class ModuleList extends StatelessWidget {
               crossAxisCount: 2, // columns
               crossAxisSpacing: 10, // y gap
               mainAxisSpacing: 10, //x gap
-              
             ),
             itemCount: modules.length,
             itemBuilder: (context, index) {
@@ -96,25 +96,22 @@ class ModuleList extends StatelessWidget {
                               fontWeight: FontWeight.bold),
                         ),
                         const Icon(
-                          Icons.question_mark,
+                          Icons.rule,
                           size: 75,
                           color: Colors.white,
                         ),
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: SizedBox(
-                            height: 18,
-                            child: FittedBox(
-                              child: Text(
-                                module['module_name'] ?? S.of(context).unnamed,
-                                style: GoogleFonts.play(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                ),
+                        Expanded(
+                            child: AutoSizeText(
+                              module['module_name'] ?? S.of(context).unnamed,
+                              style: GoogleFonts.play(
+                                color: Colors.white,
+                                fontSize: 18,
                               ),
+                              textAlign: TextAlign.left,
+                              maxLines: 3,
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ),
-                        ),
                         const SizedBox(height: 8),
                         ClipRRect(
                           borderRadius: BorderRadius.circular(10),

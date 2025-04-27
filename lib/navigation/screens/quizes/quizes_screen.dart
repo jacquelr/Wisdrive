@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -80,10 +81,12 @@ class _QuizesScreenState extends State<QuizesScreen> {
                       color: HelperFunctions.getQuizBgContainerThemeColor(),
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    child: Row( // Map of Quizes inside of a Module
+                    child: Row(
+                      // Map of Quizes inside of a Module
                       children: [
                         CircleAvatar(
-                          backgroundColor: HelperFunctions.getQuizLevelContainerThemeColor(),
+                          backgroundColor:
+                              HelperFunctions.getQuizLevelContainerThemeColor(),
                           radius: 30,
                           child: Text(
                             '${S.of(context).level} ${index + 1}',
@@ -92,14 +95,18 @@ class _QuizesScreenState extends State<QuizesScreen> {
                           ),
                         ),
                         const SizedBox(width: 16),
-                        Text(
-                          quiz['name'],
-                          style: GoogleFonts.play(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
+                        Expanded(
+                            child: Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: AutoSizeText(
+                            quiz['name'],
+                            style: GoogleFonts.play(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
+                        )),
                       ],
                     ),
                   ),

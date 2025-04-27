@@ -31,6 +31,7 @@ class _MainViewState extends State<MainView> {
             style: GoogleFonts.play(
               color: HelperFunctions.getWhiteBgTextThemeColor(),
               fontSize: 30,
+              fontWeight: FontWeight.bold
             ),
           ),
           Text(
@@ -90,6 +91,7 @@ class _MainViewState extends State<MainView> {
               _controller.animateToPage(index);
             },
           ),
+          const SizedBox(height: 25),
           const PdfViewer(), // Traffic regulations viewer Widget
         ],
       ),

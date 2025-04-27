@@ -97,7 +97,7 @@ class _QuizCompletedState extends State<QuizCompleted> {
                     textAlign: TextAlign.center,
                   ),
                 ),
-                ElevatedButton(
+                ElevatedButton( // Continue Button
                   style: ElevatedButton.styleFrom(
                     backgroundColor: HelperFunctions.getContainerThemeColor(),
                     foregroundColor: HelperFunctions.getWhiteBgTextThemeColor(),
@@ -114,6 +114,7 @@ class _QuizCompletedState extends State<QuizCompleted> {
                     child: Text(
                       S.of(context).continue_learning,
                       style: GoogleFonts.play(
+                        color: Colors.white,
                         fontSize: 32,
                         fontWeight: FontWeight.bold,
                       ),

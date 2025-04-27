@@ -52,12 +52,22 @@ class AppTheme {
     end: Alignment.bottomCenter,
   );
 
+  static const LinearGradient whiteGradient = LinearGradient(
+    colors: [lightBackground, Colors.white],
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+  );
+
   static LinearGradient getGradient(bool isDarkMode) {
     return isDarkMode ? blackBgGradient : lightBgGradient;
   }
 
   static LinearGradient getInvertedGradient(bool isDarkMode) {
     return isDarkMode ? invertedBlackBgGradient : invertedLightBgGradient;
+  }
+
+  static LinearGradient getWhiteGradient(bool isDarkMode) {
+    return isDarkMode ? blackBgGradient : whiteGradient;
   }
 
   // 🌙 Tema oscuro

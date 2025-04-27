@@ -26,13 +26,13 @@ class _PdfViewerScreenState extends State<PdfViewerScreen> {
       backgroundColor: HelperFunctions.getBlackContainerThemeColor(),
       appBar: AppBar(
         backgroundColor: HelperFunctions.getBlackContainerThemeColor(),
+        iconTheme: const IconThemeData(color: Colors.white, size: 40),
         centerTitle: true,
         title: Text(
-          "Jalisco: ${S.of(context).traffic_regulations}",
+          S.of(context).traffic_regulations,
           style: GoogleFonts.poppins(
             color: HelperFunctions.getTextThemeColor(),
             fontSize: 20,
-            fontWeight: FontWeight.bold,
           ),
         ),
         actions: [

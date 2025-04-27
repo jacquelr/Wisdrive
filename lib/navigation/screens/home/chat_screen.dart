@@ -87,23 +87,34 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-            "Chatbot",
+        appBar: AppBar(
+          title: Text(
+            "Wisdrive Chatbot",
             style: GoogleFonts.play(color: HelperFunctions.getTextThemeColor()),
           ),
           centerTitle: true,
-          iconTheme: IconThemeData(color: HelperFunctions.getIconThemeColor(), size: 50),
-          backgroundColor: Colors.transparent,
+          iconTheme: IconThemeData(
+            color: HelperFunctions.getIconThemeColor(),
+            size: 40,
+          ),
+          backgroundColor: HelperFunctions.getBlackContainerThemeColor(),
           elevation: 0,
-      ),
-      body: Chat(
-        messages: _messages,
-        onSendPressed: _handleSendPressed,
-        showUserAvatars: true,
-        showUserNames: true,
-        user: _user,
-      ),
-    );
+        ),
+        body: Container(
+          decoration: const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.elliptical(50, 30),
+              topRight: Radius.elliptical(50, 30),
+            ),
+          ),
+          child: Chat(
+            messages: _messages,
+            onSendPressed: _handleSendPressed,
+            showUserAvatars: true,
+            showUserNames: true,
+            user: _user,
+          ),
+        ));
   }
 }
