@@ -13,6 +13,7 @@
     "email" : "Correo electronico",
     "password" : "Contraseña",
     "confirm_password" : "Confirmar contraseña",
+    "forgot_password": "Olvidaste tu contraseña",
     "or" : "ó",
     "sign_in_with" : "inicia sesión con",
     "create_account_with" : "crea una cuenta con",
@@ -55,6 +56,7 @@
     "change_password" : "Cambiar contraseña",
     "delete_account" : "Eliminar cuenta",
     "change_picture" : "Cambiar foto",
+    "are_you_sure": "Estás seguro",
     "edit_username" : "Nombre de usuario",
     "edit_gender" : "Genero",
     "current_password": "Contraseña actual",
@@ -86,5 +88,9 @@
     "updated_password": "Contraseña actualizada con exito",
     "updated_password_error": "Error al actualizar la contraseña",
     "created_account": "Cuenta creada con exito",
-    "check_email_to_activate_account": "Revisa tu correo para activar tu cuenta"
+    "check_email_to_activate_account": "Revisa tu correo para activar tu cuenta",
+    "enter_your_email": "Ingresa tu correo",
+    "reset_link_sent": "Enlace de reestablecimiento enviado",
+    "reset_link_sent_error": "Error al enviar enlace de reestablecimiento",
+    "send": "Enviar"
 }

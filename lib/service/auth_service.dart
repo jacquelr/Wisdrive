@@ -61,6 +61,11 @@ class AuthService {
     await _supabase.auth.signOut();
   }
 
+  //Send reset password link
+  Future<void> sendResetPassowrdLink(String email) async {
+    await _supabase.auth.resetPasswordForEmail(email);
+  }
+
   //Delete account
   Future<void> deleteUserDataAndSignOut(BuildContext context) async {
     final user = _supabase.auth.currentUser;
@@ -113,6 +118,9 @@ class AuthService {
     final user = session?.user;
     return user?.email;
   }
+
+  //Reset password
+  
 
   //Get current user
   User? get currentUsser => _supabase.auth.currentUser;

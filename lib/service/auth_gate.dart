@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:wisdrive/navigation/screens/app_start/change_password_screen.dart';
 import 'package:wisdrive/navigation/screens/home/home_screen.dart';
 import 'package:wisdrive/navigation/screens/app_start/login_screen.dart';
 import 'package:wisdrive/navigation/screens/app_start/onboarding_screen.dart';
@@ -26,6 +28,16 @@ class AuthGate extends StatelessWidget {
 
         //Check if there is a valid session currently
         final session = Supabase.instance.client.auth.currentSession;
+
+        // Verify if event is reset password
+        if (snapshot.hasData && snapshot.data != null) {
+          final event = snapshot.data!.event;
+
+          if (event == AuthChangeEvent.passwordRecovery) {
+            // Navigate to ChangePasswordScreen
+            Future.microtask(() => Get.to(() => const ChangePasswordScreen()));
+          }
+        }
 
         if (session != null) {
           return const HomeScreen();

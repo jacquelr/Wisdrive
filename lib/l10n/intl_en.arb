@@ -13,6 +13,7 @@
     "email" : "E-mail",
     "password" : "Password",
     "confirm_password" : "Confirm Password",
+    "forgot_password": "Forgot password",
     "or" : "or",
     "sign_in_with" : "sign in with",
     "create_account_with" : "create an account with",
@@ -54,6 +55,7 @@
     "pick_avatar": "Pick an avatar",
     "change_password" : "Change password",
     "delete_account" : "Delete Account",
+    "are_you_sure": "Are you sure",
     "change_picture" : "Change picture",
     "edit_username" : "Username",
     "edit_gender" : "Gender",
@@ -86,5 +88,9 @@
     "updated_password": "Password updated successfully",
     "updated_password_error": "Error updating password",
     "created_account": "Account created successfully",
-    "check_email_to_activate_account": "Check your email to activate the account"
+    "check_email_to_activate_account": "Check your email to activate the account",
+    "enter_your_email": "Enter your email",
+    "reset_link_sent": "Reset link sent",
+    "reset_link_sent_error": "Reset link sent error",
+    "send": "Send"
 }

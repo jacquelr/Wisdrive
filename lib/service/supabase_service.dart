@@ -96,6 +96,10 @@ class SupabaseService {
     }
   }
 
+  Future<void> deleteUserProfile(String uuid) async {
+
+  }
+
   Future<void> setUserAvatar(int avatarKey) async {
     await Supabase.instance.client // Save avatar in supabase
         .from('users')

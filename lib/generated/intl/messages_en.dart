@@ -28,6 +28,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "accesibility": MessageLookupByLibrary.simpleMessage("Accesibility"),
     "answer": MessageLookupByLibrary.simpleMessage("ANSWER"),
     "apply": MessageLookupByLibrary.simpleMessage("Apply"),
+    "are_you_sure": MessageLookupByLibrary.simpleMessage("Are you sure"),
     "basic_mechanics": MessageLookupByLibrary.simpleMessage("Basic Mechanics"),
     "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
     "change_password": MessageLookupByLibrary.simpleMessage("Change password"),
@@ -65,11 +66,15 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "edit_username": MessageLookupByLibrary.simpleMessage("Username"),
     "email": MessageLookupByLibrary.simpleMessage("E-mail"),
+    "enter_your_email": MessageLookupByLibrary.simpleMessage(
+      "Enter your email",
+    ),
     "female": MessageLookupByLibrary.simpleMessage("Female"),
     "fill_all_fields": MessageLookupByLibrary.simpleMessage("Fill all fields"),
     "finished_quiz": MessageLookupByLibrary.simpleMessage(
       "You have completed the quiz correctly",
     ),
+    "forgot_password": MessageLookupByLibrary.simpleMessage("Forgot password"),
     "get_ready": MessageLookupByLibrary.simpleMessage(
       "Get ready to be wise with wisdrive",
     ),
@@ -120,10 +125,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "question_": MessageLookupByLibrary.simpleMessage("Question"),
     "regulations": MessageLookupByLibrary.simpleMessage("Regulations"),
     "reminders": MessageLookupByLibrary.simpleMessage("Reminders"),
+    "reset_link_sent": MessageLookupByLibrary.simpleMessage("Reset link sent"),
+    "reset_link_sent_error": MessageLookupByLibrary.simpleMessage(
+      "Reset link sent error",
+    ),
     "road_culture": MessageLookupByLibrary.simpleMessage("Road Culture"),
     "same_password": MessageLookupByLibrary.simpleMessage(
       "New password cannot be the same as the current one",
     ),
+    "send": MessageLookupByLibrary.simpleMessage("Send"),
     "sign_in": MessageLookupByLibrary.simpleMessage("sign in"),
     "sign_in_with": MessageLookupByLibrary.simpleMessage("sign in with"),
     "sign_up": MessageLookupByLibrary.simpleMessage("sign up"),

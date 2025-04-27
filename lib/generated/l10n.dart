@@ -145,6 +145,16 @@ class S {
     );
   }
 
+  /// `Olvidaste tu contraseña`
+  String get forgot_password {
+    return Intl.message(
+      'Olvidaste tu contraseña',
+      name: 'forgot_password',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `ó`
   String get or {
     return Intl.message('ó', name: 'or', desc: '', args: []);
@@ -455,6 +465,16 @@ class S {
     );
   }
 
+  /// `Estás seguro`
+  String get are_you_sure {
+    return Intl.message(
+      'Estás seguro',
+      name: 'are_you_sure',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Nombre de usuario`
   String get edit_username {
     return Intl.message(
@@ -683,6 +703,41 @@ class S {
       desc: '',
       args: [],
     );
+  }
+
+  /// `Ingresa tu correo`
+  String get enter_your_email {
+    return Intl.message(
+      'Ingresa tu correo',
+      name: 'enter_your_email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enlace de reestablecimiento enviado`
+  String get reset_link_sent {
+    return Intl.message(
+      'Enlace de reestablecimiento enviado',
+      name: 'reset_link_sent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error al enviar enlace de reestablecimiento`
+  String get reset_link_sent_error {
+    return Intl.message(
+      'Error al enviar enlace de reestablecimiento',
+      name: 'reset_link_sent_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enviar`
+  String get send {
+    return Intl.message('Enviar', name: 'send', desc: '', args: []);
   }
 }
 
