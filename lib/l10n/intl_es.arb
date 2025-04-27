@@ -83,4 +83,6 @@
     "updated_password_error": "Error al actualizar la contraseña",
     "created_account": "Cuenta creada con exito",
     "check_email_to_activate_account": "Revisa tu correo para activar tu cuenta"
+    "achievements": "Logros"
+    "no_achievements_yet": "No logros obtenidos
 }

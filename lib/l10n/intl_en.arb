@@ -83,4 +83,6 @@
     "updated_password_error": "Error updating password",
     "created_account": "Account created successfully",
     "check_email_to_activate_account": "Check your email to activate the account"
+    "achievements": "Achievements"
+    "no_achievements_yet": "No achievements yet"
 }
