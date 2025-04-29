@@ -92,5 +92,8 @@
     "enter_your_email": "Ingresa tu correo",
     "reset_link_sent": "Enlace de reestablecimiento enviado",
     "reset_link_sent_error": "Error al enviar enlace de reestablecimiento",
-    "send": "Enviar"
+    "send": "Enviar",
+
+    "achievements": "Logros",
+    "no_achievements_yet": "No logros obtenidos
 }

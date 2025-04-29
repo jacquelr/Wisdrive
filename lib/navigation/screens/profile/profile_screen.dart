@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wisdrive/constraints/images_routes.dart';
@@ -24,6 +23,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   String username = '';
   int? avatarIndex;
   bool isLoading = true;
+  List<dynamic> achievements = []; // <--- Se agregan logros
 
   @override
   void initState() {
@@ -37,13 +37,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
     final response = await supabase
         .from('users')
-        .select('username, avatar')
+        .select('username, avatar, achievements') // <-- Traer logros también
         .eq('uuid', userId)
         .single();
 
     setState(() {
       username = response['username'] ?? 'Invitado';
       avatarIndex = response['avatar'];
+      achievements = response['achievements'] ?? []; // <--- Logros
       isLoading = false;
     });
   }
@@ -170,6 +171,74 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         thickness: 3,
                       ),
                     ),
+
+                    // ----------------
+                    // Sección de LOGROS
+                    // ----------------
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Logros",
+                            //S
+                            //.of(context)
+                            //.achievements, // Esto debes tenerlo en tu archivo S.dart
+                            style: GoogleFonts.play(
+                              fontSize: 28,
+                              fontWeight: FontWeight.bold,
+                              color: themeController.isDarkMode.value
+                                  ? Colors.white
+                                  : AppTheme.lightSecondary,
+                            ),
+                          ),
+                          const SizedBox(height: 20),
+                          achievements.isEmpty
+                              ? Text(
+                                  "No tienes logros aún", // Aquí puedes usar S.of(context).no_achievements_yet
+                                  //S.of(context).no_achievements_yet,
+                                  style: GoogleFonts.play(
+                                    fontSize: 16,
+                                    color: themeController.isDarkMode.value
+                                        ? Colors.white70
+                                        : Colors.black54,
+                                  ),
+                                )
+                              : ListView.builder(
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  itemCount: achievements.length,
+                                  itemBuilder: (context, index) {
+                                    return Card(
+                                      color: themeController.isDarkMode.value
+                                          ? AppTheme.lightBackground
+                                          : AppTheme.lightPurple
+                                              .withOpacity(0.3),
+                                      margin: const EdgeInsets.symmetric(
+                                          vertical: 8),
+                                      child: ListTile(
+                                        leading: const Icon(Icons.emoji_events,
+                                            color: Colors.amber),
+                                        title: Text(
+                                          achievements[index] ?? '',
+                                          style: GoogleFonts.play(
+                                            fontSize: 18,
+                                            color:
+                                                themeController.isDarkMode.value
+                                                    ? Colors.white
+                                                    : AppTheme.lightSecondary,
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ),
+                        ],
+                      ),
+                    ),
+
+                    const SizedBox(height: 30),
                   ],
                 ),
               ),

@@ -92,5 +92,8 @@
     "enter_your_email": "Enter your email",
     "reset_link_sent": "Reset link sent",
     "reset_link_sent_error": "Reset link sent error",
-    "send": "Send"
+    "send": "Send",
+    
+    "achievements": "Achievements",
+    "no_achievements_yet": "No achievements yet"
 }
