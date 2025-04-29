@@ -6,6 +6,7 @@ import 'package:wisdrive/constraints/app_theme.dart';
 import 'package:wisdrive/navigation/screens/home/chat_screen.dart';
 import 'package:wisdrive/navigation/screens/profile/edit_profile_screen.dart';
 import 'package:wisdrive/service/auth_service.dart';
+import 'package:wisdrive/service/supabase_service.dart';
 import 'package:wisdrive/widgets/home/home_appbar.dart';
 import 'package:wisdrive/widgets/home/basic_mecanic.dart';
 import 'package:wisdrive/widgets/home/main_view.dart';
@@ -25,22 +26,24 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final ThemeController themeController = Get.find();
   final authService = AuthService();
+  final supabaseService = SupabaseService();
   int? selectedCategoryId;
 
   String? getSelectedCategory() {
     switch (selectedCategoryId) {
       case 1:
-        return S.of(context).basic_mechanics;
+        return S.of(context).road_culture;
       case 2:
         return S.of(context).traffic_regulations;
       case 3:
-        return S.of(context).road_culture;
+        return S.of(context).basic_mechanics;
       default:
         return null;
     }
   }
 
-  void isFirstTimeLogged() {
+  void isFirstTimeLogged() async {
+    //final existentUser = await supabaseService.getUserProfileOrThrow();
     bool isFirstTimeLogged = authService.isFirstTimeLogged();
     if (isFirstTimeLogged) {
       Navigator.of(context).pushReplacement(MaterialPageRoute(
@@ -75,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
         drawer: const SidebarMenu(),
         body: Stack(
           children: [
-            // Fondo con gradiente según modo oscuro/claro
+            // Background gradient based on theme mode
             Container(
               decoration: themeController.isDarkMode.value
                   ? BoxDecoration(
@@ -84,10 +87,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     )
                   : const BoxDecoration(color: AppTheme.lightBackground),
             ),
-            // Contenedor blanco con bordes redondeados
+            // White container with rounded borders
             Positioned(
-              top:
-                  MediaQuery.of(context).size.height * 0.10, // Antes del AppBar
+              top: MediaQuery.of(context).size.height * 0.10, // Space below AppBar
               left: 0,
               right: 0,
               bottom: 0,
@@ -101,24 +103,21 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 child: Column(
                   children: [
-                    const SizedBox(
-                        height: 20), // Espacio antes de mostrar módulos
-                    Expanded(
+                    Expanded( // Switches between category content
                       child: selectedCategoryId == null
                           ? const MainView()
                           : Column(
                               children: [
                                 selectedCategoryId == 3
-                                ? const BasicMecanic()
+                                ? const BasicMecanic() // Basic mechanics content
                                 : Expanded(
-                                  child: ModuleList(
+                                  child: ModuleList( // Road culture or Traffic regulations modules
                                       selectedCategoryId: selectedCategoryId!),
                                 ),
                               ],
                             ),
                     ),
-                    const SizedBox(height: 20), // Espacio antes de los botones
-                    CategoryList(onCategorySelected: (id) {
+                    CategoryList(onCategorySelected: (id) { // MenuBar of categories
                       setState(() {
                         selectedCategoryId = id;
                       });
@@ -129,7 +128,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
-        floatingActionButton: Padding(
+        floatingActionButton: Padding( // Chatbot bubble on bottom-right side of screen
           padding: const EdgeInsets.only(bottom: 70.0),
           child: FloatingActionButton(
             onPressed: () {
@@ -138,7 +137,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ));
             },
             backgroundColor: AppTheme.darkPurple,
-            child: const Icon(Icons.chat, color: white),
+            child: const Icon(Icons.chat, color: Colors.white),
           ),
         ),
       ),

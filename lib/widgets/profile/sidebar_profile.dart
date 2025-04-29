@@ -123,7 +123,7 @@ class _SidebarProfileState extends State<SidebarProfile> {
                 ),
                 onTap: () {
                   Navigator.pop(context); // Pop Sidebar Profile
-                  HelperFunctions.showDeleteAccountDialog(context);
+                  HelperFunctions.showLogoutDialog(context);
                 },)
           ],
         ),

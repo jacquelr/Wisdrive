@@ -232,7 +232,7 @@ class HelperFunctions {
   static Color? getTextThemeColor() {
     final ThemeController themeController = Get.find();
     final textColor =
-        themeController.isDarkMode.value ? white : AppTheme.darkPurple;
+        themeController.isDarkMode.value ? Colors.white : AppTheme.darkPurple;
     return textColor;
   }
 

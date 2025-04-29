@@ -55,7 +55,7 @@ class _QuizesScreenState extends State<QuizesScreen> {
           centerTitle: true,
           iconTheme: IconThemeData(
             color: HelperFunctions.getIconThemeColor(),
-            size: 40,
+            size: 50,
           )),
       body: Padding(
         padding: const EdgeInsets.all(16),

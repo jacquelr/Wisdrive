@@ -55,73 +55,75 @@ class _QuizCompletedState extends State<QuizCompleted> {
                   repeat: false,
                 ),
               ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16.0),
-                  child: Text(
-                    '¡${S.of(context).congratulations}!',
-                    style: GoogleFonts.play(
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold,
-                      color: HelperFunctions.getTextThemeColor(),
-                    ),
-                  ),
-                ),
-                Container(
-                  width: circleSize,
-                  height: circleSize,
-                  decoration: BoxDecoration(
-                    color: HelperFunctions.getContainerThemeColor(),
-                    shape: BoxShape.circle,
-                  ),
-                  alignment: Alignment.center,
-                  child: Lottie.asset(
-                    LottieAnimations.checkMark,
-                    width: screenWidth,
-                    height: screenHeight,
-                    repeat: false,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 24.0, bottom: 32.0),
-                  child: Text(
-                    S.of(context).finished_quiz,
-                    style: GoogleFonts.play(
-                      fontSize: 24,
-                      fontWeight: FontWeight.normal,
-                      color: HelperFunctions.getTextThemeColor(),
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-                ElevatedButton( // Continue Button
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: HelperFunctions.getContainerThemeColor(),
-                    foregroundColor: HelperFunctions.getWhiteBgTextThemeColor(),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 40, vertical: 15),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                  ),
-                  onPressed: () {
-                    Get.back(result: 'quiz_completed');
-                  },
-                  child: FittedBox(
+            Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 16.0),
                     child: Text(
-                      S.of(context).continue_learning,
+                      '¡${S.of(context).congratulations}!',
                       style: GoogleFonts.play(
-                        color: Colors.white,
-                        fontSize: 32,
+                        fontSize: 40,
                         fontWeight: FontWeight.bold,
+                        color: HelperFunctions.getTextThemeColor(),
                       ),
                     ),
                   ),
-                ),
-              ],
+                  Container(
+                    width: circleSize,
+                    height: circleSize,
+                    decoration: BoxDecoration(
+                      color: HelperFunctions.getContainerThemeColor(),
+                      shape: BoxShape.circle,
+                    ),
+                    alignment: Alignment.center,
+                    child: Lottie.asset(
+                      LottieAnimations.checkMark,
+                      width: screenWidth,
+                      height: screenHeight,
+                      repeat: false,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 24.0, bottom: 32.0),
+                    child: Text(
+                      S.of(context).finished_quiz,
+                      style: GoogleFonts.play(
+                        fontSize: 24,
+                        fontWeight: FontWeight.normal,
+                        color: HelperFunctions.getTextThemeColor(),
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  ElevatedButton( // Continue Button
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: HelperFunctions.getContainerThemeColor(),
+                      foregroundColor: HelperFunctions.getWhiteBgTextThemeColor(),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 40, vertical: 15),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                    ),
+                    onPressed: () {
+                      Get.back(result: 'quiz_completed');
+                    },
+                    child: FittedBox(
+                      child: Text(
+                        S.of(context).continue_learning,
+                        style: GoogleFonts.play(
+                          color: Colors.white,
+                          fontSize: 32,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),

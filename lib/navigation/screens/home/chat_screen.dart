@@ -95,7 +95,7 @@ class _ChatScreenState extends State<ChatScreen> {
           centerTitle: true,
           iconTheme: IconThemeData(
             color: HelperFunctions.getIconThemeColor(),
-            size: 40,
+            size: 50,
           ),
           backgroundColor: HelperFunctions.getBlackContainerThemeColor(),
           elevation: 0,

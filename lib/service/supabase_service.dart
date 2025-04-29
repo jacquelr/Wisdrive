@@ -97,7 +97,16 @@ class SupabaseService {
   }
 
   Future<void> deleteUserProfile(String uuid) async {
-
+    try {
+      await supabase
+          .from('users')
+          .delete()
+          .eq('uuid', uuid)
+          .maybeSingle();
+          print("usuario eliminado en la tabla users");
+    } catch (e) {
+      throw Exception(e);
+    }
   }
 
   Future<void> setUserAvatar(int avatarKey) async {
