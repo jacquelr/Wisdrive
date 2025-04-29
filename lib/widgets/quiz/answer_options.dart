@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wisdrive/constraints/app_theme.dart';
-import 'package:wisdrive/constraints/helper_functions.dart';
 
 class AnswerOptions extends StatelessWidget {
   final List<Map<String, dynamic>> answers;
@@ -30,7 +29,7 @@ class AnswerOptions extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 backgroundColor:
                     isSelected ? AppTheme.darkPurple : AppTheme.lightPurple,
-                padding: const EdgeInsets.all(12),
+                padding: const EdgeInsets.all(15),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
                 ),
@@ -38,7 +37,7 @@ class AnswerOptions extends StatelessWidget {
               child: Text(
                 answer['content'],
                 style: GoogleFonts.play(
-                  color: HelperFunctions.getTextThemeColor(),
+                  color: Colors.white,
                   fontSize: 18,
                 ),
                 textAlign: TextAlign.center,

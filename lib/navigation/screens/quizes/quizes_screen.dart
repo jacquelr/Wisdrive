@@ -1,9 +1,10 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:wisdrive/constraints/helper_functions.dart';
 import 'package:wisdrive/controllers/theme_controller.dart';
-import 'package:wisdrive/constraints/app_theme.dart';
 import 'questions_screen.dart';
 import '../../../generated/l10n.dart';
 
@@ -41,18 +42,21 @@ class _QuizesScreenState extends State<QuizesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.darkPurple,
+      backgroundColor: HelperFunctions.getBlackContainerThemeColor(),
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        title: Text(
-          '${widget.moduleName} Quiz',
-          style: GoogleFonts.play(color: white),
-        ),
-        centerTitle: true,
-        iconTheme: themeController.isDarkMode.value
-            ? const IconThemeData(color: AppTheme.lightBackground, size: 40)
-            : const IconThemeData(color: AppTheme.lightSecondary, size: 40),
-      ),
+          backgroundColor: Colors.transparent,
+          title: FittedBox(
+            child: Text(
+              '${widget.moduleName} Quiz',
+              style:
+                  GoogleFonts.play(color: HelperFunctions.getTextThemeColor()),
+            ),
+          ),
+          centerTitle: true,
+          iconTheme: IconThemeData(
+            color: HelperFunctions.getIconThemeColor(),
+            size: 50,
+          )),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: ListView.builder(
@@ -64,9 +68,9 @@ class _QuizesScreenState extends State<QuizesScreen> {
                 GestureDetector(
                   onTap: () async {
                     final result = await Get.to(() => QuestionsScreen(
-                      quizId: quiz['id'],
-                      quizName: quiz['name'],
-                    ));
+                          quizId: quiz['id'],
+                          quizName: quiz['name'],
+                        ));
                     if (result != 'quiz_completed') {
                       fetchQuizzes();
                     }
@@ -74,13 +78,15 @@ class _QuizesScreenState extends State<QuizesScreen> {
                   child: Container(
                     padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
-                      color: AppTheme.mediumPurple,
+                      color: HelperFunctions.getQuizBgContainerThemeColor(),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Row(
+                      // Map of Quizes inside of a Module
                       children: [
                         CircleAvatar(
-                          backgroundColor: AppTheme.lightSecondary,
+                          backgroundColor:
+                              HelperFunctions.getQuizLevelContainerThemeColor(),
                           radius: 30,
                           child: Text(
                             '${S.of(context).level} ${index + 1}',
@@ -89,14 +95,18 @@ class _QuizesScreenState extends State<QuizesScreen> {
                           ),
                         ),
                         const SizedBox(width: 16),
-                        Text(
-                          quiz['name'],
-                          style: GoogleFonts.play(
-                            color: white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
+                        Expanded(
+                            child: Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: AutoSizeText(
+                            quiz['name'],
+                            style: GoogleFonts.play(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
+                        )),
                       ],
                     ),
                   ),

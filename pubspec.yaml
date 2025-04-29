@@ -37,6 +37,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
   google_fonts: ^6.2.1
+  auto_size_text: ^3.0.0
   youtube_player_flutter: ^9.1.1
   syncfusion_flutter_pdfviewer: ^28.2.7
   get: ^4.7.2
@@ -82,37 +83,37 @@ flutter:
   uses-material-design: true
   assets:
     - .env 
-    - assets\images\quiz-logo.png
-    - assets\images\logo.png
-    - assets\images\W.png
-    - assets\images\wisdrive.png
-    - assets\images\light-logo.png
-    - assets\images\light-W.png
-    - assets\images\light-wisdrive.png
-    - assets\images\google-logo.png
-    - assets\images\facebook-logo.png
-    - assets\images\onboarding-1.png
-    - assets\images\onboarding-2.png
-    - assets\images\onboarding-3.png
-    - assets\images\pick_image.png
-    - assets\images\wisdrive_slogan.png
-    - assets\images\wisdrive_purpose.png
-    - assets\images\wisdrive_bugs.png
-    - assets\animation\check_mark.json
-    - assets\animation\confeti.json
-    - assets\animation\trofee.json
-    - assets\assets\sounds\correct.mp3
-    - assets\assets\sounds\incorrect.mp3
-    - assets\assets\sounds\tada_trumpet.mp3
-    - assets\avatars\avatar_0.jpg
-    - assets\avatars\avatar_1.jpg
-    - assets\avatars\avatar_2.jpg
-    - assets\avatars\avatar_3.jpg
-    - assets\avatars\avatar_4.jpg
-    - assets\avatars\avatar_5.jpg
-    - assets\avatars\avatar_6.jpg
-    - assets\avatars\avatar_7.jpg
-    - assets\avatars\avatar_8.jpg
+    - assets/images/quiz-logo.png
+    - assets/images/logo.png
+    - assets/images/W.png
+    - assets/images/wisdrive.png
+    - assets/images/light-logo.png
+    - assets/images/light-W.png
+    - assets/images/light-wisdrive.png
+    - assets/images/google-logo.png
+    - assets/images/facebook-logo.png
+    - assets/images/onboarding-1.png
+    - assets/images/onboarding-2.png
+    - assets/images/onboarding-3.png
+    - assets/images/pick_image.png
+    - assets/images/wisdrive_slogan.png
+    - assets/images/wisdrive_purpose.png
+    - assets/images/wisdrive_bugs.png
+    - assets/animation/check_mark.json
+    - assets/animation/confeti.json
+    - assets/animation/trofee.json
+    - assets/assets/sounds/correct.mp3
+    - assets/assets/sounds/incorrect.mp3
+    - assets/assets/sounds/tada_trumpet.mp3
+    - assets/avatars/avatar_0.jpg
+    - assets/avatars/avatar_1.jpg
+    - assets/avatars/avatar_2.jpg
+    - assets/avatars/avatar_3.jpg
+    - assets/avatars/avatar_4.jpg
+    - assets/avatars/avatar_5.jpg
+    - assets/avatars/avatar_6.jpg
+    - assets/avatars/avatar_7.jpg
+    - assets/avatars/avatar_8.jpg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
   # For details regarding adding assets from package dependencies, see

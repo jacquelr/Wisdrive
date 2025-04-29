@@ -64,8 +64,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
         centerTitle: true,
         iconTheme: themeController.isDarkMode.value
-            ? const IconThemeData(color: AppTheme.darkPurple, size: 40)
-            : const IconThemeData(color: AppTheme.lightBackground, size: 40),
+            ? const IconThemeData(color: AppTheme.darkPurple, size: 50)
+            : const IconThemeData(color: AppTheme.lightBackground, size: 50),
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);

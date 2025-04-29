@@ -5,6 +5,7 @@ import 'package:wisdrive/controllers/theme_controller.dart';
 import 'package:wisdrive/constraints/app_theme.dart';
 import 'package:wisdrive/service/auth_gate.dart';
 import 'package:wisdrive/service/auth_service.dart';
+import 'package:wisdrive/widgets/general/response_snackbar.dart';
 import '../generated/l10n.dart';
 
 class HelperFunctions {
@@ -45,15 +46,15 @@ class HelperFunctions {
         });
   }
 
-  static void showLogoutDialog(BuildContext context) {
+  static void showLogoutDialog(BuildContext parentContext) {
     final authservice = AuthService();
     final ThemeController themeController = Get.find();
     showDialog(
-      context: context,
+      context: parentContext,
       builder: (dialogContext) => AlertDialog(
-        backgroundColor: AppTheme.darkPurple,
+        backgroundColor: getBlackContainerThemeColor(),
         title: Text(
-          '¿Estás seguro?',
+          '${S.of(parentContext).are_you_sure}?',
           textAlign: TextAlign.center,
           style: GoogleFonts.play(
             color: themeController.isDarkMode.value
@@ -68,9 +69,9 @@ class HelperFunctions {
             onPressed: () async {
               Navigator.pop(dialogContext); // Pop dialog
               await authservice.signOut(); // Exit the session
-              if (context.mounted) {
+              if (parentContext.mounted) {
                 //Go to AuthGate to check if session is still active
-                Navigator.of(context).pushAndRemoveUntil(
+                Navigator.of(parentContext).pushAndRemoveUntil(
                   MaterialPageRoute(builder: (_) => const AuthGate()),
                   (route) => false,
                 );
@@ -104,9 +105,9 @@ class HelperFunctions {
     showDialog(
       context: parentContext,
       builder: (dialogContext) => AlertDialog(
-        backgroundColor: AppTheme.darkPurple,
+        backgroundColor: getBlackContainerThemeColor(),
         title: Text(
-          '¿Estás seguro?',
+          '${S.of(parentContext).are_you_sure}?',
           textAlign: TextAlign.center,
           style: GoogleFonts.play(
             color: themeController.isDarkMode.value
@@ -144,6 +145,81 @@ class HelperFunctions {
     );
   }
 
+  static void resetPassword(BuildContext context) async {
+    final ThemeController themeController = Get.find();
+    final AuthService authservice = AuthService();
+    final TextEditingController emailResetController = TextEditingController();
+
+    await showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          backgroundColor: getBlackContainerThemeColor(),
+          title: Text(
+            S.of(context).forgot_password,
+            textAlign: TextAlign.center,
+            style: GoogleFonts.play(
+              color: themeController.isDarkMode.value
+                  ? Colors.white
+                  : AppTheme.lightSecondary,
+              fontWeight: FontWeight.bold,
+              fontSize: 24,
+            ),
+          ),
+          content: TextField(
+            controller: emailResetController,
+            decoration: InputDecoration(
+              hintText: S.of(context).enter_your_email,
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text(
+                S.of(context).cancel,
+                style: GoogleFonts.play(fontSize: 18),
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                final email = emailResetController.text.trim();
+                if (email.isNotEmpty) {
+                  try {
+                    authservice.sendResetPassowrdLink(email);
+                    Navigator.pop(context); // Pop Dialog
+                    Navigator.pop(context); // Pop SignIn Modal
+                    ResponseSnackbar.show(
+                      context,
+                      false,
+                      S.of(context).reset_link_sent,
+                    );
+                  } catch (e) {
+                    Navigator.pop(context);
+                    ResponseSnackbar.show(
+                      context,
+                      true,
+                      "${S.of(context).reset_link_sent_error}: $e",
+                    );
+                  }
+                } else {
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                  ResponseSnackbar.show(context, true, S.of(context).fill_all_fields);
+                }
+              },
+              child: Text(
+                S.of(context).send,
+                style: GoogleFonts.play(
+                  color: getQuizLevelContainerThemeColor(),
+                  fontSize: 18),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   static double screenHeight() {
     return MediaQuery.of(Get.context!).size.height;
   }
@@ -156,23 +232,31 @@ class HelperFunctions {
   static Color? getTextThemeColor() {
     final ThemeController themeController = Get.find();
     final textColor =
-        themeController.isDarkMode.value ? white : AppTheme.darkPurple;
+        themeController.isDarkMode.value ? Colors.white : AppTheme.darkPurple;
     return textColor;
   }
 
   static Color? getWhiteBgTextThemeColor() {
     final ThemeController themeController = Get.find();
     final textColor =
-        themeController.isDarkMode.value ? AppTheme.darkPurple : white;
+        themeController.isDarkMode.value ? AppTheme.darkPurple : Colors.white;
     return textColor;
   }
 
   static Color? getIconThemeColor() {
     final ThemeController themeController = Get.find();
     final iconColor = themeController.isDarkMode.value
-        ? AppTheme.lightBackground
+        ? Colors.white
         : AppTheme.lightSecondary;
     return iconColor;
+  }
+
+  static Color? getBlackContainerThemeColor() {
+    final ThemeController themeController = Get.find();
+    final containerColor = themeController.isDarkMode.value
+        ? AppTheme.darkPurple
+        : AppTheme.lightBackground;
+    return containerColor;
   }
 
   static Color? getContainerThemeColor() {
@@ -180,6 +264,30 @@ class HelperFunctions {
     final containerColor = themeController.isDarkMode.value
         ? AppTheme.lightBackground
         : AppTheme.lightPrimary;
+    return containerColor;
+  }
+
+  static Color? getQuizCompletedContainerThemeColor() {
+    final ThemeController themeController = Get.find();
+    final containerColor = themeController.isDarkMode.value
+        ? AppTheme.lightSecondary
+        : AppTheme.lightBackground;
+    return containerColor;
+  }
+
+  static Color? getQuizBgContainerThemeColor() {
+    final ThemeController themeController = Get.find();
+    final containerColor = themeController.isDarkMode.value
+        ? AppTheme.mediumPurple
+        : AppTheme.lightSecondary;
+    return containerColor;
+  }
+
+  static Color? getQuizLevelContainerThemeColor() {
+    final ThemeController themeController = Get.find();
+    final containerColor = themeController.isDarkMode.value
+        ? AppTheme.lightSecondary
+        : AppTheme.lightPurple;
     return containerColor;
   }
 

@@ -13,6 +13,7 @@
     "email" : "E-mail",
     "password" : "Password",
     "confirm_password" : "Confirm Password",
+    "forgot_password": "Forgot password",
     "or" : "or",
     "sign_in_with" : "sign in with",
     "create_account_with" : "create an account with",
@@ -44,12 +45,17 @@
 
     "unnamed": "Unnamed",
 
+    "welcome": "Welcome to Wisdrive",
+    "get_ready": "Get ready to be wise with wisdrive",
+    "take_a_look": "Take a look at the Jalisco traffic regulations",
+
     "profile" : "Profile",
     "edit_profile" : "Edit profile",
     "edit_profile_success": "Profile updated successfully",
     "pick_avatar": "Pick an avatar",
     "change_password" : "Change password",
     "delete_account" : "Delete Account",
+    "are_you_sure": "Are you sure",
     "change_picture" : "Change picture",
     "edit_username" : "Username",
     "edit_gender" : "Gender",
@@ -82,7 +88,12 @@
     "updated_password": "Password updated successfully",
     "updated_password_error": "Error updating password",
     "created_account": "Account created successfully",
-    "check_email_to_activate_account": "Check your email to activate the account"
-    "achievements": "Achievements"
+    "check_email_to_activate_account": "Check your email to activate the account",
+    "enter_your_email": "Enter your email",
+    "reset_link_sent": "Reset link sent",
+    "reset_link_sent_error": "Reset link sent error",
+    "send": "Send",
+    
+    "achievements": "Achievements",
     "no_achievements_yet": "No achievements yet"
 }

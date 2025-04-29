@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:wisdrive/generated/l10n.dart';
+//import 'package:wisdrive/service/supabase_service.dart';
 import 'package:wisdrive/widgets/general/response_snackbar.dart';
 import 'package:get/get.dart';
 
@@ -61,20 +62,24 @@ class AuthService {
     await _supabase.auth.signOut();
   }
 
+  //Send reset password link
+  Future<void> sendResetPassowrdLink(String email) async {
+    await _supabase.auth.resetPasswordForEmail(email);
+  }
+
   //Delete account
   Future<void> deleteUserDataAndSignOut(BuildContext context) async {
     final user = _supabase.auth.currentUser;
+    // final supabaseService = SupabaseService();
     if (user != null) {
       try {
-        await _supabase.auth.admin
-            .deleteUser(user.id); // Delete user from OAuth
-        //await _supabase.from('users').delete().eq('id', user.id); // Delete user data from Supabase table users
+        //supabaseService.deleteUserProfile(user.id); // Delete user from bd table users where uuid eq user.id
+        //await _supabase.auth.admin.deleteUser(user.id); // Delete user from OAuth
         await _supabase.auth.signOut(); // Sign Out from account
 
         ResponseSnackbar.show(context, false, S.of(context).delete_account);
       } catch (e) {
-        ResponseSnackbar.show(
-            context, true, '${S.of(Get.context!).deleted_account_error}: $e');
+        ResponseSnackbar.show(context, true, '${S.of(Get.context!).deleted_account_error}: $e');
         rethrow;
       }
     }
@@ -113,6 +118,9 @@ class AuthService {
     final user = session?.user;
     return user?.email;
   }
+
+  //Reset password
+  
 
   //Get current user
   User? get currentUsser => _supabase.auth.currentUser;

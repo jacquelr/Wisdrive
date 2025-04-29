@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:get/get.dart';
+import 'package:wisdrive/constraints/app_theme.dart';
 import 'package:wisdrive/controllers/theme_controller.dart';
 import 'package:wisdrive/constraints/app_theme.dart';
 import 'package:wisdrive/generated/l10n.dart';
@@ -80,6 +81,22 @@ class BasicMecanic extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 8),
+                        Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            'Video',
+                            style: GoogleFonts.play(
+                              color: Colors.white,
+                              fontSize: 24,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        const Icon(
+                          Icons.ondemand_video_sharp,
+                          size: 75,
+                          color: Colors.white,
+                        ),
                       ],
                     ),
                   ),

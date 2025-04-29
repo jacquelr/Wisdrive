@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:wisdrive/constraints/helper_functions.dart';
 import 'package:wisdrive/controllers/theme_controller.dart';
 import 'package:wisdrive/constraints/app_theme.dart';
 import 'package:wisdrive/service/auth_service.dart';
@@ -23,8 +24,8 @@ class _ModalSigninSheetState extends State<ModalSigninSheet> {
   final TextEditingController passwordController = TextEditingController();
 
   void signIn() async {
-    final email = emailController.text;
-    final password = passwordController.text;
+    final email = emailController.text.trim();
+    final password = passwordController.text.trim();
     try {
       await _authservice.signInWithEmailAndPassword(email, password);
     } catch (e) {
@@ -61,7 +62,6 @@ class _ModalSigninSheetState extends State<ModalSigninSheet> {
             style: GoogleFonts.play(
                 color: Colors.white, fontSize: 32, fontWeight: FontWeight.bold),
           ),
-          const SizedBox(height: 50),
           TextField(
             controller: emailController,
             decoration: InputDecoration(
@@ -90,6 +90,19 @@ class _ModalSigninSheetState extends State<ModalSigninSheet> {
               ),
             ),
             style: const TextStyle(color: Colors.white),
+          ),
+          const SizedBox(height: 10),
+          TextButton(
+            onPressed: () {
+              HelperFunctions.resetPassword(context);
+            },
+            child: Text(
+              '${S.of(context).forgot_password}?',
+              style: GoogleFonts.play(
+                color: HelperFunctions.getQuizCompletedContainerThemeColor(),
+                fontSize: 16,
+              ),
+            ),
           ),
           const SizedBox(height: 40),
           SizedBox(

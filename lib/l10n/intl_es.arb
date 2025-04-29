@@ -13,6 +13,7 @@
     "email" : "Correo electronico",
     "password" : "Contraseña",
     "confirm_password" : "Confirmar contraseña",
+    "forgot_password": "Olvidaste tu contraseña",
     "or" : "ó",
     "sign_in_with" : "inicia sesión con",
     "create_account_with" : "crea una cuenta con",
@@ -44,6 +45,10 @@
 
     "unnamed": "Sin nombre",
 
+    "welcome": "Bienvenido a Wisdrive",
+    "get_ready": "Preparate para ser más sabio con wisdrive",
+    "take_a_look": "Dale un vistazo al reglamento de transito de Jalisco",
+
     "profile" : "Perfil",
     "edit_profile" : "Editar perfil",
     "edit_profile_success": "Perfil actualizado correctamente",
@@ -51,6 +56,7 @@
     "change_password" : "Cambiar contraseña",
     "delete_account" : "Eliminar cuenta",
     "change_picture" : "Cambiar foto",
+    "are_you_sure": "Estás seguro",
     "edit_username" : "Nombre de usuario",
     "edit_gender" : "Genero",
     "current_password": "Contraseña actual",
@@ -82,7 +88,12 @@
     "updated_password": "Contraseña actualizada con exito",
     "updated_password_error": "Error al actualizar la contraseña",
     "created_account": "Cuenta creada con exito",
-    "check_email_to_activate_account": "Revisa tu correo para activar tu cuenta"
-    "achievements": "Logros"
+    "check_email_to_activate_account": "Revisa tu correo para activar tu cuenta",
+    "enter_your_email": "Ingresa tu correo",
+    "reset_link_sent": "Enlace de reestablecimiento enviado",
+    "reset_link_sent_error": "Error al enviar enlace de reestablecimiento",
+    "send": "Enviar",
+
+    "achievements": "Logros",
     "no_achievements_yet": "No logros obtenidos
 }

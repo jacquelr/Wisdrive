@@ -6,7 +6,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:wisdrive/constraints/helper_functions.dart';
 import 'dart:async';
 import 'package:wisdrive/constraints/images_routes.dart';
-import 'package:wisdrive/constraints/app_theme.dart';
 import 'package:wisdrive/generated/l10n.dart';
 
 class QuizCompleted extends StatefulWidget {
@@ -43,7 +42,7 @@ class _QuizCompletedState extends State<QuizCompleted> {
     double circleSize = screenWidth * 0.8;
 
     return Scaffold(
-      backgroundColor: AppTheme.lightSecondary,
+      backgroundColor: HelperFunctions.getQuizCompletedContainerThemeColor(),
       body: SafeArea(
         child: Stack(
           alignment: Alignment.center,
@@ -56,70 +55,75 @@ class _QuizCompletedState extends State<QuizCompleted> {
                   repeat: false,
                 ),
               ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16.0),
-                  child: Text(
-                    '¡${S.of(context).congratulations}!',
-                    style: GoogleFonts.play(
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold,
-                      color: HelperFunctions.getTextThemeColor(),
+            Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 16.0),
+                    child: Text(
+                      '¡${S.of(context).congratulations}!',
+                      style: GoogleFonts.play(
+                        fontSize: 40,
+                        fontWeight: FontWeight.bold,
+                        color: HelperFunctions.getTextThemeColor(),
+                      ),
                     ),
                   ),
-                ),
-                Container(
-                  width: circleSize,
-                  height: circleSize,
-                  decoration: BoxDecoration(
-                    color: HelperFunctions.getContainerThemeColor(),
-                    shape: BoxShape.circle,
-                  ),
-                  alignment: Alignment.center,
-                  child: Lottie.asset(
-                    LottieAnimations.checkMark,
-                    width: screenWidth,
-                    height: screenHeight,
-                    repeat: false,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 24.0, bottom: 32.0),
-                  child: Text(
-                    S.of(context).finished_quiz,
-                    style: GoogleFonts.play(
-                      fontSize: 24,
-                      fontWeight: FontWeight.normal,
-                      color: HelperFunctions.getTextThemeColor(),
+                  Container(
+                    width: circleSize,
+                    height: circleSize,
+                    decoration: BoxDecoration(
+                      color: HelperFunctions.getContainerThemeColor(),
+                      shape: BoxShape.circle,
                     ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: HelperFunctions.getContainerThemeColor(),
-                    foregroundColor: HelperFunctions.getWhiteBgTextThemeColor(),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 40, vertical: 15),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
+                    alignment: Alignment.center,
+                    child: Lottie.asset(
+                      LottieAnimations.checkMark,
+                      width: screenWidth,
+                      height: screenHeight,
+                      repeat: false,
                     ),
                   ),
-                  onPressed: () {
-                    Get.back(result: 'quiz_completed');
-                  },
-                  child: Text(
-                    S.of(context).continue_learning,
-                    style: GoogleFonts.play(
-                      fontSize: 32,
-                      fontWeight: FontWeight.bold,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 24.0, bottom: 32.0),
+                    child: Text(
+                      S.of(context).finished_quiz,
+                      style: GoogleFonts.play(
+                        fontSize: 24,
+                        fontWeight: FontWeight.normal,
+                        color: HelperFunctions.getTextThemeColor(),
+                      ),
+                      textAlign: TextAlign.center,
                     ),
                   ),
-                ),
-              ],
+                  ElevatedButton( // Continue Button
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: HelperFunctions.getContainerThemeColor(),
+                      foregroundColor: HelperFunctions.getWhiteBgTextThemeColor(),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 40, vertical: 15),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                    ),
+                    onPressed: () {
+                      Get.back(result: 'quiz_completed');
+                    },
+                    child: FittedBox(
+                      child: Text(
+                        S.of(context).continue_learning,
+                        style: GoogleFonts.play(
+                          color: Colors.white,
+                          fontSize: 32,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),

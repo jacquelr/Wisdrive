@@ -1,5 +1,7 @@
 // video_player_screen.dart
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:wisdrive/constraints/helper_functions.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class VideoMecanic extends StatefulWidget {
@@ -36,7 +38,20 @@ class _VideoMecanicState extends State<VideoMecanic> {
       player: YoutubePlayer(controller: _controller),
       builder: (context, player) {
         return Scaffold(
-          appBar: AppBar(title: const Text("Video")),
+          backgroundColor: HelperFunctions.getBlackContainerThemeColor(),
+          appBar: AppBar(
+            centerTitle: true,
+            backgroundColor: Colors.transparent,
+            title: Text(
+              "Video",
+              style: GoogleFonts.play(
+                  color: HelperFunctions.getTextThemeColor(), fontSize: 26),
+            ),
+            iconTheme: IconThemeData(
+              color: HelperFunctions.getIconThemeColor(),
+              size: 50,
+            ),
+          ),
           body: Center(child: player),
         );
       },

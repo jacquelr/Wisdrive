@@ -28,6 +28,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "accesibility": MessageLookupByLibrary.simpleMessage("Accesibilidad"),
     "answer": MessageLookupByLibrary.simpleMessage("CONTESTAR"),
     "apply": MessageLookupByLibrary.simpleMessage("Aplicar"),
+    "are_you_sure": MessageLookupByLibrary.simpleMessage("Estás seguro"),
     "basic_mechanics": MessageLookupByLibrary.simpleMessage("Mecánica básica"),
     "cancel": MessageLookupByLibrary.simpleMessage("Cancelar"),
     "change_password": MessageLookupByLibrary.simpleMessage(
@@ -70,12 +71,21 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "edit_username": MessageLookupByLibrary.simpleMessage("Nombre de usuario"),
     "email": MessageLookupByLibrary.simpleMessage("Correo electronico"),
+    "enter_your_email": MessageLookupByLibrary.simpleMessage(
+      "Ingresa tu correo",
+    ),
     "female": MessageLookupByLibrary.simpleMessage("Mujer"),
     "fill_all_fields": MessageLookupByLibrary.simpleMessage(
       "Completa todos los campos",
     ),
     "finished_quiz": MessageLookupByLibrary.simpleMessage(
       "Has completado el quiz correctamente",
+    ),
+    "forgot_password": MessageLookupByLibrary.simpleMessage(
+      "Olvidaste tu contraseña",
+    ),
+    "get_ready": MessageLookupByLibrary.simpleMessage(
+      "Preparate para ser más sabio con wisdrive",
     ),
     "help": MessageLookupByLibrary.simpleMessage("Centro de ayuda"),
     "home": MessageLookupByLibrary.simpleMessage("Inicio"),
@@ -126,10 +136,17 @@ class MessageLookup extends MessageLookupByLibrary {
     "question_": MessageLookupByLibrary.simpleMessage("Pregunta"),
     "regulations": MessageLookupByLibrary.simpleMessage("Reglamento"),
     "reminders": MessageLookupByLibrary.simpleMessage("Recordatorios"),
+    "reset_link_sent": MessageLookupByLibrary.simpleMessage(
+      "Enlace de reestablecimiento enviado",
+    ),
+    "reset_link_sent_error": MessageLookupByLibrary.simpleMessage(
+      "Error al enviar enlace de reestablecimiento",
+    ),
     "road_culture": MessageLookupByLibrary.simpleMessage("Cultura vial"),
     "same_password": MessageLookupByLibrary.simpleMessage(
       "La nueva contraseña no puede ser igual a la acutal",
     ),
+    "send": MessageLookupByLibrary.simpleMessage("Enviar"),
     "sign_in": MessageLookupByLibrary.simpleMessage("iniciar sesión"),
     "sign_in_with": MessageLookupByLibrary.simpleMessage("inicia sesión con"),
     "sign_up": MessageLookupByLibrary.simpleMessage("registrarse"),
@@ -141,6 +158,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "signup_error": MessageLookupByLibrary.simpleMessage(
       "Error al registrarse",
+    ),
+    "take_a_look": MessageLookupByLibrary.simpleMessage(
+      "Dale un vistazo al reglamento de transito de Jalisco",
     ),
     "theme": MessageLookupByLibrary.simpleMessage("Tema"),
     "traffic_regulations": MessageLookupByLibrary.simpleMessage(
@@ -157,5 +177,6 @@ class MessageLookup extends MessageLookupByLibrary {
       "Error al actualizar la contraseña",
     ),
     "user_profile": MessageLookupByLibrary.simpleMessage("Perfil de usuario"),
+    "welcome": MessageLookupByLibrary.simpleMessage("Bienvenido a Wisdrive"),
   };
 }

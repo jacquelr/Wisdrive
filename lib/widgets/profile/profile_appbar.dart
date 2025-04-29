@@ -31,8 +31,8 @@ class ProfileAppbar extends StatelessWidget implements PreferredSizeWidget {
         icon: const Icon(Icons.arrow_back_sharp),
       ),
       iconTheme: themeController.isDarkMode.value
-          ? const IconThemeData(color: AppTheme.lightBackground, size: 40)
-          : const IconThemeData(color: AppTheme.darkPurple, size: 40),
+          ? const IconThemeData(color: AppTheme.lightBackground, size: 50)
+          : const IconThemeData(color: AppTheme.darkPurple, size: 50),
       centerTitle: true,
       backgroundColor: Colors.transparent,
     );

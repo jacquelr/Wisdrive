@@ -145,6 +145,16 @@ class S {
     );
   }
 
+  /// `Olvidaste tu contraseña`
+  String get forgot_password {
+    return Intl.message(
+      'Olvidaste tu contraseña',
+      name: 'forgot_password',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `ó`
   String get or {
     return Intl.message('ó', name: 'or', desc: '', args: []);
@@ -360,6 +370,36 @@ class S {
     return Intl.message('Sin nombre', name: 'unnamed', desc: '', args: []);
   }
 
+  /// `Bienvenido a Wisdrive`
+  String get welcome {
+    return Intl.message(
+      'Bienvenido a Wisdrive',
+      name: 'welcome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Preparate para ser más sabio con wisdrive`
+  String get get_ready {
+    return Intl.message(
+      'Preparate para ser más sabio con wisdrive',
+      name: 'get_ready',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dale un vistazo al reglamento de transito de Jalisco`
+  String get take_a_look {
+    return Intl.message(
+      'Dale un vistazo al reglamento de transito de Jalisco',
+      name: 'take_a_look',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Perfil`
   String get profile {
     return Intl.message('Perfil', name: 'profile', desc: '', args: []);
@@ -420,6 +460,16 @@ class S {
     return Intl.message(
       'Cambiar foto',
       name: 'change_picture',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Estás seguro`
+  String get are_you_sure {
+    return Intl.message(
+      'Estás seguro',
+      name: 'are_you_sure',
       desc: '',
       args: [],
     );
@@ -653,6 +703,41 @@ class S {
       desc: '',
       args: [],
     );
+  }
+
+  /// `Ingresa tu correo`
+  String get enter_your_email {
+    return Intl.message(
+      'Ingresa tu correo',
+      name: 'enter_your_email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enlace de reestablecimiento enviado`
+  String get reset_link_sent {
+    return Intl.message(
+      'Enlace de reestablecimiento enviado',
+      name: 'reset_link_sent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error al enviar enlace de reestablecimiento`
+  String get reset_link_sent_error {
+    return Intl.message(
+      'Error al enviar enlace de reestablecimiento',
+      name: 'reset_link_sent_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enviar`
+  String get send {
+    return Intl.message('Enviar', name: 'send', desc: '', args: []);
   }
 }
 
