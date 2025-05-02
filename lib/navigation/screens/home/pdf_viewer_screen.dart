@@ -26,7 +26,7 @@ class _PdfViewerScreenState extends State<PdfViewerScreen> {
       backgroundColor: HelperFunctions.getBlackContainerThemeColor(),
       appBar: AppBar(
         backgroundColor: HelperFunctions.getBlackContainerThemeColor(),
-        iconTheme: const IconThemeData(color: Colors.white, size: 50),
+        iconTheme: const IconThemeData(color: Colors.white, size: 40),
         centerTitle: true,
         title: Text(
           S.of(context).traffic_regulations,

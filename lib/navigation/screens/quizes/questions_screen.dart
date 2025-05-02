@@ -110,7 +110,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
         centerTitle: true,
         backgroundColor: Colors.transparent,
         iconTheme:
-            IconThemeData(color: HelperFunctions.getTextThemeColor(), size: 50),
+            IconThemeData(color: HelperFunctions.getTextThemeColor(), size: 40),
       ),
       drawer: const SidebarMenu(),
       body: Stack(
