@@ -29,6 +29,7 @@
     "notifications" : "Notificaciones",
     "reminders" : "Recordatorios",
     "accesibility" : "Accesibilidad",
+    "contact_us" : "Contactanos",
     "help" : "Centro de ayuda",
     "privacy_politics" : "Politicas de privacidad",
     "logout" : "Cerrar Sesión",
@@ -95,5 +96,12 @@
     "send": "Enviar",
 
     "achievements": "Logros",
-    "no_achievements_yet": "No logros obtenidos
+    "no_achievements_yet": "No logros obtenidos",
+
+    "report_a_bug": "Report a bug",
+    "send_complaint": "Enviar una queja",
+    "request_assistance": "Solicitar asistencia",
+    "contact": "Contacto",
+    "subject": "Asunto",
+    "message": "Mensaje"
 }

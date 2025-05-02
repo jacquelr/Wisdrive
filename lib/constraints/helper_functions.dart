@@ -252,6 +252,14 @@ class HelperFunctions {
     return iconColor;
   }
 
+  static Color? getInvertedIconThemeColor() {
+    final ThemeController themeController = Get.find();
+    final iconColor = themeController.isDarkMode.value
+        ? AppTheme.lightSecondary
+        : Colors.white;
+    return iconColor;
+  }
+
   static Color? getBlackContainerThemeColor() {
     final ThemeController themeController = Get.find();
     final containerColor = themeController.isDarkMode.value

@@ -29,6 +29,7 @@
     "notifications" : "Notifications",
     "reminders" : "Reminders",
     "accesibility" : "Accesibility",
+    "contact_us" : "Contact us",
     "help" : "Help panel",
     "privacy_politics" : "Privacy politics",
     "logout" : "Logout",
@@ -95,5 +96,12 @@
     "send": "Send",
     
     "achievements": "Achievements",
-    "no_achievements_yet": "No achievements yet"
+    "no_achievements_yet": "No achievements yet",
+
+    "report_bug": "Report bug",
+    "send_complaint": "Send complaint",
+    "request_assistance": "Request assistance",
+    "contact": "Contact",
+    "subject": "Subject",
+    "message": "Message"
 }

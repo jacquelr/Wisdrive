@@ -270,6 +270,11 @@ class S {
     );
   }
 
+  /// `Contactanos`
+  String get contact_us {
+    return Intl.message('Contactanos', name: 'contact_us', desc: '', args: []);
+  }
+
   /// `Centro de ayuda`
   String get help {
     return Intl.message('Centro de ayuda', name: 'help', desc: '', args: []);
@@ -738,6 +743,66 @@ class S {
   /// `Enviar`
   String get send {
     return Intl.message('Enviar', name: 'send', desc: '', args: []);
+  }
+
+  /// `Logros`
+  String get achievements {
+    return Intl.message('Logros', name: 'achievements', desc: '', args: []);
+  }
+
+  /// `No logros obtenidos`
+  String get no_achievements_yet {
+    return Intl.message(
+      'No logros obtenidos',
+      name: 'no_achievements_yet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Report a bug`
+  String get report_a_bug {
+    return Intl.message(
+      'Report a bug',
+      name: 'report_a_bug',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enviar una queja`
+  String get send_complaint {
+    return Intl.message(
+      'Enviar una queja',
+      name: 'send_complaint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Solicitar asistencia`
+  String get request_assistance {
+    return Intl.message(
+      'Solicitar asistencia',
+      name: 'request_assistance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contacto`
+  String get contact {
+    return Intl.message('Contacto', name: 'contact', desc: '', args: []);
+  }
+
+  /// `Asunto`
+  String get subject {
+    return Intl.message('Asunto', name: 'subject', desc: '', args: []);
+  }
+
+  /// `Mensaje`
+  String get message {
+    return Intl.message('Mensaje', name: 'message', desc: '', args: []);
   }
 }
 

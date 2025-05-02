@@ -188,7 +188,7 @@ class _EditProfileInputsState extends State<EditProfileInputs> {
                           ResponseSnackbar.show(context, true, e.toString());
                         }
                       },
-                style: ElevatedButton.styleFrom(backgroundColor: white),
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   child: Text(
