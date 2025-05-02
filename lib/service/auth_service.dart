@@ -8,19 +8,11 @@ import 'package:get/get.dart';
 
 class AuthService {
   final _supabase = Supabase.instance.client;
+  //final supabaseService = Get.find<SupabaseService>();
   final box = GetStorage();
 
   bool isFirstTime() {
     return box.read("isFirstTime") ?? true; //Check if user is new;
-  }
-
-  bool isFirstTimeLogged() {
-    return box.read("isFirstTimeLogged") ?? true; //Check user's first time logged
-  }
-
-  Future<bool> loadIsFirstTimeLogged() async {
-    Future.delayed(const Duration(seconds: 3)); 
-    return box.read("isFirstTimeLogged") ?? true;
   }
 
   // Sign in with email and password
@@ -71,7 +63,7 @@ class AuthService {
   //Delete account
   Future<void> deleteUserDataAndSignOut(BuildContext context) async {
     final user = _supabase.auth.currentUser;
-    // final supabaseService = SupabaseService();
+    // final supabaseService = Get.find<SupabaseService>();
     if (user != null) {
       try {
         //supabaseService.deleteUserProfile(user.id); // Delete user from bd table users where uuid eq user.id

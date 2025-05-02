@@ -1,12 +1,14 @@
+import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:wisdrive/constraints/images_routes.dart';
 import 'package:wisdrive/service/auth_service.dart';
 
 class SupabaseService {
-  final authService = AuthService();
+  final authService = Get.find<AuthService>();
   final supabase = Supabase.instance.client;
   final box = GetStorage();
+  bool firstTimeLogged = true; // set true as default until it changes
 
   Future<Map<String, dynamic>?> getUserProfile() async {
     final user = supabase.auth.currentUser;
@@ -30,6 +32,23 @@ class SupabaseService {
       throw Exception("No se encontró el perfil del usuario.");
     }
     return user;
+  }
+
+  Future<bool> isExistentUser() async {
+    final userId = supabase.auth.currentUser!.id;
+    // matching users table and oauth table uuids
+    final response = await supabase
+        .from('users')
+        .select('uuid')
+        .eq('uuid', userId)
+        .maybeSingle();
+
+    //if uuid match with record, then user exists
+    if (response != null) {
+      firstTimeLogged = false;
+    }
+
+    return firstTimeLogged;
   }
 
   // supabase -> INSERT INTO users (<user properties>)
@@ -98,12 +117,8 @@ class SupabaseService {
 
   Future<void> deleteUserProfile(String uuid) async {
     try {
-      await supabase
-          .from('users')
-          .delete()
-          .eq('uuid', uuid)
-          .maybeSingle();
-          print("usuario eliminado en la tabla users");
+      await supabase.from('users').delete().eq('uuid', uuid).maybeSingle();
+      print("usuario eliminado en la tabla users");
     } catch (e) {
       throw Exception(e);
     }

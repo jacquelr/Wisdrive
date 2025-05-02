@@ -20,7 +20,7 @@ class SidebarMenu extends StatefulWidget {
 }
 
 class _SidebarMenuState extends State<SidebarMenu> {
-  final authservice = AuthService();
+  final authService = Get.find<AuthService>();
   final ThemeController themeController = Get.find();
   final LanguageController languageController = Get.find();
 

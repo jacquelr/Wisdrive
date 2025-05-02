@@ -9,6 +9,7 @@ import 'package:wisdrive/widgets/general/response_snackbar.dart';
 import '../generated/l10n.dart';
 
 class HelperFunctions {
+
   static void showSnackBar(String message) {
     ScaffoldMessenger.of(Get.context!).showSnackBar(
       SnackBar(content: Text(message)),
@@ -47,7 +48,7 @@ class HelperFunctions {
   }
 
   static void showLogoutDialog(BuildContext parentContext) {
-    final authservice = AuthService();
+    final authService = Get.find<AuthService>();
     final ThemeController themeController = Get.find();
     showDialog(
       context: parentContext,
@@ -68,7 +69,7 @@ class HelperFunctions {
           TextButton(
             onPressed: () async {
               Navigator.pop(dialogContext); // Pop dialog
-              await authservice.signOut(); // Exit the session
+              await authService.signOut(); // Exit the session
               if (parentContext.mounted) {
                 //Go to AuthGate to check if session is still active
                 Navigator.of(parentContext).pushAndRemoveUntil(
@@ -100,7 +101,7 @@ class HelperFunctions {
   }
 
   static void showDeleteAccountDialog(BuildContext parentContext) {
-    final authservice = AuthService();
+    final authService = Get.find<AuthService>();
     final ThemeController themeController = Get.find();
     showDialog(
       context: parentContext,
@@ -121,7 +122,7 @@ class HelperFunctions {
           TextButton(
             onPressed: () async {
               Navigator.pop(dialogContext); // Pop dialog
-              await authservice.deleteUserDataAndSignOut(parentContext);
+              await authService.deleteUserDataAndSignOut(parentContext);
             },
             child: Text(
               S.of(parentContext).delete_account,
@@ -147,7 +148,7 @@ class HelperFunctions {
 
   static void resetPassword(BuildContext context) async {
     final ThemeController themeController = Get.find();
-    final AuthService authservice = AuthService();
+    final authService = Get.find<AuthService>();
     final TextEditingController emailResetController = TextEditingController();
 
     await showDialog(
@@ -185,7 +186,7 @@ class HelperFunctions {
                 final email = emailResetController.text.trim();
                 if (email.isNotEmpty) {
                   try {
-                    authservice.sendResetPassowrdLink(email);
+                    authService.sendResetPassowrdLink(email);
                     Navigator.pop(context); // Pop Dialog
                     Navigator.pop(context); // Pop SignIn Modal
                     ResponseSnackbar.show(
@@ -204,14 +205,14 @@ class HelperFunctions {
                 } else {
                   Navigator.pop(context);
                   Navigator.pop(context);
-                  ResponseSnackbar.show(context, true, S.of(context).fill_all_fields);
+                  ResponseSnackbar.show(
+                      context, true, S.of(context).fill_all_fields);
                 }
               },
               child: Text(
                 S.of(context).send,
                 style: GoogleFonts.play(
-                  color: getQuizLevelContainerThemeColor(),
-                  fontSize: 18),
+                    color: getQuizLevelContainerThemeColor(), fontSize: 18),
               ),
             ),
           ],

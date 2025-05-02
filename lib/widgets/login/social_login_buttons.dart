@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:wisdrive/constraints/images_routes.dart';
 import 'package:wisdrive/navigation/screens/home/home_screen.dart';
 import 'package:wisdrive/service/auth_service.dart';
@@ -12,7 +13,7 @@ class SocialLoginButtons extends StatefulWidget {
 }
 
 class _SocialLoginButtonsState extends State<SocialLoginButtons> {
-  final authservice = AuthService();
+  final authService = Get.find<AuthService>();
   final supabase = Supabase.instance.client;
 
   @override
@@ -45,7 +46,7 @@ class _SocialLoginButtonsState extends State<SocialLoginButtons> {
           RImages.facebookLogo,
           Colors.white,
           () async {
-            await authservice.signInWithFacebook();
+            await authService.signInWithFacebook();
           },
         ),
         const SizedBox(width: 20),
@@ -53,7 +54,7 @@ class _SocialLoginButtonsState extends State<SocialLoginButtons> {
           RImages.googleLogo,
           Colors.white,
           () async {
-            await authservice.signInWithGoogle();
+            await authService.signInWithGoogle();
           },
         ),
       ],

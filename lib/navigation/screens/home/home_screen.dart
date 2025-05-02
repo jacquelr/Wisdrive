@@ -25,8 +25,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final ThemeController themeController = Get.find();
-  final authService = AuthService();
-  final supabaseService = SupabaseService();
+  final authService = Get.find<AuthService>();
+  final supabaseService = Get.find<SupabaseService>();
   int? selectedCategoryId;
 
   String? getSelectedCategory() {
@@ -42,9 +42,8 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
-  void isFirstTimeLogged() async {
-    //final existentUser = await supabaseService.getUserProfileOrThrow();
-    bool isFirstTimeLogged = authService.isFirstTimeLogged();
+  void checkFirstTimeLogged() async {
+    bool isFirstTimeLogged = supabaseService.firstTimeLogged ? await supabaseService.isExistentUser() : false;
     if (isFirstTimeLogged) {
       Navigator.of(context).pushReplacement(MaterialPageRoute(
         builder: (context) => const EditProfileScreen(),
@@ -56,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      isFirstTimeLogged();
+      checkFirstTimeLogged();
     });
   }
 

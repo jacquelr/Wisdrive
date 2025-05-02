@@ -19,7 +19,7 @@ class UpdatePasswordScreen extends StatefulWidget {
 
 class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
   final ThemeController themeController = Get.find();
-  final authService = AuthService();
+  final authService = Get.find<AuthService>();
   final currentPassword = TextEditingController();
   final newPassword = TextEditingController();
   final confirmNewPassword = TextEditingController();

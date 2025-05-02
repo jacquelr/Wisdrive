@@ -9,6 +9,8 @@ import 'package:wisdrive/controllers/theme_controller.dart';
 import 'package:wisdrive/constraints/app_theme.dart';
 import 'package:wisdrive/navigation/screens/app_start/splash_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:wisdrive/service/auth_service.dart';
+import 'package:wisdrive/service/supabase_service.dart';
 import 'generated/l10n.dart';
 
 void main() async {
@@ -30,6 +32,8 @@ void main() async {
     anonKey: dotenv.env['SUPABASE_ANON_KEY']!,
   );
 
+  Get.lazyPut(() => AuthService());
+  Get.lazyPut(() => SupabaseService());
   Get.put(ThemeController());
   Get.put(LanguageController());
   runApp(const WisdriveApp());

@@ -116,10 +116,10 @@ class _SidebarProfileState extends State<SidebarProfile> {
                 ),
                 onTap: () => HelperFunctions.showDeleteAccountDialog(context)),
             ListTile(
-                leading: const Icon(Icons.logout_outlined, color: Colors.white),
+                leading: const Icon(Icons.logout_outlined, color: Colors.red),
                 title: Text(
                   S.of(context).logout,
-                  style: GoogleFonts.play(color: Colors.red, fontSize: 20),
+                  style: GoogleFonts.play(color: Colors.white, fontSize: 20),
                 ),
                 onTap: () {
                   Navigator.pop(context); // Pop Sidebar Profile

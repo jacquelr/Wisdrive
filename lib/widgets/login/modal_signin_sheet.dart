@@ -18,7 +18,7 @@ class ModalSigninSheet extends StatefulWidget {
 }
 
 class _ModalSigninSheetState extends State<ModalSigninSheet> {
-  final AuthService _authservice = AuthService();
+  final authService = AuthService();
   final ThemeController themeController = Get.find();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -27,7 +27,7 @@ class _ModalSigninSheetState extends State<ModalSigninSheet> {
     final email = emailController.text.trim();
     final password = passwordController.text.trim();
     try {
-      await _authservice.signInWithEmailAndPassword(email, password);
+      await authService.signInWithEmailAndPassword(email, password);
     } catch (e) {
       if (mounted) {
         Navigator.pop(context);

@@ -18,7 +18,7 @@ class ModalSignupSheet extends StatefulWidget {
 }
 
 class _ModalSignupSheetState extends State<ModalSignupSheet> {
-  final AuthService _authservice = AuthService();
+  final authService = AuthService();
   final ThemeController themeController = Get.find();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -42,7 +42,7 @@ class _ModalSignupSheetState extends State<ModalSignupSheet> {
     }
 
     try {
-      await _authservice.signUpWithEmailAndPassword(email, password);
+      await authService.signUpWithEmailAndPassword(email, password);
       if (context.mounted) {
         Navigator.pop(context);
         HelperFunctions.showAlert(
