@@ -29,6 +29,7 @@
     "notifications" : "Notificaciones",
     "reminders" : "Recordatorios",
     "accesibility" : "Accesibilidad",
+    "contact_us" : "Contactanos",
     "help" : "Centro de ayuda",
     "privacy_politics" : "Politicas de privacidad",
     "logout" : "Cerrar Sesión",
@@ -63,6 +64,7 @@
     "new_password": "Nueva contraseña",
     "confirm_new_password": "Confirmar nueva contraseña",
     "cancel" : "Cancelar",
+    "accept": "Aceptar",
     "apply" : "Aplicar",
     "male" : "Hombre",
     "female" : "Mujer",
@@ -80,6 +82,8 @@
     "finished_quiz": "Has completado el quiz correctamente",
     "continue_learning": "Continuar",
 
+    "already_authenticated": "Cuenta previamente autenticada",
+    "existing_account": "Cuenta existente",
     "deleteted_account": "Cuenta eliminada exitosamente",
     "deleted_account_error": "Error al eliminar la cuenta",
     "fill_all_fields": "Completa todos los campos",
@@ -95,5 +99,12 @@
     "send": "Enviar",
 
     "achievements": "Logros",
-    "no_achievements_yet": "No logros obtenidos
+    "no_achievements_yet": "No logros obtenidos",
+
+    "report_a_bug": "Report a bug",
+    "send_complaint": "Enviar una queja",
+    "request_assistance": "Solicitar asistencia",
+    "contact": "Contacto",
+    "subject": "Asunto",
+    "message": "Mensaje"
 }

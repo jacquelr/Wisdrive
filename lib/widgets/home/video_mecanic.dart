@@ -49,7 +49,7 @@ class _VideoMecanicState extends State<VideoMecanic> {
             ),
             iconTheme: IconThemeData(
               color: HelperFunctions.getIconThemeColor(),
-              size: 50,
+              size: 40,
             ),
           ),
           body: Center(child: player),

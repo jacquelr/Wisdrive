@@ -21,8 +21,8 @@ class EditProfileScreen extends StatefulWidget {
 }
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
-  final authService = AuthService();
-  final supabaseService = SupabaseService();
+  final authService = Get.find<AuthService>();
+  final supabaseService = Get.find<SupabaseService>();
 
   int? selectedAvatar;
 
@@ -42,13 +42,14 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   @override
   Widget build(context) {
     final ThemeController themeController = Get.find();
+    final bool creatingUser = supabaseService.firstTimeLogged;
 
     void showAvatarPicker(BuildContext context) {
       showDialog(
         context: context,
         builder: (context) => AvatarPickerModal(
           onSelected: (int avatarKey) {
-            if (authService.isFirstTimeLogged()) {
+            if (creatingUser) {
               setState(() {
                 selectedAvatar = avatarKey;
               });
@@ -160,7 +161,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               padding: const EdgeInsets.all(16),
               child: TextButton(
                 // Change password text button
-                onPressed: authService.isFirstTimeLogged()
+                onPressed: creatingUser
                     ? null
                     : () {
                         Navigator.of(context).push(MaterialPageRoute(

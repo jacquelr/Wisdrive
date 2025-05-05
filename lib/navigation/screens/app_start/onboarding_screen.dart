@@ -70,7 +70,7 @@ class OnboardingScreen extends StatelessWidget {
               bottom: 1,
               right: 1,
               child: IconButton(
-                icon: const Icon(Icons.arrow_circle_right, size: 50),
+                icon: const Icon(Icons.arrow_circle_right, size: 40),
                 onPressed: () => OnboardingController.instance.nextPage(),
               ),
             ),

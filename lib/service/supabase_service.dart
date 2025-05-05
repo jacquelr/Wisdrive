@@ -1,12 +1,16 @@
+import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:wisdrive/constraints/images_routes.dart';
 import 'package:wisdrive/service/auth_service.dart';
 
 class SupabaseService {
-  final authService = AuthService();
+  final authService = Get.find<AuthService>();
   final supabase = Supabase.instance.client;
   final box = GetStorage();
+  bool firstTimeLogged = true; // set true as default until it changes
+  bool deletedUser = false;
+  bool matchedEmail = false;
 
   Future<Map<String, dynamic>?> getUserProfile() async {
     final user = supabase.auth.currentUser;
@@ -30,6 +34,82 @@ class SupabaseService {
       throw Exception("No se encontró el perfil del usuario.");
     }
     return user;
+  }
+
+  Future<Map<String, dynamic>?> getUserByEmail(String email) async {
+    try {
+      final response = await supabase
+          .from('users')
+          .select()
+          .eq('email', email)
+          .maybeSingle();
+
+      return response;
+    } catch (e) {
+      Exception('Error fetching user: $e');
+      return null;
+    }
+  }
+
+  Future<bool> isUserDeleted(email) async {
+    try {
+      final response = await supabase
+          .from('users')
+          .select('deleted_at')
+          .eq('email', email)
+          .maybeSingle();
+
+      if (response == null) return false;
+
+      // Si deleted_at no es null, el usuario fue eliminado
+      return response['deleted_at'] != null;
+    } catch (e) {
+      Exception(e);
+    }
+    return deletedUser;
+  }
+
+  Future<bool> isMatchedEmail(String email) async {
+    try {
+      final response = await supabase
+          .from('users')
+          .select('email')
+          .eq('email', email)
+          .maybeSingle();
+
+      // if deleted_at has value, it means user "deleted his account"
+      response != null ? matchedEmail = true : matchedEmail = false;
+    } catch (e) {
+      Exception(e);
+    }
+    return matchedEmail;
+  }
+
+  Future<bool> isExistentUser() async {
+    final userId = supabase.auth.currentUser!.id;
+    // matching users table and oauth table uuids
+    final response = await supabase
+        .from('users')
+        .select('uuid')
+        .eq('uuid', userId)
+        .maybeSingle();
+
+    //if uuid match with record, then user exists
+    if (response != null) {
+      firstTimeLogged = false;
+    }
+
+    return firstTimeLogged;
+  }
+
+  Future<void> removeDeletedAt(String email) async {
+    try {
+      await supabase
+          .from('users')
+          .update({'deleted_at': null}).eq('email', email);
+    } catch (e) {
+      Exception(e);
+    }
   }
 
   // supabase -> INSERT INTO users (<user properties>)
@@ -96,14 +176,10 @@ class SupabaseService {
     }
   }
 
-  Future<void> deleteUserProfile(String uuid) async {
+  Future<void> deleteUserProfile(String email) async {
     try {
-      await supabase
-          .from('users')
-          .delete()
-          .eq('uuid', uuid)
-          .maybeSingle();
-          print("usuario eliminado en la tabla users");
+      // Delete user data to start over again
+      await supabase.from('users').delete().eq('email', email).maybeSingle();
     } catch (e) {
       throw Exception(e);
     }

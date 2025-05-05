@@ -25,7 +25,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "SKIP": MessageLookupByLibrary.simpleMessage("SKIP"),
     "Sign_In": MessageLookupByLibrary.simpleMessage("Sign In"),
     "Sign_Up": MessageLookupByLibrary.simpleMessage("Sign Up"),
+    "accept": MessageLookupByLibrary.simpleMessage("Accept"),
     "accesibility": MessageLookupByLibrary.simpleMessage("Accesibility"),
+    "achievements": MessageLookupByLibrary.simpleMessage("Achievements"),
+    "already_authenticated": MessageLookupByLibrary.simpleMessage(
+      "previously authenticated account",
+    ),
     "answer": MessageLookupByLibrary.simpleMessage("ANSWER"),
     "apply": MessageLookupByLibrary.simpleMessage("Apply"),
     "are_you_sure": MessageLookupByLibrary.simpleMessage("Are you sure"),
@@ -44,6 +49,8 @@ class MessageLookup extends MessageLookupByLibrary {
       "Confirm Password",
     ),
     "congratulations": MessageLookupByLibrary.simpleMessage("Congratulations"),
+    "contact": MessageLookupByLibrary.simpleMessage("Contact"),
+    "contact_us": MessageLookupByLibrary.simpleMessage("Contact us"),
     "continue_learning": MessageLookupByLibrary.simpleMessage("Continue"),
     "correct": MessageLookupByLibrary.simpleMessage("Correct"),
     "create_account_with": MessageLookupByLibrary.simpleMessage(
@@ -69,6 +76,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "enter_your_email": MessageLookupByLibrary.simpleMessage(
       "Enter your email",
     ),
+    "existing_account": MessageLookupByLibrary.simpleMessage(
+      "Existing account",
+    ),
     "female": MessageLookupByLibrary.simpleMessage("Female"),
     "fill_all_fields": MessageLookupByLibrary.simpleMessage("Fill all fields"),
     "finished_quiz": MessageLookupByLibrary.simpleMessage(
@@ -93,7 +103,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "logout": MessageLookupByLibrary.simpleMessage("Logout"),
     "male": MessageLookupByLibrary.simpleMessage("Male"),
     "mechanics": MessageLookupByLibrary.simpleMessage("Mechanics"),
+    "message": MessageLookupByLibrary.simpleMessage("Message"),
     "new_password": MessageLookupByLibrary.simpleMessage("New password"),
+    "no_achievements_yet": MessageLookupByLibrary.simpleMessage(
+      "No achievements yet",
+    ),
     "no_categories_available": MessageLookupByLibrary.simpleMessage(
       "No categories available",
     ),
@@ -125,6 +139,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "question_": MessageLookupByLibrary.simpleMessage("Question"),
     "regulations": MessageLookupByLibrary.simpleMessage("Regulations"),
     "reminders": MessageLookupByLibrary.simpleMessage("Reminders"),
+    "request_assistance": MessageLookupByLibrary.simpleMessage(
+      "Request assistance",
+    ),
     "reset_link_sent": MessageLookupByLibrary.simpleMessage("Reset link sent"),
     "reset_link_sent_error": MessageLookupByLibrary.simpleMessage(
       "Reset link sent error",
@@ -134,12 +151,14 @@ class MessageLookup extends MessageLookupByLibrary {
       "New password cannot be the same as the current one",
     ),
     "send": MessageLookupByLibrary.simpleMessage("Send"),
+    "send_complaint": MessageLookupByLibrary.simpleMessage("Send complaint"),
     "sign_in": MessageLookupByLibrary.simpleMessage("sign in"),
     "sign_in_with": MessageLookupByLibrary.simpleMessage("sign in with"),
     "sign_up": MessageLookupByLibrary.simpleMessage("sign up"),
     "signin_error": MessageLookupByLibrary.simpleMessage("Sign In Error"),
     "signin_success": MessageLookupByLibrary.simpleMessage("Successful Login"),
     "signup_error": MessageLookupByLibrary.simpleMessage("Sign Up Error"),
+    "subject": MessageLookupByLibrary.simpleMessage("Subject"),
     "take_a_look": MessageLookupByLibrary.simpleMessage(
       "Take a look at the Jalisco traffic regulations",
     ),

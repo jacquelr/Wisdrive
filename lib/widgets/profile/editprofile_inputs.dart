@@ -22,8 +22,8 @@ class EditProfileInputs extends StatefulWidget {
 }
 
 class _EditProfileInputsState extends State<EditProfileInputs> {
-  final authService = AuthService();
-  final supabaseService = SupabaseService();
+  final authService = Get.find<AuthService>();
+  final supabaseService = Get.find<SupabaseService>();
   final usernameController = TextEditingController();
   String? selectedGender;
 
@@ -62,7 +62,7 @@ class _EditProfileInputsState extends State<EditProfileInputs> {
   @override
   Widget build(BuildContext context) {
     final ThemeController themeController = Get.find();
-    final bool isFirstTimeLogged = authService.isFirstTimeLogged();
+    final bool creatingUser = supabaseService.firstTimeLogged;
     final Color textLabelColor =
         themeController.isDarkMode.value ? Colors.white70 : AppTheme.darkPurple;
     final List<String> genderOptions = [
@@ -146,7 +146,7 @@ class _EditProfileInputsState extends State<EditProfileInputs> {
             children: [
               ElevatedButton(
                 // Cancel button
-                onPressed: isFirstTimeLogged
+                onPressed: creatingUser
                     ? () => HelperFunctions.showAlert(
                         S.of(context).user_profile,
                         S.of(context).fill_all_fields)
@@ -168,7 +168,7 @@ class _EditProfileInputsState extends State<EditProfileInputs> {
               ),
               ElevatedButton(
                 // Apply button
-                onPressed: isFirstTimeLogged
+                onPressed: creatingUser
                     ? () => firstTimeLogged()
                     : () async {
                         final username = usernameController.text.trim();
@@ -188,7 +188,7 @@ class _EditProfileInputsState extends State<EditProfileInputs> {
                           ResponseSnackbar.show(context, true, e.toString());
                         }
                       },
-                style: ElevatedButton.styleFrom(backgroundColor: white),
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   child: Text(

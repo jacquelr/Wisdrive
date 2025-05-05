@@ -20,7 +20,7 @@ class HomeAppbar extends StatelessWidget implements PreferredSizeWidget {
       ),
       centerTitle: true,
       iconTheme:
-          IconThemeData(color: HelperFunctions.getIconThemeColor(), size: 50),
+          IconThemeData(color: HelperFunctions.getIconThemeColor(), size: 40),
       backgroundColor: Colors.transparent,
       elevation: 0,
       actions: [

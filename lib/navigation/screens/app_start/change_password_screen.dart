@@ -16,8 +16,8 @@ class ChangePasswordScreen extends StatefulWidget {
 }
 
 class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
-  final supabaseService = SupabaseService();
-  final authService = AuthService();
+  final authService = Get.find<AuthService>();
+  final supabaseService = Get.find<SupabaseService>();
   final TextEditingController _passwordController = TextEditingController();
   bool _isLoading = false;
   bool _obscurePassword = true;

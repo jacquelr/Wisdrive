@@ -106,25 +106,37 @@ class _SidebarProfileState extends State<SidebarProfile> {
                   ));
                 }),
             ListTile(
-                leading: const Icon(
-                  Icons.delete,
-                  color: Colors.white,
-                ),
-                title: Text(
-                  S.of(context).delete_account,
-                  style: GoogleFonts.play(color: Colors.white, fontSize: 20),
-                ),
-                onTap: () => HelperFunctions.showDeleteAccountDialog(context)),
+              leading: const Icon(
+                Icons.delete,
+                color: Colors.white,
+              ),
+              title: Text(
+                S.of(context).delete_account,
+                style: GoogleFonts.play(color: Colors.white, fontSize: 20),
+              ),
+              onTap: () {
+                Navigator.pop(context); // Pop Sidebar Profile
+                HelperFunctions.showDeleteAccountDialog(context);
+              },
+            ),
+            const Divider(
+              color: Colors.white,
+              height: 50,
+            ),
             ListTile(
-                leading: const Icon(Icons.logout_outlined, color: Colors.white),
-                title: Text(
-                  S.of(context).logout,
-                  style: GoogleFonts.play(color: Colors.red, fontSize: 20),
-                ),
-                onTap: () {
-                  Navigator.pop(context); // Pop Sidebar Profile
-                  HelperFunctions.showLogoutDialog(context);
-                },)
+              leading: const Icon(
+                Icons.logout_outlined,
+                color: Colors.red,
+              ),
+              title: Text(
+                S.of(context).logout,
+                style: GoogleFonts.play(color: Colors.white, fontSize: 20),
+              ),
+              onTap: () {
+                Navigator.pop(context); // Pop Sidebar Profile
+                HelperFunctions.showLogoutDialog(context);
+              },
+            ),
           ],
         ),
       );

@@ -29,6 +29,7 @@
     "notifications" : "Notifications",
     "reminders" : "Reminders",
     "accesibility" : "Accesibility",
+    "contact_us" : "Contact us",
     "help" : "Help panel",
     "privacy_politics" : "Privacy politics",
     "logout" : "Logout",
@@ -63,6 +64,7 @@
     "new_password": "New password",
     "confirm_new_password": "Confirm new password",
     "cancel" : "Cancel",
+    "accept": "Accept",
     "apply" : "Apply",
     "male" : "Male",
     "female" : "Female",
@@ -80,6 +82,8 @@
     "finished_quiz": "You have completed the quiz correctly",
     "continue_learning": "Continue",
 
+    "already_authenticated": "previously authenticated account",
+    "existing_account": "Existing account",
     "deleted_account": "Account successfully deleted",
     "deleted_account_error": "Error deleting account",
     "fill_all_fields": "Fill all fields",
@@ -95,5 +99,12 @@
     "send": "Send",
     
     "achievements": "Achievements",
-    "no_achievements_yet": "No achievements yet"
+    "no_achievements_yet": "No achievements yet",
+
+    "report_bug": "Report bug",
+    "send_complaint": "Send complaint",
+    "request_assistance": "Request assistance",
+    "contact": "Contact",
+    "subject": "Subject",
+    "message": "Message"
 }

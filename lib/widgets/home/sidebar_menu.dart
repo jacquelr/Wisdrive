@@ -6,8 +6,10 @@ import 'package:wisdrive/constraints/images_routes.dart';
 import 'package:wisdrive/controllers/language_controller.dart';
 import 'package:wisdrive/controllers/theme_controller.dart';
 import 'package:wisdrive/constraints/app_theme.dart';
+import 'package:wisdrive/navigation/screens/home/contact_support_screen.dart';
 import 'package:wisdrive/navigation/screens/home/home_screen.dart';
 import 'package:wisdrive/navigation/screens/home/pdf_viewer_screen.dart';
+import 'package:wisdrive/navigation/screens/home/privacy_policy_screen.dart';
 import 'package:wisdrive/navigation/screens/profile/profile_screen.dart';
 import 'package:wisdrive/service/auth_service.dart';
 import '../../generated/l10n.dart';
@@ -20,7 +22,7 @@ class SidebarMenu extends StatefulWidget {
 }
 
 class _SidebarMenuState extends State<SidebarMenu> {
-  final authservice = AuthService();
+  final authService = Get.find<AuthService>();
   final ThemeController themeController = Get.find();
   final LanguageController languageController = Get.find();
 
@@ -149,8 +151,8 @@ class _SidebarMenuState extends State<SidebarMenu> {
               height: 50,
             ),
             ListTile(
-                leading: const Icon(Icons.find_in_page,
-                    color: Colors.white), //notifications_off
+                // Traffic Regulations
+                leading: const Icon(Icons.find_in_page, color: Colors.white),
                 title: Text(
                   S.of(context).traffic_regulations,
                   style: GoogleFonts.play(color: Colors.white, fontSize: 20),
@@ -162,29 +164,22 @@ class _SidebarMenuState extends State<SidebarMenu> {
                   ));
                 }),
             ListTile(
+                leading: const Icon(Icons.email, color: Colors.white),
                 title: Text(
-                  S.of(context).accesibility,
+                  S.of(context).contact_us,
                   style: GoogleFonts.play(color: Colors.white, fontSize: 20),
                 ),
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const HomeScreen(),
+                    builder: (_) => const ContactSupportScreen(),
                   ));
                 }),
             ListTile(
-                leading: const Icon(Icons.help, color: Colors.white),
-                title: Text(
-                  S.of(context).help,
-                  style: GoogleFonts.play(color: Colors.white, fontSize: 20),
+                leading: const Icon(
+                  Icons.privacy_tip_rounded,
+                  color: Colors.white,
                 ),
-                onTap: () {
-                  Navigator.pop(context);
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const HomeScreen(),
-                  ));
-                }),
-            ListTile(
                 title: Text(
                   S.of(context).privacy_politics,
                   style: GoogleFonts.play(color: Colors.white, fontSize: 20),
@@ -192,9 +187,13 @@ class _SidebarMenuState extends State<SidebarMenu> {
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const HomeScreen(),
+                    builder: (context) => const PrivacyPolicyScreen(),
                   ));
                 }),
+            const Divider(
+              color: Colors.white,
+              height: 50,
+            ),
             ListTile(
                 leading: const Icon(Icons.logout_outlined, color: Colors.red),
                 title: Text(

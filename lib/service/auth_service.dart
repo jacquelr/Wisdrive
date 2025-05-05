@@ -2,25 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:wisdrive/generated/l10n.dart';
+import 'package:wisdrive/service/auth_gate.dart';
 //import 'package:wisdrive/service/supabase_service.dart';
 import 'package:wisdrive/widgets/general/response_snackbar.dart';
 import 'package:get/get.dart';
 
 class AuthService {
   final _supabase = Supabase.instance.client;
+  //final supabaseService = Get.find<SupabaseService>();
   final box = GetStorage();
 
   bool isFirstTime() {
     return box.read("isFirstTime") ?? true; //Check if user is new;
-  }
-
-  bool isFirstTimeLogged() {
-    return box.read("isFirstTimeLogged") ?? true; //Check user's first time logged
-  }
-
-  Future<bool> loadIsFirstTimeLogged() async {
-    Future.delayed(const Duration(seconds: 3)); 
-    return box.read("isFirstTimeLogged") ?? true;
   }
 
   // Sign in with email and password
@@ -39,6 +32,7 @@ class AuthService {
     final response = await _supabase.auth.signUp(
       email: email,
       password: password,
+      emailRedirectTo: 'com.wisdrive://login-callback',
     );
 
     return response;
@@ -58,8 +52,15 @@ class AuthService {
   }
 
   //Sign out
-  Future<void> signOut() async {
+  Future<void> signOut(BuildContext parentContext) async {
     await _supabase.auth.signOut();
+    if (parentContext.mounted) {
+      //Go to AuthGate to check if session is still active
+      Navigator.of(parentContext).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (_) => const AuthGate()),
+        (route) => false,
+      );
+    }
   }
 
   //Send reset password link
@@ -70,16 +71,24 @@ class AuthService {
   //Delete account
   Future<void> deleteUserDataAndSignOut(BuildContext context) async {
     final user = _supabase.auth.currentUser;
-    // final supabaseService = SupabaseService();
+    final dateTime = DateTime.now().toIso8601String();
+    final userId = Supabase.instance.client.auth.currentUser?.id;
+
     if (user != null) {
       try {
-        //supabaseService.deleteUserProfile(user.id); // Delete user from bd table users where uuid eq user.id
-        //await _supabase.auth.admin.deleteUser(user.id); // Delete user from OAuth
-        await _supabase.auth.signOut(); // Sign Out from account
+        // Set deleted_at date to current user
+        await _supabase
+            .from('users')
+            .update({'deleted_at': dateTime})
+            .eq('uuid', userId as Object)
+            .maybeSingle();
 
-        ResponseSnackbar.show(context, false, S.of(context).delete_account);
+        signOut(context);
+
+        ResponseSnackbar.show(context, false, S.of(context).deleteted_account);
       } catch (e) {
-        ResponseSnackbar.show(context, true, '${S.of(Get.context!).deleted_account_error}: $e');
+        ResponseSnackbar.show(
+            context, true, '${S.of(Get.context!).deleted_account_error}: $e');
         rethrow;
       }
     }
@@ -118,13 +127,4 @@ class AuthService {
     final user = session?.user;
     return user?.email;
   }
-
-  //Reset password
-  
-
-  //Get current user
-  User? get currentUsser => _supabase.auth.currentUser;
-
-  // Get current user id
-  String? get currentUserId => _supabase.auth.currentUser?.id;
 }
