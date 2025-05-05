@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wisdrive/controllers/theme_controller.dart';
 import 'package:wisdrive/constraints/app_theme.dart';
-import 'package:wisdrive/service/auth_gate.dart';
 import 'package:wisdrive/service/auth_service.dart';
 import 'package:wisdrive/widgets/general/response_snackbar.dart';
 import '../generated/l10n.dart';
@@ -69,14 +68,7 @@ class HelperFunctions {
           TextButton(
             onPressed: () async {
               Navigator.pop(dialogContext); // Pop dialog
-              await authService.signOut(); // Exit the session
-              if (parentContext.mounted) {
-                //Go to AuthGate to check if session is still active
-                Navigator.of(parentContext).pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (_) => const AuthGate()),
-                  (route) => false,
-                );
-              }
+              await authService.signOut(parentContext); // Exit the session
             },
             child: Text(
               S.of(dialogContext).logout,

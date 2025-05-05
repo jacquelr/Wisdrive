@@ -24,7 +24,7 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
   final newPassword = TextEditingController();
   final confirmNewPassword = TextEditingController();
 
-  void updatePasswordFlow() async {
+  void updatePasswordFlow(BuildContext context) async {
     final email = authService.getCurrentUserEmail();
     final current = currentPassword.text.trim();
     final newPass = newPassword.text.trim();
@@ -55,7 +55,7 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
       await authService.updatePassword(newPass);
       if (mounted) {
         ResponseSnackbar.show(context, false, S.of(context).updated_password);
-        authService.signOut(); // Sign Out of session after successfuly updating password
+        authService.signOut(context); // Sign Out of session after successfuly updating password
       }
     } catch (e) {
       ResponseSnackbar.show(context, true, "${S.of(context).updated_password_error}: $e");
@@ -147,7 +147,7 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
                       ),
                     ),
                     ElevatedButton(
-                      onPressed: updatePasswordFlow,
+                      onPressed: () => updatePasswordFlow(context),
                       style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10),

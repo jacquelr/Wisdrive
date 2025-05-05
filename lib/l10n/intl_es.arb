@@ -64,6 +64,7 @@
     "new_password": "Nueva contraseña",
     "confirm_new_password": "Confirmar nueva contraseña",
     "cancel" : "Cancelar",
+    "accept": "Aceptar",
     "apply" : "Aplicar",
     "male" : "Hombre",
     "female" : "Mujer",
@@ -81,6 +82,8 @@
     "finished_quiz": "Has completado el quiz correctamente",
     "continue_learning": "Continuar",
 
+    "already_authenticated": "Cuenta previamente autenticada",
+    "existing_account": "Cuenta existente",
     "deleteted_account": "Cuenta eliminada exitosamente",
     "deleted_account_error": "Error al eliminar la cuenta",
     "fill_all_fields": "Completa todos los campos",

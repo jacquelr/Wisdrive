@@ -6,6 +6,7 @@ import 'package:wisdrive/constraints/helper_functions.dart';
 import 'package:wisdrive/controllers/theme_controller.dart';
 import 'package:wisdrive/constraints/app_theme.dart';
 import 'package:wisdrive/service/auth_service.dart';
+import 'package:wisdrive/service/supabase_service.dart';
 import 'package:wisdrive/widgets/general/response_snackbar.dart';
 import 'package:wisdrive/widgets/login/social_login_buttons.dart';
 import '../../generated/l10n.dart';
@@ -19,6 +20,7 @@ class ModalSignupSheet extends StatefulWidget {
 
 class _ModalSignupSheetState extends State<ModalSignupSheet> {
   final authService = AuthService();
+  final supabaseService = SupabaseService();
   final ThemeController themeController = Get.find();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -42,13 +44,42 @@ class _ModalSignupSheetState extends State<ModalSignupSheet> {
     }
 
     try {
-      await authService.signUpWithEmailAndPassword(email, password);
-      if (context.mounted) {
-        Navigator.pop(context);
-        HelperFunctions.showAlert(
-          S.of(context).created_account,
-          S.of(context).check_email_to_activate_account,
-        );
+      // final userData = await supabaseService.getUserByEmail(email);
+      // print(userData);
+      final matchedEmail = await supabaseService.isMatchedEmail(email);
+      final deletedUser = await supabaseService.isUserDeleted(email);
+    
+      if (!matchedEmail) {
+        // Case 1: There is no user with this email
+        await authService.signUpWithEmailAndPassword(email, password);
+        if (context.mounted) {
+          Navigator.pop(context);
+          HelperFunctions.showAlert(
+            S.of(context).created_account,
+            S.of(context).check_email_to_activate_account,
+          );
+        }
+      } else {
+        if (deletedUser) {
+          // Case 2: User deleted his account -> restore deleted_at and send email verification
+          //await supabaseService.removeDeletedAt(email);
+          await supabaseService.deleteUserProfile(email);
+          if (context.mounted) {
+            Navigator.pop(context);
+            HelperFunctions.showAlert(
+              S.of(context).created_account,
+              S.of(context).already_authenticated,
+            );
+          }
+        } else {
+          // Caso 3: Cuenta activa ya existe → mostrar error
+          Navigator.pop(context);
+          ResponseSnackbar.show(
+            context,
+            true,
+            S.of(context).existing_account,
+          );
+        }
       }
     } catch (e) {
       if (context.mounted) {

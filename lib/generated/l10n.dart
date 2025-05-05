@@ -530,6 +530,11 @@ class S {
     return Intl.message('Cancelar', name: 'cancel', desc: '', args: []);
   }
 
+  /// `Aceptar`
+  String get accept {
+    return Intl.message('Aceptar', name: 'accept', desc: '', args: []);
+  }
+
   /// `Aplicar`
   String get apply {
     return Intl.message('Aplicar', name: 'apply', desc: '', args: []);
@@ -615,6 +620,26 @@ class S {
     return Intl.message(
       'Continuar',
       name: 'continue_learning',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cuenta previamente autenticada`
+  String get already_authenticated {
+    return Intl.message(
+      'Cuenta previamente autenticada',
+      name: 'already_authenticated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cuenta existente`
+  String get existing_account {
+    return Intl.message(
+      'Cuenta existente',
+      name: 'existing_account',
       desc: '',
       args: [],
     );

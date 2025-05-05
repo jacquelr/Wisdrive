@@ -6,6 +6,7 @@ import 'package:wisdrive/constraints/helper_functions.dart';
 import 'package:wisdrive/controllers/theme_controller.dart';
 import 'package:wisdrive/constraints/app_theme.dart';
 import 'package:wisdrive/service/auth_service.dart';
+import 'package:wisdrive/service/supabase_service.dart';
 import 'package:wisdrive/widgets/general/response_snackbar.dart';
 import 'package:wisdrive/widgets/login/social_login_buttons.dart';
 import '../../generated/l10n.dart';
@@ -19,6 +20,7 @@ class ModalSigninSheet extends StatefulWidget {
 
 class _ModalSigninSheetState extends State<ModalSigninSheet> {
   final authService = AuthService();
+  final supabaseService = SupabaseService();
   final ThemeController themeController = Get.find();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -27,7 +29,13 @@ class _ModalSigninSheetState extends State<ModalSigninSheet> {
     final email = emailController.text.trim();
     final password = passwordController.text.trim();
     try {
-      await authService.signInWithEmailAndPassword(email, password);
+      final deletedUser = await supabaseService.isUserDeleted(email);
+      if (!deletedUser) {
+        await authService.signInWithEmailAndPassword(email, password);
+      } else {
+        Navigator.pop(context);
+        ResponseSnackbar.show(context, true, S.of(context).signin_error);
+      }
     } catch (e) {
       if (mounted) {
         Navigator.pop(context);

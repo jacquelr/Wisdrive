@@ -25,8 +25,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "SKIP": MessageLookupByLibrary.simpleMessage("SALTAR"),
     "Sign_In": MessageLookupByLibrary.simpleMessage("Iniciar Sesión"),
     "Sign_Up": MessageLookupByLibrary.simpleMessage("Registrarse"),
+    "accept": MessageLookupByLibrary.simpleMessage("Aceptar"),
     "accesibility": MessageLookupByLibrary.simpleMessage("Accesibilidad"),
     "achievements": MessageLookupByLibrary.simpleMessage("Logros"),
+    "already_authenticated": MessageLookupByLibrary.simpleMessage(
+      "Cuenta previamente autenticada",
+    ),
     "answer": MessageLookupByLibrary.simpleMessage("CONTESTAR"),
     "apply": MessageLookupByLibrary.simpleMessage("Aplicar"),
     "are_you_sure": MessageLookupByLibrary.simpleMessage("Estás seguro"),
@@ -76,6 +80,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "email": MessageLookupByLibrary.simpleMessage("Correo electronico"),
     "enter_your_email": MessageLookupByLibrary.simpleMessage(
       "Ingresa tu correo",
+    ),
+    "existing_account": MessageLookupByLibrary.simpleMessage(
+      "Cuenta existente",
     ),
     "female": MessageLookupByLibrary.simpleMessage("Mujer"),
     "fill_all_fields": MessageLookupByLibrary.simpleMessage(
