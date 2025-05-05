@@ -9,6 +9,7 @@ import 'package:wisdrive/constraints/app_theme.dart';
 import 'package:wisdrive/navigation/screens/home/contact_support_screen.dart';
 import 'package:wisdrive/navigation/screens/home/home_screen.dart';
 import 'package:wisdrive/navigation/screens/home/pdf_viewer_screen.dart';
+import 'package:wisdrive/navigation/screens/home/privacy_policy_screen.dart';
 import 'package:wisdrive/navigation/screens/profile/profile_screen.dart';
 import 'package:wisdrive/service/auth_service.dart';
 import '../../generated/l10n.dart';
@@ -163,17 +164,6 @@ class _SidebarMenuState extends State<SidebarMenu> {
                   ));
                 }),
             ListTile(
-                title: Text(
-                  S.of(context).accesibility,
-                  style: GoogleFonts.play(color: Colors.white, fontSize: 20),
-                ),
-                onTap: () {
-                  Navigator.pop(context);
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const HomeScreen(),
-                  ));
-                }),
-            ListTile(
                 leading: const Icon(Icons.email, color: Colors.white),
                 title: Text(
                   S.of(context).contact_us,
@@ -197,9 +187,13 @@ class _SidebarMenuState extends State<SidebarMenu> {
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const HomeScreen(),
+                    builder: (context) => const PrivacyPolicyScreen(),
                   ));
                 }),
+            const Divider(
+              color: Colors.white,
+              height: 50,
+            ),
             ListTile(
                 leading: const Icon(Icons.logout_outlined, color: Colors.red),
                 title: Text(
