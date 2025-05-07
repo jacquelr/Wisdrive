@@ -139,7 +139,7 @@ class SupabaseService {
       }
       box.write("isFirstTimeLogged", false);
     } catch (e) {
-      throw Exception("error al crear usuario en la bd: $e");
+      throw Exception("Error al crear usuario en la bd: $e");
     }
   }
 

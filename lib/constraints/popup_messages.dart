@@ -185,7 +185,7 @@ class PopupMessages {
                     ResponseSnackbar.show(
                       context,
                       true,
-                      "${S.of(context).reset_link_sent_error}: $e",
+                      S.of(context).reset_link_sent_error,
                     );
                   }
                 } else {
