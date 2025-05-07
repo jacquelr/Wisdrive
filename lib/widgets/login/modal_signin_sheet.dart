@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wisdrive/constraints/helper_functions.dart';
+import 'package:wisdrive/constraints/popup_messages.dart';
 import 'package:wisdrive/controllers/theme_controller.dart';
 import 'package:wisdrive/constraints/app_theme.dart';
 import 'package:wisdrive/service/auth_service.dart';
@@ -42,7 +43,7 @@ class _ModalSigninSheetState extends State<ModalSigninSheet> {
         ResponseSnackbar.show(
           context,
           true,
-          "${S.of(context).signin_error}: $e",
+          S.of(context).signin_error,
         );
       }
     }
@@ -102,7 +103,7 @@ class _ModalSigninSheetState extends State<ModalSigninSheet> {
           const SizedBox(height: 10),
           TextButton(
             onPressed: () {
-              HelperFunctions.resetPassword(context);
+              PopupMessages.resetPassword(context);
             },
             child: Text(
               '${S.of(context).forgot_password}?',

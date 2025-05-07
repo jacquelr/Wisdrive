@@ -59,6 +59,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "created_account": MessageLookupByLibrary.simpleMessage(
       "Account created successfully",
     ),
+    "creating_user_data_error": MessageLookupByLibrary.simpleMessage(
+      "Error creating user data ",
+    ),
     "current_password": MessageLookupByLibrary.simpleMessage(
       "Current password",
     ),
@@ -68,6 +71,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "edit_gender": MessageLookupByLibrary.simpleMessage("Gender"),
     "edit_profile": MessageLookupByLibrary.simpleMessage("Edit profile"),
+    "edit_profile_error": MessageLookupByLibrary.simpleMessage(
+      "Error updating profile",
+    ),
     "edit_profile_success": MessageLookupByLibrary.simpleMessage(
       "Profile updated successfully",
     ),

@@ -430,6 +430,16 @@ class S {
     );
   }
 
+  /// `Error al editar perfil`
+  String get edit_profile_error {
+    return Intl.message(
+      'Error al editar perfil',
+      name: 'edit_profile_error',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Selecciona un avatar`
   String get pick_avatar {
     return Intl.message(
@@ -725,6 +735,16 @@ class S {
     );
   }
 
+  /// `Error creando la información del usuario`
+  String get creating_user_data_error {
+    return Intl.message(
+      'Error creando la información del usuario',
+      name: 'creating_user_data_error',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Revisa tu correo para activar tu cuenta`
   String get check_email_to_activate_account {
     return Intl.message(
@@ -785,10 +805,10 @@ class S {
     );
   }
 
-  /// `Report a bug`
+  /// `Reportar un error`
   String get report_a_bug {
     return Intl.message(
-      'Report a bug',
+      'Reportar un error',
       name: 'report_a_bug',
       desc: '',
       args: [],

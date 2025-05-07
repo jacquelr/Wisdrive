@@ -58,7 +58,7 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
         authService.signOut(context); // Sign Out of session after successfuly updating password
       }
     } catch (e) {
-      ResponseSnackbar.show(context, true, "${S.of(context).updated_password_error}: $e");
+      ResponseSnackbar.show(context, true, S.of(context).updated_password_error);
     }
   }
 

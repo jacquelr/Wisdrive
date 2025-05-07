@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:wisdrive/constraints/helper_functions.dart';
+import 'package:wisdrive/constraints/popup_messages.dart';
 import 'package:wisdrive/controllers/theme_controller.dart';
 import 'package:wisdrive/constraints/app_theme.dart';
 import 'package:wisdrive/service/auth_service.dart';
@@ -28,7 +28,7 @@ class _ModalSignupSheetState extends State<ModalSignupSheet> {
       TextEditingController();
 
   void signUp() async {
-    final email = emailController.text;
+    final email = emailController.text.trim();
     final password = passwordController.text;
     final confirmPassword = confirmPasswordController.text;
 
@@ -54,7 +54,7 @@ class _ModalSignupSheetState extends State<ModalSignupSheet> {
         await authService.signUpWithEmailAndPassword(email, password);
         if (context.mounted) {
           Navigator.pop(context);
-          HelperFunctions.showAlert(
+          PopupMessages.showAlert(
             S.of(context).created_account,
             S.of(context).check_email_to_activate_account,
           );
@@ -66,7 +66,7 @@ class _ModalSignupSheetState extends State<ModalSignupSheet> {
           await supabaseService.deleteUserProfile(email);
           if (context.mounted) {
             Navigator.pop(context);
-            HelperFunctions.showAlert(
+            PopupMessages.showAlert(
               S.of(context).created_account,
               S.of(context).already_authenticated,
             );
@@ -87,7 +87,7 @@ class _ModalSignupSheetState extends State<ModalSignupSheet> {
         ResponseSnackbar.show(
           context,
           true,
-          "${S.of(context).signup_error}: $e",
+          S.of(context).signup_error,
         );
       }
     }

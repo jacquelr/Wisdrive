@@ -61,6 +61,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "created_account": MessageLookupByLibrary.simpleMessage(
       "Cuenta creada con exito",
     ),
+    "creating_user_data_error": MessageLookupByLibrary.simpleMessage(
+      "Error creando la información del usuario",
+    ),
     "current_password": MessageLookupByLibrary.simpleMessage(
       "Contraseña actual",
     ),
@@ -73,6 +76,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "edit_gender": MessageLookupByLibrary.simpleMessage("Genero"),
     "edit_profile": MessageLookupByLibrary.simpleMessage("Editar perfil"),
+    "edit_profile_error": MessageLookupByLibrary.simpleMessage(
+      "Error al editar perfil",
+    ),
     "edit_profile_success": MessageLookupByLibrary.simpleMessage(
       "Perfil actualizado correctamente",
     ),
@@ -150,7 +156,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "question_": MessageLookupByLibrary.simpleMessage("Pregunta"),
     "regulations": MessageLookupByLibrary.simpleMessage("Reglamento"),
     "reminders": MessageLookupByLibrary.simpleMessage("Recordatorios"),
-    "report_a_bug": MessageLookupByLibrary.simpleMessage("Report a bug"),
+    "report_a_bug": MessageLookupByLibrary.simpleMessage("Reportar un error"),
     "request_assistance": MessageLookupByLibrary.simpleMessage(
       "Solicitar asistencia",
     ),

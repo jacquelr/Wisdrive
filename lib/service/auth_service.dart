@@ -3,9 +3,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:wisdrive/generated/l10n.dart';
 import 'package:wisdrive/service/auth_gate.dart';
-//import 'package:wisdrive/service/supabase_service.dart';
 import 'package:wisdrive/widgets/general/response_snackbar.dart';
-import 'package:get/get.dart';
 
 class AuthService {
   final _supabase = Supabase.instance.client;
@@ -87,8 +85,7 @@ class AuthService {
 
         ResponseSnackbar.show(context, false, S.of(context).deleteted_account);
       } catch (e) {
-        ResponseSnackbar.show(
-            context, true, '${S.of(Get.context!).deleted_account_error}: $e');
+        Exception(e);
         rethrow;
       }
     }
@@ -105,7 +102,7 @@ class AuthService {
         UserAttributes(password: newPassword),
       );
     } catch (e) {
-      ResponseSnackbar.show(Get.context!, true, e.toString());
+      Exception(e);
     }
   }
 
