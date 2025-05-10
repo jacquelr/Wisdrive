@@ -4,13 +4,11 @@ import 'package:wisdrive/controllers/theme_controller.dart';
 import 'package:wisdrive/constraints/app_theme.dart';
 
 class HelperFunctions {
-
   static void showSnackBar(String message) {
     ScaffoldMessenger.of(Get.context!).showSnackBar(
       SnackBar(content: Text(message)),
     );
   }
-
 
   static double screenHeight() {
     return MediaQuery.of(Get.context!).size.height;

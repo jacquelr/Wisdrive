@@ -695,6 +695,36 @@ class S {
     );
   }
 
+  /// `Formato de la contraseña`
+  String get password_format {
+    return Intl.message(
+      'Formato de la contraseña',
+      name: 'password_format',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `El formato de la contraseña no es valido`
+  String get invalid_password_format {
+    return Intl.message(
+      'El formato de la contraseña no es valido',
+      name: 'invalid_password_format',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `La contraseña debe tener al menos 8 caracteres, incluyendo una letra mayúscula, una letra minúscula y un número.`
+  String get password_requirements {
+    return Intl.message(
+      'La contraseña debe tener al menos 8 caracteres, incluyendo una letra mayúscula, una letra minúscula y un número.',
+      name: 'password_requirements',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `La contraseña actual es incorrecta`
   String get incorrect_current_password {
     return Intl.message(
@@ -760,6 +790,16 @@ class S {
     return Intl.message(
       'Ingresa tu correo',
       name: 'enter_your_email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `El formato del correo electrónico no es válido`
+  String get invalid_email_format {
+    return Intl.message(
+      'El formato del correo electrónico no es válido',
+      name: 'invalid_email_format',
       desc: '',
       args: [],
     );

@@ -100,6 +100,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "incorrect_current_password": MessageLookupByLibrary.simpleMessage(
       "Current password is incorrect",
     ),
+    "invalid_email_format": MessageLookupByLibrary.simpleMessage(
+      "Invalid email format",
+    ),
+    "invalid_password_format": MessageLookupByLibrary.simpleMessage(
+      "Invalid password format",
+    ),
     "language": MessageLookupByLibrary.simpleMessage("Language"),
     "lesson": MessageLookupByLibrary.simpleMessage("Lesson"),
     "lets_start_learning": MessageLookupByLibrary.simpleMessage(
@@ -137,6 +143,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "or": MessageLookupByLibrary.simpleMessage("or"),
     "other": MessageLookupByLibrary.simpleMessage("Other"),
     "password": MessageLookupByLibrary.simpleMessage("Password"),
+    "password_format": MessageLookupByLibrary.simpleMessage("Password format"),
+    "password_requirements": MessageLookupByLibrary.simpleMessage(
+      "The password must be at least 8 characters, including one uppercase letter, one lowercase letter, and one number.",
+    ),
     "pick_avatar": MessageLookupByLibrary.simpleMessage("Pick an avatar"),
     "privacy_politics": MessageLookupByLibrary.simpleMessage(
       "Privacy politics",

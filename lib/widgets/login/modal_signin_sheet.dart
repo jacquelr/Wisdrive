@@ -23,6 +23,7 @@ class _ModalSigninSheetState extends State<ModalSigninSheet> {
   final authService = AuthService();
   final supabaseService = SupabaseService();
   final ThemeController themeController = Get.find();
+  bool obscurePassword = true;
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
@@ -87,7 +88,7 @@ class _ModalSigninSheetState extends State<ModalSigninSheet> {
           const SizedBox(height: 15),
           TextField(
             controller: passwordController,
-            obscureText: true,
+            obscureText: obscurePassword,
             decoration: InputDecoration(
               labelText: S.of(context).password,
               labelStyle: GoogleFonts.play(color: Colors.white70, fontSize: 24),
@@ -96,6 +97,17 @@ class _ModalSigninSheetState extends State<ModalSigninSheet> {
               ),
               focusedBorder: const UnderlineInputBorder(
                 borderSide: BorderSide(color: Colors.white),
+              ),
+              suffixIcon: IconButton(
+                icon: Icon(
+                  obscurePassword ? Icons.visibility : Icons.visibility_off,
+                  color: HelperFunctions.getIconThemeColor(),
+                ),
+                onPressed: () {
+                  setState(() {
+                    obscurePassword = !obscurePassword;
+                  });
+                },
               ),
             ),
             style: const TextStyle(color: Colors.white),
