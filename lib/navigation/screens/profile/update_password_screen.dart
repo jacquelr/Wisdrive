@@ -55,7 +55,7 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
       await authService.updatePassword(newPass);
       if (mounted) {
         ResponseSnackbar.show(context, false, S.of(context).updated_password);
-        authService.signOut(context); // Sign Out of session after successfuly updating password
+        await authService.signOut(context); // Sign Out of session after successfuly updating password
       }
     } catch (e) {
       ResponseSnackbar.show(context, true, S.of(context).updated_password_error);

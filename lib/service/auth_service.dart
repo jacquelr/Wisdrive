@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:wisdrive/generated/l10n.dart';
-import 'package:wisdrive/service/auth_gate.dart';
 import 'package:wisdrive/widgets/general/response_snackbar.dart';
 
 class AuthService {
@@ -52,13 +51,6 @@ class AuthService {
   //Sign out
   Future<void> signOut(BuildContext parentContext) async {
     await _supabase.auth.signOut();
-    if (parentContext.mounted) {
-      //Go to AuthGate to check if session is still active
-      Navigator.of(parentContext).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (_) => const AuthGate()),
-        (route) => false,
-      );
-    }
   }
 
   //Send reset password link
@@ -81,8 +73,7 @@ class AuthService {
             .eq('uuid', userId as Object)
             .maybeSingle();
 
-        signOut(context);
-
+        await signOut(context);
         ResponseSnackbar.show(context, false, S.of(context).deleteted_account);
       } catch (e) {
         Exception(e);

@@ -61,7 +61,7 @@ class SupabaseService {
 
       if (response == null) return false;
 
-      // Si deleted_at no es null, el usuario fue eliminado
+      // If deleted_at not null, user was deleted
       return response['deleted_at'] != null;
     } catch (e) {
       Exception(e);
@@ -100,16 +100,6 @@ class SupabaseService {
     }
 
     return firstTimeLogged;
-  }
-
-  Future<void> removeDeletedAt(String email) async {
-    try {
-      await supabase
-          .from('users')
-          .update({'deleted_at': null}).eq('email', email);
-    } catch (e) {
-      Exception(e);
-    }
   }
 
   // supabase -> INSERT INTO users (<user properties>)
