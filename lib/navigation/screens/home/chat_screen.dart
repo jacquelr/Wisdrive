@@ -6,7 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:uuid/uuid.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:wisdrive/constraints/helper_functions.dart'; // Importa dotenv
+import 'package:wisdrive/constraints/helper_functions.dart';
+import 'package:wisdrive/generated/l10n.dart'; // Importa dotenv
 
 final String apiKey = dotenv.env['apiKey'] ?? '';
 const String sourceId = "src_jxebBqdmiN67V4HgySdcL";
@@ -29,6 +30,7 @@ class _ChatScreenState extends State<ChatScreen> {
     });
   }
 
+  // Action handler of send button on chat bar
   Future<void> _handleSendPressed(types.PartialText message) async {
     final textMessage = types.TextMessage(
       author: _user,
@@ -39,7 +41,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
     _addMessage(textMessage);
 
-    // Llamada a la API de ChatPDF
+    // Call to ChatPDF API
     String response = await sendMessageToChatPDF(message.text);
 
     final botMessage = types.TextMessage(
@@ -52,6 +54,7 @@ class _ChatScreenState extends State<ChatScreen> {
     _addMessage(botMessage);
   }
 
+  // Logic to send prompt to chatbot
   Future<String> sendMessageToChatPDF(String userMessage) async {
     final messages = _messages
         .where((msg) => msg is types.TextMessage)
@@ -80,7 +83,7 @@ class _ChatScreenState extends State<ChatScreen> {
       final data = jsonDecode(response.body);
       return data["content"];
     } else {
-      return "Error al obtener respuesta de ChatPDF";
+      return S.of(context).chatpdf_message_error;
     }
   }
 

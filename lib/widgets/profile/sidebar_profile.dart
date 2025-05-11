@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:wisdrive/constraints/helper_functions.dart';
 import 'package:wisdrive/constraints/images_routes.dart';
+import 'package:wisdrive/constraints/popup_messages.dart';
 import 'package:wisdrive/controllers/theme_controller.dart';
 import 'package:wisdrive/constraints/app_theme.dart';
 import 'package:wisdrive/generated/l10n.dart';
@@ -116,7 +116,7 @@ class _SidebarProfileState extends State<SidebarProfile> {
               ),
               onTap: () {
                 Navigator.pop(context); // Pop Sidebar Profile
-                HelperFunctions.showDeleteAccountDialog(context);
+                PopupMessages.showDeleteAccountDialog(context);
               },
             ),
             const Divider(
@@ -134,7 +134,7 @@ class _SidebarProfileState extends State<SidebarProfile> {
               ),
               onTap: () {
                 Navigator.pop(context); // Pop Sidebar Profile
-                HelperFunctions.showLogoutDialog(context);
+                PopupMessages.showLogoutDialog(context);
               },
             ),
           ],

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:wisdrive/constraints/helper_functions.dart';
 import 'package:wisdrive/constraints/images_routes.dart';
+import 'package:wisdrive/constraints/popup_messages.dart';
 import 'package:wisdrive/controllers/language_controller.dart';
 import 'package:wisdrive/controllers/theme_controller.dart';
 import 'package:wisdrive/constraints/app_theme.dart';
@@ -200,7 +200,7 @@ class _SidebarMenuState extends State<SidebarMenu> {
                   S.of(context).logout,
                   style: GoogleFonts.play(color: Colors.white, fontSize: 20),
                 ),
-                onTap: () => HelperFunctions.showLogoutDialog(context)),
+                onTap: () => PopupMessages.showLogoutDialog(context)),
           ],
         ),
       );

@@ -2,18 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:wisdrive/generated/l10n.dart';
-import 'package:wisdrive/service/auth_gate.dart';
-//import 'package:wisdrive/service/supabase_service.dart';
 import 'package:wisdrive/widgets/general/response_snackbar.dart';
-import 'package:get/get.dart';
 
 class AuthService {
   final _supabase = Supabase.instance.client;
-  //final supabaseService = Get.find<SupabaseService>();
   final box = GetStorage();
 
+  //Check if user is new;
   bool isFirstTime() {
-    return box.read("isFirstTime") ?? true; //Check if user is new;
+    return box.read("isFirstTime") ?? true;
   }
 
   // Sign in with email and password
@@ -54,13 +51,6 @@ class AuthService {
   //Sign out
   Future<void> signOut(BuildContext parentContext) async {
     await _supabase.auth.signOut();
-    if (parentContext.mounted) {
-      //Go to AuthGate to check if session is still active
-      Navigator.of(parentContext).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (_) => const AuthGate()),
-        (route) => false,
-      );
-    }
   }
 
   //Send reset password link
@@ -83,12 +73,11 @@ class AuthService {
             .eq('uuid', userId as Object)
             .maybeSingle();
 
-        signOut(context);
-
         ResponseSnackbar.show(context, false, S.of(context).deleteted_account);
+        await signOut(context);
+
       } catch (e) {
-        ResponseSnackbar.show(
-            context, true, '${S.of(Get.context!).deleted_account_error}: $e');
+        Exception(e);
         rethrow;
       }
     }
@@ -105,10 +94,11 @@ class AuthService {
         UserAttributes(password: newPassword),
       );
     } catch (e) {
-      ResponseSnackbar.show(Get.context!, true, e.toString());
+      Exception(e);
     }
   }
 
+  // Reauthenticate after updating password
   Future<bool> reauthenticate(String email, String password) async {
     try {
       final response = await _supabase.auth.signInWithPassword(

@@ -40,6 +40,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Cambiar contraseña",
     ),
     "change_picture": MessageLookupByLibrary.simpleMessage("Cambiar foto"),
+    "chatpdf_message_error": MessageLookupByLibrary.simpleMessage(
+      "Error al obtener respuesta de ChatPDF",
+    ),
     "check_email_to_activate_account": MessageLookupByLibrary.simpleMessage(
       "Revisa tu correo para activar tu cuenta",
     ),
@@ -61,6 +64,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "created_account": MessageLookupByLibrary.simpleMessage(
       "Cuenta creada con exito",
     ),
+    "creating_user_data_error": MessageLookupByLibrary.simpleMessage(
+      "Error creando la información del usuario",
+    ),
     "current_password": MessageLookupByLibrary.simpleMessage(
       "Contraseña actual",
     ),
@@ -73,6 +79,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "edit_gender": MessageLookupByLibrary.simpleMessage("Genero"),
     "edit_profile": MessageLookupByLibrary.simpleMessage("Editar perfil"),
+    "edit_profile_error": MessageLookupByLibrary.simpleMessage(
+      "Error al editar perfil",
+    ),
     "edit_profile_success": MessageLookupByLibrary.simpleMessage(
       "Perfil actualizado correctamente",
     ),
@@ -104,6 +113,12 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "incorrect_current_password": MessageLookupByLibrary.simpleMessage(
       "La contraseña actual es incorrecta",
+    ),
+    "invalid_email_format": MessageLookupByLibrary.simpleMessage(
+      "El formato del correo electrónico no es válido",
+    ),
+    "invalid_password_format": MessageLookupByLibrary.simpleMessage(
+      "El formato de la contraseña no es valido",
     ),
     "language": MessageLookupByLibrary.simpleMessage("Idioma"),
     "lesson": MessageLookupByLibrary.simpleMessage("Lección"),
@@ -142,6 +157,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "or": MessageLookupByLibrary.simpleMessage("ó"),
     "other": MessageLookupByLibrary.simpleMessage("Otro"),
     "password": MessageLookupByLibrary.simpleMessage("Contraseña"),
+    "password_format": MessageLookupByLibrary.simpleMessage(
+      "Formato de la contraseña",
+    ),
+    "password_requirements": MessageLookupByLibrary.simpleMessage(
+      "La contraseña debe tener al menos 8 caracteres, incluyendo una letra mayúscula, una letra minúscula y un número.",
+    ),
     "pick_avatar": MessageLookupByLibrary.simpleMessage("Selecciona un avatar"),
     "privacy_politics": MessageLookupByLibrary.simpleMessage(
       "Politicas de privacidad",
@@ -150,7 +171,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "question_": MessageLookupByLibrary.simpleMessage("Pregunta"),
     "regulations": MessageLookupByLibrary.simpleMessage("Reglamento"),
     "reminders": MessageLookupByLibrary.simpleMessage("Recordatorios"),
-    "report_a_bug": MessageLookupByLibrary.simpleMessage("Report a bug"),
+    "report_a_bug": MessageLookupByLibrary.simpleMessage("Reportar un error"),
     "request_assistance": MessageLookupByLibrary.simpleMessage(
       "Solicitar asistencia",
     ),

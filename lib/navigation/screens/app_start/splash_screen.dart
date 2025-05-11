@@ -20,12 +20,14 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+    // Logo showing up animation
     Future.delayed(const Duration(milliseconds: 500), () {
       setState(() {
         _opacity = 1.0;
       });
     });
 
+    // Duration of the Splash screen
     Future.delayed(const Duration(seconds: 3), () {
       Get.offAll(() => const AuthGate());
     });

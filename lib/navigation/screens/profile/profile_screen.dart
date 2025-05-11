@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:wisdrive/constraints/helper_functions.dart';
 import 'package:wisdrive/constraints/images_routes.dart';
 import 'package:wisdrive/controllers/theme_controller.dart';
 import 'package:wisdrive/constraints/app_theme.dart';
@@ -19,11 +20,13 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   final ThemeController themeController = Get.find();
   final SupabaseClient supabase = Supabase.instance.client;
-
-  String username = '';
-  int? avatarIndex;
   bool isLoading = true;
-  List<dynamic> achievements = []; // <--- Se agregan logros
+
+  // Initializing user's profile information
+  String username = '';
+  String email = '';
+  int? avatarIndex;
+  List<dynamic> achievements = [];
 
   @override
   void initState() {
@@ -31,20 +34,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
     fetchUserProfile();
   }
 
+  // Load and fetch user's profile info into the screen
   Future<void> fetchUserProfile() async {
     final userId = supabase.auth.currentUser?.id;
     if (userId == null) return;
 
     final response = await supabase
         .from('users')
-        .select('username, avatar, achievements') // <-- Traer logros también
+        .select('username, email, avatar, achievements')
         .eq('uuid', userId)
         .single();
 
     setState(() {
       username = response['username'] ?? 'Invitado';
+      email = response['email'];
       avatarIndex = response['avatar'];
-      achievements = response['achievements'] ?? []; // <--- Logros
+      achievements = response['achievements'] ?? [];
       isLoading = false;
     });
   }
@@ -138,6 +143,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               : AppTheme.lightSecondary,
                           fontSize: 36),
                     ),
+                    const SizedBox(height: 10),
+                    Text(
+                      email,
+                      style: GoogleFonts.play(
+                        color: themeController.isDarkMode.value
+                            ? Colors.white
+                            : AppTheme.lightSecondary,
+                        fontSize: 18,
+                      ),
+                    ),
                     const SizedBox(height: 20),
                     SizedBox(
                       width: 300,
@@ -151,9 +166,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           backgroundColor: themeController.isDarkMode.value
                               ? Colors.white
                               : AppTheme.lightPurple,
-                          foregroundColor: themeController.isDarkMode.value
-                              ? AppTheme.darkPurple
-                              : Colors.white,
+                          foregroundColor:
+                              HelperFunctions.getWhiteBgTextThemeColor(),
                           side: BorderSide.none,
                           shape: const StadiumBorder(),
                         ),
@@ -172,72 +186,85 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                     ),
 
-                    // ----------------
-                    // Sección de LOGROS
-                    // ----------------
+                    // Achievements section
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Logros",
-                            //S
-                            //.of(context)
-                            //.achievements, // Esto debes tenerlo en tu archivo S.dart
-                            style: GoogleFonts.play(
-                              fontSize: 28,
-                              fontWeight: FontWeight.bold,
-                              color: themeController.isDarkMode.value
-                                  ? Colors.white
-                                  : AppTheme.lightSecondary,
-                            ),
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                          color: Colors.transparent,
+                          border: Border.all(
+                            color: themeController.isDarkMode.value
+                                ? Colors.grey
+                                : Colors.white,
+                            width: 3,
                           ),
-                          const SizedBox(height: 20),
-                          achievements.isEmpty
-                              ? Text(
-                                  "No tienes logros aún", // Aquí puedes usar S.of(context).no_achievements_yet
-                                  //S.of(context).no_achievements_yet,
-                                  style: GoogleFonts.play(
-                                    fontSize: 16,
-                                    color: themeController.isDarkMode.value
-                                        ? Colors.white70
-                                        : Colors.black54,
-                                  ),
-                                )
-                              : ListView.builder(
-                                  shrinkWrap: true,
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  itemCount: achievements.length,
-                                  itemBuilder: (context, index) {
-                                    return Card(
-                                      color: themeController.isDarkMode.value
-                                          ? AppTheme.lightBackground
-                                          : AppTheme.lightPurple
-                                              .withOpacity(0.3),
-                                      margin: const EdgeInsets.symmetric(
-                                          vertical: 8),
-                                      child: ListTile(
-                                        leading: const Icon(Icons.emoji_events,
-                                            color: Colors.amber),
-                                        title: Text(
-                                          achievements[index] ?? '',
-                                          style: GoogleFonts.play(
-                                            fontSize: 18,
-                                            color:
-                                                themeController.isDarkMode.value
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 20),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                S.of(context).achievements,
+                                style: GoogleFonts.play(
+                                  fontSize: 28,
+                                  fontWeight: FontWeight.bold,
+                                  color: themeController.isDarkMode.value
+                                      ? Colors.white
+                                      : AppTheme.lightSecondary,
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              achievements.isEmpty
+                                  ? Text(
+                                      S.of(context).no_achievements_yet,
+                                      style: GoogleFonts.play(
+                                        fontSize: 16,
+                                        color: themeController.isDarkMode.value
+                                            ? Colors.white70
+                                            : Colors.black54,
+                                      ),
+                                    )
+                                  : ListView.builder(
+                                      shrinkWrap: true,
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
+                                      itemCount: achievements.length,
+                                      itemBuilder: (context, index) {
+                                        return Card(
+                                          color:
+                                              themeController.isDarkMode.value
+                                                  ? AppTheme.lightBackground
+                                                  : AppTheme.lightPurple
+                                                      .withOpacity(0.3),
+                                          margin: const EdgeInsets.symmetric(
+                                              vertical: 8),
+                                          child: ListTile(
+                                            leading: const Icon(
+                                                Icons.emoji_events,
+                                                color: Colors.amber),
+                                            title: Text(
+                                              achievements[index] ?? '',
+                                              style: GoogleFonts.play(
+                                                fontSize: 18,
+                                                color: themeController
+                                                        .isDarkMode.value
                                                     ? Colors.white
                                                     : AppTheme.lightSecondary,
+                                              ),
+                                            ),
                                           ),
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                ),
-                        ],
+                                        );
+                                      },
+                                    ),
+                            ],
+                          ),
+                        ),
                       ),
                     ),
-
                     const SizedBox(height: 30),
                   ],
                 ),

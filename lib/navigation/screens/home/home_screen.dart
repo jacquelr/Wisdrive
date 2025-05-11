@@ -29,6 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final supabaseService = Get.find<SupabaseService>();
   int? selectedCategoryId;
 
+  // Displays the category the user is in in the app bar
   String? getSelectedCategory() {
     switch (selectedCategoryId) {
       case 1:
@@ -38,10 +39,11 @@ class _HomeScreenState extends State<HomeScreen> {
       case 3:
         return S.of(context).basic_mechanics;
       default:
-        return null;
+        return null; // This means main view = no title
     }
   }
 
+  // Redirect to EditProfileScreen if it is the user's first time using the app to input his information
   void checkFirstTimeLogged() async {
     bool isFirstTimeLogged = supabaseService.firstTimeLogged ? await supabaseService.isExistentUser() : false;
     if (isFirstTimeLogged) {

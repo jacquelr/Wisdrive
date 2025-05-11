@@ -430,6 +430,16 @@ class S {
     );
   }
 
+  /// `Error al editar perfil`
+  String get edit_profile_error {
+    return Intl.message(
+      'Error al editar perfil',
+      name: 'edit_profile_error',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Selecciona un avatar`
   String get pick_avatar {
     return Intl.message(
@@ -685,6 +695,36 @@ class S {
     );
   }
 
+  /// `Formato de la contraseña`
+  String get password_format {
+    return Intl.message(
+      'Formato de la contraseña',
+      name: 'password_format',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `El formato de la contraseña no es valido`
+  String get invalid_password_format {
+    return Intl.message(
+      'El formato de la contraseña no es valido',
+      name: 'invalid_password_format',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `La contraseña debe tener al menos 8 caracteres, incluyendo una letra mayúscula, una letra minúscula y un número.`
+  String get password_requirements {
+    return Intl.message(
+      'La contraseña debe tener al menos 8 caracteres, incluyendo una letra mayúscula, una letra minúscula y un número.',
+      name: 'password_requirements',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `La contraseña actual es incorrecta`
   String get incorrect_current_password {
     return Intl.message(
@@ -725,6 +765,16 @@ class S {
     );
   }
 
+  /// `Error creando la información del usuario`
+  String get creating_user_data_error {
+    return Intl.message(
+      'Error creando la información del usuario',
+      name: 'creating_user_data_error',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Revisa tu correo para activar tu cuenta`
   String get check_email_to_activate_account {
     return Intl.message(
@@ -740,6 +790,16 @@ class S {
     return Intl.message(
       'Ingresa tu correo',
       name: 'enter_your_email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `El formato del correo electrónico no es válido`
+  String get invalid_email_format {
+    return Intl.message(
+      'El formato del correo electrónico no es válido',
+      name: 'invalid_email_format',
       desc: '',
       args: [],
     );
@@ -770,6 +830,16 @@ class S {
     return Intl.message('Enviar', name: 'send', desc: '', args: []);
   }
 
+  /// `Error al obtener respuesta de ChatPDF`
+  String get chatpdf_message_error {
+    return Intl.message(
+      'Error al obtener respuesta de ChatPDF',
+      name: 'chatpdf_message_error',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Logros`
   String get achievements {
     return Intl.message('Logros', name: 'achievements', desc: '', args: []);
@@ -785,10 +855,10 @@ class S {
     );
   }
 
-  /// `Report a bug`
+  /// `Reportar un error`
   String get report_a_bug {
     return Intl.message(
-      'Report a bug',
+      'Reportar un error',
       name: 'report_a_bug',
       desc: '',
       args: [],

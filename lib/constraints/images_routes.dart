@@ -1,3 +1,4 @@
+// Routes for images inside the app
 class RImages {
   static const String onboarding_1 = "assets/images/onboarding-1.png";
   static const String onboarding_2 = "assets/images/onboarding-2.png";
@@ -20,6 +21,7 @@ class RImages {
   static const String profilePickImage = "assets/images/pick_image.png";
 }
 
+// Routes for carousel inside main_view
 class ImageCarousel {
   static const List<String> imagesList = [
     RImages.carousel_1,
@@ -28,18 +30,22 @@ class ImageCarousel {
   ];
 }
 
+// Routes for animations
 class LottieAnimations {
   static const String checkMark = "assets/animation/check_mark.json";
   static const String confeti= "assets/animation/confeti.json";
   static const String trofee = "assets/animation/trofee.json";
+  static const String thumbsUp = "animation/thumbs_up.json";
 }
 
+// Routes for audios
 class RAutoPlayer {
   static const String correct = "assets/sounds/correct.mp3";
   static const String incorrect = "assets/sounds/incorrect.mp3";
   static const String trumpets = "assets/sounds/tada_trumpet.mp3";
 }
 
+// Routes for avatar options
 class RAvatars {
   static const Map<int, String> avatarMap = {
     0: 'assets/avatars/avatar_0.jpg',

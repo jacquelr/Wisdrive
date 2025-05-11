@@ -14,7 +14,7 @@ class ContactSupportScreen extends StatefulWidget {
 class _ContactSupportScreenState extends State<ContactSupportScreen> {
   final TextEditingController _messageController = TextEditingController();
 
-  final String _email = 'wisdrive.jal@gmail.com';
+  final String _email = 'wisdrive.jal@gmail.com'; // Email to which the message will be sent
   late String selectedSubject;
 
   @override
@@ -42,7 +42,7 @@ class _ContactSupportScreenState extends State<ContactSupportScreen> {
       );
 
       if (await canLaunchUrl(emailUri)) {
-        await launchUrl(emailUri);
+        await launchUrl(emailUri); // Redirect to email application
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
@@ -51,6 +51,7 @@ class _ContactSupportScreenState extends State<ContactSupportScreen> {
       }
     }
 
+    // List of options for subject (title)
     final List<String> subjects = [
       S.of(context).report_a_bug,
       S.of(context).send_complaint,

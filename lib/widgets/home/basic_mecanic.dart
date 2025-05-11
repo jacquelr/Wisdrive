@@ -10,6 +10,7 @@ import 'package:wisdrive/widgets/home/video_mecanic.dart';
 class BasicMecanic extends StatelessWidget {
   const BasicMecanic({super.key});
 
+  // Display a map of videos in the db like modules
   Future<List<Map<String, dynamic>>> fetchVideos() async {
     final supabase = Supabase.instance.client;
     return await supabase.from('mechanical_resources').select();
@@ -48,7 +49,7 @@ class BasicMecanic extends StatelessWidget {
               return GestureDetector(
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => VideoMecanic(url: video['url_path']),
+                    builder: (context) => VideoMecanic(url: video['url_path'], name: video['name'],),
                   ));
                 },
                 child: Container(
@@ -72,10 +73,10 @@ class BasicMecanic extends StatelessWidget {
                         Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            video['name'] ?? S.of(context).unnamed,
+                            'Video',
                             style: GoogleFonts.play(
                               color: Colors.white,
-                              fontSize: 18,
+                              fontSize: 24,
                             ),
                           ),
                         ),
@@ -83,10 +84,10 @@ class BasicMecanic extends StatelessWidget {
                         Align(
                           alignment: Alignment.center,
                           child: Text(
-                            'Video',
+                            video['name'] ?? S.of(context).unnamed,
                             style: GoogleFonts.play(
                               color: Colors.white,
-                              fontSize: 24,
+                              fontSize: 18,
                             ),
                           ),
                         ),

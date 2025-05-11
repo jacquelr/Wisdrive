@@ -38,6 +38,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
     "change_password": MessageLookupByLibrary.simpleMessage("Change password"),
     "change_picture": MessageLookupByLibrary.simpleMessage("Change picture"),
+    "chatpdf_message_error": MessageLookupByLibrary.simpleMessage(
+      "Error getting response from ChatPDF",
+    ),
     "check_email_to_activate_account": MessageLookupByLibrary.simpleMessage(
       "Check your email to activate the account",
     ),
@@ -59,6 +62,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "created_account": MessageLookupByLibrary.simpleMessage(
       "Account created successfully",
     ),
+    "creating_user_data_error": MessageLookupByLibrary.simpleMessage(
+      "Error creating user data ",
+    ),
     "current_password": MessageLookupByLibrary.simpleMessage(
       "Current password",
     ),
@@ -68,6 +74,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "edit_gender": MessageLookupByLibrary.simpleMessage("Gender"),
     "edit_profile": MessageLookupByLibrary.simpleMessage("Edit profile"),
+    "edit_profile_error": MessageLookupByLibrary.simpleMessage(
+      "Error updating profile",
+    ),
     "edit_profile_success": MessageLookupByLibrary.simpleMessage(
       "Profile updated successfully",
     ),
@@ -93,6 +102,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "incorrect": MessageLookupByLibrary.simpleMessage("Incorrect, try again"),
     "incorrect_current_password": MessageLookupByLibrary.simpleMessage(
       "Current password is incorrect",
+    ),
+    "invalid_email_format": MessageLookupByLibrary.simpleMessage(
+      "Invalid email format",
+    ),
+    "invalid_password_format": MessageLookupByLibrary.simpleMessage(
+      "Invalid password format",
     ),
     "language": MessageLookupByLibrary.simpleMessage("Language"),
     "lesson": MessageLookupByLibrary.simpleMessage("Lesson"),
@@ -131,6 +146,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "or": MessageLookupByLibrary.simpleMessage("or"),
     "other": MessageLookupByLibrary.simpleMessage("Other"),
     "password": MessageLookupByLibrary.simpleMessage("Password"),
+    "password_format": MessageLookupByLibrary.simpleMessage("Password format"),
+    "password_requirements": MessageLookupByLibrary.simpleMessage(
+      "The password must be at least 8 characters, including one uppercase letter, one lowercase letter, and one number.",
+    ),
     "pick_avatar": MessageLookupByLibrary.simpleMessage("Pick an avatar"),
     "privacy_politics": MessageLookupByLibrary.simpleMessage(
       "Privacy politics",

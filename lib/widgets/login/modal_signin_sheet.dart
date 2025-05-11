@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wisdrive/constraints/helper_functions.dart';
+import 'package:wisdrive/constraints/popup_messages.dart';
 import 'package:wisdrive/controllers/theme_controller.dart';
 import 'package:wisdrive/constraints/app_theme.dart';
 import 'package:wisdrive/service/auth_service.dart';
 import 'package:wisdrive/service/supabase_service.dart';
 import 'package:wisdrive/widgets/general/response_snackbar.dart';
-import 'package:wisdrive/widgets/login/social_login_buttons.dart';
+// import 'package:wisdrive/widgets/login/social_login_buttons.dart';
 import '../../generated/l10n.dart';
 
 class ModalSigninSheet extends StatefulWidget {
@@ -22,15 +23,29 @@ class _ModalSigninSheetState extends State<ModalSigninSheet> {
   final authService = AuthService();
   final supabaseService = SupabaseService();
   final ThemeController themeController = Get.find();
+  bool obscurePassword = true;
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
+  // Logic to Sign In once user input his email and password
   void signIn() async {
     final email = emailController.text.trim();
     final password = passwordController.text.trim();
+
+    if (email.isEmpty || password.isEmpty) {
+      Navigator.pop(context); // Pop modal sheet
+      ResponseSnackbar.show(context, true, S.of(context).fill_all_fields);
+      return;
+    } else if (!HelperFunctions.isValidEmail(email)) {
+      Navigator.pop(context); // Pop modal sheet
+      ResponseSnackbar.show(context, true, S.of(context).invalid_email_format);
+    }
+
     try {
       final deletedUser = await supabaseService.isUserDeleted(email);
+      // if user has no value in deleted_at from public.users table
       if (!deletedUser) {
+        Navigator.pop(context);
         await authService.signInWithEmailAndPassword(email, password);
       } else {
         Navigator.pop(context);
@@ -42,7 +57,7 @@ class _ModalSigninSheetState extends State<ModalSigninSheet> {
         ResponseSnackbar.show(
           context,
           true,
-          "${S.of(context).signin_error}: $e",
+          S.of(context).signin_error,
         );
       }
     }
@@ -86,7 +101,7 @@ class _ModalSigninSheetState extends State<ModalSigninSheet> {
           const SizedBox(height: 15),
           TextField(
             controller: passwordController,
-            obscureText: true,
+            obscureText: obscurePassword,
             decoration: InputDecoration(
               labelText: S.of(context).password,
               labelStyle: GoogleFonts.play(color: Colors.white70, fontSize: 24),
@@ -96,13 +111,25 @@ class _ModalSigninSheetState extends State<ModalSigninSheet> {
               focusedBorder: const UnderlineInputBorder(
                 borderSide: BorderSide(color: Colors.white),
               ),
+              suffixIcon: IconButton(
+                icon: Icon(
+                  obscurePassword ? Icons.visibility : Icons.visibility_off,
+                  color: HelperFunctions.getIconThemeColor(),
+                ),
+                onPressed: () {
+                  setState(() {
+                    obscurePassword = !obscurePassword;
+                  });
+                },
+              ),
             ),
             style: const TextStyle(color: Colors.white),
           ),
           const SizedBox(height: 10),
+          // Forgot password? text button
           TextButton(
             onPressed: () {
-              HelperFunctions.resetPassword(context);
+              PopupMessages.resetForgottenPassword(context);
             },
             child: Text(
               '${S.of(context).forgot_password}?',
@@ -113,6 +140,7 @@ class _ModalSigninSheetState extends State<ModalSigninSheet> {
             ),
           ),
           const SizedBox(height: 40),
+          // Sign In button
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
@@ -129,17 +157,18 @@ class _ModalSigninSheetState extends State<ModalSigninSheet> {
             ),
           ),
           const SizedBox(height: 15),
-          Text(
-            S.of(context).or,
-            style: GoogleFonts.play(color: Colors.white, fontSize: 16),
-          ),
-          Text(
-            S.of(context).sign_in_with,
-            style: GoogleFonts.play(color: Colors.white, fontSize: 16),
-          ),
-          const SizedBox(height: 15),
-          const SocialLoginButtons(),
-          const SizedBox(height: 60),
+          // SIGN IN WITH FACEBOOK OR GOOGLE (feature not completed)
+          // Text(
+          //   S.of(context).or,
+          //   style: GoogleFonts.play(color: Colors.white, fontSize: 16),
+          // ),
+          // Text(
+          //   S.of(context).sign_in_with,
+          //   style: GoogleFonts.play(color: Colors.white, fontSize: 16),
+          // ),
+          // const SizedBox(height: 15),
+          // const SocialLoginButtons(),
+          const SizedBox(height: 75),
           TextButton(
             onPressed: () => Navigator.pop(context),
             child: Text(S.of(context).close,

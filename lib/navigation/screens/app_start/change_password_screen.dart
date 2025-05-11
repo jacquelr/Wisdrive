@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wisdrive/constraints/app_theme.dart';
+import 'package:wisdrive/constraints/helper_functions.dart';
 import 'package:wisdrive/controllers/theme_controller.dart';
 import 'package:wisdrive/generated/l10n.dart';
 import 'package:wisdrive/navigation/screens/home/home_screen.dart';
 import 'package:wisdrive/service/auth_service.dart';
 import 'package:wisdrive/service/supabase_service.dart';
+import 'package:wisdrive/widgets/general/response_snackbar.dart';
 import 'package:wisdrive/widgets/profile/profile_appbar.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
@@ -25,19 +27,24 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   Future<void> _updatePassword() async {
     final newPassword = _passwordController.text.trim();
 
-    if (newPassword.isEmpty || newPassword.length < 8) {
-      Get.snackbar('Error', 'La contraseña debe tener al menos 8 caracteres');
+    // Validate if password is empty or format password
+    if (newPassword.isEmpty) {
+      ResponseSnackbar.show(context, true, S.of(context).fill_all_fields);
+      return;
+    } else if (HelperFunctions.isSecurePassword(newPassword)) {
+      ResponseSnackbar.show(context, true, S.of(context).invalid_password_format);
       return;
     }
 
     setState(() => _isLoading = true);
 
+    // Exception handler updating new password
     try {
       await authService.updatePassword(newPassword);
-      Get.snackbar('Éxito', 'Contraseña actualizada correctamente');
+      ResponseSnackbar.show(context, false, S.of(context).updated_password);
       Get.offAll(() => const HomeScreen());
     } catch (e) {
-      Get.snackbar('Error', e.toString());
+      ResponseSnackbar.show(context, true, S.of(context).updated_password_error);
     } finally {
       setState(() => _isLoading = false);
     }
@@ -48,9 +55,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
     final ThemeController themeController = Get.find();
 
     return Scaffold(
-      backgroundColor: themeController.isDarkMode.value
-          ? AppTheme.darkPurple
-          : AppTheme.lightBackground,
+      backgroundColor: HelperFunctions.getBlackContainerThemeColor(),
       appBar: ProfileAppbar(appbarTitle: S.of(context).edit_profile),
       body: SafeArea(
         child: Padding(

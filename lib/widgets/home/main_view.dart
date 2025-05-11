@@ -26,6 +26,7 @@ class _MainViewState extends State<MainView> {
       child: Column(
         children: [
           const SizedBox(height: 16),
+          // Welcome message
           Text(
             S.of(context).welcome,
             style: GoogleFonts.play(
@@ -42,6 +43,7 @@ class _MainViewState extends State<MainView> {
             ),
           ),
           const SizedBox(height: 16),
+          // Carousel slider with introduction images
           CarouselSlider(
             carouselController: _controller,
             options: CarouselOptions(
@@ -78,6 +80,7 @@ class _MainViewState extends State<MainView> {
             }).toList(),
           ),
           const SizedBox(height: 12),
+          // Dot indicators for current carousel image
           AnimatedSmoothIndicator(
             activeIndex: _currentIndex,
             count: imagePaths.length,
@@ -92,7 +95,8 @@ class _MainViewState extends State<MainView> {
             },
           ),
           const SizedBox(height: 25),
-          const PdfViewer(), // Traffic regulations viewer Widget
+          // Traffic regulations viewer Widget
+          const PdfViewer(),
         ],
       ),
     );

@@ -1,4 +1,3 @@
-// video_player_screen.dart
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wisdrive/constraints/helper_functions.dart';
@@ -6,13 +5,15 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class VideoMecanic extends StatefulWidget {
   final String url;
+  final String name;
 
-  const VideoMecanic({super.key, required this.url});
+  const VideoMecanic({super.key, required this.url, required this.name});
 
   @override
   State<VideoMecanic> createState() => _VideoMecanicState();
 }
 
+// Screen for user to watch his selected video
 class _VideoMecanicState extends State<VideoMecanic> {
   late YoutubePlayerController _controller;
 
@@ -43,7 +44,7 @@ class _VideoMecanicState extends State<VideoMecanic> {
             centerTitle: true,
             backgroundColor: Colors.transparent,
             title: Text(
-              "Video",
+              widget.name,
               style: GoogleFonts.play(
                   color: HelperFunctions.getTextThemeColor(), fontSize: 26),
             ),

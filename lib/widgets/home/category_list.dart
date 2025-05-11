@@ -22,6 +22,7 @@ class CategoryList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // List with the names of the three categories (multilanguaje implemented)
     final List<CategoryProps> categoryButtons = [
       CategoryProps(id: null, name: S.of(context).home, icon: Icons.home),
       CategoryProps(id: 1, name: S.of(context).road_culture, icon: Icons.traffic),

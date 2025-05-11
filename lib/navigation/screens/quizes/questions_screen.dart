@@ -38,6 +38,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
     fetchQuestions();
   }
 
+  // Show questions inside selected quiz
   Future<void> fetchQuestions() async {
     final response =
         await supabase.from('questions').select().eq('quiz_id', widget.quizId);
@@ -51,6 +52,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
     }
   }
 
+  // Show answers of respective question
   Future<void> fetchAnswers(int questionId) async {
     final response =
         await supabase.from('answers').select().eq('question_id', questionId);
@@ -59,6 +61,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
     });
   }
 
+  // Answer the question and pass to the next one if anwer is correct
   void nextQuestion() {
     if (selectedAnswerId == null) return;
 
@@ -92,6 +95,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
   Widget build(BuildContext context) {
     ThemeController themeController = Get.find();
 
+    // Show loaging screen if quiz has no questions or answers
     if (questions.isEmpty || answers.isEmpty) {
       return const Scaffold(
         body: Center(child: CircularProgressIndicator()),
@@ -145,6 +149,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                       minHeight: 8,
                     ),
                     const SizedBox(height: 10),
+                    // Shows which question the user is on of all of them
                     Text(
                       "${S.of(context).question_} ${currentIndex + 1} ${S.of(context).of_} ${questions.length}",
                       style: GoogleFonts.play(
@@ -188,7 +193,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                        // Anser Button
+                        // Answer Button
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppTheme.darkPurple,
                           padding: const EdgeInsets.symmetric(vertical: 12),

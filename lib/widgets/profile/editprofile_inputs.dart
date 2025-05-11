@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:wisdrive/constraints/helper_functions.dart';
+import 'package:wisdrive/constraints/popup_messages.dart';
 import 'package:wisdrive/controllers/theme_controller.dart';
 import 'package:wisdrive/constraints/app_theme.dart';
 import 'package:wisdrive/generated/l10n.dart';
@@ -84,7 +84,7 @@ class _EditProfileInputsState extends State<EditProfileInputs> {
           supabaseService.createUserProfile(username, widget.selectedAvatar, mappedGender);
           Navigator.pop(context); // Return to HomeScreen
         } catch (e) {
-          ResponseSnackbar.show(context, true, e.toString());
+          ResponseSnackbar.show(context, true, S.of(context).creating_user_data_error);
         }
       } else {
         ResponseSnackbar.show(context, true, S.of(context).fill_all_fields);
@@ -147,7 +147,7 @@ class _EditProfileInputsState extends State<EditProfileInputs> {
               ElevatedButton(
                 // Cancel button
                 onPressed: creatingUser
-                    ? () => HelperFunctions.showAlert(
+                    ? () => PopupMessages.showAlert(
                         S.of(context).user_profile,
                         S.of(context).fill_all_fields)
                     : () {
@@ -185,7 +185,7 @@ class _EditProfileInputsState extends State<EditProfileInputs> {
                           Navigator.pop(context); // Go back to ProfileScreen
                           Navigator.pop(context); // Go back to HomeScreen
                         } catch (e) {
-                          ResponseSnackbar.show(context, true, e.toString());
+                          ResponseSnackbar.show(context, true, S.of(context).edit_profile_error);
                         }
                       },
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
