@@ -29,6 +29,7 @@ class _QuizesScreenState extends State<QuizesScreen> {
     fetchQuizzes();
   }
 
+  // Displays a vertical list of quizes from their respective modules
   Future<void> fetchQuizzes() async {
     final response = await supabase
         .from('quizzes')
@@ -65,6 +66,7 @@ class _QuizesScreenState extends State<QuizesScreen> {
             final quiz = quizes[index];
             return Column(
               children: [
+                // Action that user triggers when click a quiz
                 GestureDetector(
                   onTap: () async {
                     final result = await Get.to(() => QuestionsScreen(

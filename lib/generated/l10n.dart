@@ -830,6 +830,16 @@ class S {
     return Intl.message('Enviar', name: 'send', desc: '', args: []);
   }
 
+  /// `Error al obtener respuesta de ChatPDF`
+  String get chatpdf_message_error {
+    return Intl.message(
+      'Error al obtener respuesta de ChatPDF',
+      name: 'chatpdf_message_error',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Logros`
   String get achievements {
     return Intl.message('Logros', name: 'achievements', desc: '', args: []);

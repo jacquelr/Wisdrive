@@ -9,7 +9,7 @@ import 'package:wisdrive/constraints/app_theme.dart';
 import 'package:wisdrive/service/auth_service.dart';
 import 'package:wisdrive/service/supabase_service.dart';
 import 'package:wisdrive/widgets/general/response_snackbar.dart';
-import 'package:wisdrive/widgets/login/social_login_buttons.dart';
+// import 'package:wisdrive/widgets/login/social_login_buttons.dart';
 import '../../generated/l10n.dart';
 
 class ModalSignupSheet extends StatefulWidget {
@@ -29,41 +29,25 @@ class _ModalSignupSheetState extends State<ModalSignupSheet> {
   final TextEditingController confirmPasswordController =
       TextEditingController();
 
+  // Logic to Sign Up once user input his email, password and confirm password
   void signUp() async {
     final email = emailController.text.trim();
     final password = passwordController.text;
     final confirmPassword = confirmPasswordController.text;
 
-    //Verify if email format is valid with regex
-    bool isValidEmail(String email) {
-      final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
-      return emailRegex.hasMatch(email);
-    }
-
-    // Verify the security of password
-    bool isSecurePassword(String password) {
-      final passwordRegex = RegExp(
-        r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$',
-      );
-      return passwordRegex.hasMatch(password);
-    }
-
-    // Handle input exceptions
-    if (email.isEmpty || password.isEmpty || confirmPassword.isEmpty) {
-      //Validate empty fields
+    if (email.isEmpty || password.isEmpty || confirmPassword.isEmpty) { // Validate empty fields
       Navigator.pop(context);
       ResponseSnackbar.show(context, true, S.of(context).fill_all_fields);
       return;
-    } else if (!isValidEmail(email)) {
+    } else if (!HelperFunctions.isValidEmail(email)) { // Validate email with regex
       Navigator.pop(context);
       ResponseSnackbar.show(context, true, S.of(context).invalid_email_format);
       return;
-    } else if (!isSecurePassword(password)) {
+    } else if (!HelperFunctions.isSecurePassword(password)) { // Validate password with regex
       Navigator.pop(context);
-      ResponseSnackbar.show(context, true, S.of(context).invalid_email_format);
+      ResponseSnackbar.show(context, true, S.of(context).invalid_password_format);
       return;
-    } else if (password != confirmPassword) {
-      //Validate if passwords match
+    } else if (password != confirmPassword) { // Validate if passwords match
       Navigator.pop(context);
       ResponseSnackbar.show(context, true, S.of(context).unmatch_password);
       return;
@@ -87,6 +71,7 @@ class _ModalSignupSheetState extends State<ModalSignupSheet> {
         if (deletedUser) {
           // Case 2: User deleted his account and want to create another -> delete user data record to create a new one
           await supabaseService.deleteUserProfile(email);
+          await authService.updatePassword(password);
           if (context.mounted) {
             Navigator.pop(context);
             PopupMessages.showAlert(
@@ -223,13 +208,14 @@ class _ModalSignupSheetState extends State<ModalSignupSheet> {
             ),
           ),
           const SizedBox(height: 15),
-          Text(
-            S.of(context).create_account_with,
-            style: GoogleFonts.play(color: Colors.white, fontSize: 16),
-          ),
-          const SizedBox(height: 15),
-          const SocialLoginButtons(),
-          const SizedBox(height: 40),
+          // SIGN UP WITH FACEBOOK OR GOOGLE (feature not completed)
+          // Text(
+          //   S.of(context).create_account_with,
+          //   style: GoogleFonts.play(color: Colors.white, fontSize: 16),
+          // ),
+          // const SizedBox(height: 15),
+          // const SocialLoginButtons(),
+          const SizedBox(height: 55),
           TextButton(
             onPressed: () => Navigator.pop(context),
             child: Text(S.of(context).close,

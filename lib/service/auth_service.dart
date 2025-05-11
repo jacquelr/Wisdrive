@@ -6,11 +6,11 @@ import 'package:wisdrive/widgets/general/response_snackbar.dart';
 
 class AuthService {
   final _supabase = Supabase.instance.client;
-  //final supabaseService = Get.find<SupabaseService>();
   final box = GetStorage();
 
+  //Check if user is new;
   bool isFirstTime() {
-    return box.read("isFirstTime") ?? true; //Check if user is new;
+    return box.read("isFirstTime") ?? true;
   }
 
   // Sign in with email and password
@@ -73,8 +73,9 @@ class AuthService {
             .eq('uuid', userId as Object)
             .maybeSingle();
 
-        await signOut(context);
         ResponseSnackbar.show(context, false, S.of(context).deleteted_account);
+        await signOut(context);
+
       } catch (e) {
         Exception(e);
         rethrow;
@@ -97,6 +98,7 @@ class AuthService {
     }
   }
 
+  // Reauthenticate after updating password
   Future<bool> reauthenticate(String email, String password) async {
     try {
       final response = await _supabase.auth.signInWithPassword(

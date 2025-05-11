@@ -9,6 +9,7 @@ import 'package:wisdrive/widgets/general/response_snackbar.dart';
 import '../generated/l10n.dart';
 
 class PopupMessages {
+  // Display a dynamic Dialog
   static void showAlert(String title, String message) {
     showDialog(
         context: Get.context!,
@@ -40,6 +41,7 @@ class PopupMessages {
         });
   }
 
+  // Display confirmation logout dialog
   static void showLogoutDialog(BuildContext parentContext) {
     final authService = Get.find<AuthService>();
     final ThemeController themeController = Get.find();
@@ -86,6 +88,7 @@ class PopupMessages {
     );
   }
 
+  // Display confirmation delete account dialog
   static void showDeleteAccountDialog(BuildContext parentContext) {
     final authService = Get.find<AuthService>();
     final ThemeController themeController = Get.find();
@@ -132,7 +135,8 @@ class PopupMessages {
     );
   }
 
-  static void resetPassword(BuildContext context) async {
+ // Display dialog to reset user's password dialog (inputs included)
+ static void resetForgottenPassword(BuildContext context) async {
     final ThemeController themeController = Get.find();
     final authService = Get.find<AuthService>();
     final TextEditingController emailResetController = TextEditingController();

@@ -20,12 +20,13 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   final ThemeController themeController = Get.find();
   final SupabaseClient supabase = Supabase.instance.client;
+  bool isLoading = true;
 
+  // Initializing user's profile information
   String username = '';
   String email = '';
   int? avatarIndex;
-  bool isLoading = true;
-  List<dynamic> achievements = []; // <--- Se agregan logros
+  List<dynamic> achievements = [];
 
   @override
   void initState() {
@@ -33,14 +34,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
     fetchUserProfile();
   }
 
+  // Load and fetch user's profile info into the screen
   Future<void> fetchUserProfile() async {
     final userId = supabase.auth.currentUser?.id;
     if (userId == null) return;
 
     final response = await supabase
         .from('users')
-        .select(
-            'username, email, avatar, achievements') // <-- Traer logros también
+        .select('username, email, avatar, achievements')
         .eq('uuid', userId)
         .single();
 
@@ -48,7 +49,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       username = response['username'] ?? 'Invitado';
       email = response['email'];
       avatarIndex = response['avatar'];
-      achievements = response['achievements'] ?? []; // <--- Logros
+      achievements = response['achievements'] ?? [];
       isLoading = false;
     });
   }

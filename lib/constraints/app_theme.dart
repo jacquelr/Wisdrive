@@ -9,18 +9,18 @@ const royalPurple = Color.fromARGB(255, 118, 0, 124);
 const violet = Color.fromARGB(255, 151, 71, 255);
 
 class AppTheme {
-  // 🎨 Paleta de colores oscuros
+  // 🎨 Dark colors palette 
   static const Color darkPurple = Color(0xFF281845);
   static const Color mediumPurple = Color(0xFF512A80);
   static const Color lightPurple = Color(0xFF8A52C3);
 
-  // 🎨 Paleta de colores claros
+  // 🎨 White color palette
   static const Color lightBackground = Color(0xFFF5F5F5);
   static const Color lightPrimary = Color(0xFFBB86FC);
   static const Color lightSecondary = Color(0xFF6200EE);
   static const Color lightAccent = Color(0xFF3700B3);
 
-  // 🌌 Gradientes oscuros
+  // 🌌 Dark gradient
   static const LinearGradient splashBgGradient = LinearGradient(
     colors: [darkPurple, mediumPurple, lightPurple],
     begin: Alignment.topCenter,
@@ -39,7 +39,7 @@ class AppTheme {
     end: Alignment.bottomCenter,
   );
 
-  // 🌞 Gradientes claros
+  // 🌞 Light gradient
   static const LinearGradient lightBgGradient = LinearGradient(
     colors: [lightBackground, lightPrimary],
     begin: Alignment.topCenter,
@@ -70,7 +70,7 @@ class AppTheme {
     return isDarkMode ? blackBgGradient : whiteGradient;
   }
 
-  // 🌙 Tema oscuro
+  // 🌙 Dark theme
   static ThemeData get darkTheme {
     return ThemeData.dark().copyWith(
       scaffoldBackgroundColor: darkPurple,
@@ -87,7 +87,7 @@ class AppTheme {
     );
   }
 
-  // ☀️ Tema claro
+  // ☀️ Light theme
   static ThemeData get lightTheme {
     return ThemeData.light().copyWith(
       scaffoldBackgroundColor: lightBackground,

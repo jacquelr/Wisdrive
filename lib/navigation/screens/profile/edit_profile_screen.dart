@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wisdrive/constraints/images_routes.dart';
@@ -32,6 +31,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     loadUserAvatar();
   }
 
+  // Load user's avatar image if isn't user's first time on the app
   Future<void> loadUserAvatar() async {
     final avatarIndex = await supabaseService.getUserAvatar();
     setState(() {
@@ -44,6 +44,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     final ThemeController themeController = Get.find();
     final bool creatingUser = supabaseService.firstTimeLogged;
 
+    // Display dialog with all avatar options for the user
     void showAvatarPicker(BuildContext context) {
       showDialog(
         context: context,

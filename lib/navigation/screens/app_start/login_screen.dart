@@ -11,11 +11,12 @@ import '../../../generated/l10n.dart';
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
+  // Display signIn or signUp modal sheet
   void _showAuthModal(BuildContext context, bool isSignin) {
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
-      isScrollControlled: true, // Para que ocupe más espacio
+      isScrollControlled: true,
       builder: (context) {
         return isSignin ? const ModalSigninSheet() : const ModalSignupSheet();
       },
@@ -30,7 +31,7 @@ class LoginScreen extends StatelessWidget {
       body: Container(
         decoration: BoxDecoration(
           gradient: AppTheme.getGradient(
-              themeController.isDarkMode.value), // Aplicamos el degradado
+              themeController.isDarkMode.value),
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 50),

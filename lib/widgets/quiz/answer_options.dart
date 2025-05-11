@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wisdrive/constraints/app_theme.dart';
 
+// List of four answers displayed on QuestionsScreen
 class AnswerOptions extends StatelessWidget {
   final List<Map<String, dynamic>> answers;
   final int? selectedId;

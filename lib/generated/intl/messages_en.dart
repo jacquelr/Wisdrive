@@ -38,6 +38,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
     "change_password": MessageLookupByLibrary.simpleMessage("Change password"),
     "change_picture": MessageLookupByLibrary.simpleMessage("Change picture"),
+    "chatpdf_message_error": MessageLookupByLibrary.simpleMessage(
+      "Error getting response from ChatPDF",
+    ),
     "check_email_to_activate_account": MessageLookupByLibrary.simpleMessage(
       "Check your email to activate the account",
     ),

@@ -13,10 +13,10 @@ class PdfViewerScreen extends StatefulWidget {
 }
 
 class _PdfViewerScreenState extends State<PdfViewerScreen> {
-  // Llave para controlar el visor de PDF y acceder a funciones como abrir marcadores.
+  // Key to contoll PDF viewer and access functions like open markers.
   final GlobalKey<SfPdfViewerState> _pdfViewerKey = GlobalKey();
 
-  // URL del PDF a cargar.
+  // URL of PDF to load.
   final String pdfUrl =
       'https://transparencia.info.jalisco.gob.mx/sites/default/files/Reglamento_%28Ley_de_los_Serv_de_Via_Tran_Transp_del_Edojal%29.pdf';
 
@@ -42,7 +42,7 @@ class _PdfViewerScreenState extends State<PdfViewerScreen> {
               color: HelperFunctions.getIconThemeColor(),
             ),
             onPressed: () {
-              // Abre la vista de marcadores del PDF.
+              // Open view of markers of PDF
               _pdfViewerKey.currentState?.openBookmarkView();
             },
           ),

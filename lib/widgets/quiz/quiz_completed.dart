@@ -80,10 +80,10 @@ class _QuizCompletedState extends State<QuizCompleted> {
                     ),
                     alignment: Alignment.center,
                     child: Lottie.asset(
-                      LottieAnimations.checkMark,
+                      LottieAnimations.thumbsUp,
                       width: screenWidth,
                       height: screenHeight,
-                      repeat: false,
+                      repeat: true,
                     ),
                   ),
                   Padding(
@@ -115,7 +115,7 @@ class _QuizCompletedState extends State<QuizCompleted> {
                       child: Text(
                         S.of(context).continue_learning,
                         style: GoogleFonts.play(
-                          color: Colors.white,
+                          color: HelperFunctions.getWhiteBgTextThemeColor(),
                           fontSize: 32,
                           fontWeight: FontWeight.bold,
                         ),

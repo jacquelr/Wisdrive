@@ -21,15 +21,16 @@ class ModuleList extends StatelessWidget {
         .eq('category_id', selectedCategoryId);
   }
 
-  // Simulation of progress of completed quizes
-  double getProgress(int moduleId) {
-    return (moduleId % 10) / 10.0; // fake data example based on id
-  }
+  // Simulation of progress of completed quizes (feature not completed)
+  // double getProgress(int moduleId) {
+  //   return (moduleId % 10) / 10.0; // fake data example based on id
+  // }
 
   @override
   Widget build(BuildContext context) {
     final ThemeController themeController = Get.find();
 
+    // Fetch a map of all modules of selected category
     return FutureBuilder<List<Map<String, dynamic>>>(
       future: fetchModules(),
       builder: (context, snapshot) {
@@ -58,7 +59,7 @@ class ModuleList extends StatelessWidget {
             itemCount: modules.length,
             itemBuilder: (context, index) {
               final module = modules[index];
-              final progress = getProgress(module['id']);
+              // final progress = getProgress(module['id']);
 
               return GestureDetector(
                 onTap: () {
@@ -100,6 +101,7 @@ class ModuleList extends StatelessWidget {
                           size: 75,
                           color: Colors.white,
                         ),
+                        const SizedBox(height: 8),
                         Expanded(
                             child: AutoSizeText(
                               module['module_name'] ?? S.of(context).unnamed,
@@ -112,17 +114,17 @@ class ModuleList extends StatelessWidget {
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
-                        const SizedBox(height: 8),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: LinearProgressIndicator(
-                            value: progress,
-                            minHeight: 10,
-                            backgroundColor: AppTheme.darkPurple,
-                            valueColor: const AlwaysStoppedAnimation<Color>(
-                                AppTheme.lightSecondary),
-                          ),
-                        ),
+                        // Progress bar (feature not completed)
+                        // ClipRRect(
+                        //   borderRadius: BorderRadius.circular(10),
+                        //   child: LinearProgressIndicator(
+                        //     value: progress,
+                        //     minHeight: 10,
+                        //     backgroundColor: AppTheme.darkPurple,
+                        //     valueColor: const AlwaysStoppedAnimation<Color>(
+                        //         AppTheme.lightSecondary),
+                        //   ),
+                        // ),
                       ],
                     ),
                   ),

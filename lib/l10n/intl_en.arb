@@ -103,6 +103,7 @@
     "reset_link_sent": "Reset link sent",
     "reset_link_sent_error": "Reset link sent error",
     "send": "Send",
+    "chatpdf_message_error": "Error getting response from ChatPDF",
     
     "achievements": "Achievements",
     "no_achievements_yet": "No achievements yet",

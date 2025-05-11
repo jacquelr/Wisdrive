@@ -103,6 +103,7 @@
     "reset_link_sent": "Enlace de reestablecimiento enviado",
     "reset_link_sent_error": "Error al enviar enlace de reestablecimiento",
     "send": "Enviar",
+    "chatpdf_message_error": "Error al obtener respuesta de ChatPDF",
 
     "achievements": "Logros",
     "no_achievements_yet": "No logros obtenidos",

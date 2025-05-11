@@ -18,6 +18,19 @@ class HelperFunctions {
     return MediaQuery.of(Get.context!).size.width;
   }
 
+  // Validate email and password using regex
+  static bool isValidEmail(String email) {
+    final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+    return emailRegex.hasMatch(email);
+  }
+
+  static bool isSecurePassword(String password) {
+    final passwordRegex = RegExp(
+      r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$',
+    );
+    return passwordRegex.hasMatch(password);
+  }
+
   // Get Theme Color for backgruonds and texts
   static Color? getTextThemeColor() {
     final ThemeController themeController = Get.find();

@@ -103,6 +103,7 @@ flutter:
     - assets/animation/check_mark.json
     - assets/animation/confeti.json
     - assets/animation/trofee.json
+    - assets/animation/thumbs_up.json
     - assets/assets/sounds/correct.mp3
     - assets/assets/sounds/incorrect.mp3
     - assets/assets/sounds/tada_trumpet.mp3

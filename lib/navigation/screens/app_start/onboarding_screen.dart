@@ -26,6 +26,7 @@ class OnboardingScreen extends StatelessWidget {
             PageView(
               controller: controller.pageConroller,
               onPageChanged: controller.updatePageIndicator,
+              // Sliding information windows
               children: [
                 Onboarding(
                   themeController: themeController,

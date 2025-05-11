@@ -12,6 +12,7 @@ class SupabaseService {
   bool deletedUser = false;
   bool matchedEmail = false;
 
+  // Get user from public.users table by UUID
   Future<Map<String, dynamic>?> getUserProfile() async {
     final user = supabase.auth.currentUser;
     if (user == null) return null;
@@ -28,6 +29,7 @@ class SupabaseService {
     }
   }
 
+  // Get user from public.users table (this one calls previous one)
   Future<Map<String, dynamic>> getUserProfileOrThrow() async {
     final user = await getUserProfile();
     if (user == null) {
@@ -36,6 +38,7 @@ class SupabaseService {
     return user;
   }
 
+  // Get user from public.users table by Email
   Future<Map<String, dynamic>?> getUserByEmail(String email) async {
     try {
       final response = await supabase
@@ -51,6 +54,7 @@ class SupabaseService {
     }
   }
 
+  // Check if user has value in deleted_at from public.users table by Email
   Future<bool> isUserDeleted(email) async {
     try {
       final response = await supabase
@@ -69,6 +73,7 @@ class SupabaseService {
     return deletedUser;
   }
 
+  // Check if parameter email matches one from public.users table
   Future<bool> isMatchedEmail(String email) async {
     try {
       final response = await supabase
@@ -85,6 +90,7 @@ class SupabaseService {
     return matchedEmail;
   }
 
+  // Check if user already exists in public.users table
   Future<bool> isExistentUser() async {
     final userId = supabase.auth.currentUser!.id;
     // matching users table and oauth table uuids
@@ -133,6 +139,7 @@ class SupabaseService {
     }
   }
 
+   // supabase -> UPDATE FROM TABLE public.users WHERE uuid = auth.uuid
   Future<void> updateUserProfile(
       {String? username, int? avatar, String? gender}) async {
     final userId = Supabase.instance.client.auth.currentUser?.id;
@@ -166,6 +173,7 @@ class SupabaseService {
     }
   }
 
+   // supabase -> DELETE FROM TABLE public.users WHERE email = parameter email
   Future<void> deleteUserProfile(String email) async {
     try {
       // Delete user data to start over again
@@ -175,6 +183,7 @@ class SupabaseService {
     }
   }
 
+  // Set a integer value for user's avatar in avatar field
   Future<void> setUserAvatar(int avatarKey) async {
     await Supabase.instance.client // Save avatar in supabase
         .from('users')
@@ -182,6 +191,7 @@ class SupabaseService {
             'uuid', Supabase.instance.client.auth.currentUser!.id);
   }
 
+  // Gets value of integer in users avatar field
   Future<int?> getUserAvatar() async {
     final userId = Supabase.instance.client.auth.currentUser?.id;
     if (userId == null) return null;
@@ -195,6 +205,7 @@ class SupabaseService {
     return response['avatar'];
   }
 
+  // Gets the route of AvatarImage depending on the sent avatar index
   Future<String> getAvatarImagePath(int? avatarIndex) async {
     if (avatarIndex == null || !RAvatars.avatarMap.containsKey(avatarIndex)) {
       return RImages.profilePickImage;

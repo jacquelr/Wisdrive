@@ -24,27 +24,29 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
   final newPassword = TextEditingController();
   final confirmNewPassword = TextEditingController();
 
+  // Action that apply button triggers to update passwod
   void updatePasswordFlow(BuildContext context) async {
     final email = authService.getCurrentUserEmail();
     final current = currentPassword.text.trim();
     final newPass = newPassword.text.trim();
     final confirmNew = confirmNewPassword.text.trim();
 
+    // Return if fields are empty
     if (current.isEmpty || newPass.isEmpty || confirmNew.isEmpty) {
       ResponseSnackbar.show(context, true, S.of(context).fill_all_fields);
       return;
     }
-
+    // Return if passwords do not match
     if (newPass != confirmNew) {
       ResponseSnackbar.show(context, true, S.of(context).unmatch_password);
       return;
     }
-
+    // Return if current password and new password are the same
     if (current == newPass) {
       ResponseSnackbar.show(context, true, S.of(context).same_password);
       return;
     }
-
+    
     final isValid = await authService.reauthenticate(email!, current);
     if (!isValid) {
       ResponseSnackbar.show(context, true, S.of(context).incorrect_current_password);
