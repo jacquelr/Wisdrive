@@ -35,7 +35,7 @@ class LottieAnimations {
   static const String checkMark = "assets/animation/check_mark.json";
   static const String confeti= "assets/animation/confeti.json";
   static const String trofee = "assets/animation/trofee.json";
-  static const String thumbsUp = "animation/thumbs_up.json";
+  static const String thumbsUp = "assets/animation/thumbs_up.json";
 }
 
 // Routes for audios
