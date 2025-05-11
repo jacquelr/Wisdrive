@@ -181,6 +181,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           ],
         ),
       ),
+      resizeToAvoidBottomInset: false,
     );
   }
 }
