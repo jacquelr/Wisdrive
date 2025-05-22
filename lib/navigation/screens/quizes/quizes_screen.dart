@@ -44,17 +44,13 @@ class _QuizesScreenState extends State<QuizesScreen> {
     try {
       final user = await supabaseService.getUserProfileOrThrow();
       if (user['id'] == null) {
-        print('❌ user o user["id"] es null');
         return;
       }
 
       userId = user['id'].toString();
-      print('✅ Usuario cargado: $userId');
 
       await fetchQuizzes();
-    } catch (e, stacktrace) {
-      print('❌ Error al obtener el usuario: $e');
-      print(stacktrace);
+    } catch (e) {
       setState(() {
         isLoading = false;
       });
@@ -73,15 +69,11 @@ class _QuizesScreenState extends State<QuizesScreen> {
           .select()
           .eq('module_id', widget.moduleId);
 
-      print('✅ Quizzes encontrados: ${quizzesResponse.length}');
-
       // 2. Obtener los quizzes completados por el usuario
       final completedResponse = await supabase
           .from('completed_quizzes')
           .select('quizz_id')
           .eq('user_id', userId);
-
-      print('✅ Completados: ${completedResponse.length}');
 
       final completedIds =
           completedResponse.map((entry) => entry['quizz_id'] as int).toSet();
@@ -98,9 +90,7 @@ class _QuizesScreenState extends State<QuizesScreen> {
         quizes = List<Map<String, dynamic>>.from(loadedQuizzes);
         isLoading = false;
       });
-    } catch (e, stacktrace) {
-      print('❌ Error al cargar quizzes: $e');
-      print(stacktrace);
+    } catch (e) {
       setState(() {
         isLoading = false;
       });
