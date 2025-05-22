@@ -110,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           : Column(
                               children: [
                                 selectedCategoryId == 3
-                                ? const BasicMecanic() // Basic mechanics content
+                                ? const Expanded(child: BasicMecanic()) // Basic mechanics content
                                 : Expanded(
                                   child: ModuleList( // Road culture or Traffic regulations modules
                                       selectedCategoryId: selectedCategoryId!),

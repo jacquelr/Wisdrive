@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -36,7 +37,7 @@ class BasicMecanic extends StatelessWidget {
           padding: const EdgeInsets.all(16.0),
           child: GridView.builder(
             shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
+            physics: const AlwaysScrollableScrollPhysics(),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2, // columns
               crossAxisSpacing: 10, // y gap
@@ -71,7 +72,7 @@ class BasicMecanic extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Align(
-                          alignment: Alignment.centerLeft,
+                          alignment: Alignment.center,
                           child: Text(
                             'Video',
                             style: GoogleFonts.play(
@@ -81,14 +82,16 @@ class BasicMecanic extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 8),
-                        Align(
-                          alignment: Alignment.center,
-                          child: Text(
+                        Expanded(
+                          child: AutoSizeText(
                             video['name'] ?? S.of(context).unnamed,
                             style: GoogleFonts.play(
                               color: Colors.white,
                               fontSize: 18,
                             ),
+                            textAlign: TextAlign.center,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ),
                         const SizedBox(height: 8),
