@@ -6,6 +6,7 @@ import 'package:wisdrive/constraints/helper_functions.dart';
 import 'package:wisdrive/controllers/theme_controller.dart';
 import 'package:wisdrive/constraints/app_theme.dart';
 import 'package:wisdrive/generated/l10n.dart';
+import 'package:wisdrive/service/supabase_service.dart';
 import 'package:wisdrive/widgets/home/sidebar_menu.dart';
 import 'package:wisdrive/widgets/quiz/quiz_completed.dart';
 import 'package:wisdrive/widgets/quiz/answered_quiz_snackbar.dart';
@@ -27,6 +28,7 @@ class QuestionsScreen extends StatefulWidget {
 
 class _QuestionsScreenState extends State<QuestionsScreen> {
   final SupabaseClient supabase = Supabase.instance.client;
+  final supabaseService = SupabaseService();
   List<Map<String, dynamic>> questions = [];
   Map<int, List<Map<String, dynamic>>> answers = {};
   int currentIndex = 0;
@@ -78,9 +80,10 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
         if (currentIndex < questions.length - 1) {
           setState(() {
             currentIndex++;
-            selectedAnswerId = null; // Limpiar selección
+            selectedAnswerId = null; // Clean selection
           });
         } else {
+          markQuizAsCompleted(widget.quizId);
           Get.to(() => const QuizCompleted())!.then((result) {
             if (result == 'quiz_completed') {
               Get.back(result: 'quiz_completed');
@@ -89,6 +92,17 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
         }
       });
     }
+  }
+
+  // Create record inside completed_quizzes of current completed quiz
+  Future<void> markQuizAsCompleted(int quizId) async {
+    final userId = await supabaseService.getUserId();
+    if (userId == null) return;
+
+    await supabase.from('completed_quizzes').insert({
+      'user_id': userId,
+      'quizz_id': quizId,
+    });
   }
 
   @override
