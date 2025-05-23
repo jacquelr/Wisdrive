@@ -205,6 +205,24 @@ class SupabaseService {
     return response['avatar'];
   }
 
+  // Get user id from public.users table
+  Future<int?> getUserId() async {
+    final userId = Supabase.instance.client.auth.currentUser?.id;
+    if (userId == null) return null;
+
+    final response = await supabase
+        .from('users')
+        .select('id')
+        .eq('uuid', userId)
+        .single();
+
+    if (response['id'] == null) {
+    return null;
+  }
+
+  return response['id'] as int;
+  }
+
   // Gets the route of AvatarImage depending on the sent avatar index
   Future<String> getAvatarImagePath(int? avatarIndex) async {
     if (avatarIndex == null || !RAvatars.avatarMap.containsKey(avatarIndex)) {
