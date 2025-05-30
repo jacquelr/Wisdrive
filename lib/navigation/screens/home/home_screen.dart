@@ -72,6 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
         GlobalCupertinoLocalizations.delegate,
       ],
       title: "Wisdrive",
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(),
       home: Scaffold(
         extendBodyBehindAppBar: true,
