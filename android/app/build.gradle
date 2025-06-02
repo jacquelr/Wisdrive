@@ -44,5 +44,4 @@ flutter {
 }
 
 dependencies {
-    implementation 'com.google.android.gms:play-services-ads:24.1.0'
 }
