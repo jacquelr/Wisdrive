@@ -33,7 +33,7 @@ void main() async {
   );
 
   Get.lazyPut(() => AuthService());
-  Get.lazyPut(() => SupabaseService());
+  Get.put(SupabaseService());
   Get.put(ThemeController());
   Get.put(LanguageController());
   runApp(const WisdriveApp());
