@@ -6,6 +6,7 @@ import 'package:wisdrive/controllers/theme_controller.dart';
 import 'package:wisdrive/constraints/app_theme.dart';
 import 'package:wisdrive/generated/l10n.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:wisdrive/navigation/screens/home/home_screen.dart';
 import 'package:wisdrive/service/auth_service.dart';
 import 'package:wisdrive/service/supabase_service.dart';
 import 'package:wisdrive/widgets/general/response_snackbar.dart';
@@ -82,7 +83,7 @@ class _EditProfileInputsState extends State<EditProfileInputs> {
         try {
           // Inserts user's data into users table
           supabaseService.createUserProfile(username, widget.selectedAvatar, mappedGender);
-          Navigator.pop(context); // Return to HomeScreen
+          Get.offAll(() => const HomeScreen()); // Return to HomeScreen
         } catch (e) {
           ResponseSnackbar.show(context, true, S.of(context).creating_user_data_error);
         }
