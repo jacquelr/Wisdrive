@@ -61,6 +61,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "create_account_with": MessageLookupByLibrary.simpleMessage(
       "crea una cuenta con",
     ),
+    "create_profile": MessageLookupByLibrary.simpleMessage("Crear perfil"),
     "created_account": MessageLookupByLibrary.simpleMessage(
       "Cuenta creada con exito",
     ),
@@ -152,7 +153,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Mejora tu seguridad vial con lecciones de tráfico y mecánica para ser un conductor responsable.",
     ),
     "onboarding_3": MessageLookupByLibrary.simpleMessage(
-      "Prueba tus conocimientoson con lecciones interactivas y prepárate para cualquier situación.",
+      "Prueba tus conocimientos con lecciones interactivas y prepárate para cualquier situación.",
     ),
     "or": MessageLookupByLibrary.simpleMessage("ó"),
     "other": MessageLookupByLibrary.simpleMessage("Otro"),
@@ -184,6 +185,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "road_culture": MessageLookupByLibrary.simpleMessage("Cultura vial"),
     "same_password": MessageLookupByLibrary.simpleMessage(
       "La nueva contraseña no puede ser igual a la acutal",
+    ),
+    "select_picture": MessageLookupByLibrary.simpleMessage(
+      "Selecciona una foto",
     ),
     "send": MessageLookupByLibrary.simpleMessage("Enviar"),
     "send_complaint": MessageLookupByLibrary.simpleMessage("Enviar una queja"),

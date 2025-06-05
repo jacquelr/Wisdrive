@@ -58,8 +58,13 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
   Future<void> fetchAnswers(int questionId) async {
     final response =
         await supabase.from('answers').select().eq('question_id', questionId);
+
+    // This shuffles the answers show
+    final List<Map<String, dynamic>> shuffledAnswers =
+      List<Map<String, dynamic>>.from(response)..shuffle();
+
     setState(() {
-      answers[questionId] = List<Map<String, dynamic>>.from(response);
+      answers[questionId] = shuffledAnswers;
     });
   }
 

@@ -18,7 +18,7 @@ void main() async {
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp, // Blocks vertical orientation
   ]);
-  await dotenv.load();
+  //await dotenv.load();
   await GetStorage.init();
 
   try {
@@ -32,8 +32,8 @@ void main() async {
     anonKey: dotenv.env['SUPABASE_ANON_KEY']!,
   );
 
-  Get.lazyPut(() => AuthService());
-  Get.lazyPut(() => SupabaseService());
+  Get.put(AuthService());
+  Get.put(SupabaseService());
   Get.put(ThemeController());
   Get.put(LanguageController());
   runApp(const WisdriveApp());

@@ -80,10 +80,10 @@ class S {
     );
   }
 
-  /// `Prueba tus conocimientoson con lecciones interactivas y prepárate para cualquier situación.`
+  /// `Prueba tus conocimientos con lecciones interactivas y prepárate para cualquier situación.`
   String get onboarding_3 {
     return Intl.message(
-      'Prueba tus conocimientoson con lecciones interactivas y prepárate para cualquier situación.',
+      'Prueba tus conocimientos con lecciones interactivas y prepárate para cualquier situación.',
       name: 'onboarding_3',
       desc: '',
       args: [],
@@ -410,6 +410,16 @@ class S {
     return Intl.message('Perfil', name: 'profile', desc: '', args: []);
   }
 
+  /// `Crear perfil`
+  String get create_profile {
+    return Intl.message(
+      'Crear perfil',
+      name: 'create_profile',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Editar perfil`
   String get edit_profile {
     return Intl.message(
@@ -475,6 +485,16 @@ class S {
     return Intl.message(
       'Cambiar foto',
       name: 'change_picture',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Selecciona una foto`
+  String get select_picture {
+    return Intl.message(
+      'Selecciona una foto',
+      name: 'select_picture',
       desc: '',
       args: [],
     );

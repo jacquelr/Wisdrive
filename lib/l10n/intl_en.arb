@@ -51,6 +51,7 @@
     "take_a_look": "Take a look at the Jalisco traffic regulations",
 
     "profile" : "Profile",
+    "create_profile" : "Create profile",
     "edit_profile" : "Edit profile",
     "edit_profile_success": "Profile updated successfully",
     "edit_profile_error": "Error updating profile",
@@ -58,6 +59,7 @@
     "change_password" : "Change password",
     "delete_account" : "Delete Account",
     "are_you_sure": "Are you sure",
+    "select_picture" : "Select picture",
     "change_picture" : "Change picture",
     "edit_username" : "Username",
     "edit_gender" : "Gender",

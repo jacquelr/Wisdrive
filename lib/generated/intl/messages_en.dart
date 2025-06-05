@@ -59,6 +59,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "create_account_with": MessageLookupByLibrary.simpleMessage(
       "create an account with",
     ),
+    "create_profile": MessageLookupByLibrary.simpleMessage("Create profile"),
     "created_account": MessageLookupByLibrary.simpleMessage(
       "Account created successfully",
     ),
@@ -169,6 +170,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "same_password": MessageLookupByLibrary.simpleMessage(
       "New password cannot be the same as the current one",
     ),
+    "select_picture": MessageLookupByLibrary.simpleMessage("Select picture"),
     "send": MessageLookupByLibrary.simpleMessage("Send"),
     "send_complaint": MessageLookupByLibrary.simpleMessage("Send complaint"),
     "sign_in": MessageLookupByLibrary.simpleMessage("sign in"),

@@ -2,7 +2,7 @@
     "SKIP" : "SALTAR",
     "onboarding_1" : "¡Bienvenido a wisdrive! Aprende todo lo necesario sobre mecanica y el reglamento vial de Jalisco sin complicaciones.",
     "onboarding_2" : "Mejora tu seguridad vial con lecciones de tráfico y mecánica para ser un conductor responsable.",
-    "onboarding_3" : "Prueba tus conocimientoson con lecciones interactivas y prepárate para cualquier situación.",
+    "onboarding_3" : "Prueba tus conocimientos con lecciones interactivas y prepárate para cualquier situación.",
 
     "lets_start_learning" : "¡comencemos a aprender!",
     "sign_in" : "iniciar sesión",
@@ -51,6 +51,7 @@
     "take_a_look": "Dale un vistazo al reglamento de transito de Jalisco",
 
     "profile" : "Perfil",
+    "create_profile" : "Crear perfil",
     "edit_profile" : "Editar perfil",
     "edit_profile_success": "Perfil actualizado correctamente",
     "edit_profile_error": "Error al editar perfil",
@@ -58,6 +59,7 @@
     "change_password" : "Cambiar contraseña",
     "delete_account" : "Eliminar cuenta",
     "change_picture" : "Cambiar foto",
+    "select_picture" : "Selecciona una foto",
     "are_you_sure": "Estás seguro",
     "edit_username" : "Nombre de usuario",
     "edit_gender" : "Genero",

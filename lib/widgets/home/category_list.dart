@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wisdrive/constraints/app_theme.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import '../../generated/l10n.dart';
 
 class CategoryProps {
@@ -64,13 +65,14 @@ class CategoryList extends StatelessWidget {
                       children: [
                         Icon(category.icon, color: Colors.white, size: 20),
                         const SizedBox(height: 4),
-                        Text(
+                        AutoSizeText(
                           category.name,
                           textAlign: TextAlign.center,
                           style: GoogleFonts.play(
                             color: Colors.white,
                             fontSize: 14,
                           ),
+                          maxLines: 1,
                         ),
                       ],
                     ),
