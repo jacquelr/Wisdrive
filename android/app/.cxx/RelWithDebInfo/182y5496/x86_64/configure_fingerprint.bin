@@ -2,6 +2,7 @@ C/C++ Structured Logp
 n
 lC:\Users\isaac\Desktop\Wisdrive\android\app\.cxx\RelWithDebInfo\182y5496\x86_64\additional_project_files.txtC
 A
+<<<<<<< HEAD
 ?com.android.build.gradle.internal.cxx.io.EncodedFileFingerPrint	°›áîò2 …²¼ è2m
 k
 iC:\Users\isaac\Desktop\Wisdrive\android\app\.cxx\RelWithDebInfo\182y5496\x86_64\android_gradle_build.json	°›áîò2» ‰²¼ è2r
@@ -26,3 +27,29 @@ i
 gC:\Users\isaac\Desktop\Wisdrive\android\app\.cxx\RelWithDebInfo\182y5496\x86_64\symbol_folder_index.txt	°›áîò2^ ”²¼ è2O
 M
 KC:\src\flutter\packages\flutter_tools\gradle\src\main\groovy\CMakeLists.txt	°›áîò2§ •ãùœÕ2
+=======
+?com.android.build.gradle.internal.cxx.io.EncodedFileFingerPrint	º×ò2 …²¼ è2m
+k
+iC:\Users\isaac\Desktop\Wisdrive\android\app\.cxx\RelWithDebInfo\182y5496\x86_64\android_gradle_build.json	º×ò2» ‰²¼ è2r
+p
+nC:\Users\isaac\Desktop\Wisdrive\android\app\.cxx\RelWithDebInfo\182y5496\x86_64\android_gradle_build_mini.json	º×ò2– ²¼ è2_
+]
+[C:\Users\isaac\Desktop\Wisdrive\android\app\.cxx\RelWithDebInfo\182y5496\x86_64\build.ninja	º×ò2ÁÔ Ž°¼ è2c
+a
+_C:\Users\isaac\Desktop\Wisdrive\android\app\.cxx\RelWithDebInfo\182y5496\x86_64\build.ninja.txt	º×ò2h
+f
+dC:\Users\isaac\Desktop\Wisdrive\android\app\.cxx\RelWithDebInfo\182y5496\x86_64\build_file_index.txt	º×ò2K •²¼ è2i
+g
+eC:\Users\isaac\Desktop\Wisdrive\android\app\.cxx\RelWithDebInfo\182y5496\x86_64\compile_commands.json	º×ò2m
+k
+iC:\Users\isaac\Desktop\Wisdrive\android\app\.cxx\RelWithDebInfo\182y5496\x86_64\compile_commands.json.bin	º×ò2	s
+q
+oC:\Users\isaac\Desktop\Wisdrive\android\app\.cxx\RelWithDebInfo\182y5496\x86_64\metadata_generation_command.txt	º×ò2
+Õ ‘²¼ è2f
+d
+bC:\Users\isaac\Desktop\Wisdrive\android\app\.cxx\RelWithDebInfo\182y5496\x86_64\prefab_config.json	º×ò2( ’²¼ è2k
+i
+gC:\Users\isaac\Desktop\Wisdrive\android\app\.cxx\RelWithDebInfo\182y5496\x86_64\symbol_folder_index.txt	º×ò2^ ”²¼ è2O
+M
+KC:\src\flutter\packages\flutter_tools\gradle\src\main\groovy\CMakeLists.txt	º×ò2§ •ãùœÕ2
+>>>>>>> b9a4e1fcead7569aee610563230290b001a4725a
