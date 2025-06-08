@@ -1,2 +1,0 @@
-C:/Users/isaac/Desktop/Wisdrive/android/app/.cxx/Debug/6k6k6g3i/x86/CMakeFiles/edit_cache.dir
-C:/Users/isaac/Desktop/Wisdrive/android/app/.cxx/Debug/6k6k6g3i/x86/CMakeFiles/rebuild_cache.dir
