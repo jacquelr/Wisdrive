@@ -18,7 +18,7 @@ void main() async {
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp, // Blocks vertical orientation
   ]);
-  //await dotenv.load();
+  await dotenv.load();
   await GetStorage.init();
 
   try {

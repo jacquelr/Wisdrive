@@ -82,7 +82,7 @@ class _EditProfileInputsState extends State<EditProfileInputs> {
           mappedGender != null) {
         try {
           // Inserts user's data into users table
-          supabaseService.createUserProfile(username, widget.selectedAvatar, mappedGender);
+          await supabaseService.createUserProfile(username, widget.selectedAvatar, mappedGender);
           Get.offAll(() => const HomeScreen()); // Return to HomeScreen
         } catch (e) {
           ResponseSnackbar.show(context, true, S.of(context).creating_user_data_error);

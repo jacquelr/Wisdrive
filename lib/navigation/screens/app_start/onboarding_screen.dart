@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
 import 'package:wisdrive/constraints/helper_functions.dart';
 import 'package:wisdrive/constraints/images_routes.dart';
+import 'package:wisdrive/controllers/language_controller.dart';
 import 'package:wisdrive/controllers/onboarding_controller.dart';
 import 'package:wisdrive/controllers/theme_controller.dart';
 import 'package:wisdrive/constraints/app_theme.dart';
@@ -16,6 +17,7 @@ class OnboardingScreen extends StatelessWidget {
   @override
   Widget build(context) {
     final ThemeController themeController = Get.find();
+    final LanguageController languageController = Get.find();
     final controller = Get.put(OnboardingController());
 
     return Scaffold(
@@ -44,6 +46,45 @@ class OnboardingScreen extends StatelessWidget {
                   image: RImages.onboarding_3,
                 ),
               ],
+            ),
+            Positioned(
+              top: 1,
+              left: 1,
+              child: PopupMenuButton<Locale>(
+                icon: const Icon(Icons.language, color: Colors.white),
+                tooltip: S.of(context).language,
+                onSelected: (Locale locale) {
+                  languageController.changeLanguage(locale);
+                },
+                itemBuilder: (BuildContext context) {
+                  Locale currentLocale =
+                      languageController.selectedLocale.value;
+                  return [
+                    PopupMenuItem(
+                      value: const Locale('es', 'MX'),
+                      child: Row(
+                        children: [
+                          const Text('Español'),
+                          const Spacer(),
+                          if (currentLocale.languageCode == 'es')
+                            const Icon(Icons.check, color: Colors.white),
+                        ],
+                      ),
+                    ),
+                    PopupMenuItem(
+                      value: const Locale('en', 'US'),
+                      child: Row(
+                        children: [
+                          const Text('English'),
+                          const Spacer(),
+                          if (currentLocale.languageCode == 'en')
+                            const Icon(Icons.check, color: Colors.white),
+                        ],
+                      ),
+                    ),
+                  ];
+                },
+              ),
             ),
             Positioned(
               top: 1,

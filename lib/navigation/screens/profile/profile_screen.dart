@@ -98,7 +98,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       alignment: Alignment.topCenter,
                       children: [
                         Container(
-                          height: 300,
+                          height: 325,
                           width: double.infinity,
                           decoration: BoxDecoration(
                             color: themeController.isDarkMode.value
@@ -110,7 +110,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ),
                         ),
                         Container(
-                          padding: const EdgeInsets.only(top: 75),
+                          padding: const EdgeInsets.only(top: 100),
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             boxShadow: [
@@ -120,7 +120,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     : Colors.white.withOpacity(0.5),
                                 spreadRadius: 10,
                                 blurRadius: 15,
-                                offset: const Offset(0, 40),
+                                offset: const Offset(0, 52),
                               ),
                             ],
                           ),

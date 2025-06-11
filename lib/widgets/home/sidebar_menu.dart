@@ -11,7 +11,6 @@ import 'package:wisdrive/navigation/screens/home/home_screen.dart';
 import 'package:wisdrive/navigation/screens/home/pdf_viewer_screen.dart';
 import 'package:wisdrive/navigation/screens/home/privacy_policy_screen.dart';
 import 'package:wisdrive/navigation/screens/profile/profile_screen.dart';
-import 'package:wisdrive/service/auth_service.dart';
 import '../../generated/l10n.dart';
 
 class SidebarMenu extends StatefulWidget {
@@ -22,7 +21,6 @@ class SidebarMenu extends StatefulWidget {
 }
 
 class _SidebarMenuState extends State<SidebarMenu> {
-  final authService = Get.find<AuthService>();
   final ThemeController themeController = Get.find();
   final LanguageController languageController = Get.find();
 
@@ -38,6 +36,7 @@ class _SidebarMenuState extends State<SidebarMenu> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
+              const SizedBox(height: 20),
               buildHeader(context),
               buildMenuItems(context, languageController, themeController),
             ],
@@ -59,10 +58,9 @@ class _SidebarMenuState extends State<SidebarMenu> {
           children: [
             ListTile(
               leading: Image.asset(RImages.wLogo, width: 60),
-              onTap: () =>
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (context) => const HomeScreen(),
-              )),
+              onTap: () => Get.offAll(
+                () => const HomeScreen(),
+              ),
             ),
             const Divider(
               color: Colors.white,

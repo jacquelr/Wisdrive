@@ -159,6 +159,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "question_": MessageLookupByLibrary.simpleMessage("Question"),
     "regulations": MessageLookupByLibrary.simpleMessage("Regulations"),
     "reminders": MessageLookupByLibrary.simpleMessage("Reminders"),
+    "report_a_bug": MessageLookupByLibrary.simpleMessage("Report bug"),
     "request_assistance": MessageLookupByLibrary.simpleMessage(
       "Request assistance",
     ),

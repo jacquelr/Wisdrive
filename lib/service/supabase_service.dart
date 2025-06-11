@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:wisdrive/constraints/images_routes.dart';
 import 'package:wisdrive/service/auth_service.dart';
@@ -7,7 +6,6 @@ import 'package:wisdrive/service/auth_service.dart';
 class SupabaseService {
   final authService = Get.find<AuthService>();
   final supabase = Supabase.instance.client;
-  final box = GetStorage();
   bool firstTimeLogged = true; // set true as default until it changes
   bool deletedUser = false;
   bool matchedEmail = false;
@@ -93,6 +91,7 @@ class SupabaseService {
   // Check if user already exists in public.users table
   Future<bool> isExistentUser() async {
     final userId = supabase.auth.currentUser!.id;
+
     // matching users table and oauth table uuids
     final response = await supabase
         .from('users')
@@ -101,11 +100,12 @@ class SupabaseService {
         .maybeSingle();
 
     //if uuid match with record, then user exists
-    if (response != null) {
-      firstTimeLogged = false;
-    }
+    // if (response != null) {
+    //   firstTimeLogged = false;
+    // }
 
-    return firstTimeLogged;
+    //return firstTimeLogged;
+    return response != null;
   }
 
   // supabase -> INSERT INTO users (<user properties>)
@@ -133,7 +133,6 @@ class SupabaseService {
           'uuid': user.id
         });
       }
-      box.write("isFirstTimeLogged", false);
     } catch (e) {
       throw Exception("Error al crear usuario en la bd: $e");
     }

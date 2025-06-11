@@ -33,6 +33,7 @@ class _SidebarProfileState extends State<SidebarProfile> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
+              const SizedBox(height: 20),
               buildHeader(context),
               buildProfileMenuItems(context, themeController),
             ],
@@ -132,10 +133,7 @@ class _SidebarProfileState extends State<SidebarProfile> {
                 S.of(context).logout,
                 style: GoogleFonts.play(color: Colors.white, fontSize: 20),
               ),
-              onTap: () {
-                Navigator.pop(context); // Pop Sidebar Profile
-                PopupMessages.showLogoutDialog(context);
-              },
+              onTap: () => PopupMessages.showLogoutDialog(context)
             ),
           ],
         ),

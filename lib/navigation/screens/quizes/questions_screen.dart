@@ -33,6 +33,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
   Map<int, List<Map<String, dynamic>>> answers = {};
   int currentIndex = 0;
   int? selectedAnswerId;
+  bool isButtonDisabled = false;
 
   @override
   void initState() {
@@ -61,7 +62,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
 
     // This shuffles the answers show
     final List<Map<String, dynamic>> shuffledAnswers =
-      List<Map<String, dynamic>>.from(response)..shuffle();
+        List<Map<String, dynamic>>.from(response)..shuffle();
 
     setState(() {
       answers[questionId] = shuffledAnswers;
@@ -81,11 +82,15 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
     AnsweredQuizSnackbar.show(context, isCorrect);
 
     if (isCorrect) {
+      setState(() {
+        isButtonDisabled = true; // Disable button until next question
+      });
       Future.delayed(const Duration(seconds: 2), () {
         if (currentIndex < questions.length - 1) {
           setState(() {
             currentIndex++;
             selectedAnswerId = null; // Clean selection
+            isButtonDisabled = false; // Enable button
           });
         } else {
           markQuizAsCompleted(widget.quizId);
@@ -162,7 +167,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     LinearProgressIndicator(
-                      value: (currentIndex + 1) / questions.length,
+                      value: (currentIndex) / questions.length,
                       backgroundColor: Colors.grey[300],
                       color: AppTheme.darkPurple,
                       minHeight: 8,
@@ -220,7 +225,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                             borderRadius: BorderRadius.circular(30),
                           ),
                         ),
-                        onPressed: nextQuestion,
+                        onPressed: isButtonDisabled ? null :  nextQuestion,
                         child: Text(S.of(context).answer,
                             style: GoogleFonts.play(
                                 fontSize: 20, color: Colors.white)),

@@ -26,7 +26,7 @@ class HelperFunctions {
 
   static bool isSecurePassword(String password) {
     final passwordRegex = RegExp(
-      r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$',
+      r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$',
     );
     return passwordRegex.hasMatch(password);
   }

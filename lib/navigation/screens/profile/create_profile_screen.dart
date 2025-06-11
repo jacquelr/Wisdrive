@@ -2,42 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wisdrive/constraints/images_routes.dart';
+import 'package:wisdrive/constraints/popup_messages.dart';
 import 'package:wisdrive/controllers/theme_controller.dart';
 import 'package:wisdrive/constraints/app_theme.dart';
 import 'package:wisdrive/generated/l10n.dart';
-import 'package:wisdrive/navigation/screens/profile/update_password_screen.dart';
 import 'package:wisdrive/service/auth_service.dart';
 import 'package:wisdrive/service/supabase_service.dart';
 import 'package:wisdrive/widgets/profile/avatar_picker_modal.dart';
+import 'package:wisdrive/widgets/profile/create_profile_appbar.dart';
 import 'package:wisdrive/widgets/profile/editprofile_inputs.dart';
-import 'package:wisdrive/widgets/profile/profile_appbar.dart';
 
-class EditProfileScreen extends StatefulWidget {
-  const EditProfileScreen({super.key});
+class CreateProfileScreen extends StatefulWidget {
+  const CreateProfileScreen({super.key});
 
   @override
-  State<EditProfileScreen> createState() => _EditProfileScreenState();
+  State<CreateProfileScreen> createState() => _CreateProfileScreenState();
 }
 
-class _EditProfileScreenState extends State<EditProfileScreen> {
+class _CreateProfileScreenState extends State<CreateProfileScreen> {
   final authService = Get.find<AuthService>();
   final supabaseService = Get.find<SupabaseService>();
 
   int? selectedAvatar;
-
-  @override
-  void initState() {
-    super.initState();
-    loadUserAvatar();
-  }
-
-  // Load user's avatar image if isn't user's first time on the app
-  Future<void> loadUserAvatar() async {
-    final avatarIndex = await supabaseService.getUserAvatar();
-    setState(() {
-      selectedAvatar = avatarIndex;
-    });
-  }
 
   @override
   Widget build(context) {
@@ -49,7 +35,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         context: context,
         builder: (context) => AvatarPickerModal(
           onSelected: (int avatarKey) {
-            supabaseService.setUserAvatar(avatarKey);
             setState(() {
               selectedAvatar = avatarKey;
             });
@@ -62,7 +47,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       backgroundColor: themeController.isDarkMode.value
           ? AppTheme.darkPurple
           : AppTheme.lightBackground,
-      appBar: ProfileAppbar(appbarTitle: S.of(context).edit_profile),
+      appBar: CreateProfileAppbar(appbarTitle: S.of(context).create_profile),
       body: SafeArea(
         child: Column(
           children: [
@@ -135,7 +120,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             TextButton(
               onPressed: () => showAvatarPicker(context),
               child: Text(
-                S.of(context).change_picture,
+                S.of(context).select_picture,
                 style: GoogleFonts.play(
                     color: AppTheme.lightSecondary, fontSize: 24),
               ),
@@ -155,17 +140,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               padding: const EdgeInsets.all(16),
               child: TextButton(
                 // Change password text button
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const UpdatePasswordScreen(),
-                  ));
-                },
+                onPressed: () => PopupMessages.showLogoutDialog(context),
                 style: TextButton.styleFrom(
                   foregroundColor: AppTheme.lightPurple,
                   padding:
                       const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
                 ),
-                child: Text(S.of(context).change_password,
+                child: Text(S.of(context).logout,
                     style: GoogleFonts.play(fontSize: 24)),
               ),
             ),

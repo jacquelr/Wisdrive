@@ -5,8 +5,8 @@ import 'package:wisdrive/constraints/app_theme.dart';
 import 'package:wisdrive/constraints/helper_functions.dart';
 import 'package:wisdrive/controllers/theme_controller.dart';
 
-class ProfileAppbar extends StatelessWidget implements PreferredSizeWidget {
-  const ProfileAppbar({super.key, required this.appbarTitle});
+class CreateProfileAppbar extends StatelessWidget implements PreferredSizeWidget {
+  const CreateProfileAppbar({super.key, required this.appbarTitle});
 
   final String appbarTitle;
 
@@ -19,11 +19,9 @@ class ProfileAppbar extends StatelessWidget implements PreferredSizeWidget {
         appbarTitle,
         style: GoogleFonts.play(color: HelperFunctions.getTextThemeColor()),
       ),
-      leading: IconButton(
-        onPressed: () {
-          Navigator.pop(context);
-        },
-        icon: const Icon(Icons.arrow_back_sharp),
+      leading: const IconButton(
+        onPressed: null,
+        icon: Icon(Icons.arrow_back_sharp),
       ),
       iconTheme: themeController.isDarkMode.value
           ? const IconThemeData(color: AppTheme.lightBackground, size: 40)

@@ -89,7 +89,7 @@ class ModuleList extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          "${S.of(context).lesson} ${module['id']}",
+                          "${S.of(context).lesson} ${index + 1}",
                           textAlign: TextAlign.center,
                           style: GoogleFonts.play(
                               color: Colors.white,
