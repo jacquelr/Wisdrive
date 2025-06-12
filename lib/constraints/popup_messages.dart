@@ -42,6 +42,53 @@ class PopupMessages {
   }
 
   // Display confirmation logout dialog
+  static void showLogoutDialogBasic(BuildContext parentContext) {
+    final authService = Get.find<AuthService>();
+    final ThemeController themeController = Get.find();
+    showDialog(
+      context: parentContext,
+      builder: (dialogContext) => AlertDialog(
+        backgroundColor: HelperFunctions.getBlackContainerThemeColor(),
+        title: Text(
+          '${S.of(parentContext).are_you_sure}?',
+          textAlign: TextAlign.center,
+          style: GoogleFonts.play(
+            color: themeController.isDarkMode.value
+                ? Colors.white
+                : AppTheme.lightSecondary,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        content: Column(mainAxisSize: MainAxisSize.min, children: [
+          const Divider(endIndent: 5),
+          TextButton(
+            onPressed: () async {
+              Navigator.pop(dialogContext); // Pop dialog
+              await authService.signOut(parentContext); // Exit the session
+            },
+            child: Text(
+              S.of(dialogContext).logout,
+              style: GoogleFonts.play(color: Colors.red, fontSize: 16),
+            ),
+          ),
+          TextButton(
+              onPressed: () {
+                Navigator.of(dialogContext).pop();
+              },
+              child: Text(
+                S.of(dialogContext).cancel,
+                style: GoogleFonts.play(
+                    color: themeController.isDarkMode.value
+                        ? Colors.white
+                        : AppTheme.darkPurple,
+                    fontSize: 16),
+              ))
+        ]),
+      ),
+    );
+  }
+
+  // Display confirmation logout dialog
   static void showLogoutDialog(BuildContext parentContext) {
     final authService = Get.find<AuthService>();
     final ThemeController themeController = Get.find();
@@ -64,6 +111,8 @@ class PopupMessages {
           TextButton(
             onPressed: () async {
               Navigator.pop(dialogContext); // Pop dialog
+              Navigator.pop(parentContext);
+              Navigator.pop(parentContext);
               await authService.signOut(parentContext); // Exit the session
             },
             child: Text(
@@ -135,8 +184,8 @@ class PopupMessages {
     );
   }
 
- // Display dialog to reset user's password dialog (inputs included)
- static void resetForgottenPassword(BuildContext context) async {
+  // Display dialog to reset user's password dialog (inputs included)
+  static void resetForgottenPassword(BuildContext context) async {
     final ThemeController themeController = Get.find();
     final authService = Get.find<AuthService>();
     final TextEditingController emailResetController = TextEditingController();
@@ -202,7 +251,8 @@ class PopupMessages {
               child: Text(
                 S.of(context).send,
                 style: GoogleFonts.play(
-                    color: HelperFunctions.getQuizLevelContainerThemeColor(), fontSize: 18),
+                    color: HelperFunctions.getQuizLevelContainerThemeColor(),
+                    fontSize: 18),
               ),
             ),
           ],
@@ -210,5 +260,4 @@ class PopupMessages {
       },
     );
   }
-
 }

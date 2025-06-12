@@ -198,7 +198,7 @@ class _SidebarMenuState extends State<SidebarMenu> {
                   S.of(context).logout,
                   style: GoogleFonts.play(color: Colors.white, fontSize: 20),
                 ),
-                onTap: () => PopupMessages.showLogoutDialog(context)),
+                onTap: () => PopupMessages.showLogoutDialogBasic(context)),
           ],
         ),
       );
